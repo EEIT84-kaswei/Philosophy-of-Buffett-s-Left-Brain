@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/3/30 ?U?? 09:04:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="_05_newsArticle.model.NewsBean" table="news">
+        <id name="nno" type="java.lang.Integer">
+            <column name="nno" />
+            <generator class="identity" />
+        </id>
+        <property name="ntime" type="java.util.Date">
+            <column name="ntime" />
+        </property>
+        <property name="ntitle" type="java.lang.String">
+            <column name="ntitle" />
+        </property>
+        <property name="ncontext" type="java.lang.String">
+            <column name="ncontext" />
+        </property>
+    </class>
+</hibernate-mapping>

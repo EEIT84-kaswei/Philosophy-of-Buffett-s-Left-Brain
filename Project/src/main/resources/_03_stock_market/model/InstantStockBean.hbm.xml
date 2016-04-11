@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012/3/7 ?W?? 09:15:15 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="_03_stock_market.model.InstantStockBean" table="instantStock">
+        <composite-id >
+        <key-property name="stock_Code" 
+        			  column="stock_Code"/>
+        <key-property name="iDatetime" 
+        			  column="iDatetime"/>
+        </composite-id>
+        <property name="stock_TypeCode" >
+            <column name="stock_TypeCode" />
+        </property>
+        <property name="stock_Name">
+            <column name="stock_Name" />
+        </property>
+        <property name="purchase_Price" >
+            <column name="purchase_Price" />
+        </property>
+        <property name="selling_Price" >
+            <column name="selling_Price" />
+        </property>
+        <property name="final_price" >
+            <column name="final_price" />
+        </property>
+        <property name="change_Amount" >
+            <column name="change_Amount" />
+        </property>
+        <property name="change_extent" >
+            <column name="change_extent" />
+        </property>
+        <property name="acc_Trade_Volume" >
+            <column name="acc_Trade_Volume" />
+        </property>
+    </class>
+</hibernate-mapping>

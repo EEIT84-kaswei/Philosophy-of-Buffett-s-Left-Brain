@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping>
+
+<class name="_04_stock.model.DailyStockBean" table="dailyStock">
+
+	<composite-id>
+		<key-property name="stock_Code" column="stock_Code"/>
+		<key-property name="trading_Date" column="trading_Date"/>
+	</composite-id>
+
+	<property name="opening_Price" column="opening_Price"/>
+	<property name="highest_Price" column="highest_Price"/>
+	<property name="lowest_Price" column="lowest_Price"/>
+	<property name="closing_Price" column="closing_Price"/>
+	<property name="change_Amount" column="change_Amount"/>
+	<property name="change_Extent" column="change_Extent"/>
+	<property name="trade_Volume" column="trade_Volume"/>
+
+</class>
+
+</hibernate-mapping>
