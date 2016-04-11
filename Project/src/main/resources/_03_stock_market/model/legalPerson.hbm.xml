@@ -1,30 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016/3/31 ?U?? 02:04:30 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2016/4/7 ?W?? 12:09:03 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="_03_stock_market.model.LegalPersonBean" table="legalPerson">
-        <id name="ldate" type="java.util.Date">
-            <column name="ldate" />
-            <generator class="assigned" />
-        </id>
-        <property name="FCBuy_Count" type="java.lang.Integer">
-            <column name="FCBuy_Count" />
-        </property>
-        <property name="FCSale_Count" type="java.lang.Integer">
-            <column name="FCSale_Count" />
-        </property>
-        <property name="ITBuy_Count" type="java.lang.Integer">
-            <column name="ITBuy_Count" />
-        </property>
-        <property name="ITSale_Count" type="java.lang.Integer">
-            <column name="ITSale_Count" />
-        </property>
-        <property name="SFBuy_Count" type="java.lang.Integer">
-            <column name="SFBuy_Count" />
-        </property>
-        <property name="SFSale_Count" type="java.lang.Integer">
-            <column name="SFSale_Count" />
-        </property>
+        <composite-id>
+        	<key-property  name="ldate" column="ldate" />
+        	<key-property  name="stock_Code" column="stock_Code" />
+        </composite-id>
+           
+        <property name="FC_Trade_Count" column="FC_TRADE_COUNT" />
+        <property name="IT_Trade_Count" column="IT_TRADE_COUNT" />
+        <property name="SD_Trade_Count" column="SD_TRADE_COUNT" />
+        <property name="Trade_Total" column="TRADE_TOTAL" />
+
     </class>
 </hibernate-mapping>
