@@ -85,7 +85,7 @@ public class ArticleServlet extends HttpServlet {
 		bean.setAcontext(acontext);
 		System.out.println(bean);
 		// 根據Model執行結果顯示View
-		if ("Select".equals(prodaction)) {
+		if (prodaction==null) {
 			System.out.println("Servlet呼叫Service.selectPage方法前");
 			List<ArticleBean> result = articleService.select();
 			System.out.println("Servlet呼叫Service.selectPage方法後");
@@ -93,7 +93,7 @@ public class ArticleServlet extends HttpServlet {
 			session.setAttribute("select", result);
 			System.out.println("setAttribute前");
 			String path = request.getContextPath();
-			response.sendRedirect(path + "/test/pages/display.jsp");
+			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
 		}
 		if ("Insert".equals(prodaction)) {
 			ArticleDAOHibernate dao = new ArticleDAOHibernate();
@@ -108,7 +108,7 @@ public class ArticleServlet extends HttpServlet {
 				session.setAttribute("select", result);
 				System.out.println("update=setAttribute前");
 				String path = request.getContextPath();
-				response.sendRedirect(path + "/test/pages/display.jsp");
+				response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
 			} else {
 				System.out.println("Servlet呼叫Service.selectPage方法前");
 				articleService.insert(bean);
@@ -118,7 +118,7 @@ public class ArticleServlet extends HttpServlet {
 				session.setAttribute("select", result);
 				System.out.println("insert=setAttribute前");
 				String path = request.getContextPath();
-				response.sendRedirect(path + "/test/pages/display.jsp");
+				response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
 			}
 		}
 		if ("刪除".equals(prodaction)) {
@@ -130,7 +130,7 @@ public class ArticleServlet extends HttpServlet {
 			session.setAttribute("select", result);
 			System.out.println("setAttribute前");
 			String path = request.getContextPath();
-			response.sendRedirect(path + "/test/pages/display.jsp");
+			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
 		}
 	}
 
