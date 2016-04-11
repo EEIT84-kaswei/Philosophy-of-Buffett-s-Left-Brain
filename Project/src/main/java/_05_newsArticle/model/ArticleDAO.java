@@ -17,7 +17,7 @@ public interface ArticleDAO {
 
 	public abstract ArticleBean insert(ArticleBean bean);
 
-	public ArticleBean update(ArticleBean bean);
+	public boolean update(Integer ano,Integer id,String aname,String atitle,String acontext);
 
 	public abstract boolean delete(int ano);
 

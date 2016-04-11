@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import _04_stock.model.DailyStockBean;
+import _04_stock.model.DailyStockDAO;
 import misc.HibernateUtil;
 
 import org.hibernate.Query;
@@ -15,7 +16,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class DailyStockDAOHibernate {
+public class DailyStockDAOHibernate implements DailyStockDAO {
 	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -81,6 +82,10 @@ public class DailyStockDAOHibernate {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see _04_stock.model.dao.DailyStockDAO#select(java.lang.Integer, java.util.Date)
+	 */
+	@Override
 	public DailyStockBean select(Integer stock_Code,Date trading_Date){
 		DailyStockBean beanSelect=new DailyStockBean();
 		beanSelect.setStock_Code(stock_Code);		
@@ -88,11 +93,19 @@ public class DailyStockDAOHibernate {
 		return this.getSession().get(DailyStockBean.class, beanSelect);
 	}
 	
+	/* (non-Javadoc)
+	 * @see _04_stock.model.dao.DailyStockDAO#select()
+	 */
+	@Override
 	public List<DailyStockBean> select(){
 		Query query=this.getSession().createQuery("from DailyStockBean");
 		return (List<DailyStockBean>)query.list();
 	}
 	
+	/* (non-Javadoc)
+	 * @see _04_stock.model.dao.DailyStockDAO#insert(_04_stock.model.DailyStockBean)
+	 */
+	@Override
 	public DailyStockBean insert(DailyStockBean bean){
 		DailyStockBean beanSelect=new DailyStockBean();
 		beanSelect.setStock_Code(bean.getStock_Code());
@@ -105,6 +118,10 @@ public class DailyStockDAOHibernate {
 		return null;
 	}
 	
+	/* (non-Javadoc)
+	 * @see _04_stock.model.dao.DailyStockDAO#delete(java.lang.Integer, java.util.Date)
+	 */
+	@Override
 	public boolean delete(Integer stock_Code,Date trading_Date){
 		DailyStockBean beanSelect=new DailyStockBean();
 		beanSelect.setStock_Code(stock_Code);
@@ -117,6 +134,10 @@ public class DailyStockDAOHibernate {
 		return false;
 	}
 	
+	/* (non-Javadoc)
+	 * @see _04_stock.model.dao.DailyStockDAO#update(java.math.BigDecimal, java.math.BigDecimal, java.math.BigDecimal, java.math.BigDecimal, java.math.BigDecimal, java.math.BigDecimal, java.lang.Integer, java.lang.Integer, java.util.Date)
+	 */
+	@Override
 	public DailyStockBean update(BigDecimal opening_Price,BigDecimal highest_Price,BigDecimal lowest_Price,
 			BigDecimal closing_Price,BigDecimal change_Amount,BigDecimal change_Extent,Integer trade_Volume,
 			Integer stock_Code,java.util.Date trading_Date){

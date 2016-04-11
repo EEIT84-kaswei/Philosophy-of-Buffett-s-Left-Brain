@@ -4,58 +4,82 @@ package _05_newsArticle.model.dao;
 import java.util.Date;
 import java.util.List;
 
+import misc.HibernateUtil;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import _05_newsArticle.model.ArticleBean;
 import _05_newsArticle.model.ArticleDAO;
-import misc.HibernateUtil;
 
 public class ArticleDAOHibernate implements ArticleDAO{
-	private Session session = null;
-
-	public ArticleDAOHibernate(Session session) {
-		this.session = session;
+	private SessionFactory sessionFactory=null;
+	
+	public ArticleDAOHibernate(){
+		
+	}
+	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
 	public Session getSession() {
-		return session;
+		return sessionFactory.getCurrentSession();
 	}
 	
 	public static void main(String[] args) {
 		try {
-			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-			session.beginTransaction();
-			ArticleDAOHibernate dao = new ArticleDAOHibernate(session);
+			ArticleDAOHibernate dao = new ArticleDAOHibernate();
+			dao.setSessionFactory(HibernateUtil.getSessionFactory());
+			HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 			
-//			List<ArticleBean> bean = dao.select();
-//			ArticleBean bean = dao.select(5);
+			
+//			List<Object[]> bean = dao.selectPage();
+//			for(Object[] ab:bean){
+//				System.out.print(ab[0]+" ");
+//				System.out.print(((ArticleBean)ab[1]).getAname()+" ");
+//				System.out.print(ab[2]+" ");
+//				System.out.print(ab[3]+" ");
+//				System.out.println();
+//			}
+			
+//			List<ArticleBean> bean = dao.selectAdmin();
+//			List<ArticleBean> bean = dao.selectByid(5);
+//			List<ArticleBean> bean = dao.selectByAname("Lara");
 			
 			ArticleBean ab = new ArticleBean();
-//			ab.setAno(11);
+//			ab.setAno(15);
 			ab.setId(5);
-			ab.setAname("ABC");
+			ab.setAname("Shiu");
 			ab.setAtime(new Date());
-			ab.setAtitle("ABCdefg");
-			ab.setAcontext("123456789");
+			ab.setAtitle("oooxxxnnnmmm");
+			ab.setAcontext("1312223");
 			ArticleBean bean = dao.insert(ab);
-//			ArticleBean bean = dao.update(ab);
-//			boolean bean = dao.delete(12);
+			System.out.println(bean);
+//			ArticleBean bean = dao.update(15, 5,"Chang",new Date(),"標題", "文章內容");
+//			System.out.println(bean);
+//			boolean bean = dao.delete(17);
+//			System.out.println(bean);
 //			List<ArticleBean> bean = dao.selectByid(1);
 //			List<ArticleBean> bean = dao.selectByAname("Lara");
 			
-			System.out.println(bean);
+//			for(ArticleBean beans:bean){
+//				System.out.println(beans);
+//			}
 			
-			session.getTransaction().commit();
+			
+			HibernateUtil.getSessionFactory().getCurrentSession().getTransaction().commit();
 		} finally {
 			HibernateUtil.getSessionFactory().close();
 		}
 	}
-
 	@Override
 	public List<ArticleBean> select(){
-		Query query = getSession().createQuery("from ArticleBean");
-		return (List<ArticleBean>) query.list();
+		Query query = getSession().createQuery("from ArticleBean ORDER BY ano DESC");
+		
+		
+		return query.list();
 	}
 
 	@Override
@@ -79,25 +103,22 @@ public class ArticleDAOHibernate implements ArticleDAO{
 	
 	@Override
 	public ArticleBean insert(ArticleBean bean){
-		if(selectByAno(bean.getAno()) == null){
 			getSession().save(bean);
 			return bean;
-		}
-		return null;
 	}
 	
 	@Override
-	public ArticleBean update(ArticleBean bean){
-		if(selectByAno(bean.getAno()) != null){
-			ArticleBean result = (ArticleBean) getSession().get(ArticleBean.class, bean.getAno());
-			result.setId(bean.getId());
-			result.setAname(bean.getAname());
-			result.setAtime(bean.getAtime());
-			result.setAtitle(bean.getAtitle());
-			result.setAcontext(bean.getAcontext());
-			return result;
+	public boolean update(Integer ano,Integer id,String aname,String atitle,String acontext){
+		if(ano != 0||ano!=null){
+			ArticleBean result = (ArticleBean) getSession().get(ArticleBean.class, ano);
+			result.setId(id);
+			result.setAname(aname);
+			result.setAtime(new Date());
+			result.setAtitle(atitle);
+			result.setAcontext(acontext);
+			return true;
 		}
-		return null;
+		return false;
 	}
 
 	@Override

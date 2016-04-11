@@ -1,9 +1,11 @@
 package _05_newsArticle.model;
+
+import java.io.Serializable;
 /* 陳姵吟 Carley Chen, 01-04-2016 */
 
-public class ArticleBean {
-	private int ano;
-	private int id;
+public class ArticleBean implements Serializable{
+	private Integer ano;
+	private Integer id;
 	private String aname;
 	private java.util.Date atime;
 	private String atitle;
@@ -16,16 +18,16 @@ public class ArticleBean {
 				+ acontext + "]";
 	}
 	
-	public int getAno() {
+	public Integer getAno() {
 		return ano;
 	}
-	public void setAno(int ano) {
+	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getAname() {
