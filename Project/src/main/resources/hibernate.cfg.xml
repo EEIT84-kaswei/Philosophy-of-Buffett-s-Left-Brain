@@ -59,6 +59,7 @@
 		<mapping resource="_04_stock/model/DailyStockBean.hbm.xml"/>
 		<mapping resource="_04_stock/model/StockCodeBean.hbm.xml" />
 		<mapping resource="_04_stock/model/stockType.hbm.xml"/>
+		<mapping resource="_04_stock/model/securitiesTradeBean.hbm.xml"/>
 		
 		<mapping resource="_05_newsArticle/model/article.hbm.xml"/>
 		<mapping resource="_05_newsArticle/model/news.hbm.xml"/>

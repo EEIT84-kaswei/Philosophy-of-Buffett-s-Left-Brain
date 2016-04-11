@@ -1,33 +1,40 @@
 package _03_stock_market.model.dao;
-/* 陳姵吟 Carley Chen, 01-04-2016 */
+/* 廖千慧, 07-04-2016 */
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import _03_stock_market.model.LegalPersonBean;
 import _03_stock_market.model.LegalPersonDAO;
 import misc.HibernateUtil;
 
 public class LegalPersonDAOHibernate implements LegalPersonDAO {
-	private Session session;
+	private SessionFactory sessionFactory;
 
-	public LegalPersonDAOHibernate(Session session) {
-		this.session = session;
+	public void setLegalPersonDAOHibernate(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 	
 	public Session getSession(){
-		return session;
+		return sessionFactory.getCurrentSession();
 	}
 	
 	public static void main(String[] args) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		LegalPersonDAOHibernate dao = new LegalPersonDAOHibernate();
+		dao.setLegalPersonDAOHibernate(HibernateUtil.getSessionFactory());
+		Transaction tx = null;
+		
 		try {
-			session.beginTransaction();
-			LegalPersonDAOHibernate dao = new LegalPersonDAOHibernate(session);
+			Session session = dao.getSession();
+			tx = session.beginTransaction();
+			
 //			List<LegalPersonBean> bean = dao.select();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			java.util.Date date = sdf.parse("2016-03-01");
@@ -42,9 +49,9 @@ public class LegalPersonDAOHibernate implements LegalPersonDAO {
 //			result.setSFSale_Count(31);
 //			LegalPersonBean bean = dao.insert(result);
 //			LegalPersonBean bean = dao.update(result);
-			boolean bean = dao.delete(date);
+//			boolean bean = dao.delete(date);
 			
-			System.out.println(bean);
+//			System.out.println(bean);
 			
 			session.getTransaction().commit();
 		} catch (ParseException e) {
@@ -61,14 +68,27 @@ public class LegalPersonDAOHibernate implements LegalPersonDAO {
 	}
 
 	@Override
-	public LegalPersonBean selectByDate(java.util.Date ldate){
-		return (LegalPersonBean) getSession().get(LegalPersonBean.class, ldate);
+	public LegalPersonBean selectByDateCode(Integer stock_Code ,Date ldate){
+		LegalPersonBean personBean = new LegalPersonBean();
+		personBean.setStock_Code(stock_Code);
+		personBean.setLdate(ldate);		
+		return this.getSession().get(LegalPersonBean.class, personBean);
 	}
 
 	@Override
 	public LegalPersonBean insert(LegalPersonBean bean){
-		if(selectByDate(bean.getLdate())==null){
-			getSession().save(bean);
+		
+		System.out.println(bean);
+		
+		LegalPersonBean personBean = new LegalPersonBean();
+		personBean.setStock_Code(bean.getStock_Code());
+		personBean.setLdate(bean.getLdate());	
+		LegalPersonBean isBeanExist = this.getSession().get(LegalPersonBean.class, personBean);		
+		
+		System.out.println("isBeanExist = " + isBeanExist);
+		
+		if(isBeanExist==null){
+			this.getSession().save(bean);
 			return bean;
 		}
 		return null;
@@ -76,23 +96,28 @@ public class LegalPersonDAOHibernate implements LegalPersonDAO {
 
 	@Override
 	public LegalPersonBean update(LegalPersonBean bean){
-		if(selectByDate(bean.getLdate())!=null){
-			LegalPersonBean result = selectByDate(bean.getLdate());
-			result.setFCBuy_Count(bean.getFCBuy_Count());
-			result.setFCSale_Count(bean.getFCSale_Count());
-			result.setITBuy_Count(bean.getITBuy_Count());
-			result.setITSale_Count(bean.getITSale_Count());
-			result.setSFBuy_Count(bean.getSFBuy_Count());
-			result.setSFSale_Count(bean.getSFSale_Count());
-			return result;
+		LegalPersonBean personBean = new LegalPersonBean();
+		personBean.setStock_Code(bean.getStock_Code());
+		personBean.setLdate(bean.getLdate());
+		LegalPersonBean isBeanExist = this.getSession().get(LegalPersonBean.class, personBean);		
+		if(isBeanExist!=null){
+			isBeanExist.setLdate(bean.getLdate());
+			isBeanExist.setStock_Code(bean.getStock_Code());
+			isBeanExist.setFC_Trade_Count(bean.getFC_Trade_Count());
+			isBeanExist.setIT_Trade_Count(bean.getFC_Trade_Count());
+			isBeanExist.setSD_Trade_Count(bean.getSD_Trade_Count());
 		}
-		return null;
+		return isBeanExist; //有進if就會有值，沒進就會是NULL
 	}
 
 	@Override
-	public boolean delete(java.util.Date ldate){
-		if(selectByDate(ldate)!=null){
-			getSession().delete(selectByDate(ldate));
+	public boolean delete(Integer stock_Code ,Date ldate){
+		LegalPersonBean personBean = new LegalPersonBean();
+		personBean.setStock_Code(stock_Code);
+		personBean.setLdate(ldate);
+		LegalPersonBean isBeanExist = this.getSession().get(LegalPersonBean.class, personBean);	
+		if(isBeanExist!=null){
+			this.getSession().delete(isBeanExist);
 			return true;
 		}
 		return false;
