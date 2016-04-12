@@ -4,13 +4,15 @@ package _03_stock_market.model.dao;
 import java.math.BigDecimal;
 import java.util.List;
 
+import misc.HibernateUtil;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import _03_stock_market.model.InstantStockOneBean;
 import _03_stock_market.model.InstantStockOneDAO;
-import misc.HibernateUtil;
+
 
 
 public class InstantStockOneDAOHibernate implements InstantStockOneDAO {
@@ -42,14 +44,25 @@ public class InstantStockOneDAOHibernate implements InstantStockOneDAO {
 			//測試修改
 //			bean=dao.update("s2","c2","測試update",new BigDecimal(30), new BigDecimal(40), new BigDecimal(50), new BigDecimal(55),new BigDecimal(60),655,8080);
 //			System.out.println(bean);
-			//測試查詢 &List
-//			bean=dao.select(6404);
-//					System.out.println(bean);
 //			=========================================================
 //			List<InstantStockOneBean> beanList = dao.select();
 //			for(InstantStockOneBean showbean:beanList){
 //				System.out.println(showbean);
 //			}
+			
+//			=========================================================
+//			模糊搜尋 編號
+//			List<InstantStockOneBean> beanList = dao.select(8080);
+//			for(InstantStockOneBean showbean:beanList){
+//				System.out.println(showbean);
+//			}		
+//			=========================================================
+//			模糊搜尋 名稱
+//			List<InstantStockOneBean> beanList = dao.select("新");
+//			for(InstantStockOneBean showbean:beanList){
+//				System.out.println(showbean);
+//			}		
+					
 			//測試刪除
 //				boolean  beanDel=dao.delete(8080);
 //				System.out.println(beanDel);
@@ -75,12 +88,22 @@ public class InstantStockOneDAOHibernate implements InstantStockOneDAO {
 	/* (non-Javadoc)
 	 * @see model.dao.InstantStockOneDAO#select(java.lang.Integer)
 	 */
+//	@Override
+//	public InstantStockOneBean select(Integer stock_Code) {
+//		return (InstantStockOneBean)this.getSession().get(InstantStockOneBean.class, stock_Code);	
+//	}
 	@Override
-	public InstantStockOneBean select(Integer stock_Code) {
-		return (InstantStockOneBean)this.getSession().get(InstantStockOneBean.class, stock_Code);	
+	public List<InstantStockOneBean> select(int stock_Code){
+		Query query=getSession().createQuery("from InstantStockOneBean where str(stock_Code) like :code");
+		query.setParameter("code", "%"+stock_Code+"%");
+		return (List<InstantStockOneBean>) query.list();
 	}
-	
-	
+	@Override
+	public List<InstantStockOneBean> select(String stock_Name){
+		Query query=getSession().createQuery("from InstantStockOneBean where stock_Name like :name");
+		query.setParameter("name", "%"+stock_Name+"%");
+		return (List<InstantStockOneBean>) query.list();
+	}
 	/* (non-Javadoc)
 	 * @see model.dao.InstantStockOneDAO#select()
 	 */
