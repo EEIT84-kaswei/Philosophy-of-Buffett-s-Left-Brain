@@ -11,5 +11,5 @@ public interface SecuritiesTradeDAO {
 	List<SecuritiesTradeBean> select(Integer stock_Code, String securities_Supplier);	
 	SecuritiesTradeBean insert(SecuritiesTradeBean bean);
 	SecuritiesTradeBean update(SecuritiesTradeBean bean);
-	List<SecuritiesTradeBean> selectRange(Date sDateBegin, Date sDateEnd, Integer stock_Code);
+	List<SecuritiesTradeBean> selectRange(Date sDateBegin, Date sDateEnd, Integer stock_Code);	
 }

@@ -11,8 +11,11 @@ public interface InstantStockDAO {
 	Session getSession();
 
 	InstantStockBean select(Integer stock_Code,java.sql.Timestamp iDatetime);
+	
+	List<InstantStockBean> selectAllByStockCode(Integer stock_Code);
 
 	List<InstantStockBean> select();
+	
 	InstantStockBean insert(InstantStockBean bean);
 
 	InstantStockBean update(String stock_TypeCode, Integer stock_Code,java.sql.Timestamp iDatetime,String stock_Name,

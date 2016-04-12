@@ -53,24 +53,32 @@ public class SecuritiesTradeDAOHibernate implements SecuritiesTradeDAO {
 		 try {
 		 session.beginTransaction();
 		 
-		 // =============================查詢		
+		 // =============================查詢	
+		 beanlist = dao.select(sDate, 2615);
+		 for(SecuritiesTradeBean xBean : beanlist){
+			 System.out.println(xBean);
+		 }
 //		 beanlist = dao.select(2884,"瑞士信貸");
 //		 System.out.println(beanlist);
+		 beanlist = dao.select(sDate, 2615);
+		 for(SecuritiesTradeBean xBean : beanlist){
+			 System.out.println(xBean);
+		 }
 		 // ------------------------------------------ //
 		 //範圍查詢
 //	     beanlist = dao.selectRange(sDateBegin, sDateEnd, 6446);
 //	     System.out.println(beanlist);
 			 
 	     //================新增
-		 SecuritiesTradeBean temp = new SecuritiesTradeBean();
-		 temp.setStock_Code(6446);
-		 temp.setsDate(sDate);
-		 temp.setSecurities_Supplier("測試");
-		 temp.setBuy_Sheets(2500);
-		 temp.setSell_Sheets(2000);
-		 temp.setB_s_sheets(500);//		
-		 bean1 = dao.insert(temp);
-		
+//		 SecuritiesTradeBean temp = new SecuritiesTradeBean();
+//		 temp.setStock_Code(6446);
+//		 temp.setsDate(sDate);
+//		 temp.setSecurities_Supplier("測試");
+//		 temp.setBuy_Sheets(2500);
+//		 temp.setSell_Sheets(2000);
+//		 temp.setB_s_sheets(500);//		
+//		 bean1 = dao.insert(temp);
+//		
 		 session.getTransaction().commit();
 		 } catch (Exception e) {
 		 session.getTransaction().rollback();
@@ -103,7 +111,10 @@ public class SecuritiesTradeDAOHibernate implements SecuritiesTradeDAO {
 		query.add(Restrictions.between("sDate", sDateBegin, sDateEnd));
 		return (List<SecuritiesTradeBean>)query.list();
 	}
-	private static final String SELECT_BY_D_S = "from _03_stock_market.model.SecuritiesTradeBean where stock_Code=:stock_Code and sDate=:sDate";
+	private static final String SELECT_BY_D_S = "from _04_stock.model.SecuritiesTradeBean where stock_Code=:stock_Code and sDate=:sDate";
+
+//	private static final String SELECT_BY_D_S = "select top 15 from _03_stock_market.model.SecuritiesTradeBean where stock_Code=:stock_Code and sDate=:sDate Order by b_s_sheets";
+
 	public List<SecuritiesTradeBean> select(Date sDate, Integer stock_Code) {
 		Query query = this.getSession().createQuery(SELECT_BY_D_S);	
 		SecuritiesTradeBean selectBean = new SecuritiesTradeBean();
@@ -112,7 +123,7 @@ public class SecuritiesTradeDAOHibernate implements SecuritiesTradeDAO {
 		query.setProperties(selectBean);
 		return (List<SecuritiesTradeBean>)query.list();
 	}
-	private static final String SELECT_BY_S_S = "from _03_stock_market.model.SecuritiesTradeBean where stock_Code=:stock_Code and securities_Supplier=:securities_Supplier";
+	private static final String SELECT_BY_S_S = "from _04_stock.model.SecuritiesTradeBean where stock_Code=:stock_Code and securities_Supplier=:securities_Supplier";
 	public List<SecuritiesTradeBean> select(Integer stock_Code, String securities_Supplier) {
 		Query query = this.getSession().createQuery(SELECT_BY_S_S);
 		SecuritiesTradeBean selectBean = new SecuritiesTradeBean();
@@ -177,5 +188,6 @@ public class SecuritiesTradeDAOHibernate implements SecuritiesTradeDAO {
 //		return null;
 
 	}
+	
 
 }
