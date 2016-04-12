@@ -30,7 +30,7 @@ public class QuestionDAOHibernate implements QuestionDAO{
 		dao.setSessionFactory(HibernateUtil.getSessionFactory());
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Date date = null;
-//		QuestionBean bean = null;
+		QuestionBean bean = null;
 //		try {
 //			session.beginTransaction();
 //			SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
@@ -60,11 +60,11 @@ public class QuestionDAOHibernate implements QuestionDAO{
 //		}
 //		System.out.println(beans);//查詢全部==============================
 		
-		QuestionBean bean = null;
+//		QuestionBean bean = null;
 		QuestionBean bean1 = null;
 		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		try {
-			date = sFormat.parse("2016-01-10 12-12-12");
+			date = sFormat.parse("2016-04-11 12-12-12");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -72,9 +72,9 @@ public class QuestionDAOHibernate implements QuestionDAO{
 		try {
 			session.beginTransaction();
 			bean = new QuestionBean();
-			bean.setId(2);
+			bean.setId(4);
 			bean.setQDate(stamp);
-			bean.setRisk_Tolerance(2);
+			bean.setRisk_Tolerance(3);
 			bean.setScores(15);
 			bean1 = dao.insert(bean);
 			session.getTransaction().commit();
@@ -98,7 +98,7 @@ public class QuestionDAOHibernate implements QuestionDAO{
 	private static final String SELECT_ALL = "from QuestionBean order by id";
 	@Override
 	public List<QuestionBean> selectAll() {		
-		Query query = this.getSession().createQuery(SELECT_ALL);
+		Query query = getSession().createQuery(SELECT_ALL);
 		return (List<QuestionBean>)query.list();
 	}
 	@Override
@@ -106,12 +106,12 @@ public class QuestionDAOHibernate implements QuestionDAO{
 		QuestionBean bean1 = new QuestionBean();
 		bean1.setId(bean.getId());
 		bean1.setQDate(bean.getQDate());
+		bean1.setRisk_Tolerance(bean.getRisk_Tolerance());
+		bean1.setScores(bean.getScores());
 		QuestionBean result = this.getSession().get(QuestionBean.class, bean1);
-		if(result == null){
-			this.getSession().saveOrUpdate(bean);
-			return bean;
-		}
-		return null;
+		this.getSession().save(bean1);
+		return bean;
+		
 	}
 	
 	

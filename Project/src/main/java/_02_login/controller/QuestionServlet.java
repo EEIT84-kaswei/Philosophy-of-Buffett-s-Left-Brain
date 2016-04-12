@@ -29,94 +29,161 @@ import misc.HibernateUtil;
 @WebServlet("/_02_login.controller/QuestionServlet")
 public class QuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private QuestionService service;   
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private QuestionService service;
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
-//接收HTML Form資料		
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> error = new HashMap<String, String>();
 		request.setAttribute("error", error);
 		
 		request.setCharacterEncoding("UTF-8");
-//驗證HTML Form資料			
-		int Q1=0,Q2=0,Q3=0,Q4=0,Q5=0,Q6=0;
+
+		// 接收HTML Form資料
+		String q1 = request.getParameter("question1");
+		String q2 = request.getParameter("question2");
+		String q3 = request.getParameter("question3");
+		String q4 = request.getParameter("question4");
+		String q5 = request.getParameter("question5");
+		String q6 = request.getParameter("question6");
+		// 轉換HTML Form資料
+		int Q1 = 0, Q2 = 0, Q3 = 0, Q4 = 0, Q5 = 0, Q6 = 0;
 		Integer id = 4;
 		Integer Risk_Tolerance = 0;
 		SimpleDateFormat sformat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-//		Date date = null;
-//		try {
-//			date = sformat.parse("2016-02-02 13-30-30");
-//		} catch (ParseException e1) {			
-//			e1.printStackTrace();
-//		}
 		Timestamp QDate = new Timestamp(new Date().getTime());
-
-		String q1 = request.getParameter("question1");
+		if (q1 != null) {
+			try {
+				Q1 = Integer.parseInt(q1);
+			} catch (NumberFormatException e1) {
+				error.put("question1", "請回答第一題");
+				e1.printStackTrace();
+			}
+		}
+		if (q2 != null) {
+			try {
+				Q2 = Integer.parseInt(q2);
+			} catch (NumberFormatException e1) {
+				error.put("question2", "請回答第二題");
+				e1.printStackTrace();
+			}
+		}
+		if (q3 != null) {
+			try {
+				Q3 = Integer.parseInt(q3);
+			} catch (NumberFormatException e1) {
+				error.put("question3", "請回答第三題");
+				e1.printStackTrace();
+			}
+		}
+		if (q4 != null) {
+			try {
+				Q4 = Integer.parseInt(q4);
+			} catch (NumberFormatException e1) {
+				error.put("question4", "請回答第四題");
+				e1.printStackTrace();
+			}
+		}
+		
+		if (q5 != null) {
+			try {
+				Q5 = Integer.parseInt(q5);
+			} catch (NumberFormatException e1) {
+				error.put("question5", "請回答第五題");
+				e1.printStackTrace();
+			}
+		}
+		if (q6 != null) {
+			try {
+				Q6 = Integer.parseInt(q6);
+			} catch (NumberFormatException e1) {
+				error.put("question6", "請回答第六題");
+				e1.printStackTrace();
+			}
+		}
+		// 驗證HTML Form資料	
 		if(q1==null){
-			q1="0";
-			error.put("question1","請回答第一題");
+			error.put("question1", "請回答第一題");
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
+			rd.forward(request, response);
+			return;
 		}
-		Q1=Integer.parseInt(q1);
-		String q2 = request.getParameter("question2");
 		if(q2==null){
-			q2="0";
-			error.put("question2","請回答第二題");			
+			error.put("question2", "請回答第二題");
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
+			rd.forward(request, response);
+			return;
 		}
-		Q2=Integer.parseInt(q2);
-		String q3 = request.getParameter("question3");
 		if(q3==null){
-			q3="0";
-			error.put("question3","請回答第三題");
+			error.put("question3", "請回答第三題");
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
+			rd.forward(request, response);
+			return;
 		}
-		Q3=Integer.parseInt(q3);
-		String q4 = request.getParameter("question4");
 		if(q4==null){
-			q4="0";
-			error.put("question4","請回答第四題");
+			error.put("question4", "請回答第四題");
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
+			rd.forward(request, response);
+			return;
 		}
-		Q4=Integer.parseInt(q4);		
-		if(Q4>4){
-			Q4=5;
-		}else if(Q4>3){
-			Q4=4;
-		}else if(Q4>2){
-			Q4=3;
-		}else if(Q4>1){
-			Q4=2;
-		}else Q4=1;
-		String q5 = request.getParameter("question5");
 		if(q5==null){
-			q5="0";
-			error.put("question5","請回答第五題");
+			error.put("question5", "請回答第五題");
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
+			rd.forward(request, response);
+			return;
 		}
-		Q5=Integer.parseInt(q5);
-		String q6 = request.getParameter("question6");
 		if(q6==null){
-			q6="0";
-			error.put("question6","請回答第六題");
+			error.put("question6", "請回答第六題");
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
+			rd.forward(request, response);
+			return;
 		}
-		Q6=Integer.parseInt(q6);
-		
-		Integer scores = service.scores(Q1, Q2, Q3, Q4, Q5, Q6);
-		Risk_Tolerance = service.risk(scores);
-		
-//		Integer scores = Q1+Q2+Q3+Q4+Q5+Q6;
-//		if(scores <= 11){
-//			Risk_Tolerance = 1;
-//		}else if(scores>11 && scores<=21){
-//			Risk_Tolerance = 2;
-//		}else Risk_Tolerance = 3;
-//		
-//		if(!error.isEmpty()&&error!=null){
-//			RequestDispatcher rd = request.getRequestDispatcher("/secure/register/questionError.jsp");
+//		if(q1==null||q2==null||q3==null||q4==null||q5==null||q6==null){
+//			
+//			RequestDispatcher rd = request
+//					.getRequestDispatcher("/secure/register/question.jsp");
 //			rd.forward(request, response);
+//			
 //			return;
 //		}
 		
-			
+
+		// Integer scores = Q1+Q2+Q3+Q4+Q5+Q6;
+		// if(scores <= 11){
+		// Risk_Tolerance = 1;
+		// }else if(scores>11 && scores<=21){
+		// Risk_Tolerance = 2;
+		// }else Risk_Tolerance = 3;
 		
+		if (!error.isEmpty()) {
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
+			rd.forward(request, response);
+			return;
+		}
+		if (Q4 > 4) {
+			Q4 = 5;
+		} else if (Q4 > 3) {
+			Q4 = 4;
+		} else if (Q4 > 2) {
+			Q4 = 3;
+		} else if (Q4 > 1) {
+			Q4 = 2;
+		} else
+			Q4 = 1;
+		//呼叫Model
+		Integer scores = service.scores(Q1, Q2, Q3, Q4, Q5, Q6);
+		Risk_Tolerance = service.risk(scores);
 		QuestionBean bean = new QuestionBean();
 		try {
 			bean.setId(id);
@@ -125,32 +192,35 @@ public class QuestionServlet extends HttpServlet {
 			bean.setScores(scores);
 
 			service.insert(bean);
-	//		request.setAttribute("AnswerBean", bean);
-			RequestDispatcher rd = request.getRequestDispatcher("/secure/register/questionnaire.jsp");
+			// request.setAttribute("AnswerBean", bean);
+			RequestDispatcher rd = request
+					.getRequestDispatcher("/secure/_01_register/questionnaire/types.jsp");
 			rd.forward(request, response);
-//			if(Risk_Tolerance == 1){
-//			rd = request.getRequestDispatcher("/secure/register/questionnaire.jsp");
-//			rd.forward(request, response);
-//			}else if(Risk_Tolerance == 2){
-//				rd = request.getRequestDispatcher("/secure/register/questionnaire.jsp");
-//				rd.forward(request, response);
-//			}else if(Risk_Tolerance == 3){
-//				rd = request.getRequestDispatcher("/secure/register/questionnaire.jsp");
-//				rd.forward(request, response);
-//			}
-			
-		} catch (Exception e) {
-			RequestDispatcher rd = request.getRequestDispatcher("/secure/register/questionError.jsp");
-			e.printStackTrace();
-			rd.forward(request, response);
-					
+			return;
+			// if(Risk_Tolerance == 1){
+			// rd =
+			// request.getRequestDispatcher("/secure/register/questionnaire.jsp");
+			// rd.forward(request, response);
+			// }else if(Risk_Tolerance == 2){
+			// rd =
+			// request.getRequestDispatcher("/secure/register/questionnaire.jsp");
+			// rd.forward(request, response);
+			// }else if(Risk_Tolerance == 3){
+			// rd =
+			// request.getRequestDispatcher("/secure/register/questionnaire.jsp");
+			// rd.forward(request, response);
+			// }
+
+		} catch (Exception e) {			
+			e.printStackTrace();			
+			return;
 		}
 	}
 
-	//在未使用spring前，先使用init方法取得session
+	// 在未使用spring前，先使用init方法取得session
 	@Override
-	public void init() throws ServletException {  
-		QuestionDAOHibernate dao= new QuestionDAOHibernate();
+	public void init() throws ServletException {
+		QuestionDAOHibernate dao = new QuestionDAOHibernate();
 		dao.setSessionFactory(HibernateUtil.getSessionFactory());
 		service = new QuestionService();
 		service.setQuestionDAO(dao);
