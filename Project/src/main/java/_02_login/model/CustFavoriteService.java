@@ -173,6 +173,9 @@ public class CustFavoriteService {
 //		System.out.println("是否符合指標5 = "+ test5);
 		
 		
+		
+		
+		
 		HibernateUtil.closeSessionFactory();
 	}
 

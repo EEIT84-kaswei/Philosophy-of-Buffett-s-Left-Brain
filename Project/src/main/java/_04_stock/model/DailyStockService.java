@@ -83,5 +83,4 @@ public class DailyStockService {
 		HibernateUtil.closeSessionFactory();
 		
 	}
-
 }

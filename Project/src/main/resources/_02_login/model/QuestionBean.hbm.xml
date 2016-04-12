@@ -3,7 +3,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012/3/7 ?W?? 09:15:15 by Hibernate Tools 3.3.0.GA -->
 <hibernate-mapping>
-    <class name="_02_login.model.QuestionBean" table="questionnaire">
+    <class name="_02_login.model.QuestionBean" table="question">
         <composite-id>
         	<key-property name="id" column="id"/>
         	<key-property name="QDate" column="QDate"></key-property>

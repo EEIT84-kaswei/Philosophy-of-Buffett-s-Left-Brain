@@ -76,7 +76,7 @@ public class ArticleDAOHibernate implements ArticleDAO{
 	}
 	@Override
 	public List<ArticleBean> select(){
-		Query query = getSession().createQuery("from ArticleBean ORDER BY ano DESC");
+		Query query = getSession().createQuery("from ArticleBean ORDER BY atime DESC");
 		
 		
 		return query.list();
@@ -96,8 +96,8 @@ public class ArticleDAOHibernate implements ArticleDAO{
 	
 	@Override
 	public List<ArticleBean> selectByAname(String aname) {
-		Query query = getSession().createQuery("from ArticleBean where aname = ?");
-		query.setParameter(0, aname);
+		Query query = getSession().createQuery("from ArticleBean where aname like:name ORDER BY atime DESC");
+		query.setParameter("name","%"+aname+"%");
 		return (List<ArticleBean>) query.list();
 	}
 	
