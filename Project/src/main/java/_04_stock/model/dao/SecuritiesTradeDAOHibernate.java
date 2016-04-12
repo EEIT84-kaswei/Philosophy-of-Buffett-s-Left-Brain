@@ -60,6 +60,10 @@ public class SecuritiesTradeDAOHibernate implements SecuritiesTradeDAO {
 		 }
 //		 beanlist = dao.select(2884,"瑞士信貸");
 //		 System.out.println(beanlist);
+		 beanlist = dao.select(sDate, 2615);
+		 for(SecuritiesTradeBean xBean : beanlist){
+			 System.out.println(xBean);
+		 }
 		 // ------------------------------------------ //
 		 //範圍查詢
 //	     beanlist = dao.selectRange(sDateBegin, sDateEnd, 6446);
@@ -108,6 +112,9 @@ public class SecuritiesTradeDAOHibernate implements SecuritiesTradeDAO {
 		return (List<SecuritiesTradeBean>)query.list();
 	}
 	private static final String SELECT_BY_D_S = "from _04_stock.model.SecuritiesTradeBean where stock_Code=:stock_Code and sDate=:sDate";
+
+//	private static final String SELECT_BY_D_S = "select top 15 from _03_stock_market.model.SecuritiesTradeBean where stock_Code=:stock_Code and sDate=:sDate Order by b_s_sheets";
+
 	public List<SecuritiesTradeBean> select(Date sDate, Integer stock_Code) {
 		Query query = this.getSession().createQuery(SELECT_BY_D_S);	
 		SecuritiesTradeBean selectBean = new SecuritiesTradeBean();

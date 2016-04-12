@@ -24,13 +24,29 @@ public class InstantStockService {
 			InstantStockService service = new InstantStockService();
 			service.setInstantStockDAO(new InstantStockDAOHibernate(session));
 			List<InstantStockBean> beans = service.select(null);
-			System.out.println("beans="+beans);
+//			System.out.println("beans="+beans);
+			List<InstantStockBean> beans1 = service.selectByOneStock(1101);
+			for(InstantStockBean xBean : beans1){
+				System.out.println(xBean);
+			}
 			
 			transaction.commit();
 		} finally {
 			HibernateUtil.closeSessionFactory();
 		}
 	}
+	
+	//[即時K線圖]即時InsertService - 某支股票，當天全部交易資料 
+	//回傳[Insert]股價資料： (1)stock_Code股票代碼   (2)iDateTime時分秒   (3)final_Price成交價格
+	
+	public List<InstantStockBean> selectByOneStock(Integer stock_Code){
+		List<InstantStockBean> result = null;
+		result = InstantStockDAO.selectAllByStockCode(stock_Code);
+		return result;
+	}
+	
+	
+	//1隻股某個時間資料 or 全部股票資料
 	public List<InstantStockBean> select(InstantStockBean bean) {
 		List<InstantStockBean> result = null;
 		if(bean!=null && bean.getStock_Code()!=0) {

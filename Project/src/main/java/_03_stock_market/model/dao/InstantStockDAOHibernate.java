@@ -104,6 +104,12 @@ public class InstantStockDAOHibernate implements InstantStockDAO  {
 		return (InstantStockBean)this.getSession().get(InstantStockBean.class, bean);	
 	}
 	
+	public List<InstantStockBean> selectAllByStockCode(Integer stock_Code){
+		Query query = getSession().createQuery("from InstantStockBean where stock_Code = ?");
+		query.setParameter(0, stock_Code);
+		List<InstantStockBean> result =  query.list();
+		return result;
+	}
 	/* (non-Javadoc)
 	 * @see model.dao.InstantStockDAO#select()
 	 */
