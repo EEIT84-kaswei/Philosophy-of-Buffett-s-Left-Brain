@@ -10,10 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>專欄文章</title>
 <style type="text/css">
-table tr:hover {
-	color: #BD63FF;
-	background-color: #FFFF00;
-}
+
 </style>
 
 
@@ -31,12 +28,7 @@ table tr:hover {
 		</div>
 
 
-		<div
-			style="height: 20em; margin: 2em auto; padding: 2em; border: 1px solid; border-color: green">
-
-			<p style="text-align: center">專欄文章：靜態樣板文字，僅供參考，請後端工程師增加動態專欄文章</p>
-
-
+		<div style="height: 20em; margin: 2em auto; padding: 2em;">
 
 			<!-- 表格開始 -->
 
@@ -60,7 +52,7 @@ table tr:hover {
 					</tr>
 					<tr>
 						<td></td>
-						<td ><input type="submit" name="prodaction" value="Insert">
+						<td><input type="submit" name="prodaction" value="Insert">
 							<div style="display: none;">
 								<input type="text" name="ano" value="${param.ano}">
 							</div></td>

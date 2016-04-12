@@ -24,7 +24,21 @@
 }
 </style>
 </head>
-<body>
+<body style="margin: 0em 3em">
+	<div class="container">
+		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+		<jsp:include page="/title.jsp" />
+
+
+		<!-- 網頁主要導覽列 -->
+		<div>
+			<jsp:include page="/nav.jsp" />
+		</div>
+
+
+
+
+<div class="container">
 	<%
 		response.setCharacterEncoding("UTF-8");
 	%>
@@ -39,6 +53,7 @@
 		<br /> 
 		<input type="submit" name="prodaction" value="送出">
 	</form>
-
+</div>
+</div>
 </body>
 </html>

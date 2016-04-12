@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,13 +9,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>風險屬性問卷</title>
 <style type="text/css">
-#midTable {
-	width: 80%
-}
+<style type="text/css">
+	#midTable{
+		width:80%;
+		margin:0 auto
+	}
+	#middleTable{
+		border:1px gray solid;
+		border-collapse: collapse;
+		
+	}
+	
+	#middleTable tr:hover {
+		background-color: #77FFCC;
+	}
+	
 
-#middleTable {
-	border: 1px gray solid;
-}
+	#middleTable tr{
+	border:1px solid gray;
+	}
+</style>
 </style>
 <script type="text/javascript">
 	function doOnclick() {
@@ -146,16 +158,15 @@
 							<c:if test="${param.question6 eq '5'}">checked</c:if>>12%以上（每年可接受損失12萬元以上）<br></td>
 						<td style="color: red"><span class="error">${error.question6}</span></td>
 					</tr>
-					<tr>
-						<td><input type="submit" value="送出"></td>
-					</tr>
+				
 				</table>
-
+<input type="submit" value="送出">
 			</form>
 		</div>
 		<br>
 
 
 	</div>
+
 </body>
 </html>

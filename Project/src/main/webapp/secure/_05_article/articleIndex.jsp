@@ -10,9 +10,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>專欄文章</title>
 <style type="text/css">
-table tr:hover {
+#maintable tr:hover {
 	color: #BD63FF;
-	background-color: #FFFF00;
+	background-color: #77FFCC;
 }
 </style>
 
@@ -31,36 +31,27 @@ table tr:hover {
 		</div>
 
 
-		<div
-			style="height: 20em; margin: 2em auto; padding: 2em; border: 1px solid; border-color: green">
-
-			<p style="text-align: center">專欄文章：靜態樣板文字，僅供參考，請後端工程師增加動態專欄文章</p>
-
-
+		<div style="height: 20em; margin: 2em auto; padding: 2em; width:400px">
 
 			<!-- 表格開始 -->
 
 			<form action="<c:url value="/view/article.controller" />" method="post">
-<!-- 			<form> -->
-				<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
-					cellpadding='5' align=center>
+				<center>
+
+						依作家搜尋
+				<input type="text" name="sname" value="">
+				<input type="submit" name="prodaction" value="搜尋">
+				</center>
+				
+				<table id="maintable" style="border: 2px #FFAC55 solid; padding: 5px; width:400px" rules="all"
+					cellpadding='5'>
 					<thead>
+<!-- 						<tr><td ></td><th></th><td></td></tr> -->
 						<tr>
-							<td >
-								<a href="/Project/secure/_05_article/newArticleIndex.jsp"><input 
-								type="button" value="發表文章"></a>
-							</td>
 							
-								<th>依作家搜尋</th>
-							<td>
-								<input type="text" name="sname" value=""><input 
-								type="submit" name="prodaction" value="搜尋">
-							</td>
-						</tr>
-						<tr>
-							<th>發表日期</th>
-							<th>作者</th>
 							<th>文章標題</th>
+							<th>作者</th>
+							<th>發表日期</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -73,16 +64,20 @@ table tr:hover {
 								<c:param name="acontext" value="${row.acontext}" />
 							</c:url>
 							<tr>
+								
+								<td><a href="${path}">${row.atitle}</a></td>
+								<td>${row.aname}</td>
 								<td><fmt:formatDate value="${row.atime}"
 										pattern="yyyy-MM-dd" /></td>
-								<td>${row.aname}</td>
-								<td><a href="${path}">${row.atitle}</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-
-
+						<center>
+						<a href="/Project/secure/_05_article/newArticleIndex.jsp">
+						<input type="button" value="發表文章">
+						</a>
+						</center>
 			</form>
 
 		</div>
