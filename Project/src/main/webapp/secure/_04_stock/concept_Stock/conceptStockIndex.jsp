@@ -30,8 +30,9 @@ function doAlert(){
 	<h3>概念股樣板</h3>
 	
 	<div style="float:right">最後更新時間：08-04-2016 13:30:00</div>
-	
-	
+<!-- 請胤凱填寫(呼叫哪知Servlet)	↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
+<form action="<c:url value="/secure/_04_stock/concept_Stock/conceptStockIndex.jsp" />" method="post">
+
 <select style="align:left">
  <option> </option>
  <option>環保概念股</option>
@@ -53,7 +54,12 @@ function doAlert(){
 			<th>市價/淨值</th>
 		</tr>
 		<tr>
-			<td><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>" onclick="doAlert()">○ 加入 ○</a></td>
+<%-- 		<td><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>" onclick="doAlert()">○ 加入 ○</a></td> --%>
+<!-- if 未加入自選 -->
+			<td><input type="submit" name="" value="○ 加入 ○"></td>
+<!-- esle -->
+<!-- 		<td><input type="submit" name="" value="移除"></td> -->
+<!-- end -->
 			<td>6803</td>
 			<td><a href="<c:url value='/secure/_04_stock/concept_Stock/historyInfo.jsp' />">印楷</a></td>
 			<td>158.00</td>
@@ -87,7 +93,7 @@ function doAlert(){
 		</tr>
 
 	</table>
-	
+	</form>
 </div>
 </div>
 

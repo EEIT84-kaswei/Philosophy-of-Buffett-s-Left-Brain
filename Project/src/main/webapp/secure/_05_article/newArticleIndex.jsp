@@ -61,9 +61,8 @@ table tr:hover {
 					<tr>
 						<td></td>
 						<td ><input type="submit" name="prodaction" value="Insert">
-							<div style="display: none;">
-								<input type="text" name="ano" value="${param.ano}">
-							</div></td>
+						<!--隱藏的ano資料，為了把資料庫取出來的ano資料帶走↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+						<div style="display: none;"><input type="text" name="ano" value="${param.ano}"></div></td>
 					</tr>
 				</table>
 			</form>

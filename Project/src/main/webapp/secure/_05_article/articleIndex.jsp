@@ -41,7 +41,6 @@ table tr:hover {
 			<!-- 表格開始 -->
 
 			<form action="<c:url value="/view/article.controller" />" method="post">
-<!-- 			<form> -->
 				<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
 					cellpadding='5' align=center>
 					<thead>
