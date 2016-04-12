@@ -41,50 +41,32 @@ table tr:hover {
 			<!-- 表格開始 -->
 
 			<form action="<c:url value="/view/article.controller" />" method="post">
-<!-- 			<form> -->
 				<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
 					cellpadding='5' align=center>
-					<thead>
-						<tr>
-							<td >
-								<a href="/Project/secure/_05_article/newArticleIndex.jsp"><input 
-								type="button" value="發表文章"></a>
-							</td>
-							
-								<th>依作家搜尋</th>
-							<td>
-								<input type="text" name="sname" value=""><input 
-								type="submit" name="prodaction" value="搜尋">
-							</td>
-						</tr>
-						<tr>
-							<th>發表日期</th>
-							<th>作者</th>
-							<th>文章標題</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="row" items="${select}">
-							<c:url value="/secure/_05_article/selectArticleIndex.jsp" var="path" scope="page">
-								<c:param name="ano" value="${row.ano}" />
-								<c:param name="atime" value="${row.atime}" />
-								<c:param name="aname" value="${row.aname}" />
-								<c:param name="atitle" value="${row.atitle}" />
-								<c:param name="acontext" value="${row.acontext}" />
-							</c:url>
-							<tr>
-								<td><fmt:formatDate value="${row.atime}"
-										pattern="yyyy-MM-dd" /></td>
-								<td>${row.aname}</td>
-								<td><a href="${path}">${row.atitle}</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
+
+					<tr>
+						<td>作家名稱 :</td>
+						<td ><input type="text" name="aname" value="${param.aname}"><span class="error">${error.aname}</span></td>
+						
+					</tr>
+					<tr>
+						<td>文章標題:</td>
+						<td><input type="text" name="atitle" value="${param.atitle}"><span class="error">${error.atitle}</span></td>
+					</tr>
+
+					<tr>
+						<td>文章內文 :</td>
+						<td><textarea name="acontext" cols="60" rows="30">${param.acontext}</textarea><br><span class="error">${error.acontext}</span></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td ><input type="submit" name="prodaction" value="Insert">
+							<div style="display: none;">
+								<input type="text" name="ano" value="${param.ano}">
+							</div></td>
+					</tr>
 				</table>
-
-
 			</form>
-
 		</div>
 
 	</div>

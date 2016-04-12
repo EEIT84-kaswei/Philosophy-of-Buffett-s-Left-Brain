@@ -7,6 +7,8 @@ import misc.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import _05_newsArticle.model.dao.ArticleDAOHibernate;
+
 public class ArticleService {
 	private ArticleDAO ArticleDAO;
 	public void setArticleDAO(ArticleDAO ArticleDAO) {
@@ -17,12 +19,15 @@ public class ArticleService {
 			Session session =
 					HibernateUtil.getSessionFactory().getCurrentSession();
 			Transaction transaction = session.beginTransaction();
-//
-//			ArticleService service = new ArticleService();
-//			service.setArticleDAO(new ArticleDAOHibernate(session));
-//			List<ArticleBean> beans = service.select(null);
-//			System.out.println("beans="+beans);
-//			
+
+			ArticleDAOHibernate dao = new ArticleDAOHibernate();
+			dao.setSessionFactory(HibernateUtil.getSessionFactory());
+			ArticleService service = new ArticleService();
+			service.setArticleDAO(dao);
+			List<ArticleBean> beans = service.selectByAname("Lara");
+			for(ArticleBean bs:beans){
+			System.out.println("bs="+bs);
+			}
 			transaction.commit();
 		} finally {
 			HibernateUtil.closeSessionFactory();
@@ -34,10 +39,10 @@ public class ArticleService {
 		System.out.println("Servicec呼叫DAO.selectPage後");
 		return result;
 	}
-	public List<ArticleBean> selectByAname(ArticleBean bean) {
+	public List<ArticleBean> selectByAname(String bean) {
 		List<ArticleBean> result = null;
-		if(bean!=null && bean.getAname().trim().length()!=0) {
-			result = ArticleDAO.selectByAname(bean.getAname());
+		if(bean!=null && bean.trim().length()!=0) {
+			result = ArticleDAO.selectByAname(bean);
 		}
 		return result;
 	}
