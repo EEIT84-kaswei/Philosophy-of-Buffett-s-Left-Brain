@@ -179,7 +179,12 @@
 			
 			<li><a href="<c:url value='/view/article.controller' />">股市專欄</a></li>
 			
-			<li><a href="<c:url value='/pages/_05_newsArticle/CarleyNewsIndex.jsp' />">股市新聞</a></li>
+			<li><a href="<c:url value='/news.do' />">股市新聞</a></li>
+<!-- 			<li> -->
+<%-- 				<form action="<c:url value="news.do"/>" method="get"> --%>
+<!-- 					<input type="submit" name="prodaction" value="股市新聞"> -->
+<!-- 				</form> -->
+<!-- 			</li> -->
 			<li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
 						<li>
 				<a href="<c:url value='/secure/_02_login/memberIndex.jsp' />">會員專區</a>

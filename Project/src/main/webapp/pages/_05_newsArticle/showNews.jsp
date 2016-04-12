@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	function confirmDelete() {
 		if (confirm("確定刪除此項新聞資料(編號:${param.nno})?")) {
-			document.forms[0].action = "news.do?nno=${param.nno}";
+			document.forms[0].action = "<c:url value="/news.do?nno=${param.nno}"/>";
 			document.forms[0].method = "POST";
 			document.forms[0].submit();
 		} else {
@@ -28,23 +28,37 @@
 	
 </script>
 </head>
-<body>
+<body style="margin: 0em 3em">
+	<div class="container">
+		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+		<jsp:include page="/title.jsp" />
+
+
+		<!-- 網頁主要導覽列 -->
+		<div>
+			<jsp:include page="/nav.jsp" />
+		</div>
 	<%
 		response.setCharacterEncoding("UTF-8");
 	%>
 
+<div style="hieght:20px;width:20px;padding:20px">
+</div>
+
 	<form action="news.do" method="POST">
-
-		<h1>${param.ntitle}</h1>
-		<fmt:parseDate var="parseDate" value="${param.ntime}" pattern="yyyy-MM-dd"/>
-		<fmt:formatDate value="${parseDate}" pattern="yyyy年MM月dd日"/>
+		
+		<h2 style="text-align:center;color:purple">${param.ntitle}</h2>
+		<p style="text-align:center">${param.ntime}</p>
+		<br>
+		<div style="width:500px;margin:0 auto">
 		<p>${param.ncontext}</p>
-
+		</div>
+		<div align=center>
 		<input type="button" name="update" value="修改" onclick="toUpdateView()" />
 		&nbsp;&nbsp;&nbsp; 
 		<input type="button" name="delete" value="刪除" onclick="confirmDelete()" />
-
+		</div>
 	</form>
-
+</div>
 </body>
 </html>

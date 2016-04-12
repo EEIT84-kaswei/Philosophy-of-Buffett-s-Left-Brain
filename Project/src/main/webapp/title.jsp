@@ -10,8 +10,8 @@
 <title>標題</title>
 <style type="text/css">
 
-*{
-	background-color:#FFE8E8;
+body{
+background-color:#FFE8E8;
 }
 
 li {
@@ -29,7 +29,7 @@ li {
 </style>
 
 </head>
-<body>
+
 
 	<!-- 標題 START -->
 <center>	
@@ -94,5 +94,5 @@ li {
 	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<!-- 標題 END -->
 </center>
-</body>
+
 </html>

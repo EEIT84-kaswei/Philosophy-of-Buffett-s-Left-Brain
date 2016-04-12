@@ -97,9 +97,9 @@ $(function(){
 
 <body>
 
-<div style="height:20px;width:200px;margin:50;padding:0 auto;align:center">
+<div style="height:20px;width:200px">
 
-	<div class="abgne_tab">
+	<div class="abgne_tab" align=center>
 		<ul class="tabs">
 			<li><a href="#tab1">新聞</a></li>
 			<li><a href="#tab2">專欄</a></li>
