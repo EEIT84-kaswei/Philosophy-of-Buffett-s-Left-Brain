@@ -13,7 +13,6 @@ import _04_stock.model.dao.SecuritiesTradeDAOHibernate;
 
 public class SecuritiesTradeService {
 	private SecuritiesTradeDAO securitiesTradeDAO;
-	
 	public void setSecuritiesTradeDAO(SecuritiesTradeDAO securitiesTradeDAO) {
 		this.securitiesTradeDAO = securitiesTradeDAO;
 	}
@@ -86,13 +85,13 @@ public class SecuritiesTradeService {
 		
 	}
 	
-	
+	//尋找某一隻股，某一天的 主力進出
 	public List<SecuritiesTradeBean> select(Date sDate, Integer stock_Code){
 		List<SecuritiesTradeBean> result = new ArrayList<SecuritiesTradeBean>();
 		result = securitiesTradeDAO.select(sDate, stock_Code);		
 		return result;
 	}
-	
+	//尋找某一隻股，某一個證劵自營商   全部買賣資料
 	public List<SecuritiesTradeBean> select(Integer stock_Code, String securities_Supplier){
 		List<SecuritiesTradeBean> result = new ArrayList<SecuritiesTradeBean>();
 		result = securitiesTradeDAO.select(stock_Code, securities_Supplier);

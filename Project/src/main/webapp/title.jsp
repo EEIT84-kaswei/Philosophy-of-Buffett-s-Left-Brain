@@ -32,7 +32,7 @@ li {
 <body>
 
 	<!-- 標題 START -->
-	
+<center>	
 	<script type="text/javascript">
 	function googleTranslateElementInit() {
 		new google.translate.TranslateElement({
@@ -93,6 +93,6 @@ li {
 <script type="text/javascript"
 	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<!-- 標題 END -->
-
+</center>
 </body>
 </html>

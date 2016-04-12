@@ -26,6 +26,12 @@
 		</script>
 		<style type="text/css">
 
+			#pageDiv{
+  				width:800px;   
+ 				margin:auto; 
+/* 				margin-right:auto; */
+			}
+
 
 			/*
 				教學文：http://fundesigner.net/only-css-menu
@@ -36,7 +42,7 @@
 
 			/* 初始化 */
 			body, ul, li, a{
-				margin: 0;
+				margin: auto;
 				padding: 0;
 				font-size: 14px;
 				text-decoration: blink;
@@ -130,10 +136,10 @@
 <!-- 網頁上方的橫向導覽列 -->
 
 <%-- <span style="background-color:#FFF0D4"> --%>
-<div style="background-color:#FFF0D4;padding:20;height:40px;margin:0 auto">
+<div id="pageDiv" style="background-color:#FFF0D4;padding:20;height:40px;margin:0 auto">
 		
 		<ul class="navigation">
-			<li><a href="<c:url value='/Welcome.jsp' />">首頁</a></li>
+			<li><a href="<c:url value='/Welcome.jsp' />">　首頁　</a></li>
 			<li><a href="<c:url value='/pages/basic/basicIndex.jsp'/>">基本概念</a>
 				<ul>
 					<li><a href="#">股票類型</a></li>
@@ -171,7 +177,8 @@
 				</ul>
 			</li>
 			
-			<li><a href="<c:url value='/secure/_05_article/articleIndex.jsp' />">股市專欄</a></li>
+			<li><a href="<c:url value='/view/article.controller' />">股市專欄</a></li>
+			
 			<li><a href="<c:url value='/pages/_05_newsArticle/CarleyNewsIndex.jsp' />">股市新聞</a></li>
 			<li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
 						<li>
@@ -224,5 +231,6 @@
 		</ul>
 </div>
 <%-- </span> --%>
+
 </body>
 </html>
