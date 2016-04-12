@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="_01_register.model.Member_Bean" table="account">
+		<id name="id" column="id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="account" column="account"></property>
+		<property name="passw" column="passw"></property>
+		<property name="name" column="name"></property>
+		<property name="idc" column="idc"></property>
+		<property name="email" column="email"></property>
+		<property name="area_phone" column="area_phone"></property>
+		<property name="phone" column="phone"></property>
+		<property name="address" column="address"></property>
+	</class>
+
+</hibernate-mapping>
