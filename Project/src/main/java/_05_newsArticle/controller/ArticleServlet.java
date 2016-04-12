@@ -71,7 +71,7 @@ public class ArticleServlet extends HttpServlet {
 				error.put("atitle", "標題欄位請勿空白");
 			}
 			if (acontext == null || acontext.trim().length() == 0) {
-				error.put("acontext", "名稱欄位請勿空白");
+				error.put("acontext", "內文欄位請勿空白");
 			}
 		}
 
