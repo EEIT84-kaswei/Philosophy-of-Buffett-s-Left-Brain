@@ -10,16 +10,21 @@ public interface InstantStockOneDAO {
 
 	Session getSession();
 
-	InstantStockOneBean select(Integer stock_Code);
+//	InstantStockOneBean select(Integer stock_Code);
 
 	List<InstantStockOneBean> select();
 
+	List<InstantStockOneBean> select(int stock_Code);
+	
+	List<InstantStockOneBean> select(String stock_Name);
+	
 	InstantStockOneBean insert(InstantStockOneBean bean);
 
 	InstantStockOneBean update(String stock_TypeCode, String concept_Stock, String stock_Name,
 			BigDecimal purchase_Price, BigDecimal selling_Price, BigDecimal final_price, BigDecimal change_Amount,
 			BigDecimal change_extent, Integer acc_Trade_Volume, Integer stock_Code);
-
+	
 	boolean delete(Integer stock_Code);
+
 
 }

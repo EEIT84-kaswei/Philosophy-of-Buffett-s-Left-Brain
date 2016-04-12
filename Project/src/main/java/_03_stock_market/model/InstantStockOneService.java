@@ -1,14 +1,15 @@
 package _03_stock_market.model;
 /*張秀維 Hsiu Chang, 01-04-2016 */
 
-import java.util.ArrayList;
 import java.util.List;
+
+import misc.HibernateUtil;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import _03_stock_market.model.dao.InstantStockOneDAOHibernate;
-import misc.HibernateUtil;
+
 
 public class InstantStockOneService {
 	private InstantStockOneDAO InstantStockOneDAO;
@@ -23,9 +24,15 @@ public class InstantStockOneService {
 
 			InstantStockOneService service = new InstantStockOneService();
 			service.setInstantStockOneDAO(new InstantStockOneDAOHibernate(session));
-			List<InstantStockOneBean> beans = service.select(null);
-			System.out.println("beans="+beans);
+			InstantStockOneBean isb =new InstantStockOneBean();
 			
+//			isb.setStock_Code(52); 	 	//模糊搜尋 Code
+//			isb.setStock_Name("新");  	//模糊搜尋 Name
+//			isb.setStock_Name("新'or 1=1 or stock_Name like '新");  	// Name隱碼攻擊測試
+			List<InstantStockOneBean> beans = service.select(isb);
+			for(InstantStockOneBean bean:beans){
+			System.out.println("bean="+bean);
+			}
 			transaction.commit();
 		} finally {
 			HibernateUtil.closeSessionFactory();
@@ -33,13 +40,20 @@ public class InstantStockOneService {
 	}
 	public List<InstantStockOneBean> select(InstantStockOneBean bean) {
 		List<InstantStockOneBean> result = null;
-		if(bean!=null && bean.getStock_Code()!=0) {
-			InstantStockOneBean temp = InstantStockOneDAO.select(bean.getStock_Code());
-			if(temp!=null) {
-				result = new ArrayList<InstantStockOneBean>();
-				result.add(temp);
-			}
-		} else {
+		
+		if(bean!=null &&bean.getStock_Code()!=null &&bean.getStock_Code()!=0) {
+			result = InstantStockOneDAO.select(bean.getStock_Code());
+//			if(temp!=null) {
+//				result = new ArrayList<InstantStockOneBean>();
+//				result.add(temp);
+//			}
+		}else if(bean!=null && bean.getStock_Name()!=null){
+			result = InstantStockOneDAO.select(bean.getStock_Name());
+//			if(temp!=null) {
+//				result = new ArrayList<InstantStockOneBean>();
+//				result.add(temp);
+//			}
+		}else{
 			result = InstantStockOneDAO.select(); 
 		}
 		return result;
