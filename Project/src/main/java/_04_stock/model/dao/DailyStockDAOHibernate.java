@@ -92,6 +92,13 @@ public class DailyStockDAOHibernate implements DailyStockDAO {
 		beanSelect.setTrading_Date(trading_Date);		
 		return this.getSession().get(DailyStockBean.class, beanSelect);
 	}
+	@Override
+	public List<DailyStockBean> selectByStockCode(Integer stock_Code){
+		Query query = this.getSession().createQuery("from DailyStockBean where stock_Code = ?");
+		query.setParameter(0, stock_Code);
+		List<DailyStockBean> beans = query.list();
+		return beans;
+	}
 	
 	/* (non-Javadoc)
 	 * @see _04_stock.model.dao.DailyStockDAO#select()
