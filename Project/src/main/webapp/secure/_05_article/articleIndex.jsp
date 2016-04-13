@@ -22,7 +22,7 @@
 <body style="margin: 0em 3em">
 	<div class="container">
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-		<jsp:include page="/title.jsp" />
+
 
 
 		<!-- 網頁主要導覽列 -->
@@ -31,7 +31,7 @@
 		</div>
 
 
-		<div style="height: 20em; margin: 2em auto; padding: 2em; width:400px">
+	<!-- 	<div align="center" style="height: 20em; margin: 2em auto; padding: 2em"> -->
 
 			<!-- 表格開始 -->
 
@@ -43,7 +43,7 @@
 				<input type="submit" name="prodaction" value="搜尋">
 				</center>
 				
-				<table id="maintable" style="border: 2px #FFAC55 solid; padding: 5px; width:400px" rules="all"
+				<table id="maintable"  align=center style="border: 2px #FFAC55 solid; padding:2em; width:35em" rules="all"
 					cellpadding='5'>
 					<thead>
 <!-- 						<tr><td ></td><th></th><td></td></tr> -->
@@ -63,7 +63,7 @@
 								<c:param name="atitle" value="${row.atitle}" />
 								<c:param name="acontext" value="${row.acontext}" />
 							</c:url>
-							<tr>
+							<tr style="height:2.5em">
 								
 								<td><a href="${path}">${row.atitle}</a></td>
 								<td>${row.aname}</td>
@@ -82,7 +82,7 @@
 
 		</div>
 
-	</div>
+<!-- 	</div> -->
 
 </body>
 </html>

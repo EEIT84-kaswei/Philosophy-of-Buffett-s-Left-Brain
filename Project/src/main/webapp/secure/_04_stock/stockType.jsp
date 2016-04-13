@@ -9,10 +9,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>股票分類：首頁</title>
 </head>
-<body style="margin:0em 3em">
+<body>
 <div class="container">
 <!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-<jsp:include page="/title.jsp" />
+
 
 
 <!-- 網頁主要導覽列 -->

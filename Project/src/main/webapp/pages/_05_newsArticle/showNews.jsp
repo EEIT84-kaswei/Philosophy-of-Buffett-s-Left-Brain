@@ -28,10 +28,10 @@
 	
 </script>
 </head>
-<body style="margin: 0em 3em">
+<body>
 	<div class="container">
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-		<jsp:include page="/title.jsp" />
+
 
 
 		<!-- 網頁主要導覽列 -->
@@ -42,7 +42,7 @@
 		response.setCharacterEncoding("UTF-8");
 	%>
 
-<div style="hieght:20px;width:20px;padding:20px">
+<div style="hieght:20px;width:20px;padding:20px;margin:2em">
 </div>
 
 	<form action="news.do" method="POST">
