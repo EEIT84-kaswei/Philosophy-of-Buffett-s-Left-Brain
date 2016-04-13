@@ -14,7 +14,7 @@ import _05_newsArticle.model.ArticleBean;
 import _05_newsArticle.model.ArticleDAO;
 
 public class ArticleDAOHibernate implements ArticleDAO{
-	private SessionFactory sessionFactory=null;
+	private SessionFactory sessionFactory;
 	
 	public ArticleDAOHibernate(){
 		
