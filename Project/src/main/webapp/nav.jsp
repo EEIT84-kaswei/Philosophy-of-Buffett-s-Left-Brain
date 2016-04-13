@@ -177,7 +177,7 @@
 				</ul>
 			</li>
 			
-			<li><a href="<c:url value='/view/article.controller' />">股市專欄</a></li>
+			<li><a href="<c:url value='/pages/article.controller' />">股市專欄</a></li>
 			
 			<li><a href="<c:url value='/news.do' />">股市新聞</a></li>
 <!-- 			<li> -->
