@@ -5,8 +5,8 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<html>
-<head>
+
+
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- <link rel="stylesheet" href="css/bootstrap.min.css" > -->
@@ -27,8 +27,8 @@
 		<style type="text/css">
 
 			#pageDiv{
-  				width:800px;   
- 				margin:auto; 
+  				width:51em;   
+ 				margin:auto			 
 /* 				margin-right:auto; */
 			}
 
@@ -60,7 +60,7 @@
 			ul.navigation li a{
 				display: block;
 				padding: 12px 20px;
-				background: #FFF0D4;
+				background: #FFE8E8;
 				color: #000033;
 			}
 			/* 特定在第一層，以左邊灰線分隔 */
@@ -131,12 +131,12 @@
 				height: 1px;
 			}
 		</style>		
-</head>
-<body>
+
+
 <!-- 網頁上方的橫向導覽列 -->
 
 <%-- <span style="background-color:#FFF0D4"> --%>
-<div id="pageDiv" style="background-color:#FFF0D4;padding:20;height:40px;margin:0 auto">
+<div id="pageDiv" style="background-color:#FFE8E8;padding:20;height:40px;margin:0 auto">
 		
 		<ul class="navigation">
 			<li><a href="<c:url value='/Welcome.jsp' />">　首頁　</a></li>
@@ -235,7 +235,7 @@
 <!-- 			<li><a href="#">7</a></li> -->
 		</ul>
 </div>
+<hr>
 <%-- </span> --%>
 
-</body>
-</html>
+
