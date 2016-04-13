@@ -41,50 +41,53 @@ table tr:hover {
 			<!-- 表格開始 -->
 
 
+			
+				<form action="<c:url value="/pages/article.controller" >
+					    <c:param name="ano" value="${select.ano}" />
+						<c:param name="aname" value="${select.aname}" />
+						<c:param name="atitle" value="${select.atitle}" />
+						<c:param name="acontext" value="${select.acontext}" /></c:url>"
+					method="post">
+					<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
+						cellpadding='5' align=center>
 
-			<form
-				action="<c:url value="/view/article.controller" ><c:param name="ano" value="${param.ano}" />
-						<c:param name="aname" value="${param.aname}" />
-						<c:param name="atitle" value="${param.atitle}" />
-						<c:param name="acontext" value="${param.acontext}" /></c:url>"
-				method="post">
-				<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
-					cellpadding='5' align=center>
-					
 						<tr>
 							<th>發表日期</th>
 							<th>作者</th>
 						</tr>
 						<tr>
-							<td>${param.atime}</td>
-							<td>${param.aname}</td>
+							<td>${select.atime}</td>
+							<td>${select.aname}</td>
 						</tr>
 						<tr>
 							<th colspan="2">文章標題</th>
 						</tr>
 						<tr>
-							<td colspan="2">${param.atitle}</td>
+							<td colspan="2">${select.atitle}</td>
 						</tr>
-					
+
 						<tr>
 							<th colspan="2">文章內容</th>
 						</tr>
 						<tr>
-							<td colspan="2">${param.acontext}</td>
+							<td colspan="2">${select.acontext}</td>
 						</tr>
-						<c:url value="/secure/_05_article/newArticleIndex.jsp" var="path" scope="page">
-							<c:param name="ano" value="${param.ano}" />
-							<c:param name="aname" value="${param.aname}" />
-							<c:param name="atitle" value="${param.atitle}" />
-							<c:param name="acontext" value="${param.acontext}" />
+						<c:url value="/secure/_05_article/newArticleIndex.jsp" var="path"
+							scope="page">
+							<c:param name="ano" value="${select.ano}" />
+							<c:param name="aname" value="${select.aname}" />
+							<c:param name="atitle" value="${select.atitle}" />
+							<c:param name="acontext" value="${select.acontext}" />
 						</c:url>
 						<tr>
 							<td><a href="${path}"><input type="button"
 									name="prodaction" value="修改"></a></td>
 							<td><input type="submit" name="prodaction" value="刪除"></td>
 						</tr>
-				</table>
-			</form>
+
+					</table>
+				</form>
+			
 		</div>
 
 	</div>

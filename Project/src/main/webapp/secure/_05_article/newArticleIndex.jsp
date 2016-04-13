@@ -40,7 +40,7 @@ table tr:hover {
 
 			<!-- 表格開始 -->
 
-			<form action="<c:url value="/view/article.controller" />" method="post">
+			<form action="<c:url value="/pages/article.controller" />" method="post">
 				<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
 					cellpadding='5' align=center>
 

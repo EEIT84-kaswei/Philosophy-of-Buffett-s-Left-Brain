@@ -18,7 +18,7 @@ import _05_newsArticle.model.ArticleBean;
 import _05_newsArticle.model.ArticleService;
 import _05_newsArticle.model.dao.ArticleDAOHibernate;
 
-@WebServlet(urlPatterns = { "/view/article.controller" })
+@WebServlet(urlPatterns = { "/pages/article.controller" })
 public class ArticleServlet extends HttpServlet {
 	private ArticleService articleService;
 
@@ -33,7 +33,6 @@ public class ArticleServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("hahaha");
 		// 接收HTML Form資料
 		request.setCharacterEncoding("UTF-8");
 		String no = request.getParameter("ano");
@@ -90,9 +89,23 @@ public class ArticleServlet extends HttpServlet {
 		bean.setAcontext(acontext);
 		System.out.println(bean);
 		// 根據Model執行結果顯示View
-//		System.out.println("01"+prodaction+sname);
-//		System.out.println("02"+(sname.trim().length() == 0));
-		if (prodaction == null||("搜尋".equals(prodaction)&&sname.trim().length() == 0)) {
+		
+		
+		
+//		System.out.println("01"+prodaction);
+//		System.out.println("02"+(sname.trim().length() == 0));//沒資料為Null 打開會NullPointerException
+//		System.out.println(bean.getAno());
+		if (prodaction == null&&no!=null&&no.trim().length()!=0) {
+			System.out.println("Servlet呼叫Service.select方法前");
+			ArticleBean result = articleService.selectByAno(bean);
+			System.out.println("Servlet呼叫Service.select方法後");
+			HttpSession session = request.getSession();
+			session.setAttribute("select", result);
+			System.out.println("Servlet執行setAttribute前");
+			String path = request.getContextPath();
+			response.sendRedirect(path + "/secure/_05_article/selectArticleIndex.jsp");
+		}
+		if ((prodaction == null||("搜尋".equals(prodaction)&&sname.trim().length() == 0))&&no==null) {
 			System.out.println("Servlet呼叫Service.select方法前");
 			List<ArticleBean> result = articleService.select();
 			System.out.println("Servlet呼叫Service.select方法後");

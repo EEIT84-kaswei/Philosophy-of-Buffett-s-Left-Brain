@@ -31,7 +31,7 @@ function doAlert(){
 	
 	<div style="float:right">最後更新時間：08-04-2016 13:30:00</div>
 <!-- 請胤凱填寫(呼叫哪知Servlet)	↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
-<form action="<c:url value="/secure/_04_stock/concept_Stock/conceptStockIndex.jsp" />" method="post">
+<%-- <form action="<c:url value="/CustFavoriteServlet" />" method="post"> --%>
 
 <select style="align:left">
  <option> </option>
@@ -60,8 +60,11 @@ function doAlert(){
 <!-- esle -->
 <!-- 		<td><input type="submit" name="" value="移除"></td> -->
 <!-- end -->
-			<td>6803</td>
-			<td><a href="<c:url value='/secure/_04_stock/concept_Stock/historyInfo.jsp' />">印楷</a></td>
+<%--        <c:forEach> --%>
+			<c:url value="/CustFavoriteServlet" var="path" scope="page">
+			<c:param name="stock_Cobe" value="1101" /></c:url>
+			<td>1101</td>
+			<td><a href="${path}">印楷</a></td>
 			<td>158.00</td>
 			<td>160.00</td>
 			<td>10533</td>
@@ -69,6 +72,7 @@ function doAlert(){
 			<td>9.75</td>
 			<td>2.45</td>
 		</tr>
+<%-- 		</c:forEach> --%>
 		<tr>
 			<td>○ 加入 ○</td>
 			<td>2596</td>
@@ -93,7 +97,7 @@ function doAlert(){
 		</tr>
 
 	</table>
-	</form>
+<!-- 	</form> -->
 </div>
 </div>
 

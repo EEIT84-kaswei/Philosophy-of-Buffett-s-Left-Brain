@@ -281,8 +281,7 @@ public class CustFavoriteService {
 	}
 	
 	//指標6
-	public boolean Stock_index4(Date ldate1,Integer FC_Trade_Count1,
-			Date ldate2,Integer FC_Trade_Count2,Date ldate3,Integer FC_Trade_Count3,
+	public boolean Stock_index4(Integer FC_Trade_Count1,Integer FC_Trade_Count2,Integer FC_Trade_Count3,
 			Integer stock_Code){
 		boolean result = false;
 		//FC_Trade_Count外資				
@@ -297,8 +296,7 @@ public class CustFavoriteService {
 	}
 	//IT_Trade_Count投信
 	//指標7
-	public boolean Stock_index5(Date ldate1,Integer IT_Trade_Count1,Date ldate2,Integer IT_Trade_Count2,
-			Date ldate3,Integer IT_Trade_Count3,Integer stock_Code){
+	public boolean Stock_index5(Integer IT_Trade_Count1,Integer IT_Trade_Count2,Integer IT_Trade_Count3,Integer stock_Code){
 		boolean result = false;
 		if(IT_Trade_Count1>0 && IT_Trade_Count2>0 && IT_Trade_Count3>0){//投信連買三天
 			int sum = IT_Trade_Count1 + IT_Trade_Count2 + IT_Trade_Count3;

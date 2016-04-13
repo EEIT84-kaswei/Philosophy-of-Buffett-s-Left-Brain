@@ -40,7 +40,7 @@ table tr:hover {
 
 			<!-- 表格開始 -->
 
-			<form action="<c:url value="/view/article.controller" />" method="post">
+			<form action="<c:url value="/pages/article.controller" />" method="post">
 				<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
 					cellpadding='5' align=center>
 					<thead>
@@ -64,16 +64,11 @@ table tr:hover {
 					</thead>
 					<tbody>
 						<c:forEach var="row" items="${select}">
-							<c:url value="/secure/_05_article/selectArticleIndex.jsp" var="path" scope="page">
+							<c:url value="/pages/article.controller" var="path" scope="page" >
 								<c:param name="ano" value="${row.ano}" />
-								<c:param name="atime" value="${row.atime}" />
-								<c:param name="aname" value="${row.aname}" />
-								<c:param name="atitle" value="${row.atitle}" />
-								<c:param name="acontext" value="${row.acontext}" />
 							</c:url>
 							<tr>
-								<td><fmt:formatDate value="${row.atime}"
-										pattern="yyyy-MM-dd" /></td>
+								<td><fmt:formatDate value="${row.atime}" pattern="yyyy-MM-dd" /></td>
 								<td>${row.aname}</td>
 								<td><a href="${path}">${row.atitle}</a></td>
 							</tr>
