@@ -139,8 +139,8 @@ public class CustFavoriteServlet extends HttpServlet {
 		functionService = new SpecialFunctionService();
 		functionService.setSpecialFunctionDAO(dao);
 		
-		CustFavoriteDAOHibernate daoC = new CustFavoriteDAOHibernate(session);
-		dao.setSessionFactory(HibernateUtil.getSessionFactory());
+		CustFavoriteDAOHibernate daoC = new CustFavoriteDAOHibernate();
+		daoC.setSessionFactory(HibernateUtil.getSessionFactory());
 		favoriteService = new CustFavoriteService();
 		favoriteService.setCustFavoriteDAO(daoC);
 	}
