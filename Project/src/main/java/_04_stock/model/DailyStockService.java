@@ -72,7 +72,7 @@ public class DailyStockService {
 			BigDecimal closing_Price_Yesterday=result.get(i-1).getClosing_Price();
 			if(closing_Price_Today.subtract(closing_Price_Yesterday).compareTo(new BigDecimal("0"))==1){
 				oneStockColorArrayBuilder.add("red");
-			}else if(closing_Price_Today.subtract(closing_Price_Yesterday).compareTo(new BigDecimal("0"))==1){
+			}else if(closing_Price_Today.subtract(closing_Price_Yesterday).compareTo(new BigDecimal("0"))==0){
 				oneStockColorArrayBuilder.add("gray");
 			}else{
 				oneStockColorArrayBuilder.add("green");
