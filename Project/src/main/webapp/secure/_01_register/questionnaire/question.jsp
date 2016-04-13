@@ -11,19 +11,41 @@
 <title>風險屬性問卷</title>
 <style type="text/css">
 	#midTable{
-		width:80%
+		width:80%;
+		margin:0 auto
 	}
 	#middleTable{
 		border:1px gray solid;
+		border-collapse: collapse;
+		width:70%;
+		
+	}
+	#middleTable tr td:nth{
+		border-right: 1px solid gray;
+		padding:1em;
+	}
+
+	#middleTable tr td:nth-child(1){
+		border-right: 1px solid gray;
+		padding:1em;
+	}
+	
+	
+	
+	#middleTable tr:nth-child(odd) {
+	background: #EFEFEF
+	}
+	
+	#middleTable tr:hover {
+		background-color: #77FFCC;
+	}
+	
+	#middleTable tr{
+	border:1px solid gray;
 	}
 
 </style>
-<script type="text/javascript">
-function doOnclick(){
-	alert("您已送出問卷");
-	//這只是demo用的
-}
-</script>
+
 
 </head>
 <body style="margin: 0em 3em">
@@ -91,12 +113,12 @@ function doOnclick(){
 	
 
 </table>
-		
+		<input type="submit" value="送出" >
 </form>
 </div>
 <br>
-	<input type="submit" value="送出" onclick="doOnclick()" >
-	<a href="<c:url value='/secure/_01_register/questionnaire/types.jsp'/>">結果</a>	
+	
+
 </div>
 </body>
 </html>

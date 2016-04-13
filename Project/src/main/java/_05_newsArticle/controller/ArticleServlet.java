@@ -18,7 +18,7 @@ import _05_newsArticle.model.ArticleBean;
 import _05_newsArticle.model.ArticleService;
 import _05_newsArticle.model.dao.ArticleDAOHibernate;
 
-@WebServlet(urlPatterns = { "/view/article.controller" })
+@WebServlet(urlPatterns = { "/pages/article.controller" })
 public class ArticleServlet extends HttpServlet {
 	private ArticleService articleService;
 
@@ -33,7 +33,6 @@ public class ArticleServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("hahaha");
 		// 接收HTML Form資料
 		request.setCharacterEncoding("UTF-8");
 		String no = request.getParameter("ano");
@@ -42,19 +41,10 @@ public class ArticleServlet extends HttpServlet {
 		String atitle = request.getParameter("atitle");
 		String acontext = request.getParameter("acontext");
 		String prodaction = request.getParameter("prodaction");
+		String sname = request.getParameter("sname");
 		// 轉換HTML Form資料
 		Map<String, String> error = new HashMap<String, String>();
 		request.setAttribute("error", error);
-
-		int id = 0;
-		if (strId != null && strId.trim().length() != 0) {
-			try {
-				id = Integer.parseInt(strId.trim());
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-				error.put("id", "Id必須是整數");
-			}
-		}
 
 		Integer ano = 0;
 		if (no != null && no.trim().length() != 0) {
@@ -63,15 +53,29 @@ public class ArticleServlet extends HttpServlet {
 			} catch (NumberFormatException e) {
 			}
 		}
+		
+		int id = 0;
+		if (strId != null && strId.trim().length() != 0) {
+			try {
+				id = Integer.parseInt(strId.trim());
+			} catch (NumberFormatException e) {
+			}
+		}
 		// 驗證HTML Form資料
 		if ("Insert".equals(prodaction)) {
 			if (aname == null || aname.trim().length() == 0) {
-				error.put("aname", "請輸入名稱以便於執行" + prodaction);
+				error.put("aname", "名稱欄位請勿空白");
+			}
+			if (atitle == null || atitle.trim().length() == 0) {
+				error.put("atitle", "標題欄位請勿空白");
+			}
+			if (acontext == null || acontext.trim().length() == 0) {
+				error.put("acontext", "內文欄位請勿空白");
 			}
 		}
 
 		if (error != null && !error.isEmpty() && "Insert".equals(prodaction)) {
-			request.getRequestDispatcher("/test/pages/newAcontext.jsp")
+			request.getRequestDispatcher("/secure/_05_article/newArticleIndex.jsp")
 					.forward(request, response);
 			return;
 		}
@@ -85,13 +89,39 @@ public class ArticleServlet extends HttpServlet {
 		bean.setAcontext(acontext);
 		System.out.println(bean);
 		// 根據Model執行結果顯示View
-		if (prodaction==null) {
-			System.out.println("Servlet呼叫Service.selectPage方法前");
-			List<ArticleBean> result = articleService.select();
-			System.out.println("Servlet呼叫Service.selectPage方法後");
+		
+		
+		
+//		System.out.println("01"+prodaction);
+//		System.out.println("02"+(sname.trim().length() == 0));//沒資料為Null 打開會NullPointerException
+//		System.out.println(bean.getAno());
+		if (prodaction == null&&no!=null&&no.trim().length()!=0) {
+			System.out.println("Servlet呼叫Service.select方法前");
+			ArticleBean result = articleService.selectByAno(bean);
+			System.out.println("Servlet呼叫Service.select方法後");
 			HttpSession session = request.getSession();
 			session.setAttribute("select", result);
-			System.out.println("setAttribute前");
+			System.out.println("Servlet執行setAttribute前");
+			String path = request.getContextPath();
+			response.sendRedirect(path + "/secure/_05_article/selectArticleIndex.jsp");
+		}
+		if ((prodaction == null||("搜尋".equals(prodaction)&&sname.trim().length() == 0))&&no==null) {
+			System.out.println("Servlet呼叫Service.select方法前");
+			List<ArticleBean> result = articleService.select();
+			System.out.println("Servlet呼叫Service.select方法後");
+			HttpSession session = request.getSession();
+			session.setAttribute("select", result);
+			System.out.println("Servlet執行setAttribute前");
+			String path = request.getContextPath();
+			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
+		}
+		if ("搜尋".equals(prodaction)&&sname.trim().length() != 0) {
+			System.out.println("依名稱搜尋呼叫Service.selectByAname方法前");
+			List<ArticleBean> result = articleService.selectByAname(sname);
+			System.out.println("依名稱搜尋呼叫Service.selectByAname方法後");
+			HttpSession session = request.getSession();
+			session.setAttribute("select", result);
+			System.out.println("Servlet執行setAttribute前");
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
 		}
@@ -100,25 +130,27 @@ public class ArticleServlet extends HttpServlet {
 			ArticleBean bano = articleService.selectByAno(bean);
 			System.out.println("bano=" + bano);
 			if (bano != null && ano.equals(bano.getAno())) {
-				System.out.println("update執行前");
+				System.out.println("Servlet呼叫Service.update方法前");
 				articleService.update(bean);
-				System.out.println("update執行後");
+				System.out.println("Servlet呼叫Service.update方法後");
 				List<ArticleBean> result = articleService.select();
 				HttpSession session = request.getSession();
 				session.setAttribute("select", result);
-				System.out.println("update=setAttribute前");
+				System.out.println("Servlet執行setAttribute前");
 				String path = request.getContextPath();
-				response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
+				response.sendRedirect(path
+						+ "/secure/_05_article/articleIndex.jsp");
 			} else {
-				System.out.println("Servlet呼叫Service.selectPage方法前");
+				System.out.println("Servlet呼叫Service.insert方法前");
 				articleService.insert(bean);
 				List<ArticleBean> result = articleService.select();
-				System.out.println("Servlet呼叫Service.selectPage方法後");
+				System.out.println("Servlet呼叫Service.insert方法後");
 				HttpSession session = request.getSession();
 				session.setAttribute("select", result);
-				System.out.println("insert=setAttribute前");
+				System.out.println("Servlet執行setAttribute前");
 				String path = request.getContextPath();
-				response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
+				response.sendRedirect(path
+						+ "/secure/_05_article/articleIndex.jsp");
 			}
 		}
 		if ("刪除".equals(prodaction)) {

@@ -14,7 +14,7 @@ import _05_newsArticle.model.ArticleBean;
 import _05_newsArticle.model.ArticleDAO;
 
 public class ArticleDAOHibernate implements ArticleDAO{
-	private SessionFactory sessionFactory=null;
+	private SessionFactory sessionFactory;
 	
 	public ArticleDAOHibernate(){
 		
@@ -76,7 +76,7 @@ public class ArticleDAOHibernate implements ArticleDAO{
 	}
 	@Override
 	public List<ArticleBean> select(){
-		Query query = getSession().createQuery("from ArticleBean ORDER BY atime DESC");
+		Query query = getSession().createQuery("from ArticleBean ORDER BY ano DESC");
 		
 		
 		return query.list();
@@ -96,8 +96,8 @@ public class ArticleDAOHibernate implements ArticleDAO{
 	
 	@Override
 	public List<ArticleBean> selectByAname(String aname) {
-		Query query = getSession().createQuery("from ArticleBean where aname = ? ORDER BY atime DESC ");
-		query.setParameter(0, aname);
+		Query query = getSession().createQuery("from ArticleBean where aname like:name ORDER BY ano DESC");
+		query.setParameter("name","%"+aname+"%");
 		return (List<ArticleBean>) query.list();
 	}
 	

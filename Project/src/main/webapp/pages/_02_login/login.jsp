@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登入</title>
 <style>
-table{
+#logtable{
 	margin:3em;
 	padding:1em;
 	border:0.2px;
@@ -22,10 +22,10 @@ table{
 </style>
 <script src="js/bootstrap.min.js"></script>
 </head>
-<body style="margin:0em 3em">
-<div class="container">
-<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-<jsp:include page="/title.jsp" />
+<body style="margin:0 3em">
+ <div class="container"> 
+	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+ <jsp:include page="/title.jsp" /> 
 
 
 <!-- 網頁主要導覽列 -->
@@ -35,7 +35,7 @@ table{
 <div align="center">
 
 
-	<table style="border:5px #FFD382 groove;" cellpadding="10" border='0'>
+	<table id="logtable" style="border:5px #FFD382 groove;" cellpadding="10" border='0'>
 		<tr>
 			<td>帳號</td>
 			<td><input type="text" size="20" placeholder="請輸入帳號"></td>

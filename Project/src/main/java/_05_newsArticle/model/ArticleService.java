@@ -34,9 +34,9 @@ public class ArticleService {
 		}
 	}
 	public List<ArticleBean> select() {
-		System.out.println("Servicec呼叫DAO.selectPage前");
+		System.out.println("Servicec呼叫DAO.select前");
 		List<ArticleBean> result = ArticleDAO.select(); 
-		System.out.println("Servicec呼叫DAO.selectPage後");
+		System.out.println("Servicec呼叫DAO.select後");
 		return result;
 	}
 	public List<ArticleBean> selectByAname(String bean) {
@@ -47,10 +47,12 @@ public class ArticleService {
 		return result;
 	}
 	public ArticleBean selectByAno(ArticleBean bean) {
+		System.out.println("Servicec呼叫DAO.selectByAno前");
 		ArticleBean result = null;
-		if(bean!=null && bean.getAname().trim().length()!=0) {
+		if(bean!=null && bean.getAno()!=0) {
 			result = ArticleDAO.selectByAno(bean.getAno());
 		}
+		System.out.println("Servicec呼叫DAO.selectByAno後");
 		return result;
 	}
 	public ArticleBean insert(ArticleBean bean) {

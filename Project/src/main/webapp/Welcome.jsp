@@ -14,7 +14,7 @@
 
 </head>
 
-<body style="margin:0em 3em">
+<body style="margin:0em 3em" >
 <div class="container">
 <!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 <jsp:include page="/title.jsp" />
@@ -25,7 +25,7 @@
 <jsp:include page="/nav.jsp" />
 </div>
 <!-- 主畫面 -->
-<div align=center style="height:20px;width:200px;margin:15em 5em;padding:3em auto">
+<div style="height:20px;width:200px;margin:15em auto">
 <jsp:include page="/defaultView.jsp" />
 </div>
 
