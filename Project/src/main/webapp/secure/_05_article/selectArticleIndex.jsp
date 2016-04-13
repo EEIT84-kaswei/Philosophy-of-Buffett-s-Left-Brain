@@ -10,10 +10,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>專欄文章</title>
 <style type="text/css">
-table tr:hover {
-	color: #BD63FF;
-	background-color: #FFFF00;
-}
+/* table tr:hover { */
+/* 	background-color:#77FFCC; */
+/* 	color: #BD63FF; */
+/* } */
 </style>
 
 
@@ -32,62 +32,34 @@ table tr:hover {
 
 
 		<div
-			style="height: 20em; margin: 2em auto; padding: 2em; border: 1px solid; border-color: green">
-
-			<p style="text-align: center">專欄文章：靜態樣板文字，僅供參考，請後端工程師增加動態專欄文章</p>
-
+			style="height: 20em; margin: 2em auto; padding: 2em">
 
 
 			<!-- 表格開始 -->
 
 
 			
-				<form action="<c:url value="/pages/article.controller" >
+				<form action="<c:url value="/secure/_05_article/newArticleIndex.jsp" var="path" scope="page">
 					    <c:param name="ano" value="${select.ano}" />
 						<c:param name="aname" value="${select.aname}" />
 						<c:param name="atitle" value="${select.atitle}" />
-						<c:param name="acontext" value="${select.acontext}" /></c:url>"
-					method="post">
-					<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
-						cellpadding='5' align=center>
+						<c:param name="acontext" value="${select.acontext}" /></c:url>" method="post">
 
-						<tr>
-							<th>發表日期</th>
-							<th>作者</th>
-						</tr>
-						<tr>
-							<td>${select.atime}</td>
-							<td>${select.aname}</td>
-						</tr>
-						<tr>
-							<th colspan="2">文章標題</th>
-						</tr>
-						<tr>
-							<td colspan="2">${select.atitle}</td>
-						</tr>
-
-						<tr>
-							<th colspan="2">文章內容</th>
-						</tr>
-						<tr>
-							<td colspan="2">${select.acontext}</td>
-						</tr>
-						<c:url value="/secure/_05_article/newArticleIndex.jsp" var="path"
-							scope="page">
-							<c:param name="ano" value="${select.ano}" />
-							<c:param name="aname" value="${select.aname}" />
-							<c:param name="atitle" value="${select.atitle}" />
-							<c:param name="acontext" value="${select.acontext}" />
-						</c:url>
-						<tr>
-							<td><a href="${path}"><input type="button"
-									name="prodaction" value="修改"></a></td>
-							<td><input type="submit" name="prodaction" value="刪除"></td>
-						</tr>
-
-					</table>
+				
+				<h2 style="text-align:center;color:purple">${select.atitle}</h2>
+				<p style="text-align:center">${select.aname}</p>
+				<p style="text-align:center">${select.atime}</p>
+				<br>
+				<div style="width:500px;margin:0 auto">
+				<p>${select.acontext}</p>
+				</div>
+				<div align=center>
+				<a href="${path}"><input type="button" name="prodaction" value="修改"></a>
+				<input type="submit" name="prodaction" value="刪除">
+				
+				</div>
 				</form>
-			
+
 		</div>
 
 	</div>

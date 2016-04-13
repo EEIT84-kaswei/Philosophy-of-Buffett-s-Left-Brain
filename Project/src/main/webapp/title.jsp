@@ -4,14 +4,14 @@
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>標題</title>
 <style type="text/css">
 
-*{
-	background-color:#FFE8E8;
+body{
+background-color:#FFE8E8;
 }
 
 li {
@@ -29,7 +29,7 @@ li {
 </style>
 
 </head>
-<body>
+
 
 	<!-- 標題 START -->
 <center>	
@@ -37,46 +37,45 @@ li {
 	function googleTranslateElementInit() {
 		new google.translate.TranslateElement({
 			pageLanguage : 'zh-TW',
-			includedLanguages : 'ru,uk,en,ja,ko,zh-TW,fr,de,it,es,th,vi,ar-sa,gd-ie,yi,zu,sw,ts,tr,mm'
+			includedLanguages : 'ru,uk,en,ja,ko,zh-TW,fr,de,it,es,th,vi,ar-sa,gd-ie,yi,zu,sw,ts,tr'
 		}, 'google_translate_element');
 	}
 </script>
 
-	
+
 <table>
 <tbody>
 <tr>
 	<td>
 		<div id="logoimg">
-			<img src="<c:url value="/img/logo.png"/>" style="float: left; height: 120px">
+			<a href="<c:url value='/index.jsp'/>"><img src="<c:url value="/img/logo2.png"/>" style="float: left; height: 100px;"></a>
 		</div>
 	</td>
-	<td>
-			<h1>巴菲特的左腦哲學</h1><br>
+	<td style="padding:0 2em">
+			<h1>巴菲特的左腦哲學</h1>
 			<font size="1px">EEIT84 project | Philosophy of Buffett's Left Brain</font>
 	</td>
-	<td class='menuData'>
+	
+	
+	<td style="padding:0 2em">
 				<div class='menu'>
 					<c:if test="${empty LoginOK }">
 						<a href="<c:url value='/pages/_02_login/login.jsp' />"> 登入 </a>
 					</c:if>
 				</div>
-	</td>
-	<td class='menuData'>
+
 				<div class='menu'>
 					<c:if test="${!empty LoginOK }">
 						<a href="<c:url value='/_02_login/logout.jsp' />"> 登出 </a>
 					</c:if>
 				</div>
-	</td>
-	<td class='menuData'>
+
 				<div class='menu'>
 					<c:if test="${LoginOK }">
 						<a href="<c:url value='/secure/backstage/backstageIndex.jsp' />"> 管理員 </a>
 					</c:if>
 				</div>
-	</td>
-		<td class='menuData'>
+
 				<div class='menu'>
 					<c:if test="${LoginOK }">
 						<a href="<c:url value='/secure/author/authorIndex.jsp' />"> 專欄作家  </a>
@@ -94,5 +93,5 @@ li {
 	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<!-- 標題 END -->
 </center>
-</body>
+
 </html>

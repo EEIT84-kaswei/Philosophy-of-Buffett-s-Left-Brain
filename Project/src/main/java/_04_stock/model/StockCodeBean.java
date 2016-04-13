@@ -13,7 +13,7 @@ public class StockCodeBean {
 	public void setCommend(String commend) {
 		this.commend = commend;
 	}
-	public int getStock_Code() {
+	public Integer getStock_Code() {
 		return stock_Code;
 	}
 	public void setStock_Code(Integer stock_Code) {

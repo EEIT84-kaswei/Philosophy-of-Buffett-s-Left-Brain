@@ -113,7 +113,6 @@ public class SpecialFunctionDAOHibernate implements SpecialFunctionDAO{
 		query.setParameter("trading_Date", trading_Date);
 		return query.list();
 	}
-
 	private String select_Top15_b_s_sheets = "select b_s_sheets from _04_stock.model.SecuritiesTradeBean where sDate=? and stock_Code=? Order by b_s_sheets desc";
 
 	// public List<SecuritiesTradeBean> selectAll(Date sDate, Integer

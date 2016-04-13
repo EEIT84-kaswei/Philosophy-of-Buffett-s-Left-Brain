@@ -21,7 +21,7 @@ import _05_newsArticle.model.NewsService;
 import _05_newsArticle.model.dao.NewsDAOHibernate;
 import misc.HibernateUtil;
 
-@WebServlet("/pages/_05_newsArticle/news.do")
+@WebServlet("/news.do")
 //@WebServlet("/news.do")
 public class NewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,7 +42,8 @@ public class NewsServlet extends HttpServlet {
 		this.doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String prodaction = request.getParameter("prodaction");
 		String nno = request.getParameter("nno");	
 //		Map<String, String> error = new HashMap<String, String>();
@@ -52,10 +53,11 @@ public class NewsServlet extends HttpServlet {
 			service.delete(nno);
 			List<NewsBean> bean = service.selectAll();
 			request.setAttribute("select", bean);
-			request.getRequestDispatcher("/news.jsp").forward(request, response);
+			request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
+			return;
 		}
 			
-		if("News".equals(prodaction)) {
+		if(prodaction == null) {
 			List<NewsBean> bean = service.selectAll();
 			request.setAttribute("select", bean);
 			request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
@@ -64,9 +66,9 @@ public class NewsServlet extends HttpServlet {
 			if(keyword != null && keyword.trim().length() != 0){
 				List<NewsBean> bean = service.selectByKeyWord(keyword);
 				request.setAttribute("select", bean);
-				request.getRequestDispatcher("/news.jsp").forward(request, response);				
+				request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);				
 			} else {
-				request.getRequestDispatcher("/news.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
 			}
 		} else if("dateSearch".equals(prodaction)){
 			String tempDate = request.getParameter("date");
@@ -79,9 +81,9 @@ public class NewsServlet extends HttpServlet {
 				}
 				List<NewsBean> bean = service.selectByDate(date);
 				request.setAttribute("select", bean);
-				request.getRequestDispatcher("/news.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
 			} else {
-				request.getRequestDispatcher("/news.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
 			} 
 		} else if("送出".equals(prodaction)) {
 			String updateNo = request.getParameter("updateNo");
@@ -112,7 +114,7 @@ public class NewsServlet extends HttpServlet {
 				service.update(result);
 				List<NewsBean> bean = service.selectAll();
 				request.setAttribute("select", bean);
-				request.getRequestDispatcher("/news.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
 			} else {
 				String title = request.getParameter("title");		
 				java.util.Date Newsdate = new Date();
@@ -128,7 +130,7 @@ public class NewsServlet extends HttpServlet {
 				session.setAttribute("select", bean);
 				
 				String path = request.getContextPath();
-				response.sendRedirect(path+"/news.jsp");
+				response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");
 //				request.getRequestDispatcher("/news.jsp").forward(request, response);
 			}
 		}	
