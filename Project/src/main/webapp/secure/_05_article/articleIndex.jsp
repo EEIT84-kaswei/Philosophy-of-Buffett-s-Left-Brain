@@ -35,10 +35,9 @@
 
 			<!-- 表格開始 -->
 
-			<form action="<c:url value="/view/article.controller" />" method="post">
+			<form action="<c:url value="/pages/article.controller" />" method="post">
 				<center>
-
-						依作家搜尋
+				依作家搜尋
 				<input type="text" name="sname" value="">
 				<input type="submit" name="prodaction" value="搜尋">
 				</center>
