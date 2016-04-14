@@ -1,6 +1,8 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -37,31 +39,21 @@
  			#stockTypeTable tbody tr:HOVER {background-color:#FFE6D9;color:#666}
  			td.favorL:hovor{background-color:#DDD;color:#666;}
 </style>
-<!-- **************************************** 引用jQuery   ***************************************************** -->
+<!-- **************************************** 引用jQuery ***************************************************** -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-2.2.1.min.js"></script>
-<!-- **************************************** 網頁抬頭   ******************************************************* -->
+<!-- **************************************** 網頁抬頭  開始***************************************************** -->
 <title>${stockTypeName}</title>    
-<!-- ************************************** 最外框DIV開始  ***************************************************** -->
-
+<!-- **************************************** 網頁抬頭  結束 ***************************************************** -->
 </head>
 <body style="margin:0em 3em">
+<!-- ************************************** 最外框DIV開始  ***************************************************** -->
 <div class="container">
 <!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-
-
 
 <!-- 網頁主要導覽列 -->
 <div>
 <jsp:include page="/nav.jsp" />
 </div>
-
-<div align=center style="margin:2em">
-
-	<h3>概念股樣板</h3>
-	
-	<div style="float:right">最後更新時間：08-04-2016 13:30:00</div>
-<!-- 請胤凱填寫(呼叫哪知Servlet)	↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
-<%-- <form action="<c:url value="/CustFavoriteServlet" />" method="post"> --%>
 
 <select style="align:left">
  <option> </option>
@@ -69,71 +61,72 @@
  <option>石油概念股</option>
  <option>中國概念股</option>
 </select>
-	
-	
-	<table style="text-align:center;border:1px green solid">
-		<tr>
+
+	<jsp:useBean id="date" class="java.util.Date"></jsp:useBean>
+	<div style="float:right">最後更新時間：<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/></div>
+<br>
+<!-- ************************************** 內文DIV開始  ***************************************************** -->
+<div align="center" style="width:90%;margin: 0 auto;border: 1px solid red;">
+
+	<!-- ******************************** 各種分類按鈕   ************************************************ -->
+	<div style="width:100%;margin: 0 auto;border: 1px solid black;">
+	<table id="menu">
+	<tr>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></td>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></td>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></td>
+		<td><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></td>
+	</tr>
+	</table>
+	</div>
+	<br>
+
+	<!-- **************************************表格開始*********************************************** -->	
+	<table id="stockTypeTable">
+		<thead>
+			<tr ><td colspan="9"><b>${stockTypeName}</b></td></tr>          <!-- 要修改成EL取值 -->   
+			<tr style="height: 30px;background:#C7C7E2">
 			<th>加入自選股</th>
 			<th>股票代碼</th>
 			<th>股票名稱</th>
-			<th>現價</th>
-			<th>收盤價</th>
-			<th>總市值</th>
-			<th>本益比</th>
-			<th>市價/每股營收</th>
-			<th>市價/淨值</th>
-		</tr>
-		<tr>
-<%-- 		<td><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>" onclick="doAlert()">○ 加入 ○</a></td> --%>
-<!-- if 未加入自選 -->
-			
-			<td><input type="submit" name="" value="○ 加入 ○"></td>
-<!-- esle -->
-<!-- 		<td><input type="submit" name="" value="移除"></td> -->
-<!-- end -->
-<%--        <c:forEach> --%>
-			<c:url value="/secure/SpecialFunctionServlet" var="path" scope="page">
-			<c:param name="stock_Code" value="2330" /></c:url>
-			<td>2317</td>
-			<td><a href="${path}">印楷</a></td>
-			<td>158.00</td>
-			<td>160.00</td>
-			<td>10533</td>
-			<td>14.59</td>
-			<td>9.75</td>
-			<td>2.45</td>
-		</tr>
-<%-- 		</c:forEach> --%>
-		<tr>
-			<td>○ 加入 ○</td>
-			<td>2596</td>
-			<td>朔雯</td>
-			<td>158.02</td>
-			<td>160.20</td>
-			<td>10503</td>
-			<td>18.55</td>
-			<td>5.08</td>
-			<td>3.15</td>
-		</tr>
-		<tr>
-			<td>○ 加入 ○</td>
-			<td>2206</td>
-			<td>袖微</td>
-			<td>122.00</td>
-			<td>60.00</td>
-			<td>10203</td>
-			<td>10.28</td>
-			<td>20.72</td>
-			<td>43.05</td>
-		</tr>
-
+			<th>買進價格</th>
+			<th>賣出價格</th>
+			<th>成交價格</th>
+			<th>漲跌金額</th>
+			<th>漲跌幅度</th>
+			<th>累積成交量</th>
+			</tr>
+		</thead>
+		
+		<tbody id="tbody">
+		<!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ;不管加入取消都送一個ajax回去-->
+		<c:forEach var="data" items="${stockType}">
+			<tr>
+			<td><img alt="加入自選股" src="<%=request.getContextPath() %>/img/star.gif" height=20 name="star"></td>
+			<td><a href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url>">${data.stock_Code}</a></td>
+			<td>${data.stock_Name}</td>
+			<td>${data.purchase_Price}</td>
+			<td>${data.selling_Price}</td>
+			<td>${data.final_price}</td>
+			<td>${data.change_Amount}</td>
+			<td>${data.change_extent}</td>
+			<td>${data.acc_Trade_Volume}</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+		
 	</table>
-<!-- 	</form> -->
-</div>
-</div>
+	<!-- ************************************** 表格結束   *************************************************** -->	
 
+</div>
+<!-- ************************************** 內文DIV結束  ***************************************************** -->
+
+
+</div>
+<!-- ************************************** 最外框DIV結束  ***************************************************** -->
 </body>
 
+<!-- ************************************** JavaScript ***************************************************** -->
 <script type="text/javascript">
 function doAlert(){
 	alert("已加入 (此為demo用)");

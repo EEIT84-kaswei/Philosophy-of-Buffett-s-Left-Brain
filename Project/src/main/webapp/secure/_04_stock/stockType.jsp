@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -57,8 +58,9 @@
 <jsp:include page="/nav.jsp" />
 </div>
 
-
-
+	<jsp:useBean id="date" class="java.util.Date"></jsp:useBean>
+	<div style="float:right">最後更新時間：<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/></div>
+<br>
 <!-- ************************************** 內文DIV開始  ***************************************************** -->
 <div align="center" style="width:90%;margin: 0 auto;border: 1px solid red;">
 
@@ -97,7 +99,7 @@
 		<!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ;不管加入取消都送一個ajax回去-->
 		<c:forEach var="data" items="${stockType}">
 			<tr>
-			<td><img onclick="getValue(${data.stock_Code})" alt="加入自選股" src="<%=request.getContextPath() %>/img/star.gif" height=20 name="star"></td>
+			<td><img alt="加入自選股" src="<%=request.getContextPath() %>/img/star.gif" height=20 name="star"></td>
 			<td><a href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url>">${data.stock_Code}</a></td>
 			<td>${data.stock_Name}</td>
 			<td>${data.purchase_Price}</td>
