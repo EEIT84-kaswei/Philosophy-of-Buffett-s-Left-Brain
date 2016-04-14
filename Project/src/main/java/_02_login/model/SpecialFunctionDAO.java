@@ -7,6 +7,7 @@ import _04_stock.model.DailyStockBean;
 import _04_stock.model.SecuritiesTradeBean;
 
 public interface SpecialFunctionDAO {
+
 	List<Integer> selectMax(Date sDate, Integer stock_Code);
 	List<Integer> selectMin(Date sDate, Integer stock_Code);
 	List<Integer> selectTrade_Volume(Date trading_Date,Integer stock_Code);

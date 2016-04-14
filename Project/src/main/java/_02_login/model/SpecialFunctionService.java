@@ -53,6 +53,7 @@ public class SpecialFunctionService {
 			dao.getSession().getTransaction().commit();
 //			System.out.println(SBean);
 //			System.out.println(DBean);
+
 //			System.out.println(IBean);
 		} catch (Exception e) {
 			dao.getSession().getTransaction().rollback();
@@ -131,6 +132,7 @@ public class SpecialFunctionService {
 		}
 		Integer [] IT_Trade = new Integer[3];
 		for(int i = 0;i<3;i++){
+
 			IT_Trade [i] = result.get(i);
 		}
 		return IT_Trade;
