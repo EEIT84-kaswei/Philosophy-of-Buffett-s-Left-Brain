@@ -32,7 +32,7 @@
 
 			<!-- 表格開始 -->
 
-			<form action="<c:url value="/view/article.controller" />" method="post">
+			<form action="<c:url value="/pages/article.controller" />" method="post">
 				<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
 					cellpadding='5' align=center>
 
@@ -52,10 +52,9 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" name="prodaction" value="Insert">
-							<div style="display: none;">
-								<input type="text" name="ano" value="${param.ano}">
-							</div></td>
+						<td ><input type="submit" name="prodaction" value="Insert">
+						<!--隱藏的ano資料，為了把資料庫取出來的ano資料帶走↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+						<div style="display: none;"><input type="text" name="ano" value="${param.ano}"></div></td>
 					</tr>
 				</table>
 			</form>

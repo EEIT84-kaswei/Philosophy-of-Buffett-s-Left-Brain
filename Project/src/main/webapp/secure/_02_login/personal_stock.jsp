@@ -34,7 +34,9 @@
 
 			<h2 style="text-align:center">會員(id)自選股</h2>
 
+			
 			<table id="myTable">
+			
 				<tr>
 					<th>股票代號</th>
 					<th>股票名稱</th>
@@ -49,7 +51,6 @@
 				</tr>
 			
 			</table>
-
 		</div>
 
 </div>

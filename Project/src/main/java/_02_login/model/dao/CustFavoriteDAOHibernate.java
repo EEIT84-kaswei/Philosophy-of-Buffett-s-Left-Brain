@@ -6,27 +6,35 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import _02_login.model.CustFavoriteBean;
 import _02_login.model.CustFavoriteDAO;
 import misc.HibernateUtil;
 
 public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
-	private Session session;
+	private SessionFactory sessionFactory;
 	
-	public CustFavoriteDAOHibernate(Session session) {
-		this.session = session;
+	public CustFavoriteDAOHibernate() {
+		
 	}
-	
+
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+
 	public Session getSession(){
-		return session;
+		return sessionFactory.getCurrentSession();
 	}
 	
 	public static void main(String[] args) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
-			CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate(session);
+			CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate();
+			dao.setSessionFactory(HibernateUtil.getSessionFactory());
 //			List<CustFavoriteBean> bean = dao.select();
 //			List<CustFavoriteBean> bean = dao.selectById(7);
 //			List<CustFavoriteBean> bean = dao.selectByStock(4108);
