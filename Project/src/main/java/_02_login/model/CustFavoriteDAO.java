@@ -8,17 +8,11 @@ import _02_login.model.CustFavoriteBean;
 public interface CustFavoriteDAO {
 
 	public abstract List<CustFavoriteBean> select();
-
-	public abstract List<CustFavoriteBean> selectById(Integer id);
-
+	public abstract List<CustFavoriteBean> selectByAccount(String account);
 	public abstract List<CustFavoriteBean> selectByStock(Integer stock_Code);
-	
-	public abstract CustFavoriteBean selectByIdAndStock(Integer id, Integer stock_Code);
-
+	public abstract CustFavoriteBean selectByAccountAndStock(String account, Integer stock_Code);
 	public abstract CustFavoriteBean insert(CustFavoriteBean bean);
-	
-	public abstract CustFavoriteBean update(Integer id, Integer stock_Code, Integer new_stock_Code);
-
-	public abstract boolean delete(Integer id, Integer stock_Code);
+	public abstract CustFavoriteBean update(String account, Integer stock_Code, Integer new_stock_Code);
+	public abstract boolean delete(String account, Integer stock_Code);
 
 }

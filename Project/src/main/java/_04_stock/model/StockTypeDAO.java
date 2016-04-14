@@ -12,5 +12,7 @@ public interface StockTypeDAO {
 	public abstract StockTypeBean selectByCode(String stock_TypeCode);
 
 	public abstract StockTypeBean selectByName(String stock_TypeName);
+	
+	
 
 }

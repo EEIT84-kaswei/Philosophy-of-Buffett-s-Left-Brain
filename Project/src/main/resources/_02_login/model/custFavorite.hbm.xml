@@ -4,11 +4,10 @@
 <!-- Generated 2016/3/31 ?U?? 07:16:29 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="_02_login.model.CustFavoriteBean" table="custFavorite">
-        <id name="id" type="java.lang.Integer">
-            <column name="id" />
-        </id>
-        <property name="stock_Code" type="java.lang.Integer">
-            <column name="stock_Code" />
-        </property>
+        
+        <id name="account" column="account"></id>
+        <property name="stock_Code" column="stock_Code" />
+        
+        
     </class>
 </hibernate-mapping>
