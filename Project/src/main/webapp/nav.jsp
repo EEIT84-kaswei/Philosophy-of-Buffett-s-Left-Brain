@@ -156,7 +156,7 @@
 					<li><a href="<c:url value='/pages/_03_stock_market/legalPerson.jsp'/>">三大法人資訊</a></li>
 					<li><a href="<c:url value='/secure/_04_stock/stockType.jsp'/>">股票分類</a>
 						<ul>
-								<li><a href="<c:url value='/secure/_04_stock/concept_Stock/conceptStockIndex.jsp' />">概念股</a>
+								<li><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a>
 								<ul>
 									<li><a href="www.apple.com/tw">蘋果概念股</a></li>
 									<li><a href="www.mi.com/tw/">小米概念股</a></li>
@@ -167,10 +167,10 @@
 									<li><a href="http://www.ras.ru/">俄羅斯科學院概念股</a></li>	
 								</ul>
 							</li>	
-							<li><a href="#">上市股</a></li>
-							<li><a href="#">上櫃股</a></li>
-							<li><a href="#">興櫃股</a></li> 
-							<li><a href="#">成分股</a></li> <!-- 成分股不做 -->
+							<li><a href="<c:url value='/secure/shanShi.view'/>" >上市股</a></li>
+							<li><a href="<c:url value='/secure/shanQui.view'/>">上櫃股</a></li>
+							<li><a href="<c:url value='/secure/xinQui.view'/>">興櫃股</a></li> 
+							<li><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></li> <!-- 成分股不做 -->
 
 						</ul>
 					</li>
