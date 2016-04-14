@@ -21,7 +21,6 @@
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 
 
-
 		<!-- 網頁主要導覽列 -->
 		<div>
 			<jsp:include page="/nav.jsp" />
@@ -38,23 +37,23 @@
 
 					<tr>
 						<td>作家名稱 :</td>
-						<td ><input type="text" name="aname" value="${param.aname}"><span class="error">${error.aname}</span></td>
+						<td ><input type="text" name="aname" value="${updArticle.aname}"><span class="error">${error.aname}</span></td>
 						
 					</tr>
 					<tr>
 						<td>文章標題:</td>
-						<td><input type="text" name="atitle" value="${param.atitle}"><span class="error">${error.atitle}</span></td>
+						<td><input type="text" name="atitle" value="${updArticle.atitle}"><span class="error">${error.atitle}</span></td>
 					</tr>
 
 					<tr>
 						<td>文章內文 :</td>
-						<td><textarea name="acontext" cols="60" rows="30">${param.acontext}</textarea><br><span class="error">${error.acontext}</span></td>
+						<td><textarea name="acontext" cols="60" rows="30">${updArticle.acontext}</textarea><br><span class="error">${error.acontext}</span></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td ><input type="submit" name="prodaction" value="Insert">
 						<!--隱藏的ano資料，為了把資料庫取出來的ano資料帶走↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
-						<div style="display: none;"><input type="text" name="ano" value="${param.ano}"></div></td>
+						<div style="display: none;"><input type="text" name="ano" value="${updArticle.ano}"></div></td>
 					</tr>
 				</table>
 			</form>
