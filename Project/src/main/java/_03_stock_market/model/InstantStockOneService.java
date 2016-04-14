@@ -6,6 +6,7 @@ import java.util.List;
 import misc.HibernateUtil;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import _03_stock_market.model.dao.InstantStockOneDAOHibernate;
@@ -17,13 +18,16 @@ public class InstantStockOneService {
 		this.InstantStockOneDAO = InstantStockOneDAO;
 	}
 	public static void main(String[] args) {
+		
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		
+		
 		try {
-			Session session =
-					HibernateUtil.getSessionFactory().getCurrentSession();
+			Session session = sessionFactory.getCurrentSession();
 			Transaction transaction = session.beginTransaction();
 
 			InstantStockOneService service = new InstantStockOneService();
-			service.setInstantStockOneDAO(new InstantStockOneDAOHibernate(session));
+			service.setInstantStockOneDAO(new InstantStockOneDAOHibernate(sessionFactory));
 			//上市股搜尋  or 概念股搜尋
 //			List<InstantStockOneBean> list = service.selectByType("s1");
 			List<InstantStockOneBean> list = service.selectByCS("c1");

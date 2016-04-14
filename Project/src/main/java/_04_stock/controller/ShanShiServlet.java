@@ -29,7 +29,7 @@ public class ShanShiServlet extends HttpServlet{
 	@Override
 	public void init() throws ServletException {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-		InstantStockOneDAOHibernate oneDao = new InstantStockOneDAOHibernate(sessionFactory.getCurrentSession());
+		InstantStockOneDAOHibernate oneDao = new InstantStockOneDAOHibernate(sessionFactory);
 		instantStockOneService = new InstantStockOneService();
 		instantStockOneService.setInstantStockOneDAO(oneDao);
 	}

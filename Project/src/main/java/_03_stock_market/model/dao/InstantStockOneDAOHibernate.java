@@ -8,6 +8,7 @@ import misc.HibernateUtil;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import _03_stock_market.model.InstantStockOneBean;
@@ -16,16 +17,16 @@ import _03_stock_market.model.InstantStockOneDAO;
 
 
 public class InstantStockOneDAOHibernate implements InstantStockOneDAO {
-	private Session session = null;
-	public InstantStockOneDAOHibernate(Session session) {
-		this.session = session;
+	private SessionFactory sessionFactory = null;
+	public InstantStockOneDAOHibernate(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 	public static void main(String[] args) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		try {
-			Session session =
-					HibernateUtil.getSessionFactory().getCurrentSession();
+			Session session = sessionFactory.getCurrentSession();
 			Transaction trx = session.beginTransaction();
-			InstantStockOneDAO dao = new InstantStockOneDAOHibernate(session);
+			InstantStockOneDAO dao = new InstantStockOneDAOHibernate(sessionFactory);
 			InstantStockOneBean bean = new InstantStockOneBean();
 			//測試新增
 //			bean.setStock_TypeCode("s1");
@@ -89,7 +90,7 @@ public class InstantStockOneDAOHibernate implements InstantStockOneDAO {
 	 */
 	@Override
 	public Session getSession() {
-		return session;
+		return sessionFactory.getCurrentSession();
 	}
 
 	/* 用股票分類[上市股]查詢*/
