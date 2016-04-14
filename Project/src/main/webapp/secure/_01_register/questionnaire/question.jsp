@@ -11,7 +11,7 @@
 <title>風險屬性問卷</title>
 <style type="text/css">
 	#midTable{
-		width:80%;
+		width:100%;
 		margin:0 auto
 	}
 	#middleTable{
@@ -48,10 +48,9 @@
 
 
 </head>
-<body style="margin: 0em 3em">
+<body>
 	<div class="container">
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-		<jsp:include page="/title.jsp" />
 
 
 		<!-- 網頁主要導覽列 -->

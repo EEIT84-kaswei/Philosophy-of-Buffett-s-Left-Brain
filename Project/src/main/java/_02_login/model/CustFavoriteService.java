@@ -240,6 +240,7 @@ public class CustFavoriteService {
 		double dou_B_s_sheets = B_s_sheets;
 		double dou_Trade_Volume = trade_Volume;
 		double weight_proportion = dou_B_s_sheets/dou_Trade_Volume;//重壓比例
+		System.out.println("重壓比例 = "+weight_proportion);
 		if(weight_proportion> 0.3){//重壓比例>30%
 			result = true;			
 		}
@@ -249,6 +250,7 @@ public class CustFavoriteService {
 	public boolean Stock_index2(Integer top1_B_s_sheets,Integer lowest_B_s_sheets){
 		boolean result = false;		
 		int Overoverbought = top1_B_s_sheets/lowest_B_s_sheets;//超額買超
+		System.out.println("超額買超 = "+Overoverbought);
 		if(top1_B_s_sheets>500){//卷商買超張數>500
 			if(Overoverbought>4){//超額買超>4倍
 				result = true;				
@@ -300,6 +302,7 @@ public class CustFavoriteService {
 		boolean result = false;
 		if(IT_Trade_Count1>0 && IT_Trade_Count2>0 && IT_Trade_Count3>0){//投信連買三天
 			int sum = IT_Trade_Count1 + IT_Trade_Count2 + IT_Trade_Count3;
+			System.out.println("投信三天加總 = "+sum);
 			if(sum>1000){//買超>1000張
 				result = true;
 			}

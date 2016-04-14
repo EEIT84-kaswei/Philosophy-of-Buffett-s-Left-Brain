@@ -22,7 +22,7 @@
 <body style="margin: 0em 3em">
 	<div class="container">
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-
+	
 
 
 		<!-- 網頁主要導覽列 -->
@@ -39,23 +39,21 @@
 
 
 			
-				<form action="<c:url value="/secure/_05_article/newArticleIndex.jsp" var="path" scope="page">
-					    <c:param name="ano" value="${select.ano}" />
-						<c:param name="aname" value="${select.aname}" />
-						<c:param name="atitle" value="${select.atitle}" />
-						<c:param name="acontext" value="${select.acontext}" /></c:url>" method="post">
+				<form action="<c:url value="/pages/article.controller">
+					    <c:param name="ano" value="${singleArticle.ano}" /></c:url>" method="post">
 
 				
-				<h2 style="text-align:center;color:purple">${select.atitle}</h2>
-				<p style="text-align:center">${select.aname}</p>
-				<p style="text-align:center">${select.atime}</p>
+				<h2 style="text-align:center;color:purple">${singleArticle.atitle}</h2>
+				<p style="text-align:center">${singleArticle.aname}</p>
+				<p style="text-align:center">${singleArticle.atime}</p>
 				<br>
 				<div style="width:500px;margin:0 auto">
-				<p>${select.acontext}</p>
+				<p>${singleArticle.acontext}</p>
 				</div>
 				<div align=center>
-				<a href="${path}"><input type="button" name="prodaction" value="修改"></a>
-				<input type="submit" name="prodaction" value="刪除">
+				<input type="submit" name="prodaction" value="修改">
+				<input type="submit" name="prodaction" value="刪除" onclick="if(confirm('您確定刪除此留言嗎?')) return true;else return false">
+				
 				
 				</div>
 				</form>

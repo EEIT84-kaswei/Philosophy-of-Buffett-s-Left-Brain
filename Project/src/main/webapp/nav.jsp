@@ -1,241 +1,127 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 
-
-
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- <link rel="stylesheet" href="css/bootstrap.min.css" > -->
-<%-- <script src="js/bootstrap.min.js"></script> --%>
-<title>導覽列</title>
-<!-- <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
-<%-- <script src="http://code.jquery.com/jquery-latest.js"></script> --%>
-<%-- <script src="js/bootstrap.min.js"></script> --%>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 匯入bootstrap -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<!-- 匯入jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- 匯入bootstrap javascript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
+  <link href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" rel="stylesheet">
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.js"></script>
+<!--   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/jquery-ui.min.js"></script> -->
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>  
+  
+  
+<title>Insert title here</title>
+
+<style type="text/css">
+/* 	 用getContextPath()找到根目錄  */
+
+body { padding-top: 80px;
+	background-image:url("<%=request.getContextPath() %>/img/dye_st_0117.gif"); 
+	background-attachment: fixed;
+	font-size:20px;
+
+ }
+ 
+ #thisone li{
+ 	font-size:20px
+ }
+ 
+ a{
+ 	text-decoration: none;
+ }
+ a:hover{
+ text-decoration: none;
+ }
+</style>
 
 
-<script type="text/javascript">
-			$(function(){
-				$("ul.navigation > li:has(ul) > a").append('<div class="arrow-bottom"></div>');
-				$("ul.navigation > li ul li:has(ul) > a").append('<div class="arrow-right"></div>');
-			});
-		</script>
-		<style type="text/css">
 
-			#pageDiv{
-  				width:51em;   
- 				margin:auto			 
-/* 				margin-right:auto; */
-			}
-
-
-			/*
-				教學文：http://fundesigner.net/only-css-menu
-				授權：MIT License
-			*/
-			
-
-
-			/* 初始化 */
-			body, ul, li, a{
-				margin: auto;
-				padding: 0;
-				font-size: 14px;
-				text-decoration: blink;
-			}
-			ul, li {
-				list-style: none;
-			}
-			/* 選單 li 之樣式 */
-			ul.navigation li {
-				position: relative;
-				float: left;
-				
-			}
-			/* 選單 li 裡面連結之樣式 */
-			ul.navigation li a{
-				display: block;
-				padding: 12px 20px;
-				background: #FFE8E8;
-				color: #000033;
-			}
-			/* 特定在第一層，以左邊灰線分隔 */
-			ul.navigation > li > a{
-/* 				border-bottom: 1px solid #CCC;				 */
-/* 				border-left: 1px solid #CCC; */
-			}
-			ul.navigation > li > a:hover{
-				color: #666;
-				background: #DDD
-			}
-			/* 特定在第一層 > 第二層或以後下拉部分之樣式 */
-			ul.navigation ul{
-				display: none;
-				float: left;
-				position: absolute;			
-				left: 0;	
-				margin: 0;
-			}
-			/* 當第一層選單被觸發時，指定第二層顯示 */
-			ul.navigation li:hover > ul{
-				display: block;
-			}			
-			/* 特定在第二層或以後下拉部分 li 之樣式 */
-			ul.navigation ul li {
-				border-bottom: 1px solid #DDD;
-			}
-			/* 特定在第二層或以後下拉部分 li （最後一項不要底線）之樣式 */
-			ul.navigation ul li:last-child {
-				border-bottom: none;
-			}
-			/* 第二層或以後選單 li 之樣式 */
-			ul.navigation ul a {
-				width: 120px;
-				padding: 10px 12px;	
-				color: #666;		
-				background: #EEE;			
-			}
-			ul.navigation ul a:hover {		
-				background: #CCC;				
-			}
-			/* 第三層之後，上一層的選單觸發則顯示出來（皆為橫向拓展） */
-			ul.navigation ul li:hover > ul{
-				display: block;
-				position: absolute;
-				top: 0;				
-				left: 100%;
-			}
-			/* 箭頭向下 */
-			.arrow-bottom {
-				display: inline-block;
-				margin-left: 5px;
-				border-top: 4px solid #a8d1ff;
-				border-right: 4px solid transparent;				
-				border-left: 4px solid transparent;		
-				width: 1px;
-				height: 1px;
-			}
-
-			/* 箭頭向右 */
-			.arrow-right {
-				display: inline-block;
-				margin-left: 12px;	
-				border-top: 3px solid transparent;
-				border-bottom: 3px solid transparent;
-				border-left: 3px solid #666;		
-				width: 1px;
-				height: 1px;
-			}
-		</style>		
-
-
-<!-- 網頁上方的橫向導覽列 -->
-
-<%-- <span style="background-color:#FFF0D4"> --%>
-<div id="pageDiv" style="background-color:#FFE8E8;padding:20;height:40px;margin:0 auto">
-		
-		<ul class="navigation">
-			<li><a href="<c:url value='/Welcome.jsp' />">　首頁　</a></li>
-			<li><a href="<c:url value='/pages/basic/basicIndex.jsp'/>">基本概念</a>
-				<ul>
-					<li><a href="#">股票類型</a></li>
-					<li><a href="#">術語介紹</a></li>
-					<li><a href="#">投資指南</a></li>
-					<li><a href="#">趨勢圖解析</a></li>
-					<li><a href="#">自我測驗</a></li>
-				</ul>
-			</li>	
-						<li>
-				<a href="<c:url value='/pages/_03_stock_market/stockIndex.jsp'/>">台股資訊</a>
-				<ul>
-					<li><a href="<c:url value='/pages/_03_stock_market/instantStock.jsp'/>">即時股票資訊</a></li>
-					<li><a href="<c:url value='/pages/_03_stock_market/legalPerson.jsp'/>">三大法人資訊</a></li>
-					<li><a href="<c:url value='/secure/_04_stock/stockType.jsp'/>">股票分類</a>
-						<ul>
-								<li><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a>
-								<ul>
-									<li><a href="www.apple.com/tw">蘋果概念股</a></li>
-									<li><a href="www.mi.com/tw/">小米概念股</a></li>
-									<li><a href="www.uni-president.com.tw/">統一概念股</a></li>
-									<li><a href="https://www.fubon.com/bank/home/">富邦金控概念股</a></li>
-									<li><a href="http://www.osac.com.tw/zh-tw/">歐美加概念股</a></li>
-									<li><a href="http://www.wordgod.com/">字神帝國概念股</a></li>
-									<li><a href="http://www.ras.ru/">俄羅斯科學院概念股</a></li>	
-								</ul>
-							</li>	
-							<li><a href="<c:url value='/secure/shanShi.view'/>" >上市股</a></li>
-							<li><a href="<c:url value='/secure/shanQui.view'/>">上櫃股</a></li>
-							<li><a href="<c:url value='/secure/xinQui.view'/>">興櫃股</a></li> 
-							<li><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></li> <!-- 成分股不做 -->
-
-						</ul>
+    
+<nav class="nav navbar-inverse navbar-fixed-top" id="thisone" align=center> <!-- 如果要黑色底，請把nav後面的那一串文字改成navbar-inverse -->
+        <div class="container-fluid">
+            <div class="navbar-header">
+            
+            <!-- 成為按鈕 -->
+            
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                </button>
+                
+                
+            <!-- 成為按鈕 -->
+            
+                
+                <a class="navbar-brand" href="#"><img src="<%=request.getContextPath() %>/img/logo2.png" style="height:50px">Buffett</a>
+            </div>
+            
+            <!-- 底下放要縮放的內容 -->
+            
+            
+            <div class="collapse navbar-collapse" id="myNavbar" style="font-size:15px">
+            <ul class="nav navbar-nav" align=center>
+                <li><a href="<c:url value='/Welcome.jsp' />">首頁</a></li>
+                <li><a href="<c:url value='/pages/_03_stock_market/instantStock.jsp'/>">即時股票資訊</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">股票分類<span class="caret"></span></a>
+            		<ul class="dropdown-menu">
+              			 <li><a href="<c:url value='/secure/shanShi.view'/>">上市股</a></li>
+               			 <li><a href="<c:url value='/secure/shanQui.view'/>">上櫃股</a></li>
+               			 <li><a href="<c:url value='/secure/xinQui.view'/>">興櫃股</a></li>
+               			 <li><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></li>
+               			 <li><a href="">概念股</a></li>
+               		</ul>
+        		</li>
+                <li><a href="<c:url value='/pages/article.controller' />">股市專欄</a></li>
+                <li><a href="<c:url value='/news.do' />">股市新聞</a></li>
+                <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">會員專區<span class="caret"></span></a>
+            		<ul class="dropdown-menu">
+              			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
+               			 <li><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>">自選股</a></li>
+               			 <li><a href="<c:url value='/secure/_02_login/recommend.jsp'/>">股票推薦</a></li>
+               		</ul>
+        		</li>
+                <li><a href="">與我聯絡</a></li>
+            </ul>
+            
+            
+        <!-- 到右邊開始 -->
+            
+             <ul class="nav navbar-nav navbar-right">
+                    <li>
+                    	<c:if test="${empty user}">
+                    	<a href="<c:url value='/pages/_02_login/login.jsp' />">
+                    		<span class="glyphicon glyphicon-log-in"></span> 
+                    		登入
+                    	</a>
+                    	</c:if>
+                    </li>
+                    
+                    <li>
+                    	<c:if test="${!empty user}">
+                    <a href="<c:url value='/pages/_02_login/logout.jsp' />">
+                    		登出
+                    </a>
+						</c:if>
 					</li>
-				</ul>
-			</li>
-			
-			<li><a href="<c:url value='/pages/article.controller' />">股市專欄</a></li>
-			
-			<li><a href="<c:url value='/news.do' />">股市新聞</a></li>
-<!-- 			<li> -->
-<%-- 				<form action="<c:url value="news.do"/>" method="get"> --%>
-<!-- 					<input type="submit" name="prodaction" value="股市新聞"> -->
-<!-- 				</form> -->
-<!-- 			</li> -->
-			<li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
-						<li>
-				<a href="<c:url value='/secure/_02_login/memberIndex.jsp' />">會員專區</a>
-				<ul>
-					<li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
-					<li><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>">自選股</a></li>
-					<li><a href="<c:url value='/secure/_02_login/recommend.jsp'/>">股票推薦</a></li>
-					<li><a href="#">理財專員到府服務</a></li>
-				</ul>
-			</li>
-<!-- 			<li><a href="#">與我聯絡</a></li> -->
-<!-- 			<li> -->
-<!-- 				<a href="#">(示範列)</a> -->
-<!-- 				<ul> -->
-<!-- 					<li><a href="#">選單內容 1 - 1</a></li> -->
-<!-- 					<li><a href="#">選單內容 1 - 2</a> -->
-<!-- 						<ul> -->
-<!-- 							<li><a href="#">選單內容 2 - 1</a></li> -->
-<!-- 							<li> -->
-<!-- 								<a href="#">選單內容 2 - 2</a> -->
-<!-- 								<ul> -->
-<!-- 									<li><a href="#">選單內容 3 - 1</a> -->
-<!-- 										<ul> -->
-<!-- 											<li> -->
-<!-- 												<a href="#">選單內容 4 - 1</a> -->
-<!-- 											</li> -->
-<!-- 											<li> -->
-<!-- 												<a href="#">選單內容 4 - 2</a> -->
-<!-- 												<ul> -->
-<!-- 													<li><a href="#">選單內容 5 - 1</a></li> -->
-<!-- 													<li> -->
-<!-- 														<a href="#">選單內容 5 - 2</a> -->
-<!-- 													</li>	 -->
-<!-- 												</ul> -->
-<!-- 											</li>	 -->
-<!-- 										</ul>	 -->
-<!-- 									</li> -->
-<!-- 									<li> -->
-<!-- 										<a href="#">選單內容 3 - 2</a> -->
-<!-- 									</li>	 -->
-<!-- 								</ul> -->
-<!-- 							</li>	 -->
-<!-- 						</ul> -->
-<!-- 					</li> -->
-<!-- 				</ul> -->
-<!-- 			</li> -->
-
-<!-- 			<li><a href="#">7</a></li> -->
-		</ul>
-</div>
-<hr>
-<%-- </span> --%>
+		                <li><a href="<c:url value='/secure/_02_login/test.jsp'/>"><span class="glyphicon glyphicon-user"></span> 管理員</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 到右邊結束 -->
+        
+        
+    </nav>
 
 

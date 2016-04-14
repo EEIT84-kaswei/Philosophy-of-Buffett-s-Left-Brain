@@ -25,7 +25,7 @@
 <body style="margin:0 3em">
  <div class="container"> 
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
- <jsp:include page="/title.jsp" /> 
+
 
 
 <!-- 網頁主要導覽列 -->
@@ -34,7 +34,7 @@
 </div>
 <div align="center">
 
-
+	<form>
 	<table id="logtable" style="border:5px #FFD382 groove;" cellpadding="10" border='0'>
 		<tr>
 			<td>帳號</td>
@@ -44,12 +44,16 @@
 			<td>密碼</td>
 			<td><input type="password" size="20"></td>
 		</tr>	
-		<tr>
-			<td><input type="button" value="送出"></td>
-			<td><input type="button" value="申請會員" onclick="location.href='<c:url value="/pages/_01_register/accept.jsp"/>'"></td>
-		</tr>
 		
 	</table>
+	<p>
+			<input type="button" value="登入">
+			<input type="button" value="申請會員" onclick="location.href='<c:url value="/pages/_01_register/accept.jsp"/>'">
+			<input type="button" value="忘記密碼" >
+	
+	</p>
+
+	</form>
 	</div>
 </div>	
 </body>
