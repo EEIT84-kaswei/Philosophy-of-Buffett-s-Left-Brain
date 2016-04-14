@@ -6,6 +6,7 @@ import java.util.List;
 import misc.HibernateUtil;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import _03_stock_market.model.dao.InstantStockOneDAOHibernate;
@@ -17,27 +18,58 @@ public class InstantStockOneService {
 		this.InstantStockOneDAO = InstantStockOneDAO;
 	}
 	public static void main(String[] args) {
+		
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		
+		
 		try {
-			Session session =
-					HibernateUtil.getSessionFactory().getCurrentSession();
+			Session session = sessionFactory.getCurrentSession();
 			Transaction transaction = session.beginTransaction();
 
 			InstantStockOneService service = new InstantStockOneService();
-			service.setInstantStockOneDAO(new InstantStockOneDAOHibernate(session));
-			InstantStockOneBean isb =new InstantStockOneBean();
-			
-//			isb.setStock_Code(52); 	 	//模糊搜尋 Code
-//			isb.setStock_Name("新");  	//模糊搜尋 Name
-//			isb.setStock_Name("新'or 1=1 or stock_Name like '新");  	// Name隱碼攻擊測試
-			List<InstantStockOneBean> beans = service.select(isb);
-			for(InstantStockOneBean bean:beans){
-			System.out.println("bean="+bean);
+			service.setInstantStockOneDAO(new InstantStockOneDAOHibernate(sessionFactory));
+			//上市股搜尋  or 概念股搜尋
+//			List<InstantStockOneBean> list = service.selectByType("s1");
+			List<InstantStockOneBean> list = service.selectByCS("c1");
+			for(InstantStockOneBean xBean : list){
+				System.out.println(xBean);
 			}
+			
+			
+			
+//			InstantStockOneBean isb =new InstantStockOneBean();
+//			
+////			isb.setStock_Code(52); 	 	//模糊搜尋 Code
+////			isb.setStock_Name("新");  	//模糊搜尋 Name
+////			isb.setStock_Name("新'or 1=1 or stock_Name like '新");  	// Name隱碼攻擊測試
+//			List<InstantStockOneBean> beans = service.select(isb);
+//			for(InstantStockOneBean bean:beans){
+//			System.out.println("bean="+bean);
+//			}
 			transaction.commit();
 		} finally {
 			HibernateUtil.closeSessionFactory();
 		}
 	}
+	
+	/*用上市股分類搜尋*/
+	public List<InstantStockOneBean> selectByType(String stock_TypeCode){
+		if(stock_TypeCode==null || stock_TypeCode.trim().length()==0 ){
+			return null;
+		}else{
+			return (List<InstantStockOneBean>)InstantStockOneDAO.selectByType(stock_TypeCode);
+		}
+	}
+
+	/*用概念股分類搜尋*/
+	public List<InstantStockOneBean> selectByCS(String concept_Stock){
+		if(concept_Stock==null || concept_Stock.trim().length()==0 ){
+			return null;
+		}else{
+			return (List<InstantStockOneBean>)InstantStockOneDAO.selectByCS(concept_Stock);
+		}
+	}
+	
 	public List<InstantStockOneBean> select(InstantStockOneBean bean) {
 		List<InstantStockOneBean> result = null;
 		

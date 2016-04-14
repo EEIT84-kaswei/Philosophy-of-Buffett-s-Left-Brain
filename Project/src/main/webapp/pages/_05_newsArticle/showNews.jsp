@@ -8,10 +8,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Show News</title>
+<style type="text/css">
+
+</style>
 <script type="text/javascript">
 	function confirmDelete() {
 		if (confirm("確定刪除此項新聞資料(編號:${param.nno})?")) {
-			document.forms[0].action = "<c:url value="/news.do?nno=${param.nno}"/>";
+			document.forms[0].action = "<c:url value='/news.do?nno=${param.nno}' />";
 			document.forms[0].method = "POST";
 			document.forms[0].submit();
 		} else {
@@ -28,10 +31,10 @@
 	
 </script>
 </head>
-<body style="margin: 0em 3em">
+<body>
 	<div class="container">
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-		<jsp:include page="/title.jsp" />
+
 
 
 		<!-- 網頁主要導覽列 -->
@@ -42,7 +45,7 @@
 		response.setCharacterEncoding("UTF-8");
 	%>
 
-<div style="hieght:20px;width:20px;padding:20px">
+<div style="hieght:20px;width:20px;padding:20px;margin:2em">
 </div>
 
 	<form action="news.do" method="POST">

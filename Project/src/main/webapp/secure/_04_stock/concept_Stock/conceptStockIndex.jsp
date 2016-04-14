@@ -17,7 +17,7 @@ function doAlert(){
 <body style="margin:0em 3em">
 <div class="container">
 <!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-<jsp:include page="/title.jsp" />
+
 
 
 <!-- 網頁主要導覽列 -->
@@ -62,8 +62,8 @@ function doAlert(){
 <!-- end -->
 <%--        <c:forEach> --%>
 			<c:url value="/CustFavoriteServlet" var="path" scope="page">
-			<c:param name="stock_Cobe" value="1101" /></c:url>
-			<td>1101</td>
+			<c:param name="stock_Cobe" value="2317" /></c:url>
+			<td>2317</td>
 			<td><a href="${path}">印楷</a></td>
 			<td>158.00</td>
 			<td>160.00</td>

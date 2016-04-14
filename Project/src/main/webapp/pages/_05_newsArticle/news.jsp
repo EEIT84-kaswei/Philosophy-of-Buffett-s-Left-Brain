@@ -31,18 +31,15 @@ $(document).ready(function() {
 	color: #BD63FF;
 	background-color:#77FFCC;
 }
+
+#newstable tr:nth-child(even) {
+	background: #CCEEFF
+	}
 </style>
 </head>
-<body style="margin: 0em 3em">
-	<div class="container">
-		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-		<jsp:include page="/title.jsp" />
+<body>
 
-
-		<!-- 網頁主要導覽列 -->
-		<div>
-			<jsp:include page="/nav.jsp" />
-		</div>
+		<jsp:include page="/nav.jsp"></jsp:include>
 		
 		
 	<%
@@ -75,7 +72,7 @@ $(document).ready(function() {
 <form>
 	<c:if test="${not empty select}">
 
-			<table id="newstable" style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
+			<table id="newstable" style="border: 2px #FFAC55 solid; padding:2em; width:35em" rules="all"
 					cellpadding='5' align=center>
 			<thead>
 				<tr>
@@ -94,7 +91,7 @@ $(document).ready(function() {
 						<c:param name="ncontext" value="${row.ncontext}" />
 					</c:url>
 
-					<tr>
+					<tr style="height:2em">
 						<td><a href="${path}">${row.ntitle}</a></td>
 						<td><fmt:formatDate value="${row.ntime}" pattern="yyyy-MM-dd" /></td>
 					</tr>
@@ -109,7 +106,7 @@ $(document).ready(function() {
 			<input type="submit" value="新增">
 		</form>
 	</div>
-</div>
+
 
 </body>
 </html>
