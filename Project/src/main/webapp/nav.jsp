@@ -16,9 +16,10 @@
 <title>Insert title here</title>
 
 <style type="text/css">
+/* 	 用getContextPath()找到根目錄  */
 
 body { padding-top: 70px;
-	background-image:url("img/dye_st_0117.gif");
+	background-image:url("<%=request.getContextPath() %>/img/dye_st_0117.gif"); 
 	background-attachment: fixed;
 	font-size:20px;
 
@@ -28,11 +29,17 @@ body { padding-top: 70px;
  	font-size:20px
  }
  
+ a{
+ 	text-decoration: none;
+ }
+ a:hover{
+ text-decoration: none;
+ }
 </style>
 
 
     
-<nav class="nav navbar-inverse navbar-fixed-top" id="thisone"> <!-- 如果要黑色底，請把nav後面的那一串文字改成navbar-inverse -->
+<nav class="nav navbar-inverse navbar-fixed-top" id="thisone" align=center> <!-- 如果要黑色底，請把nav後面的那一串文字改成navbar-inverse -->
         <div class="container-fluid">
             <div class="navbar-header">
             
@@ -48,7 +55,7 @@ body { padding-top: 70px;
             <!-- 成為按鈕 -->
             
                 
-                <a class="navbar-brand" href="#"><img src="img/logo2.png" style="height:50px">Buffett</a>
+                <a class="navbar-brand" href="#"><img src="<%=request.getContextPath() %>/img/logo2.png" style="height:50px">Buffett</a>
             </div>
             
             <!-- 底下放要縮放的內容 -->

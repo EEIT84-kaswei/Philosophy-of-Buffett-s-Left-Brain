@@ -31,6 +31,10 @@ $(document).ready(function() {
 	color: #BD63FF;
 	background-color:#77FFCC;
 }
+
+#newstable tr:nth-child(even) {
+	background: #CCEEFF
+	}
 </style>
 </head>
 <body>

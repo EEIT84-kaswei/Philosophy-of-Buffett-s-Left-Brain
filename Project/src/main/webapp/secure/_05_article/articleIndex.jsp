@@ -14,6 +14,9 @@
 	color: #BD63FF;
 	background-color: #77FFCC;
 }
+#maintable tr:nth-child(even) {
+	background: #CCEEFF
+	}
 </style>
 
 

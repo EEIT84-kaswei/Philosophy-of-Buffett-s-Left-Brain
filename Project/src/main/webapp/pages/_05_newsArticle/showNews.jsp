@@ -8,10 +8,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Show News</title>
+<style type="text/css">
+
+</style>
 <script type="text/javascript">
 	function confirmDelete() {
 		if (confirm("確定刪除此項新聞資料(編號:${param.nno})?")) {
-			document.forms[0].action = "<c:url value="/news.do?nno=${param.nno}"/>";
+			document.forms[0].action = "<c:url value='/news.do?nno=${param.nno}' />";
 			document.forms[0].method = "POST";
 			document.forms[0].submit();
 		} else {
