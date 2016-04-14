@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- 先將使用者名稱取出 -->
-<c:set var="memberName" value="${ LoginOK.name }" />
+<c:set var="memberName" value="${ user.name }" />
 <!-- 移除放在session物件內的屬性物件 -->
 <c:remove var="LoginOK" scope="session" />
 <c:remove var="ShoppingCart" scope="session" />

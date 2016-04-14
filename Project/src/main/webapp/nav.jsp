@@ -13,12 +13,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- 匯入bootstrap javascript -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
+  <link href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" rel="stylesheet">
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.js"></script>
+<!--   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/jquery-ui.min.js"></script> -->
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>  
+  
+  
 <title>Insert title here</title>
 
 <style type="text/css">
 /* 	 用getContextPath()找到根目錄  */
 
-body { padding-top: 70px;
+body { padding-top: 80px;
 	background-image:url("<%=request.getContextPath() %>/img/dye_st_0117.gif"); 
 	background-attachment: fixed;
 	font-size:20px;
@@ -64,11 +71,14 @@ body { padding-top: 70px;
             <div class="collapse navbar-collapse" id="myNavbar" style="font-size:15px">
             <ul class="nav navbar-nav" align=center>
                 <li><a href="<c:url value='/Welcome.jsp' />">首頁</a></li>
-                <li><a href="#">基本概念</a></li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">台股資訊<span class="caret"></span></a>
+                <li><a href="<c:url value='/pages/_03_stock_market/instantStock.jsp'/>">即時股票資訊</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">股票分類<span class="caret"></span></a>
             		<ul class="dropdown-menu">
-              			 <li><a href="<c:url value='/secure/_04_stock/stockType.jsp'/>">股票分類</a></li>
-               			 <li><a href="<c:url value='/pages/_03_stock_market/instantStock.jsp'/>">即時股票資訊</a></li>
+              			 <li><a href="<c:url value='/secure/shanShi.view'/>">上市股</a></li>
+               			 <li><a href="<c:url value='/secure/shanQui.view'/>">上櫃股</a></li>
+               			 <li><a href="<c:url value='/secure/xinQui.view'/>">興櫃股</a></li>
+               			 <li><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></li>
+               			 <li><a href="">概念股</a></li>
                		</ul>
         		</li>
                 <li><a href="<c:url value='/view/article.controller' />">股市專欄</a></li>
@@ -88,9 +98,23 @@ body { padding-top: 70px;
         <!-- 到右邊開始 -->
             
              <ul class="nav navbar-nav navbar-right">
-                    <li><a href="<c:url value='/pages/_02_login/login.jsp' />"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-                    <li><a href="#">登出</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 管理員</a></li>
+                    <li>
+                    	<c:if test="${empty user}">
+                    	<a href="<c:url value='/pages/_02_login/login.jsp' />">
+                    		<span class="glyphicon glyphicon-log-in"></span> 
+                    		登入
+                    	</a>
+                    	</c:if>
+                    </li>
+                    
+                    <li>
+                    	<c:if test="${!empty user}">
+                    <a href="<c:url value='/pages/_02_login/logout.jsp' />">
+                    		登出
+                    </a>
+						</c:if>
+					</li>
+		                <li><a href="<c:url value='/secure/_02_login/test.jsp'/>"><span class="glyphicon glyphicon-user"></span> 管理員</a></li>
                 </ul>
             </div>
         </div>
