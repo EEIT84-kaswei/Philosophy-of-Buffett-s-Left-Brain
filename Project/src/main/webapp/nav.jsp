@@ -75,11 +75,11 @@ body { padding-top: 80px;
                 <li><a href="<c:url value='/pages/_03_stock_market/instantStock.jsp'/>">即時股票資訊</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">股票分類<span class="caret"></span></a>
             		<ul class="dropdown-menu">
-              			 <li><a href="<c:url value='/secure/shanShi.view'/>">上市股</a></li>
-               			 <li><a href="<c:url value='/secure/shanQui.view'/>">上櫃股</a></li>
-               			 <li><a href="<c:url value='/secure/xinQui.view'/>">興櫃股</a></li>
+              			 <li><a href="<c:url value='/secure/stockType.view?stockType=s1'/>">上市股</a></li>
+               			 <li><a href="<c:url value='/secure/stockType.view?stockType=s2'/>">上櫃股</a></li>
+               			 <li><a href="<c:url value='/secure/stockType.view?stockType=s3'/>">興櫃股</a></li>
                			 <li><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></li>
-               			 <li><a href="">概念股</a></li>
+               			 <li><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></li>
                		</ul>
         		</li>
                 <li><a href="<c:url value='/pages/article.controller' />">股市專欄</a></li>
