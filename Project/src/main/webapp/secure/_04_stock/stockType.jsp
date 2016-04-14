@@ -67,9 +67,9 @@
 	<table id="menu">
 	<tr>
 		<td><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></td>
-		<td><a href="<c:url value='/secure/shanShi.view'/>">上市股</a></td>
-		<td><a href="<c:url value='/secure/shanQui.view'/>">上櫃股</a></td>
-		<td><a href="<c:url value='/secure/xinQui.view'/>">興櫃股</a></td>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></td> 
+ 		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></td> 
+  		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></td>
 		<td><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></td>
 	</tr>
 	</table>
