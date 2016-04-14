@@ -114,15 +114,15 @@
 		      
 		      yAxis: [{
 		                labels: {
-		                    align: 'right',
-		                    x: -3
+		                    align: 'left',
+		                    x: 4
 		                },
 		                height: '60%',
 		                lineWidth: 2
 		            }, {
 		                labels: {
-		                    align: 'right',
-		                    x: -3
+		                    align: 'left',
+		                    x: 4
 		                },
 		                top: '65%',
 		                height: '35%',
