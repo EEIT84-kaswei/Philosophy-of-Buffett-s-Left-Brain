@@ -18,7 +18,7 @@ import _05_newsArticle.model.ArticleBean;
 import _05_newsArticle.model.ArticleService;
 import _05_newsArticle.model.dao.ArticleDAOHibernate;
 
-@WebServlet(urlPatterns = { "/view/article.controller" })
+@WebServlet(urlPatterns = { "/pages/article.controller" })
 public class ArticleServlet extends HttpServlet {
 	private ArticleService articleService;
 
@@ -33,7 +33,6 @@ public class ArticleServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("hahaha");
 		// 接收HTML Form資料
 		request.setCharacterEncoding("UTF-8");
 		String no = request.getParameter("ano");
@@ -62,6 +61,10 @@ public class ArticleServlet extends HttpServlet {
 			} catch (NumberFormatException e) {
 			}
 		}
+		//帳號ID暫時寫死
+		id=131;
+		
+		
 		// 驗證HTML Form資料
 		if ("Insert".equals(prodaction)) {
 			if (aname == null || aname.trim().length() == 0) {
@@ -76,13 +79,13 @@ public class ArticleServlet extends HttpServlet {
 		}
 
 		if (error != null && !error.isEmpty() && "Insert".equals(prodaction)) {
-			request.getRequestDispatcher("/secure/_05_article/newArticleIndex.jsp")
+			request.getRequestDispatcher("/secure/_05_article/newArticle.jsp")
 					.forward(request, response);
 			return;
 		}
 		// 呼叫Model
 		ArticleBean bean = new ArticleBean();
-		bean.setId(131);
+		bean.setId(id);
 		bean.setAno(ano);
 		bean.setAname(aname);
 		bean.setAtime(new Date());
@@ -90,9 +93,23 @@ public class ArticleServlet extends HttpServlet {
 		bean.setAcontext(acontext);
 		System.out.println(bean);
 		// 根據Model執行結果顯示View
-//		System.out.println("01"+prodaction+sname);
-//		System.out.println("02"+(sname.trim().length() == 0));
-		if (prodaction == null||("搜尋".equals(prodaction)&&sname.trim().length() == 0)) {
+		
+		
+		
+//		System.out.println("01"+prodaction);
+//		System.out.println("02"+(sname.trim().length() == 0));//沒資料為Null 打開會NullPointerException
+//		System.out.println(bean.getAno());
+		if (prodaction == null&&no!=null) {
+			System.out.println("Servlet呼叫Service.selectByAno方法前");
+			ArticleBean result = articleService.selectByAno(bean);
+			System.out.println("Servlet呼叫Service.selectByAno方法後");
+			HttpSession session = request.getSession();
+			session.setAttribute("singleArticle", result);
+			System.out.println("Servlet執行setAttribute前");
+			String path = request.getContextPath();
+			response.sendRedirect(path + "/secure/_05_article/singleArticle.jsp");
+		}
+		if ((prodaction == null||("搜尋".equals(prodaction)&&sname.trim().length() == 0))&&no==null) {
 			System.out.println("Servlet呼叫Service.select方法前");
 			List<ArticleBean> result = articleService.select();
 			System.out.println("Servlet呼叫Service.select方法後");
@@ -112,6 +129,19 @@ public class ArticleServlet extends HttpServlet {
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
 		}
+		
+		if ("修改".equals(prodaction)) {
+			System.out.println("Servlet呼叫Service.selectByAno方法前");
+			ArticleBean result = articleService.selectByAno(bean);
+			System.out.println("Servlet呼叫Service.selectByAno方法後");
+			HttpSession session = request.getSession();
+			session.setAttribute("updArticle", result);
+			System.out.println("Servlet執行setAttribute前");
+			String path = request.getContextPath();
+			response.sendRedirect(path
+					+ "/secure/_05_article/updArticle.jsp");
+		}
+		
 		if ("Insert".equals(prodaction)) {
 			ArticleDAOHibernate dao = new ArticleDAOHibernate();
 			ArticleBean bano = articleService.selectByAno(bean);

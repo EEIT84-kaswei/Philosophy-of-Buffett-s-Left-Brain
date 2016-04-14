@@ -45,6 +45,7 @@ body { padding-top: 80px;
 </style>
 
 
+
     
 <nav class="nav navbar-inverse navbar-fixed-top" id="thisone" align=center> <!-- 如果要黑色底，請把nav後面的那一串文字改成navbar-inverse -->
         <div class="container-fluid">
@@ -81,7 +82,7 @@ body { padding-top: 80px;
                			 <li><a href="">概念股</a></li>
                		</ul>
         		</li>
-                <li><a href="<c:url value='/view/article.controller' />">股市專欄</a></li>
+                <li><a href="<c:url value='/pages/article.controller' />">股市專欄</a></li>
                 <li><a href="<c:url value='/news.do' />">股市新聞</a></li>
                 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">會員專區<span class="caret"></span></a>
@@ -122,4 +123,5 @@ body { padding-top: 80px;
         
         
     </nav>
+
 

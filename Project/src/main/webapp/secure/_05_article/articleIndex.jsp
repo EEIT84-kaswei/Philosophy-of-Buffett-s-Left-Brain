@@ -14,6 +14,7 @@
 	color: #BD63FF;
 	background-color: #77FFCC;
 }
+
 #maintable tr:nth-child(even) {
 	background: #CCEEFF
 	}
@@ -34,19 +35,18 @@
 		</div>
 
 
-	<!-- 	<div align="center" style="height: 20em; margin: 2em auto; padding: 2em"> -->
+		<div style="margin: 2em auto; padding: 2em; width:800px">
 
 			<!-- 表格開始 -->
 
-			<form action="<c:url value="/view/article.controller" />" method="post">
+			<form action="<c:url value="/pages/article.controller" />" method="post">
 				<center>
-
-						依作家搜尋
+				依作家搜尋
 				<input type="text" name="sname" value="">
 				<input type="submit" name="prodaction" value="搜尋">
 				</center>
 				
-				<table id="maintable"  align=center style="border: 2px #FFAC55 solid; padding:2em; width:35em" rules="all"
+				<table id="maintable" style="border: 2px #FFAC55 solid; padding: 2em; width:800px" rules="all"
 					cellpadding='5'>
 					<thead>
 <!-- 						<tr><td ></td><th></th><td></td></tr> -->
@@ -59,25 +59,20 @@
 					</thead>
 					<tbody>
 						<c:forEach var="row" items="${select}">
-							<c:url value="/secure/_05_article/selectArticleIndex.jsp" var="path" scope="page">
+							<c:url value="/pages/article.controller" var="path" scope="page" >
 								<c:param name="ano" value="${row.ano}" />
-								<c:param name="atime" value="${row.atime}" />
-								<c:param name="aname" value="${row.aname}" />
-								<c:param name="atitle" value="${row.atitle}" />
-								<c:param name="acontext" value="${row.acontext}" />
 							</c:url>
-							<tr style="height:2.5em">
+							<tr>
 								
 								<td><a href="${path}">${row.atitle}</a></td>
 								<td>${row.aname}</td>
-								<td><fmt:formatDate value="${row.atime}"
-										pattern="yyyy-MM-dd" /></td>
+								<td><fmt:formatDate value="${row.atime}" pattern="yyyy-MM-dd" /></td> 
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 						<center>
-						<a href="/Project/secure/_05_article/newArticleIndex.jsp">
+						<a href="/Project/secure/_05_article/newArticle.jsp">
 						<input type="button" value="發表文章">
 						</a>
 						</center>
@@ -85,7 +80,7 @@
 
 		</div>
 
-<!-- 	</div> -->
+	</div>
 
 </body>
 </html>
