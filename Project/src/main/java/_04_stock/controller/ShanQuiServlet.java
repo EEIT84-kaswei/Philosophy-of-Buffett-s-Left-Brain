@@ -20,9 +20,9 @@ import _04_stock.model.dao.StockCodeDAOHibernate;
 import misc.HibernateUtil;
 
 @WebServlet(
-		urlPatterns={"/secure/shanShi.view"}    )
+		urlPatterns={"/secure/shanQui.view"}    )
 
-public class ShanShiServlet extends HttpServlet{
+public class ShanQuiServlet extends HttpServlet{
 	/*用即時UpdateService找出股票資料，找出分類在 上市股這分類內的，所有股票即時交易資料（興櫃股沒抓到）*/
 	private InstantStockOneService instantStockOneService; 
 	
@@ -43,16 +43,19 @@ public class ShanShiServlet extends HttpServlet{
 		 * **/
 		
 		//呼叫model
-		List<InstantStockOneBean> beans = instantStockOneService.selectByType("s1");
+		List<InstantStockOneBean> beans = instantStockOneService.selectByType("s2");
 		
 		//將值 設定到request內，並轉到承接的View
-		HttpSession session = request.getSession();
-		session.setAttribute("stockTypeName", "上市股");
-		session.setAttribute("stockType", beans);
-//		request.setAttribute("stockTypeName", "上市股");
-//		request.setAttribute("stockType", beans);
-		System.out.println("這是上市股servlet");
+		request.setAttribute("stockTypeName", "上櫃股");
+		request.setAttribute("stockType", beans);
 		request.getRequestDispatcher("/secure/_04_stock/stockType.jsp").forward(request, response);
+		System.out.println("這是上櫃股servlet");
+
+//		HttpSession session = request.getSession();
+//		session.setAttribute("stockTypeName", "上市股");
+//		session.setAttribute("stockType", beans);
+//		String path = request.getContextPath();
+//		response.sendRedirect(path + "");
 	}
 
 	@Override
