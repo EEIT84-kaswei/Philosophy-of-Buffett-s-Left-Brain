@@ -30,8 +30,9 @@ function doAlert(){
 	<h3>概念股樣板</h3>
 	
 	<div style="float:right">最後更新時間：08-04-2016 13:30:00</div>
-	
-	
+<!-- 請胤凱填寫(呼叫哪知Servlet)	↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
+<%-- <form action="<c:url value="/CustFavoriteServlet" />" method="post"> --%>
+
 <select style="align:left">
  <option> </option>
  <option>環保概念股</option>
@@ -53,9 +54,17 @@ function doAlert(){
 			<th>市價/淨值</th>
 		</tr>
 		<tr>
-			<td><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>" onclick="doAlert()">○ 加入 ○</a></td>
-			<td>6803</td>
-			<td><a href="<c:url value='/secure/_04_stock/concept_Stock/historyInfo.jsp' />">印楷</a></td>
+<%-- 		<td><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>" onclick="doAlert()">○ 加入 ○</a></td> --%>
+<!-- if 未加入自選 -->
+			<td><input type="submit" name="" value="○ 加入 ○"></td>
+<!-- esle -->
+<!-- 		<td><input type="submit" name="" value="移除"></td> -->
+<!-- end -->
+<%--        <c:forEach> --%>
+			<c:url value="/CustFavoriteServlet" var="path" scope="page">
+			<c:param name="stock_Cobe" value="2317" /></c:url>
+			<td>2317</td>
+			<td><a href="${path}">印楷</a></td>
 			<td>158.00</td>
 			<td>160.00</td>
 			<td>10533</td>
@@ -63,6 +72,7 @@ function doAlert(){
 			<td>9.75</td>
 			<td>2.45</td>
 		</tr>
+<%-- 		</c:forEach> --%>
 		<tr>
 			<td>○ 加入 ○</td>
 			<td>2596</td>
@@ -87,7 +97,7 @@ function doAlert(){
 		</tr>
 
 	</table>
-	
+<!-- 	</form> -->
 </div>
 </div>
 

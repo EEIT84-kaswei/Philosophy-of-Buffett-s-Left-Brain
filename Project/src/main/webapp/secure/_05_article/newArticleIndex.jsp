@@ -10,10 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>專欄文章</title>
 <style type="text/css">
-table tr:hover {
-	color: #BD63FF;
-	background-color: #FFFF00;
-}
+
 </style>
 
 
@@ -31,16 +28,11 @@ table tr:hover {
 		</div>
 
 
-		<div
-			style="height: 20em; margin: 2em auto; padding: 2em; border: 1px solid; border-color: green">
-
-			<p style="text-align: center">專欄文章：靜態樣板文字，僅供參考，請後端工程師增加動態專欄文章</p>
-
-
+		<div style="height: 20em; margin: 2em auto; padding: 2em;">
 
 			<!-- 表格開始 -->
 
-			<form action="<c:url value="/view/article.controller" />" method="post">
+			<form action="<c:url value="/pages/article.controller" />" method="post">
 				<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
 					cellpadding='5' align=center>
 
@@ -61,9 +53,8 @@ table tr:hover {
 					<tr>
 						<td></td>
 						<td ><input type="submit" name="prodaction" value="Insert">
-							<div style="display: none;">
-								<input type="text" name="ano" value="${param.ano}">
-							</div></td>
+						<!--隱藏的ano資料，為了把資料庫取出來的ano資料帶走↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+						<div style="display: none;"><input type="text" name="ano" value="${param.ano}"></div></td>
 					</tr>
 				</table>
 			</form>

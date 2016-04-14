@@ -26,7 +26,12 @@ $(document).ready(function() {
 });
 
 </script>
-
+<style type="text/css">
+#newstable tr:hover {
+	color: #BD63FF;
+	background-color:#77FFCC;
+}
+</style>
 </head>
 <body style="margin: 0em 3em">
 	<div class="container">
@@ -43,9 +48,10 @@ $(document).ready(function() {
 	<%
 		response.setCharacterEncoding("UTF-8");
 	%>
-	<h3>News</h3>
 
-	<div class="container">
+	<div align=center style="height:20px;width:10px"></div>
+
+	<div align=center>
 		<div class="row">
 			<form class="form-search" action="<c:url value="/news.do"/>" method="get">
 				<div class="input-append">
@@ -63,13 +69,14 @@ $(document).ready(function() {
 				</div>
 			</form>
 		</div>
-	</div>
 
 
 
+<form>
 	<c:if test="${not empty select}">
 
-		<table>
+			<table id="newstable" style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
+					cellpadding='5' align=center>
 			<thead>
 				<tr>
 					<th>NewsTitle</th>
@@ -79,10 +86,11 @@ $(document).ready(function() {
 			</thead>
 			<tbody>
 				<c:forEach var="row" items="${select}">
-					<c:url value="/showNews.jsp" var="path" scope="page">
+					<c:url value="/pages/_05_newsArticle/showNews.jsp" var="path" scope="page">
 						<c:param name="nno" value="${row.nno}" />
 						<c:param name="ntitle" value="${row.ntitle}" />
-						<c:param name="ntime" value="${row.ntime}" />
+						<fmt:formatDate var="time" value="${row.ntime}" pattern="yyyy年MM月dd日" />
+				   		<c:param name="ntime" value="${time}" />
 						<c:param name="ncontext" value="${row.ncontext}" />
 					</c:url>
 
@@ -94,9 +102,13 @@ $(document).ready(function() {
 			</tbody>
 		</table>
 	</c:if>
-		<form action="<c:url value="/updateNews.jsp"/>" method="get">
+	</form>
+	
+
+		<form action="<c:url value="/pages/_05_newsArticle/updateNews.jsp"/>" method="get">
 			<input type="submit" value="新增">
 		</form>
+	</div>
 </div>
 
 </body>

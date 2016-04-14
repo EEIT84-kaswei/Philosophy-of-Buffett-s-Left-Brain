@@ -53,7 +53,8 @@ public class SpecialFunctionService {
 			dao.getSession().getTransaction().commit();
 //			System.out.println(SBean);
 //			System.out.println(DBean);
-			System.out.println(IBean);
+
+//			System.out.println(IBean);
 		} catch (Exception e) {
 			dao.getSession().getTransaction().rollback();
 			e.printStackTrace();
@@ -65,33 +66,27 @@ public class SpecialFunctionService {
 
 	//查詢某日單一個股最大買超
 	public  Integer selectMax(Date sDate, Integer stock_Code) {
-		List<SecuritiesTradeBean> result = null;
+		List<Integer> result = null;
 		if(sDate!=null&&stock_Code!=null){
 			result = specialFunctionDAO.selectMax(sDate, stock_Code);
 		}
-		SecuritiesTradeBean bean = result.get(0);
-		Integer ans = bean.getB_s_sheets();
-		return ans;
+		return result.get(0);
 	}
 	//查詢某日單一個股最大賣超
 	public Integer selectMin(Date sDate, Integer stock_Code) {
-		List<SecuritiesTradeBean> result = null;
+		List<Integer> result = null;
 		if(sDate!=null&&stock_Code!=null){
 			result = specialFunctionDAO.selectMin(sDate, stock_Code);
 		}
-		SecuritiesTradeBean bean = result.get(0);
-		Integer ans = bean.getB_s_sheets();
-		return ans;
+		return result.get(0);
 	}
 	//查詢某日單一個股總成交量
 	public Integer selectTrade_Volume(Date trading_Date,Integer stock_Code) {
-		List<DailyStockBean> result = null;
+		List<Integer> result = null;
 		if(trading_Date!=null&&stock_Code!=null){
 			result = specialFunctionDAO.selectTrade_Volume(trading_Date, stock_Code);
 		}
-		DailyStockBean bean = result.get(0);
-		Integer ans = bean.getTrade_Volume();
-		return ans;
+		return result.get(0);
 	}
 	//查詢某日單一個股TOP15買超量
 	public Integer[] selsctBuyTop15(Date sDate,Integer stock_Code) {
@@ -123,8 +118,8 @@ public class SpecialFunctionService {
 		if(stock_Code!=null){
 			result = specialFunctionDAO.select_FC_Trade(stock_Code);
 		}
-		Integer [] FC_Trade = new Integer[15];
-		for(int i = 0;i<15;i++){
+		Integer [] FC_Trade = new Integer[3];
+		for(int i = 0;i<3;i++){
 			FC_Trade [i] = result.get(i);
 		}
 		return FC_Trade;
@@ -135,8 +130,9 @@ public class SpecialFunctionService {
 		if(stock_Code!=null){
 			result = specialFunctionDAO.select_IT_Trade(stock_Code);
 		}
-		Integer [] IT_Trade = new Integer[15];
-		for(int i = 0;i<15;i++){
+		Integer [] IT_Trade = new Integer[3];
+		for(int i = 0;i<3;i++){
+
 			IT_Trade [i] = result.get(i);
 		}
 		return IT_Trade;

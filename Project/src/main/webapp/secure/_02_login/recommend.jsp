@@ -11,9 +11,7 @@
 <style type="text/css">
 #mainDIV{
 	border:1px blue solid;
-	width:80%;
 	height:15em;
-	max-height:15em;
 	margin:1em;
 	padding:1em;
 	align:center;

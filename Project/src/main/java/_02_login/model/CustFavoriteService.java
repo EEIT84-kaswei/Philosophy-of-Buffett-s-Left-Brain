@@ -21,11 +21,11 @@ public class CustFavoriteService {
 		this.custFavoriteDAO = custFavoriteDAO;
 	}
 
-	CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate(session);
+	
 
 	public static void main(String[] args) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate(session);
+		CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate();
 		CustFavoriteService service = new CustFavoriteService();
 		service.setCustFavoriteDAO(dao);
 		// 測試查詢
@@ -181,14 +181,14 @@ public class CustFavoriteService {
 
 	public List<CustFavoriteBean> select() {
 		List<CustFavoriteBean> result = new ArrayList<CustFavoriteBean>();
-		result = dao.select();
+		result = custFavoriteDAO.select();
 		return result;
 	}
 
 	public List<CustFavoriteBean> selectById(Integer id) {
 		List<CustFavoriteBean> result = null;
 		if (id != null) {
-			result = dao.selectById(id);
+			result = custFavoriteDAO.selectById(id);
 		}
 		return result;
 	}
@@ -196,7 +196,7 @@ public class CustFavoriteService {
 	public List<CustFavoriteBean> selectByStock(Integer stock_Code) {
 		List<CustFavoriteBean> result = null;
 		if (stock_Code != null) {
-			result = dao.selectByStock(stock_Code);
+			result = custFavoriteDAO.selectByStock(stock_Code);
 		}
 		return result;
 	}
@@ -204,7 +204,7 @@ public class CustFavoriteService {
 	public CustFavoriteBean selectByIdAndStock(Integer id, Integer stock_Code) {
 		CustFavoriteBean result = null;
 		if (id != null && stock_Code != null) {
-			result = dao.selectByIdAndStock(id, stock_Code);
+			result = custFavoriteDAO.selectByIdAndStock(id, stock_Code);
 		}
 		return result;
 	}
@@ -212,7 +212,7 @@ public class CustFavoriteService {
 	public CustFavoriteBean insert(CustFavoriteBean bean) {
 		CustFavoriteBean result = null;
 		if (bean != null) {
-			result = dao.insert(bean);
+			result = custFavoriteDAO.insert(bean);
 		}
 		return result;
 	}
@@ -222,7 +222,7 @@ public class CustFavoriteService {
 		CustFavoriteBean result = null;
 		if (selectByIdAndStock(id, stock_Code) != null
 				&& selectByIdAndStock(id, new_stock_Code) == null) {
-			result = dao.update(id, stock_Code, new_stock_Code);
+			result = custFavoriteDAO.update(id, stock_Code, new_stock_Code);
 		}
 		return result;
 	}
@@ -230,7 +230,7 @@ public class CustFavoriteService {
 	public boolean delete(Integer id, Integer stock_Code) {
 		boolean result = false;
 		if (id != null && stock_Code != null) {
-			result = dao.delete(id, stock_Code);
+			result = custFavoriteDAO.delete(id, stock_Code);
 		}
 		return result;
 	}
