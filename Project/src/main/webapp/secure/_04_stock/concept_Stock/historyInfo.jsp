@@ -21,7 +21,56 @@
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/highstock.js"></script>
 		
 		<script type="text/javascript">
-		$(function () {
+		var priceData;
+		var volumeData;
+		var volumeColorData;
+		
+		function transferPrice(data){
+			priceData=data
+		}
+		
+		function transferVolume(data){
+			volumeData=data;
+		}
+		
+		function transferVolumeColor(data){
+			volumeColorData=data;
+		}
+		
+		$(document).ready(function () {
+			var contextPath="${pageContext.request.contextPath}";
+			var sourceUrl=contextPath+"/secure/DailyStockServlet";
+			var settings=new Object()
+			$.ajax({
+				method:"GET",
+				url:sourceUrl,
+				data:"stock_Code=2330&type=price",
+				cache:false,
+				async:false,
+				dataType:"json",
+				success:transferPrice
+			});
+			
+			$.ajax({
+				method:"GET",
+				url:sourceUrl,
+				data:"stock_Code=2330&type=volume",
+				cache:false,
+				async:false,
+				dataType:"json",
+				success:transferVolume
+			});
+			
+			$.ajax({
+				method:"GET",
+				url:sourceUrl,
+				data:"stock_Code=2330&type=volumeColor",
+				cache:false,
+				async:false,
+				dataType:"json",
+				success:transferVolumeColor
+			});			
+			
 			Highcharts.setOptions({
 		        global: {
 		            timezoneOffset: -8 * 60
@@ -77,7 +126,7 @@
 		    	},
 		    	
 		    	title:{
-		    		text:'Test Stock Chart'
+		    		text:'2330 台積電'
 		    	},
 		    	
 		    	 plotOptions: {
@@ -97,7 +146,7 @@
 		            },
 		            column:{
 		            colorByPoint: true,
-		            colors:colorArray,
+		            colors:volumeColorData,
 		            tooltip:{
 		               pointFormat:'<span>{series.name}: {point.y}<br/>'
 		            }
@@ -107,21 +156,11 @@
 		    	series:[{
 		    		type:'candlestick',
 		    		name:'2330 台積電',
-		    		data:stockData
+		    		data:priceData
 		    	},{
 		    		type:'column',
 		    		name:'成交量',
-		    		data:[
-		    		      [1456810200000,38629],
-			              [1456896600000,36010],
-			              [1456983000000,28822],
-			              [1457069400000,32794],
-			              [1457328600000,23906],
-			              [1457415000000,35683],
-			              [1457501400000,24044],
-			              [1457587800000,28302],
-			              [1457674200000,29566]
-		    		      ],
+		    		data:volumeData,
 		              yAxis: 1              
 		    	}
 		    	]    	
