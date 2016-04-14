@@ -63,7 +63,7 @@ function doAlert(){
 <!-- end -->
 <%--        <c:forEach> --%>
 			<c:url value="/secure/SpecialFunctionServlet" var="path" scope="page">
-			<c:param name="stock_Cobe" value="2317" /></c:url>
+			<c:param name="stock_Code" value="2317" /></c:url>
 			<td>2317</td>
 			<td><a href="${path}">印楷</a></td>
 			<td>158.00</td>

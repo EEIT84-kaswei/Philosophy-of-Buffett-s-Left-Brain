@@ -54,7 +54,7 @@ public class SpecialFunctionServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		// 接收HTML Form資料
-		String stock = request.getParameter("stock_Cobe");
+		String stock = request.getParameter("stock_Code");
 		// 轉換HTML Form資料
 		SimpleDateFormat sformat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat sformat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
