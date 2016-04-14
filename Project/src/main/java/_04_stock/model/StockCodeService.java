@@ -25,17 +25,20 @@ public class StockCodeService {
 		StockCodeService service = new StockCodeService();		
 		service.setStockCodeDAO(dao);;
 				
-//		try {
-//			dao.getSession().beginTransaction();				  //測試:查詢資料
+		try {
+			dao.getSession().beginTransaction();				  //測試:查詢資料
 //			List<StockCodeBean> beans = service.select(null);
-//			for(StockCodeBean bean:beans){                        //enhanced for loop 讀取資料
-//				System.out.println(bean);
-//			}
-//			dao.getSession().getTransaction().commit();
-//		} catch (Exception e) {
-//			dao.getSession().getTransaction().rollback();
-//			e.printStackTrace();
-//		}
+//			service.selectStockCodByType("s1");
+//			List<Integer> list = service.selectStockCodByType("s1");
+			List<Integer> list = service.selectStockCodByCS("c1");
+			for(Integer code:list){                        //enhanced for loop 讀取資料
+				System.out.println(code);
+			}
+			dao.getSession().getTransaction().commit();
+		} catch (Exception e) {
+			dao.getSession().getTransaction().rollback();
+			e.printStackTrace();
+		}
 		
 //		StockCodeBean bean = new StockCodeBean();				  //測試:新增資料
 //		StockCodeBean bean1 = null;
@@ -83,7 +86,35 @@ public class StockCodeService {
 //		}
 		
 	}
+
+	public List<Integer> selectStockCodByCS(String cs_Code){
+		List<Integer> codeList = null;
+		if(cs_Code!=null){
+			List<StockCodeBean> beans = stockCodeDAO.selectBycs_Code(cs_Code);
+			codeList = new ArrayList<Integer>();
+			for(StockCodeBean xBean:beans){
+				Integer code = xBean.getStock_Code();
+//				System.out.println(code);
+				codeList.add(code);
+			}
+		}
+		return codeList;
+	}
+
 	
+	public List<Integer> selectStockCodByType(String stock_TypeCode){
+		List<Integer> codeList = null;
+		if(stock_TypeCode!=null){
+			List<StockCodeBean> beans = stockCodeDAO.selectByTypeCode(stock_TypeCode);
+			codeList = new ArrayList<Integer>();
+			for(StockCodeBean xBean:beans){
+				Integer code = xBean.getStock_Code();
+//				System.out.println(code);
+				codeList.add(code);
+			}
+		}
+		return codeList;
+	}
 	
 
 	public List<StockCodeBean> select(StockCodeBean bean) {

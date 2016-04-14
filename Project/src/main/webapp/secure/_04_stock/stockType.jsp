@@ -39,7 +39,7 @@
  			td.favorL:hovor{background-color:#DDD;color:#666;}
 </style>
 <!-- **************************************** 引用jQuery   ***************************************************** -->
-<script type="text/javascript" src="../../js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-2.2.1.min.js"></script>
 <!-- **************************************** 網頁抬頭   ******************************************************* -->
 <title>股票分類：首頁${stockTypeName}</title>    
 <!-- ************************************** 最外框DIV開始  ***************************************************** -->
@@ -94,84 +94,64 @@
 		</thead>
 		
 		<tbody id="tbody">
-<%-- 		<c:forEach var="data" items="${stockType}"> --%>
+		<c:forEach var="data" items="${stockType}">
 			<tr>
-
-			<td>   <!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ; 不管加入取消都送一個ajax回去-->
-				<img alt="加入自選股" src="../../img/star.gif" height=20 name="star">
-			</td>
-			
-			<td>股票代碼</td>
-			<td>股票名稱</td>
-			<td>買進價格</td>
-			<td>賣出價格</td>
-			<td>成交價格</td>
-			<td>漲跌金額</td>
-			<td>漲跌幅度</td>
-			<td>累積成交量</td>
-<%-- 			<td>股票代碼${data.stock_Code}</td> --%>
-<%-- 			<td>股票名稱${data.stock_Name}</td> --%>
-<%-- 			<td>買進價格${data.purchase_Price}</td> --%>
-<%-- 			<td>賣出價格${data.selling_Price}</td> --%>
-<%-- 			<td>成交價格${data.final_price}</td> --%>
-<%-- 			<td>漲跌金額${data.change_Amount}</td> --%>
-<%-- 			<td>漲跌幅度${data.change_extent}</td> --%>
-<%-- 			<td>累積成交量${data.acc_Trade_Volume}</td> --%>
+			<!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ; 不管加入取消都送一個ajax回去-->
+			<td><img onclick="getValue(${data.stock_Code})" alt="加入自選股" src="<%=request.getContextPath() %>/img/star.gif" height=20 name="star"></td>
+			<td>${data.stock_Code}</td>
+			<td>${data.stock_Name}</td>
+			<td>${data.purchase_Price}</td>
+			<td>${data.selling_Price}</td>
+			<td>${data.final_price}</td>
+			<td>${data.change_Amount}</td>
+			<td>${data.change_extent}</td>
+			<td>${data.acc_Trade_Volume}</td>
 			</tr>
 
 			<!--         要刪掉的			 -->
-			<tr>
-
-			<td>   <!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ; 不管加入取消都送一個ajax回去-->
-				<img alt="加入自選股" src="../../img/star.gif" height=20 name="star">
-			</td>
-			
-
-			<td>股票代碼1</td>
-			<td>股票名稱</td>
-			<td>買進價格</td>
-			<td>賣出價格</td>
-			<td>成交價格</td>
-			<td>漲跌金額</td>
-			<td>漲跌幅度</td>
-			<td>累積成交量</td>
-			</tr>
-			<tr>
-
-			<td>   <!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ; 不管加入取消都送一個ajax回去-->
-				<img alt="加入自選股" src="../../img/star.gif" height=20 name="star">
-			</td>
-			
-
-			<td>股票代碼2</td>
-			<td>股票名稱</td>
-			<td>買進價格</td>
-			<td>賣出價格</td>
-			<td>成交價格</td>
-			<td>漲跌金額</td>
-			<td>漲跌幅度</td>
-			<td>累積成交量</td>
-			</tr>
-			<tr>
-
-			<td>   <!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ; 不管加入取消都送一個ajax回去-->
-				<img alt="加入自選股" src="../../img/star.gif" height=20 name="star">
-			</td>
-			
-
-			<td>股票代碼3</td>
-			<td>股票名稱</td>
-			<td>買進價格</td>
-			<td>賣出價格</td>
-			<td>成交價格</td>
-			<td>漲跌金額</td>
-			<td>漲跌幅度</td>
-			<td>累積成交量</td>
-			</tr>
-
-
+<!-- 			<td>股票代碼</td> -->
+<!-- 			<td>股票名稱</td> -->
+<!-- 			<td>買進價格</td> -->
+<!-- 			<td>賣出價格</td> -->
+<!-- 			<td>成交價格</td> -->
+<!-- 			<td>漲跌金額</td> -->
+<!-- 			<td>漲跌幅度</td> -->
+<!-- 			<td>累積成交量</td> -->
+<!-- 			<tr> -->
+<!-- 			<td><img alt="加入自選股" src="../../img/star.gif" height=20 name="star"></td>			 -->
+<!-- 			<td>股票代碼1</td> -->
+<!-- 			<td>股票名稱</td> -->
+<!-- 			<td>買進價格</td> -->
+<!-- 			<td>賣出價格</td> -->
+<!-- 			<td>成交價格</td> -->
+<!-- 			<td>漲跌金額</td> -->
+<!-- 			<td>漲跌幅度</td> -->
+<!-- 			<td>累積成交量</td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 			<td><img alt="加入自選股" src="../../img/star.gif" height=20 name="star"></td>			 -->
+<!-- 			<td>股票代碼2</td> -->
+<!-- 			<td>股票名稱</td> -->
+<!-- 			<td>買進價格</td> -->
+<!-- 			<td>賣出價格</td> -->
+<!-- 			<td>成交價格</td> -->
+<!-- 			<td>漲跌金額</td> -->
+<!-- 			<td>漲跌幅度</td> -->
+<!-- 			<td>累積成交量</td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 			<td><img alt="加入自選股" src="../../img/star.gif" height=20 name="star"></td> -->
+<!-- 			<td>股票代碼3</td> -->
+<!-- 			<td>股票名稱</td> -->
+<!-- 			<td>買進價格</td> -->
+<!-- 			<td>賣出價格</td> -->
+<!-- 			<td>成交價格</td> -->
+<!-- 			<td>漲跌金額</td> -->
+<!-- 			<td>漲跌幅度</td> -->
+<!-- 			<td>累積成交量</td> -->
+<!-- 			</tr> -->
 			<!--         要刪掉的			 -->
-<%-- 		</c:forEach> --%>
+		</c:forEach>
 		</tbody>
 		
 	</table>
@@ -189,26 +169,17 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	
-	
 	var trs=$("tbody#tbody tr");  //先找出tbody中有幾個'tr'
 	$("img[name='star']").click(function(){  //當<img>被按下去時，最靠近它的tr是第幾個？（從0起跳）
       var index=trs.index($(this).closest("tr"));
       console.log("index : " + index);
-      
-      
 	  var stockCode = $(this)[0].parentElement.nextSibling.value;
 // 	  closest("td").val();
 	  concole.log("stockCode:"+stockCode);
-      
-	      
 	  var starPath = $(this).attr("src");  //取出這個點下去的星星路徑
       //console.log("starPath : " + starPath );
-      
-	      
-	      var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
+      var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
       //console.log("starIndex : " + starIndex );
-	  
       if(starIndex == -1){
 		  $(this).attr("src" , "../../img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
 	  }else{
@@ -216,7 +187,29 @@ $(document).ready(function() {
 	  }
     });
 });
-
+function getValue(value){
+	console.log(value);
+// 	 var URLs = '';
+// 	 $.ajax({
+//         url: URLs,
+//         data: datatype ,
+//         type:"POST",
+//         //dataType:'text',
+//         success: function(msg){
+//             alert(msg);
+//         },
+//         beforeSend:function(){
+//             $('#loadingIMG').show();
+//         },
+//         complete:function(){
+//             $('#loadingIMG').hide();
+//         },
+//         error:function(xhr, ajaxOptions, thrownError){ 
+//             alert(xhr.status); 
+//             alert(thrownError); 
+//         }
+//     });
+}
 
 
 //取位置失敗寫法，待改良

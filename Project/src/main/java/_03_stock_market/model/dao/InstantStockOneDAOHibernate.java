@@ -62,7 +62,14 @@ public class InstantStockOneDAOHibernate implements InstantStockOneDAO {
 //			for(InstantStockOneBean showbean:beanList){
 //				System.out.println(showbean);
 //			}		
-					
+
+			//用上市股代號s1 搜尋   or 用概念股c1搜尋
+			
+//			List<InstantStockOneBean> list = dao.selectByType("s1");
+			List<InstantStockOneBean> list = dao.selectByCS("c1");
+			for(InstantStockOneBean xBean : list){
+				System.out.println(xBean);
+			}
 			//測試刪除
 //				boolean  beanDel=dao.delete(8080);
 //				System.out.println(beanDel);
@@ -84,6 +91,24 @@ public class InstantStockOneDAOHibernate implements InstantStockOneDAO {
 	public Session getSession() {
 		return session;
 	}
+
+	/* 用股票分類[上市股]查詢*/
+	@Override
+	public List<InstantStockOneBean> selectByType(String stock_TypeCode){
+		Query query = getSession().createQuery("from InstantStockOneBean where stock_TypeCode = ?");
+		query.setParameter(0, stock_TypeCode);
+		return (List<InstantStockOneBean>) query.list();
+	}
+	
+	/* 用概念股分類查詢*/
+	@Override
+	public List<InstantStockOneBean> selectByCS(String concept_Stock){
+		Query query = getSession().createQuery("from InstantStockOneBean where concept_Stock = ?");
+		query.setParameter(0, concept_Stock);
+		return (List<InstantStockOneBean>) query.list();
+	}
+	
+	
 	
 	/* (non-Javadoc)
 	 * @see model.dao.InstantStockOneDAO#select(java.lang.Integer)
