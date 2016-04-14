@@ -67,9 +67,9 @@
 	<table id="menu">
 	<tr>
 		<td><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></td>
-		<td><a href="<c:url value='/secure/shanShi.view'/>">上市股</a></td>
-		<td><a href="<c:url value='/secure/shanQui.view'/>">上櫃股</a></td>
-		<td><a href="<c:url value='/secure/xinQui.view'/>">興櫃股</a></td>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></td>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></td>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></td>
 		<td><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></td>
 	</tr>
 	</table>
@@ -79,7 +79,7 @@
 	<!-- **************************************表格開始*********************************************** -->	
 	<table id="stockTypeTable">
 		<thead>
-			<tr ><td colspan="9"><b>上市股</b></td></tr>          <!-- 要修改成EL取值 -->   
+			<tr ><td colspan="9"><b>${stockTypeName}</b></td></tr>          <!-- 要修改成EL取值 -->   
 			<tr style="height: 30px;background:#C7C7E2">
 			<th>加入自選股</th>
 			<th>股票代碼</th>
@@ -124,18 +124,16 @@
 <!-- ************************************** JavaScript ***************************************************** -->
 <script type="text/javascript">
 
-	var path = "${pageContext.request.contextPath}";
-	var id = "${pageContext.session.account}";
-	var url = path + "/secure/custFavorite.view";
-
+	
+	
 $(document).ready(function() {
 	var trs=$("tbody#tbody tr");  //先找出tbody中有幾個'tr'
 	$("img[name='star']").click(function(){  //當<img>被按下去時，最靠近它的tr是第幾個？（從0起跳）
-      var index=trs.index($(this).closest("tr"));
-      console.log("index : " + index);
-// 	  var stockCode = $(this).parent().next().css({"color": "red", "border": "2px solid red"});
+      //var index=trs.index($(this).closest("tr"));
+      //console.log("index : " + index);
+	  //var stockCode = $(this).parent().next().css({"color": "red", "border": "2px solid red"});
 	  var codeString = $(this).parent().next().text(); //字串形態
-	  var codeInt = parseInt(stockNode); //改成int
+	  var codeInt = parseInt(codeString); //改成int
 	  console.log("股票代號 : " + codeInt);  
 	  var starPath = $(this).attr("src");  //取出這個點下去的星星路徑
       //console.log("starPath : " + starPath );
