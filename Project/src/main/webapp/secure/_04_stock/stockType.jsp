@@ -134,9 +134,9 @@ $(document).ready(function() {
       var index=trs.index($(this).closest("tr"));
       console.log("index : " + index);
 // 	  var stockCode = $(this).parent().next().css({"color": "red", "border": "2px solid red"});
-	  var stockNode = $(this).parent().next().text(); //字串形態
-	  var stockCode = parseInt(stockNode); //改成int
-	  console.log("股票代號 : " + stockCode);  
+	  var codeString = $(this).parent().next().text(); //字串形態
+	  var codeInt = parseInt(stockNode); //改成int
+	  console.log("股票代號 : " + codeInt);  
 	  var starPath = $(this).attr("src");  //取出這個點下去的星星路徑
       //console.log("starPath : " + starPath );
       var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
