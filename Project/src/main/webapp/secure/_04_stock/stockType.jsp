@@ -41,7 +41,7 @@
 <!-- **************************************** 引用jQuery   ***************************************************** -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-2.2.1.min.js"></script>
 <!-- **************************************** 網頁抬頭   ******************************************************* -->
-<title>股票分類：首頁${stockTypeName}</title>    
+<title>${stockTypeName}</title>    
 <!-- ************************************** 最外框DIV開始  ***************************************************** -->
 </head>
 <body style="margin:0em 3em">
@@ -67,9 +67,9 @@
 	<table id="menu">
 	<tr>
 		<td><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></td>
-		<td><a href="<c:url value='/secure/shanShi.view'/>">上市股</a></td>
-		<td><a href="<c:url value='/secure/shanQui.view'/>">上櫃股</a></td>
-		<td><a href="<c:url value='/secure/xinQui.view'/>">興櫃股</a></td>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></td>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></td>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></td>
 		<td><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></td>
 	</tr>
 	</table>
@@ -79,7 +79,7 @@
 	<!-- **************************************表格開始*********************************************** -->	
 	<table id="stockTypeTable">
 		<thead>
-			<tr ><td colspan="9"><b>上市股</b></td></tr>          <!-- 要修改成EL取值 -->   
+			<tr ><td colspan="9"><b>${stockTypeName}</b></td></tr>          <!-- 要修改成EL取值 -->   
 			<tr style="height: 30px;background:#C7C7E2">
 			<th>加入自選股</th>
 			<th>股票代碼</th>
@@ -107,50 +107,6 @@
 			<td>${data.change_extent}</td>
 			<td>${data.acc_Trade_Volume}</td>
 			</tr>
-
-			<!--         要刪掉的			 -->
-<!-- 			<td>股票代碼</td> -->
-<!-- 			<td>股票名稱</td> -->
-<!-- 			<td>買進價格</td> -->
-<!-- 			<td>賣出價格</td> -->
-<!-- 			<td>成交價格</td> -->
-<!-- 			<td>漲跌金額</td> -->
-<!-- 			<td>漲跌幅度</td> -->
-<!-- 			<td>累積成交量</td> -->
-<!-- 			<tr> -->
-<!-- 			<td><img alt="加入自選股" src="../../img/star.gif" height=20 name="star"></td>			 -->
-<!-- 			<td>股票代碼1</td> -->
-<!-- 			<td>股票名稱</td> -->
-<!-- 			<td>買進價格</td> -->
-<!-- 			<td>賣出價格</td> -->
-<!-- 			<td>成交價格</td> -->
-<!-- 			<td>漲跌金額</td> -->
-<!-- 			<td>漲跌幅度</td> -->
-<!-- 			<td>累積成交量</td> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 			<td><img alt="加入自選股" src="../../img/star.gif" height=20 name="star"></td>			 -->
-<!-- 			<td>股票代碼2</td> -->
-<!-- 			<td>股票名稱</td> -->
-<!-- 			<td>買進價格</td> -->
-<!-- 			<td>賣出價格</td> -->
-<!-- 			<td>成交價格</td> -->
-<!-- 			<td>漲跌金額</td> -->
-<!-- 			<td>漲跌幅度</td> -->
-<!-- 			<td>累積成交量</td> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 			<td><img alt="加入自選股" src="../../img/star.gif" height=20 name="star"></td> -->
-<!-- 			<td>股票代碼3</td> -->
-<!-- 			<td>股票名稱</td> -->
-<!-- 			<td>買進價格</td> -->
-<!-- 			<td>賣出價格</td> -->
-<!-- 			<td>成交價格</td> -->
-<!-- 			<td>漲跌金額</td> -->
-<!-- 			<td>漲跌幅度</td> -->
-<!-- 			<td>累積成交量</td> -->
-<!-- 			</tr> -->
-			<!--         要刪掉的			 -->
 		</c:forEach>
 		</tbody>
 		
@@ -168,22 +124,25 @@
 <!-- ************************************** JavaScript ***************************************************** -->
 <script type="text/javascript">
 
+	
+	
 $(document).ready(function() {
 	var trs=$("tbody#tbody tr");  //先找出tbody中有幾個'tr'
 	$("img[name='star']").click(function(){  //當<img>被按下去時，最靠近它的tr是第幾個？（從0起跳）
-      var index=trs.index($(this).closest("tr"));
-      console.log("index : " + index);
-	  var stockCode = $(this)[0].parentElement.nextSibling.value;
-// 	  closest("td").val();
-	  concole.log("stockCode:"+stockCode);
+      //var index=trs.index($(this).closest("tr"));
+      //console.log("index : " + index);
+	  //var stockCode = $(this).parent().next().css({"color": "red", "border": "2px solid red"});
+	  var codeString = $(this).parent().next().text(); //字串形態
+	  var codeInt = parseInt(codeString); //改成int
+	  console.log("股票代號 : " + codeInt);  
 	  var starPath = $(this).attr("src");  //取出這個點下去的星星路徑
       //console.log("starPath : " + starPath );
       var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
       //console.log("starIndex : " + starIndex );
       if(starIndex == -1){
-		  $(this).attr("src" , "../../img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
+		  $(this).attr("src" , "<%=request.getContextPath() %>/img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
 	  }else{
-		  $(this).attr("src" , "../../img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax
+		  $(this).attr("src" , "<%=request.getContextPath() %>/img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax
 	  }
     });
 });
