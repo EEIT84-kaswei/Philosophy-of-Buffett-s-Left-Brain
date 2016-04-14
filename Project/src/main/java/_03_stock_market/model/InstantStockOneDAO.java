@@ -10,6 +10,10 @@ public interface InstantStockOneDAO {
 
 	Session getSession();
 
+	List<InstantStockOneBean> selectByType(String stock_TypeCode);
+	
+	List<InstantStockOneBean> selectByCS(String concept_Stock);
+	
 //	InstantStockOneBean select(Integer stock_Code);
 
 	List<InstantStockOneBean> select();
