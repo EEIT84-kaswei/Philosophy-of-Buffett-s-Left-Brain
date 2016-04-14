@@ -20,10 +20,10 @@ import _04_stock.model.dao.StockCodeDAOHibernate;
 import misc.HibernateUtil;
 
 @WebServlet(
-		urlPatterns={"/secure/shanQui.view"}    )
+		urlPatterns={"/secure/conceptStock.view"}    )
 
-public class ShanQuiServlet extends HttpServlet{
-	/*用即時UpdateService找出股票資料，找出分類在 上市股這分類內的，所有股票即時交易資料（興櫃股沒抓到）*/
+public class ConceptStockServlet extends HttpServlet{
+	/*用即時UpdateService找出股票資料，找出分類在概念股這分類內的，所有股票即時交易資料*/
 	private InstantStockOneService instantStockOneService; 
 	
 	@Override
@@ -37,8 +37,8 @@ public class ShanQuiServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/**進到這個servlet，就是代表要取上市股的資料，所以直接抓。未來看可否改良成都用同一個servlet卻可以判斷連結點的是哪一個值
-		 * param "s1"（上市股）
+		/**進到這個servlet，就是代表要取概念股的資料，藉由取分類名稱來決定要取到哪裡的值送回去
+		 * param "c1-c14" 概念股
 		 * return
 		 * **/
 		
@@ -46,7 +46,7 @@ public class ShanQuiServlet extends HttpServlet{
 		List<InstantStockOneBean> beans = instantStockOneService.selectByType("s2");
 		
 		//將值 設定到request內，並轉到承接的View
-		request.setAttribute("stockTypeName", "上櫃股");
+		request.setAttribute("stockTypeName", "概念股");
 		request.setAttribute("stockType", beans);
 		request.getRequestDispatcher("/secure/_04_stock/stockType.jsp").forward(request, response);
 		System.out.println("這是上櫃股servlet");

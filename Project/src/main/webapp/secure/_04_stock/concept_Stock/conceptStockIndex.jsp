@@ -7,12 +7,42 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>概念股首頁</title>
-<script type="text/javascript">
-function doAlert(){
-	alert("已加入 (此為demo用)");
-}
-</script>
+<!-- **************************************** CSS開始   ***************************************************** -->
+<style type="text/css">
+			
+			/*分類股  按鈕設定*/
+			#menu{overflow:auto !important;
+				  overflow /**/:hidden;}
+			
+			#menu td{float:left;list-style-type:none;width:4em;font-size:115%}
+			
+			#menu td a{display:block;width:100%;line-height:2.5em;color:#7E3D76;text-decoration:none;text-align:center}
+			
+			#menu td a:hover{background-color:#DDD;color:#666}
+			
+			/*分類股表格設定*/
+			#stockTypeTable{
+				width: 100%;
+ 				border: 0px solid #E0E0E0; /*測完要改顏色*/ 
+				border-collapse:collapse;  /*把內外框的距離清掉*/
+				margin: 0 auto;} 
+ 			#stockTypeTable th{
+ 				border: 1px solid black;
+ 				text-align: center; 
+ 				height: 25px; }
+ 			#stockTypeTable td{
+ 				border: 1px solid black;
+ 				text-align: center; 
+ 				height: 25px; }
+ 			#stockTypeTable tbody tr:HOVER {background-color:#FFE6D9;color:#666}
+ 			td.favorL:hovor{background-color:#DDD;color:#666;}
+</style>
+<!-- **************************************** 引用jQuery   ***************************************************** -->
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-2.2.1.min.js"></script>
+<!-- **************************************** 網頁抬頭   ******************************************************* -->
+<title>${stockTypeName}</title>    
+<!-- ************************************** 最外框DIV開始  ***************************************************** -->
+
 </head>
 <body style="margin:0em 3em">
 <div class="container">
@@ -103,4 +133,10 @@ function doAlert(){
 </div>
 
 </body>
+
+<script type="text/javascript">
+function doAlert(){
+	alert("已加入 (此為demo用)");
+}
+</script>
 </html>

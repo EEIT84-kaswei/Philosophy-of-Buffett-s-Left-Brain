@@ -41,8 +41,8 @@ public class StockTypeServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/**進到這個servlet，就是代表要取上市股的資料，所以直接抓。未來看可否改良成都用同一個servlet卻可以判斷連結點的是哪一個值
-		 * param "s1"（上市股）
+		/**進到這個servlet，就是代表要取上市股、上櫃股、興櫃股的資料
+		 * param "s1、s2、s3"
 		 * return
 		 * **/
 		//取值

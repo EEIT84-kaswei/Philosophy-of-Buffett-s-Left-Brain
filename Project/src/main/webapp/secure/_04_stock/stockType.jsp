@@ -94,11 +94,11 @@
 		</thead>
 		
 		<tbody id="tbody">
+		<!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ;不管加入取消都送一個ajax回去-->
 		<c:forEach var="data" items="${stockType}">
 			<tr>
-			<!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ; 不管加入取消都送一個ajax回去-->
 			<td><img onclick="getValue(${data.stock_Code})" alt="加入自選股" src="<%=request.getContextPath() %>/img/star.gif" height=20 name="star"></td>
-			<td>${data.stock_Code}</td>
+			<td><a href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url>">${data.stock_Code}</a></td>
 			<td>${data.stock_Name}</td>
 			<td>${data.purchase_Price}</td>
 			<td>${data.selling_Price}</td>
