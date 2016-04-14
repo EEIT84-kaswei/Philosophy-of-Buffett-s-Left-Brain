@@ -41,7 +41,7 @@
 <!-- **************************************** 引用jQuery   ***************************************************** -->
 <script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-2.2.1.min.js"></script>
 <!-- **************************************** 網頁抬頭   ******************************************************* -->
-<title>股票分類：首頁${stockTypeName}</title>    
+<title>${stockTypeName}</title>    
 <!-- ************************************** 最外框DIV開始  ***************************************************** -->
 </head>
 <body style="margin:0em 3em">
@@ -107,50 +107,6 @@
 			<td>${data.change_extent}</td>
 			<td>${data.acc_Trade_Volume}</td>
 			</tr>
-
-			<!--         要刪掉的			 -->
-<!-- 			<td>股票代碼</td> -->
-<!-- 			<td>股票名稱</td> -->
-<!-- 			<td>買進價格</td> -->
-<!-- 			<td>賣出價格</td> -->
-<!-- 			<td>成交價格</td> -->
-<!-- 			<td>漲跌金額</td> -->
-<!-- 			<td>漲跌幅度</td> -->
-<!-- 			<td>累積成交量</td> -->
-<!-- 			<tr> -->
-<!-- 			<td><img alt="加入自選股" src="../../img/star.gif" height=20 name="star"></td>			 -->
-<!-- 			<td>股票代碼1</td> -->
-<!-- 			<td>股票名稱</td> -->
-<!-- 			<td>買進價格</td> -->
-<!-- 			<td>賣出價格</td> -->
-<!-- 			<td>成交價格</td> -->
-<!-- 			<td>漲跌金額</td> -->
-<!-- 			<td>漲跌幅度</td> -->
-<!-- 			<td>累積成交量</td> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 			<td><img alt="加入自選股" src="../../img/star.gif" height=20 name="star"></td>			 -->
-<!-- 			<td>股票代碼2</td> -->
-<!-- 			<td>股票名稱</td> -->
-<!-- 			<td>買進價格</td> -->
-<!-- 			<td>賣出價格</td> -->
-<!-- 			<td>成交價格</td> -->
-<!-- 			<td>漲跌金額</td> -->
-<!-- 			<td>漲跌幅度</td> -->
-<!-- 			<td>累積成交量</td> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 			<td><img alt="加入自選股" src="../../img/star.gif" height=20 name="star"></td> -->
-<!-- 			<td>股票代碼3</td> -->
-<!-- 			<td>股票名稱</td> -->
-<!-- 			<td>買進價格</td> -->
-<!-- 			<td>賣出價格</td> -->
-<!-- 			<td>成交價格</td> -->
-<!-- 			<td>漲跌金額</td> -->
-<!-- 			<td>漲跌幅度</td> -->
-<!-- 			<td>累積成交量</td> -->
-<!-- 			</tr> -->
-			<!--         要刪掉的			 -->
 		</c:forEach>
 		</tbody>
 		
@@ -168,22 +124,27 @@
 <!-- ************************************** JavaScript ***************************************************** -->
 <script type="text/javascript">
 
+	var path = "${pageContext.request.contextPath}";
+	var id = "${pageContext.session.account}";
+	var url = path + "/secure/custFavorite.view";
+
 $(document).ready(function() {
 	var trs=$("tbody#tbody tr");  //先找出tbody中有幾個'tr'
 	$("img[name='star']").click(function(){  //當<img>被按下去時，最靠近它的tr是第幾個？（從0起跳）
       var index=trs.index($(this).closest("tr"));
       console.log("index : " + index);
-	  var stockCode = $(this)[0].parentElement.nextSibling.value;
-// 	  closest("td").val();
-	  concole.log("stockCode:"+stockCode);
+// 	  var stockCode = $(this).parent().next().css({"color": "red", "border": "2px solid red"});
+	  var stockNode = $(this).parent().next().text(); //字串形態
+	  var stockCode = parseInt(stockNode); //改成int
+	  console.log("股票代號 : " + stockCode);  
 	  var starPath = $(this).attr("src");  //取出這個點下去的星星路徑
       //console.log("starPath : " + starPath );
       var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
       //console.log("starIndex : " + starIndex );
       if(starIndex == -1){
-		  $(this).attr("src" , "../../img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
+		  $(this).attr("src" , "<%=request.getContextPath() %>/img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
 	  }else{
-		  $(this).attr("src" , "../../img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax
+		  $(this).attr("src" , "<%=request.getContextPath() %>/img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax
 	  }
     });
 });
