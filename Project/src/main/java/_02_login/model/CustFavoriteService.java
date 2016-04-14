@@ -23,9 +23,9 @@ public class CustFavoriteService {
 
 	
 
-	public static void main(String[] args) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+	public static void main(String[] args) {		
 		CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate();
+		dao.setSessionFactory(HibernateUtil.getSessionFactory());
 		CustFavoriteService service = new CustFavoriteService();
 		service.setCustFavoriteDAO(dao);
 		// 測試查詢

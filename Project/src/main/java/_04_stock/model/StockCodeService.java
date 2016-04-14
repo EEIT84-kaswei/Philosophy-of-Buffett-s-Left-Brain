@@ -130,6 +130,13 @@ public class StockCodeService {
 		}
 		return result;
 	}
+	
+	
+	public List<StockCodeBean> selectAll() {
+		List<StockCodeBean> result = new ArrayList<StockCodeBean>();
+		result = stockCodeDAO.selectAll();
+		return result;		
+	}
 
 	public StockCodeBean insert(StockCodeBean bean) {
 		StockCodeBean result = null;

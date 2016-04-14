@@ -54,7 +54,7 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 
 	@Override
 	public List<CustFavoriteBean> selectById(Integer id){
-		Query query = getSession().createQuery("from CustFavoriteBean where id = ?");
+		Query query = getSession().createQuery("from CustFavoriteBean where account = ?");
 		query.setParameter(0, id);
 		return (List<CustFavoriteBean>) query.list();
 	}
@@ -69,7 +69,7 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 	@Override
 	public CustFavoriteBean selectByIdAndStock(Integer id, Integer stock_Code){
 		if(id!=null && stock_Code!=null){
-			Query query = getSession().createQuery("from CustFavoriteBean where id = ? and stock_Code = ?");
+			Query query = getSession().createQuery("from CustFavoriteBean where account = ? and stock_Code = ?");
 			query.setParameter(0, id);
 			query.setParameter(1, stock_Code);
 			return (CustFavoriteBean) query.uniqueResult();
@@ -90,7 +90,7 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 	public CustFavoriteBean update(Integer id, Integer stock_Code, Integer new_stock_Code){
 		if(selectByIdAndStock(id, stock_Code) != null && selectByIdAndStock(id, new_stock_Code) == null){
 			Query query = 
-					getSession().createQuery("update CustFavoriteBean set stock_Code = ? where id = ? and stock_Code = ?");
+					getSession().createQuery("update CustFavoriteBean set stock_Code = ? where account = ? and stock_Code = ?");
 			query.setParameter(0, new_stock_Code);
 			query.setParameter(1, id);
 			query.setParameter(2, stock_Code);
@@ -104,7 +104,7 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 	@Override
 	public boolean delete(Integer id, Integer stock_Code){
 		if(selectByIdAndStock(id, stock_Code) != null){
-			Query query = getSession().createQuery("delete from CustFavoriteBean where id = ? and stock_Code = ?");
+			Query query = getSession().createQuery("delete from CustFavoriteBean where account = ? and stock_Code = ?");
 			query.setParameter(0, id);
 			query.setParameter(1, stock_Code);
 			int i = query.executeUpdate();

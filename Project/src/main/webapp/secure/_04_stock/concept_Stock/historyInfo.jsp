@@ -172,10 +172,9 @@
 		<h2>股票歷史資訊範例：印楷</h2>
 
 		<div align=center
-			style="border: 1px gray solid; height: 20em; width: 70%">
+			style="border: 1px gray solid; height: 40em; width: 70%">
 			<h4>歷史數據(走勢圖)</h4>
-			<div id="historyChart" style="width: 100%; height: 400px;"></div>
-			<br>
+			
 			<h4>即時數據</h4>
 			<table style="border: 2px black solid; padding: 5px;" rules="all"
 						cellpadding='5' align=center>
@@ -197,13 +196,16 @@
 						<td>${index5}</td>
 					</tr>
 				</tbody>
+				
 				<tbody>
 					<tr>
 						<td>${stockTable}</td>
 					
 					</tr>				
 				</tbody>
-			</table>
+			</table><br>
+			<div id="historyChart" style="width: 100%; height: 400px;"></div>
+			<br>
 			<table>
 				<tbody>
 					<tr></tr>

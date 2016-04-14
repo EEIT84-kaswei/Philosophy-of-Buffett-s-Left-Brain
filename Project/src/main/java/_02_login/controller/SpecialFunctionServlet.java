@@ -95,7 +95,7 @@ public class SpecialFunctionServlet extends HttpServlet {
 		int trade_Volume = 0;
 		Integer[] FC_Trade_Count = null;
 		Integer[] IT_Trade_Count = null;
-		// try {
+		// try {		
 		while (true) {
 			
 			try {
@@ -110,7 +110,8 @@ public class SpecialFunctionServlet extends HttpServlet {
 				if(B_s_sheetsMax!=null){
 					break;
 				}
-			} catch (Exception e1) {
+			} catch (IndexOutOfBoundsException e1) {
+				
 				System.out.println(e1.getMessage());
 				if (B_s_sheetsMax == null||B_s_sheetsMin==null||top_B_s_sheets==null||low_B_s_sheets==null
 						) {
@@ -125,9 +126,11 @@ public class SpecialFunctionServlet extends HttpServlet {
 					}
 					System.out.println(sDate);
 					trading_Date = sDate;
-				}else 
-					break;				
+				}else {
+					break;
+					}				
 			}
+			
 						
 		}
 
@@ -146,7 +149,7 @@ public class SpecialFunctionServlet extends HttpServlet {
 		// request.getRequestDispatcher("/secure/_04_stock/concept_Stock/historyInfo.jsp").forward(request,response);
 		// }
 
-		favoriteService.selectByStock(stock_Code);
+//		favoriteService.selectByStock(stock_Code);
 		
 		boolean index1 = favoriteService.Stock_index1(stock_Code,
 				B_s_sheetsMax, trade_Volume);
