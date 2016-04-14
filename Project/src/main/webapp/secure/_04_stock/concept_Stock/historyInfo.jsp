@@ -46,6 +46,20 @@
 						<td>${index5}</td>
 					</tr>
 				</tbody>
+				<tbody>
+					<tr>
+						<td>${stockTable}</td>
+					
+					</tr>				
+				</tbody>
+			</table>
+			<table>
+				<tbody>
+					<tr></tr>
+				
+				
+				</tbody>
+			
 			</table>
 		</div>
 

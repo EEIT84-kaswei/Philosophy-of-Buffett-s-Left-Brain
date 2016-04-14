@@ -13,17 +13,11 @@ import _02_login.model.CustFavoriteDAO;
 import misc.HibernateUtil;
 
 public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
-	private SessionFactory sessionFactory;
-	
-	public CustFavoriteDAOHibernate() {
-		
-	}
-
+	private SessionFactory sessionFactory;	
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
 
 	public Session getSession(){
 		return sessionFactory.getCurrentSession();
@@ -35,7 +29,7 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 			session.beginTransaction();
 			CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate();
 			dao.setSessionFactory(HibernateUtil.getSessionFactory());
-//			List<CustFavoriteBean> bean = dao.select();
+			List<CustFavoriteBean> bean = dao.select();
 //			List<CustFavoriteBean> bean = dao.selectById(7);
 //			List<CustFavoriteBean> bean = dao.selectByStock(4108);
 //			CustFavoriteBean bean = dao.selectByIdAndStock(3, 2890);
@@ -43,7 +37,7 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 //			result.setId(3);
 //			result.setStock_Code(4108);
 //			CustFavoriteBean bean = dao.insert(result);
-			CustFavoriteBean bean = dao.update(3, 2890, 1234);
+//			CustFavoriteBean bean = dao.update(3, 2890, 1234);
 //			boolean bean = dao.delete(10, 4108);
 			System.out.println(bean);
 			session.getTransaction().commit();
@@ -67,7 +61,7 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 
 	@Override
 	public List<CustFavoriteBean> selectByStock(Integer stock_Code){
-		Query query = getSession().createQuery("from CustFavoriteBean where stock_Code = ?");
+		Query query = getSession().createQuery("from CustFavoriteBean where stock_Code = ? ");
 		query.setParameter(0, stock_Code);
 		return (List<CustFavoriteBean>) query.list();
 	}

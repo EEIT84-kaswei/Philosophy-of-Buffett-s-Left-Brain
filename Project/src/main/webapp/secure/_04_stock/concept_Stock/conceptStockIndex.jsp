@@ -56,12 +56,13 @@ function doAlert(){
 		<tr>
 <%-- 		<td><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>" onclick="doAlert()">○ 加入 ○</a></td> --%>
 <!-- if 未加入自選 -->
+			
 			<td><input type="submit" name="" value="○ 加入 ○"></td>
 <!-- esle -->
 <!-- 		<td><input type="submit" name="" value="移除"></td> -->
 <!-- end -->
 <%--        <c:forEach> --%>
-			<c:url value="/CustFavoriteServlet" var="path" scope="page">
+			<c:url value="/secure/SpecialFunctionServlet" var="path" scope="page">
 			<c:param name="stock_Cobe" value="2317" /></c:url>
 			<td>2317</td>
 			<td><a href="${path}">印楷</a></td>
