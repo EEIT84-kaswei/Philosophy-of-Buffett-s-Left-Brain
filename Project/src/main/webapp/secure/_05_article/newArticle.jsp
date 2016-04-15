@@ -38,7 +38,7 @@
 
 					<tr>
 						<td>作家名稱 :</td>
-						<td ><input type="text" name="aname" value="<%=request.getParameter("aname") %>"><span class="error">${error.aname}</span></td>
+						<td ><input type="text" name="aname" value="${param.aname}"><span class="error">${error.aname}</span></td>
 
 						
 					</tr>
