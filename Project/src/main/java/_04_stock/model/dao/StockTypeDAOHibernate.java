@@ -5,30 +5,32 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import _04_stock.model.StockTypeBean;
 import _04_stock.model.StockTypeDAO;
 import misc.HibernateUtil;
 
 public class StockTypeDAOHibernate implements StockTypeDAO {
-	private Session session;
+	private SessionFactory sessionFactory;	
 
-	public StockTypeDAOHibernate(Session session) {
-		this.session = session;
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
-	
+
 	public Session getSession(){
-		return session;
+		return sessionFactory.getCurrentSession();
 	}
 	
 	public static void main(String[] args) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			session.beginTransaction();
-			StockTypeDAOHibernate dao = new StockTypeDAOHibernate(session);
-//			List<StockTypeBean> bean = dao.select();
+			StockTypeDAOHibernate dao = new StockTypeDAOHibernate();
+			dao.setSessionFactory(HibernateUtil.getSessionFactory());
+			session.beginTransaction();			
+			List<StockTypeBean> bean = dao.select();
 //			StockTypeBean bean = dao.selectByCode("s3");
-			StockTypeBean bean = dao.selectByName("上櫃股");
+//			StockTypeBean bean = dao.selectByName("上櫃股");
 			
 			System.out.println(bean);
 			
@@ -54,4 +56,5 @@ public class StockTypeDAOHibernate implements StockTypeDAO {
 		Query query = getSession().createQuery("from StockTypeBean where stock_TypeName like'%" + stock_TypeName + "%'");
 		return (StockTypeBean) query.uniqueResult();
 	}
+	
 }

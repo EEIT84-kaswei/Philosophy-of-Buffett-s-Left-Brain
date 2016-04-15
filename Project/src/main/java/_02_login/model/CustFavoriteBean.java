@@ -2,20 +2,25 @@ package _02_login.model;
 /* 陳姵吟 Carley Chen, 01-04-2016 */
 
 public class CustFavoriteBean {
-	private Integer id;
+	private String account;
 	private Integer stock_Code;
 	
 	@Override
 	public String toString() {
-		return "CustFavoriteBean [id=" + id + ", stock_Code=" + stock_Code
-				+ "]";
+		return "[ " + account + " , " + stock_Code	+ " ]";
 	}
-	public Integer getId() {
-		return id;
+
+	
+	public String getAccount() {
+		return account;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+
+
+	public void setAccount(String account) {
+		this.account = account;
 	}
+
+
 	public Integer getStock_Code() {
 		return stock_Code;
 	}

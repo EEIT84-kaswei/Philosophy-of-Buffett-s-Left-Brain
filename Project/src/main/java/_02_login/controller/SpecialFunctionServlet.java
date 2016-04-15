@@ -3,8 +3,10 @@ package _02_login.controller;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 
 import misc.HibernateUtil;
+import _02_login.model.CustFavoriteBean;
 import _02_login.model.CustFavoriteService;
 import _02_login.model.QuestionService;
 import _02_login.model.SpecialFunctionService;
@@ -27,15 +30,22 @@ import _04_stock.model.DailyStockBean;
 import _04_stock.model.DailyStockService;
 import _04_stock.model.SecuritiesTradeBean;
 import _04_stock.model.SecuritiesTradeService;
+import _04_stock.model.StockCodeBean;
+import _04_stock.model.StockCodeDAO;
+import _04_stock.model.StockCodeService;
+import _04_stock.model.dao.DailyStockDAOHibernate;
+import _04_stock.model.dao.StockCodeDAOHibernate;
 
-@WebServlet("/CustFavoriteServlet")
-public class CustFavoriteServlet extends HttpServlet {
+@WebServlet("/secure/SpecialFunctionServlet")
+public class SpecialFunctionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 	private SpecialFunctionService functionService;
 	private CustFavoriteService favoriteService;
+	private StockCodeService stockCodeService;
+	
 
-	public CustFavoriteServlet() {
+	public SpecialFunctionServlet() {
 		super();
 
 	}
@@ -49,7 +59,7 @@ public class CustFavoriteServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		// 接收HTML Form資料
-		String stock = request.getParameter("stock_Cobe");
+		String stock = request.getParameter("stock_Code");
 		// 轉換HTML Form資料
 		SimpleDateFormat sformat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat sformat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -90,7 +100,7 @@ public class CustFavoriteServlet extends HttpServlet {
 		int trade_Volume = 0;
 		Integer[] FC_Trade_Count = null;
 		Integer[] IT_Trade_Count = null;
-		// try {
+		// try {		
 		while (true) {
 			
 			try {
@@ -105,7 +115,8 @@ public class CustFavoriteServlet extends HttpServlet {
 				if(B_s_sheetsMax!=null){
 					break;
 				}
-			} catch (Exception e1) {
+			} catch (IndexOutOfBoundsException e1) {
+				
 				System.out.println(e1.getMessage());
 				if (B_s_sheetsMax == null||B_s_sheetsMin==null||top_B_s_sheets==null||low_B_s_sheets==null
 						) {
@@ -120,9 +131,11 @@ public class CustFavoriteServlet extends HttpServlet {
 					}
 					System.out.println(sDate);
 					trading_Date = sDate;
-				}else 
-					break;				
+				}else {
+					break;
+					}				
 			}
+			
 						
 		}
 
@@ -141,7 +154,8 @@ public class CustFavoriteServlet extends HttpServlet {
 		// request.getRequestDispatcher("/secure/_04_stock/concept_Stock/historyInfo.jsp").forward(request,response);
 		// }
 
-		favoriteService.selectByStock(stock_Code);
+//		favoriteService.selectByStock(stock_Code);
+		
 		boolean index1 = favoriteService.Stock_index1(stock_Code,
 				B_s_sheetsMax, trade_Volume);
 		boolean index2 = favoriteService.Stock_index2(B_s_sheetsMax,
@@ -152,7 +166,10 @@ public class CustFavoriteServlet extends HttpServlet {
 				FC_Trade_Count[1], FC_Trade_Count[2], stock_Code);
 		boolean index5 = favoriteService.Stock_index5(IT_Trade_Count[0],
 				IT_Trade_Count[1], IT_Trade_Count[2], stock_Code);
+		StockCodeBean bean=stockCodeService.selectStockCodeByStockCode(stock_Code);
 		// 根據Model執行結果顯示View
+//		request.setAttribute("stockTable", stockTable);
+		request.setAttribute("bean", bean);
 		request.setAttribute("index1", index1);
 		request.setAttribute("index2", index2);
 		request.setAttribute("index3", index3);
@@ -174,6 +191,11 @@ public class CustFavoriteServlet extends HttpServlet {
 		daoC.setSessionFactory(HibernateUtil.getSessionFactory());
 		favoriteService = new CustFavoriteService();
 		favoriteService.setCustFavoriteDAO(daoC);
+		
+		StockCodeDAOHibernate stockCodeDAOHibernate=new StockCodeDAOHibernate();
+		stockCodeDAOHibernate.setSessionFactory(HibernateUtil.getSessionFactory());
+		stockCodeService = new StockCodeService();
+		stockCodeService.setStockCodeDAO(stockCodeDAOHibernate);
 	}
 
 }

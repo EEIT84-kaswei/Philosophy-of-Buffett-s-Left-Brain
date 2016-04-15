@@ -116,6 +116,13 @@ public class StockCodeService {
 		return codeList;
 	}
 	
+	public StockCodeBean selectStockCodeByStockCode(Integer stock_Code){
+		StockCodeBean bean=null;
+		if(stock_Code!=null){
+			bean=stockCodeDAO.select(stock_Code);
+		}
+		return bean;
+	}
 
 	public List<StockCodeBean> select(StockCodeBean bean) {
 		List<StockCodeBean> result = null;
@@ -129,6 +136,13 @@ public class StockCodeService {
 			result = stockCodeDAO.selectAll();
 		}
 		return result;
+	}
+	
+	
+	public List<StockCodeBean> selectAll() {
+		List<StockCodeBean> result = new ArrayList<StockCodeBean>();
+		result = stockCodeDAO.selectAll();
+		return result;		
 	}
 
 	public StockCodeBean insert(StockCodeBean bean) {

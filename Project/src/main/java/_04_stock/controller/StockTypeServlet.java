@@ -20,9 +20,13 @@ import _04_stock.model.dao.StockCodeDAOHibernate;
 import misc.HibernateUtil;
 
 @WebServlet(
-		urlPatterns={"/secure/shanShi.view"}    )
+		urlPatterns={"/secure/stockType.view"}    )
 
-public class ShanShiServlet extends HttpServlet{
+public class StockTypeServlet extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/*用即時UpdateService找出股票資料，找出分類在 上市股這分類內的，所有股票即時交易資料（興櫃股沒抓到）*/
 	private InstantStockOneService instantStockOneService; 
 	
@@ -37,22 +41,32 @@ public class ShanShiServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/**進到這個servlet，就是代表要取上市股的資料，所以直接抓。未來看可否改良成都用同一個servlet卻可以判斷連結點的是哪一個值
-		 * param "s1"（上市股）
+		/**進到這個servlet，就是代表要取上市股、上櫃股、興櫃股的資料
+		 * param "s1、s2、s3"
 		 * return
 		 * **/
-		
+		//取值
+		String stockType = request.getParameter("stockType");
+		System.out.println("stockType = " + stockType);
 		//呼叫model
-		List<InstantStockOneBean> beans = instantStockOneService.selectByType("s1");
+		List<InstantStockOneBean> beans = instantStockOneService.selectByType(stockType);
 		
 		//將值 設定到request內，並轉到承接的View
-		HttpSession session = request.getSession();
-		session.setAttribute("stockTypeName", "上市股");
-		session.setAttribute("stockType", beans);
-//		request.setAttribute("stockTypeName", "上市股");
-//		request.setAttribute("stockType", beans);
-		System.out.println("這是上市股servlet");
+		if(stockType.equals("s1")){
+			request.setAttribute("stockTypeName", "上市股");
+		}else if(stockType.equals("s2")){
+			request.setAttribute("stockTypeName", "上櫃股");
+		}else if(stockType.equals("s3")){
+			request.setAttribute("stockTypeName", "興櫃股");
+		}
+		request.setAttribute("stockType", beans);
 		request.getRequestDispatcher("/secure/_04_stock/stockType.jsp").forward(request, response);
+
+//		HttpSession session = request.getSession();
+//		session.setAttribute("stockTypeName", "上市股");
+//		session.setAttribute("stockType", beans);
+//		String path = request.getContextPath();
+//		response.sendRedirect(path + "");
 	}
 
 	@Override
