@@ -36,7 +36,9 @@ public class CustFavoriteServlet extends HttpServlet {
 		//取值
 		String temp = request.getParameter("stock_Code");
 		String account = request.getParameter("account");
+		String action = request.getParameter("action");
 		System.out.println("取值 : " + temp +","+account);
+		System.out.println("要做什麼動作：" + action);
 		
 		//驗證
 		if(temp==null || temp.trim().length()==0){
@@ -54,14 +56,31 @@ public class CustFavoriteServlet extends HttpServlet {
 		CustFavoriteBean bean = new CustFavoriteBean();
 		bean.setAccount(account);
 		bean.setStock_Code(stock_Code);
-		CustFavoriteBean result = service.insert(bean);
 		
-		if(result==null){
-			System.out.println("輸入最愛 失敗");
-			return;
+		if(action.equals("insert")){
+			CustFavoriteBean result = service.insert(bean);
+			if(result==null){
+				System.out.println("已加入最愛");
+				return;
+			}else{
+				System.out.println("輸入最愛 成功");
+				return;
+			}
+			
+			
+		}else if(action.equals("delete")){
+			Boolean answer = service.delete(account, stock_Code);
+			if(answer==true){
+				System.out.println("刪除最愛成功");
+				return;
+			}else {
+				System.out.println("刪除最愛失敗");
+				return;
+			}
 		}
-			System.out.println("輸入最愛 成功");
-			return;
+		
+		
+		
 		
 		
 	}

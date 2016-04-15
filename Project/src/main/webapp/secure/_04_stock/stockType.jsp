@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- **************************************** CSS開始   ***************************************************** -->
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
 <style type="text/css">
 			
 			/*分類股  按鈕設定*/
@@ -25,17 +26,17 @@
 			/*分類股表格設定*/
 			#stockTypeTable{
 				width: 100%;
- 				border: 0px solid #E0E0E0; /*測完要改顏色*/ 
+ 				border: 0px solid #BEBEBE; /*測完要改顏色*/ 
 				border-collapse:collapse;  /*把內外框的距離清掉*/
 				margin: 0 auto;} 
  			#stockTypeTable th{
- 				border: 1px solid black;
+ 				border: 1px solid #BEBEBE;
  				text-align: center; 
- 				height: 25px; }
+ 				height: 35px; }
  			#stockTypeTable td{
- 				border: 1px solid black;
+ 				border: 1px solid #BEBEBE;
  				text-align: center; 
- 				height: 25px; }
+ 				height: 35px; }
  			#stockTypeTable tbody tr:HOVER {background-color:#FFE6D9;color:#666}
  			td.favorL:hovor{background-color:#DDD;color:#666;}
 </style>
@@ -80,10 +81,10 @@
 	<!-- **************************************表格開始*********************************************** -->	
 	<table id="stockTypeTable">
 		<thead>
-			<tr><td colspan="9" style="background:#642100; height:31px;border: none;"><b style="color: white">${stockTypeName}</b></td></tr>
+			<tr><td colspan="9" style="background:#642100; height:28px;border: none;"><b style="color: white">${stockTypeName}</b></td></tr>
 			<tr ><td colspan="9" style="height: 20px;border: none"></td></tr>    
 			<tr style="height: 30px;background:#FFDCB9">
-			<th>加入自選股</th>
+			<th>自選股</th>
 			<th>股票代碼</th>
 			<th>&nbsp;&nbsp;股票名稱&nbsp;&nbsp;</th>
 			<th>買進價格</th>
@@ -124,82 +125,61 @@
 </body>
 
 <!-- ************************************** JavaScript ***************************************************** -->
+
+<script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
+
 var path = "${pageContext.request.contextPath}";
+var conceptUrl = path + "/secure/custFavorite.view" ;
+
+var account = "lara";  //要改成程式自動抓
+
 function getValue(value){
-	var stock_Code = value; //value是股票代號
-	console.log("stock_Code : " + stock_Code); 
-	var starPath = $("img[id='"+value+"']").attr("src") //取出這個點下去的星星路徑
-	console.log("starPath :　" + starPath)
-	var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
-    console.log("starIndex : " + starIndex );
-      if(starIndex == -1){
-    	  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
-	  }else{
-		  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax
-	  }
-	
-    var conceptUrl = path + "/secure/custFavorite.view" ;
-
-    var account = "lara";
-	 $.ajax({
-     url: conceptUrl ,
-     data:"stock_Code="+stock_Code+"&account="+account,
-     type:"GET",
-	 cache:false, //IE不要cache （預設是true）
-	 async:true, //是否採用非同步（預設是true）
-	 contentType:"application/x-www-form-urlencoded",
-         success: function(msg){
-             console.log(msg);
-         },
-//         beforeSend:function(){
-//             $('#loadingIMG').show();
-//         },
-//         complete:function(){
-//             $('#loadingIMG').hide();
-//         },
-//         error:function(xhr, ajaxOptions, thrownError){ 
-//             alert(xhr.status); 
-//             alert(thrownError); 
-//         }
-     });
+		var stock_Code = value; //value是股票代號
+		console.log("stock_Code : " + stock_Code); 
+		var starPath = $("img[id='"+value+"']").attr("src") //取出這個點下去的星星路徑
+		console.log("starPath :　" + starPath)
+		var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
+	    console.log("starIndex : " + starIndex );
+	      if(starIndex == -1){
+	    	  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
+	    	  doConnect(conceptUrl , account , stock_Code , "insert");
+		  }else{
+			  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax
+			  doConnect(conceptUrl , account , stock_Code , "delete");
+		  }
+		
 }
-// function getValue(value){
-// 	var codeNo = value; //value是股票代號
-// 	console.log("codeNo : " + codeNo); 
-// 	var starPath = $("img[id='"+value+"']").attr("src") //取出這個點下去的星星路徑
-// 	console.log("starPath :　" + starPath)
-// 	var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
-//     console.log("starIndex : " + starIndex );
-//       if(starIndex == -1){
-<%--     	  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax --%>
-// 	  }else{
-<%-- 		  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax --%>
-// 	  }
-	
-// // 	 var URLs = '';
-// // 	 $.ajax({
-// //         url: URLs,
-// //         data: datatype ,
-// //         type:"POST",
-// //         //dataType:'text',
-// //         success: function(msg){
-// //             alert(msg);
-// //         },
-// //         beforeSend:function(){
-// //             $('#loadingIMG').show();
-// //         },
-// //         complete:function(){
-// //             $('#loadingIMG').hide();
-// //         },
-// //         error:function(xhr, ajaxOptions, thrownError){ 
-// //             alert(xhr.status); 
-// //             alert(thrownError); 
-// //         }
-// //     });
-// }
-
-
+function doConnect(conceptUrl , account , stock_Code , action){
+	 $.ajax({
+        url: conceptUrl ,
+        data:"stock_Code="+stock_Code+"&account="+account+"&action="+action,
+        type:"GET",
+		 cache:false, //IE不要cache （預設是true）
+		 async:true, //是否採用非同步（預設是true）
+		 contentType:"application/x-www-form-urlencoded",
+	         success: function(msg){
+	             console.log(msg);
+	         },
+//	         beforeSend:function(){
+//	             $('#loadingIMG').show();
+//	         },
+//	         complete:function(){
+//	             $('#loadingIMG').hide();
+//	         },
+//	         error:function(xhr, ajaxOptions, thrownError){ 
+//	             alert(xhr.status); 
+//	             alert(thrownError); 
+//	         }
+	     });
+	 
+}
+$(document).ready(function() {
+	$("#stockTypeTable").DataTable({
+		"pageLength": 10,
+		"lengthMenu": [ 5, 10, 15, 20 ]
+	});
+});
 
 
 </script>

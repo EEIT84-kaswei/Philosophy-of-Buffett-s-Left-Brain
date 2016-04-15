@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- **************************************** CSS開始   ***************************************************** -->
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
 <style type="text/css">
 			
 			/*分類股  按鈕設定*/
@@ -102,7 +103,7 @@
 	<!-- **************************************表格開始*********************************************** -->	
 	<table id="stockTypeTable">
 		<thead>
-			<tr><td colspan="9" style="background:#642100; height:31px;border: none;"><b style="color: white">${conceptStockName}</b></td></tr>
+			<tr><td colspan="9" style="background:#642100; height:28px;border: none;"><b style="color: white">${conceptStockName}</b></td></tr>
 			<tr ><td colspan="9" style="height: 20px;border: none"></td></tr>  
 			<tr style="height: 30px;background:#FFDCB9">
 			<th>加入自選股</th>
@@ -146,38 +147,14 @@
 </body>
 
 <!-- ************************************** JavaScript ***************************************************** -->
+<script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
-var path = "${pageContext.request.contextPath}";
+	 var path = "${pageContext.request.contextPath}";
+     var conceptUrl = path + "/secure/custFavorite.view" ;
 
-// 	 function changelist() {
-// 		var concept_Stock = $("#conceptbotton").val()
-// 			console.log("concept_Stock - " + concept_Stock);
-// 		var conceptUrl = path + "/secure/conceptStock.view" ;
-// 	 	 $.ajax({
-// 	         url: conceptUrl ,
-// 	         data: "concept_Stock="+concept_Stock ,
-// 	         type:"GET",
-// 			 cache:false, //IE不要cache （預設是true）
-// 			 async:false, //是否採用非同步（預設是true）
-// 	         dataType:"text" ,
-// 	         success: function(msg){
-// 	             alert(msg);
-// 	         },
-// 	         beforeSend:function(){
-// 	             $('#loadingIMG').show();
-// 	         },
-// 	         complete:function(){
-// 	             $('#loadingIMG').hide();
-// 	         },
-// 	         error:function(xhr, ajaxOptions, thrownError){ 
-// 	             alert(xhr.status); 
-// 	             alert(thrownError); 
-// 	         }
-// 	     });
-		
-// 	 }
-	 
-	 function getValue(value){
+     var account = "lara";  //要改成程式自動抓
+
+     function getValue(value){
 			var stock_Code = value; //value是股票代號
 			console.log("stock_Code : " + stock_Code); 
 			var starPath = $("img[id='"+value+"']").attr("src") //取出這個點下去的星星路徑
@@ -186,16 +163,17 @@ var path = "${pageContext.request.contextPath}";
 		    console.log("starIndex : " + starIndex );
 		      if(starIndex == -1){
 		    	  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
+		    	  doConnect(conceptUrl , account , stock_Code , "insert");
 			  }else{
 				  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax
+				  doConnect(conceptUrl , account , stock_Code , "delete");
 			  }
 			
-		    var conceptUrl = path + "/secure/custFavorite.view" ;
-
-		    var account = "lara";
+	}
+	 function doConnect(conceptUrl , account , stock_Code , action){
 	 	 $.ajax({
 	         url: conceptUrl ,
-	         data:"stock_Code="+stock_Code+"&account="+account,
+	         data:"stock_Code="+stock_Code+"&account="+account+"&action="+action,
 	         type:"GET",
 			 cache:false, //IE不要cache （預設是true）
 			 async:true, //是否採用非同步（預設是true）
@@ -214,7 +192,44 @@ var path = "${pageContext.request.contextPath}";
 //		             alert(thrownError); 
 //		         }
 		     });
-		}
+		 
+	 }
+	 
+	 $(document).ready(function() {
+			$("#stockTypeTable").DataTable({
+				"pageLength": 10,
+				"lengthMenu": [ 5, 10, 15, 20 ]
+			});
+		});
+
+// 	 function changelist() {
+//		var concept_Stock = $("#conceptbotton").val()
+//			console.log("concept_Stock - " + concept_Stock);
+//		var conceptUrl = path + "/secure/conceptStock.view" ;
+//	 	 $.ajax({
+//	         url: conceptUrl ,
+//	         data: "concept_Stock="+concept_Stock ,
+//	         type:"GET",
+//			 cache:false, //IE不要cache （預設是true）
+//			 async:false, //是否採用非同步（預設是true）
+//	         dataType:"text" ,
+//	         success: function(msg){
+//	             alert(msg);
+//	         },
+//	         beforeSend:function(){
+//	             $('#loadingIMG').show();
+//	         },
+//	         complete:function(){
+//	             $('#loadingIMG').hide();
+//	         },
+//	         error:function(xhr, ajaxOptions, thrownError){ 
+//	             alert(xhr.status); 
+//	             alert(thrownError); 
+//	         }
+//	     });
+		
+//	 }
+
 	 
 </script>
 </html>
