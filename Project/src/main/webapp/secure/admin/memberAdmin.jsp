@@ -88,6 +88,7 @@ body {
 				</table>
 			</form>
 		</div>
+		<p style="text-align: center">功能還沒寫完</p>
 	</center>
 	<script language="JavaScript">
 		$(document).ready(function() {

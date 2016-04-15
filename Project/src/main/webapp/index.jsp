@@ -75,13 +75,13 @@ $('document').ready(function(){
 <div class="container" id="container" align="center">
 <!-- <center><img src="img/logo.png" onload="resizeImage()" margin="0" border="0"></center> -->
 	<div class="main">
-		<a href="Welcome.jsp">
+		<a href="<%=request.getContextPath() %>/Welcome.jsp">
     <img src="<%=request.getContextPath() %>/img/logo.png" id="full_screen"  title="Philosophy of Buffett's Left Brain" style="max-width:700"/></a>
 	</div>
 <!-- 	圖片自適應畫面大小：1.設定圖片最大尺寸。2. 設定JS如下面兩行。 -->
 <!-- 	$('document').ready(function(){ -->
 <!--    $('#container').height($(window).height());});  -->
-	
+	<h2>${logoutMessage}</h2>
 	<div class="footer">
 	<br>
 		<table>

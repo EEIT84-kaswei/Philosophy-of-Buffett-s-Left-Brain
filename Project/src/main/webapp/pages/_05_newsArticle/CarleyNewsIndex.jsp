@@ -9,8 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Index</title>
 </head>
-<body style="margin: 0em 3em">
-	<div class="container">
+<body>
+
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 		<jsp:include page="/title.jsp" />
 
@@ -23,6 +23,6 @@
 	<form action="<c:url value="news.do"/>" method="get">
 		<input type="submit" name="prodaction" value="News">
 	</form>
-</div>
+
 </body>
 </html>

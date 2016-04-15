@@ -196,10 +196,7 @@ public class AccountServlet extends HttpServlet {
 			request.getRequestDispatcher("registerPage.jsp").forward(request, response);
 			return;
 		}
-		//
-		//--------------------------------------------------------------Irina Test
-		//
-		//
+
 		
 		
 		

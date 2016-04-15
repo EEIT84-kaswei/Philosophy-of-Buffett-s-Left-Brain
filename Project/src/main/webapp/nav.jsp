@@ -108,27 +108,30 @@ body {
             
              <ul class="nav navbar-nav navbar-right">
                     <li>
-                    	<c:if test="${empty user}">
-                    	<a href="<c:url value='/pages/_02_login/login.jsp' />">
+                    	<c:if test="${pageContext.request.remoteUser == null}">
+                    	<a href="<c:url value='/secure/_02_login/loginSuccess.jsp'/>">
                     		<span class="glyphicon glyphicon-log-in"></span> 
                     		登入
                     	</a>
                     	</c:if>
                     </li>
                     
-                    <li>
-                    	<c:if test="${!empty user}">
-                    <a href="<c:url value='/pages/_02_login/logout.jsp' />">
-                    		登出
-                    </a>
+                    <li>                  
+                    	<c:if test="${pageContext.request.remoteUser != null}">
+	                    <a href="<c:url value='/pages/_02_login/logout.jsp'/>">
+	                    	<span class="glyphicon glyphicon-log-out"></span>
+							登出
+	                    </a>
 						</c:if>
 					</li>
-		                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">管理員<span class="caret"></span></a>
-		                <ul class="dropdown-menu">
-              			 	<li><a href="<c:url value='/member.do'/>">會員管理</a></li>
-               			 	<li><a href="<c:url value='/secure/admin/stockrevise.jsp'/>">個股管理</a></li>
-               			</ul>
-		                </li>
+		            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">管理員<span class="caret"></span></a>
+            		<ul class="dropdown-menu">
+              			 <li><a href="<c:url value='/member.do' />">會員管理</a></li>
+               			 <li><a href="<c:url value='/secure/admin/stockrevise.jsp'/>">股票管理</a></li>
+               			 <li><a href="<c:url value='/secure/message/MessageTest.jsp'/>">留言板測試</a></li>
+
+               		</ul>
+        		</li>
                 </ul>
             </div>
         </div>

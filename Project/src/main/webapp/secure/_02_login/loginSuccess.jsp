@@ -4,22 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>管理員主控台</title>
+<title>登入成功</title>
 </head>
 <body>
 <!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
+
+
 <!-- 網頁主要導覽列 -->
 
 <jsp:include page="/nav.jsp" />
 
-
-<table>
-	<tr>
-		<td>會員管理</td>
-		<td></td>
-	</tr>
-</table>
-
+<center>
+<h1>登入成功！</h1>
+</center>
 
 </body>
 </html>

@@ -23,28 +23,32 @@
 
 </head>
 <body>
-
 <!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 <jsp:include page="/title.jsp" />
 
 
 <!-- 網頁主要導覽列 -->
-<div>
+
 <jsp:include page="/nav.jsp" />
-</div>
+
+
 <div align="center">
 
 	<form action="j_security_check" method="post">
 	<table id="logtable" style="border:5px #FFD382 groove;" cellpadding="10" border='0'>
 		<tr>
 			<td>帳號</td>
-			<td><input type="text" size="20" placeholder="請輸入帳號" name="j_username"></td>
+			<td>
+				<input type="text" size="20" name="j_username" placeholder="請輸入帳號">
+			</td>
 		</tr>
 		<tr>
 			<td>密碼</td>
-			<td><input type="password" size="20" name="j_password"></td>
+			<td>
+				<input type="password" size="20" name="j_password">
+			</td>
 		</tr>	
-		
+
 	</table>
 	<p>
 			<input type="submit" value="登入">
