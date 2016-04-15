@@ -163,6 +163,7 @@ public class SpecialFunctionServlet extends HttpServlet {
 				IT_Trade_Count[1], IT_Trade_Count[2], stock_Code);
 		// 根據Model執行結果顯示View
 //		request.setAttribute("stockTable", stockTable);
+		request.setAttribute("stock_Code", stock_Code);
 		request.setAttribute("index1", index1);
 		request.setAttribute("index2", index2);
 		request.setAttribute("index3", index3);
