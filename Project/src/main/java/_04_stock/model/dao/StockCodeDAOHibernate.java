@@ -34,35 +34,41 @@ public class StockCodeDAOHibernate implements StockCodeDAO {
 		dao.setSessionFactory(HibernateUtil.getSessionFactory());
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		//===================================================================================
-//		StockCodeBean bean = null;
-//		try {
-//			Transaction tx = session.beginTransaction();
-//			bean = dao.select(4108);
-//			tx.commit();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println(bean);//查詢========================================================
-		
 		StockCodeBean bean = null;
-		StockCodeBean bean1= null;
+		List<StockCodeBean> beanList = null;
 		try {
-			session.beginTransaction();
-			bean = new StockCodeBean();
-			bean.setStock_Code(4162);
-			bean.setStock_Name("智擎");
-			bean.setStock_TypeCode("s2");
-			bean.setCs_Code("c2");	
-			bean.setCommend("風險偏高");
-			bean1 = dao.insert(bean);
-			session.getTransaction().commit();
-		} catch (Exception e) {	
-			session.getTransaction().rollback();
+			Transaction tx = session.beginTransaction();
+//			bean = dao.select(4108);
+//			beanList = dao.selectByTypeCode("s1");
+			beanList = dao.selectBycs_Code("c1");
+			for(StockCodeBean xBean : beanList){
+				System.out.println(xBean);
+			}
+			tx.commit();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		System.out.println(bean1);//新增========================================================
+		System.out.println(bean);//查詢========================================================
+		
+//		StockCodeBean bean = null;
+//		StockCodeBean bean1= null;
+//		try {
+//			session.beginTransaction();
+//			bean = new StockCodeBean();
+//			bean.setStock_Code(4162);
+//			bean.setStock_Name("智擎");
+//			bean.setStock_TypeCode("s2");
+//			bean.setCs_Code("c2");	
+//			bean.setCommend("風險偏高");
+//			bean1 = dao.insert(bean);
+//			session.getTransaction().commit();
+//		} catch (Exception e) {	
+//			session.getTransaction().rollback();
+//			e.printStackTrace();
+//		}
+//		
+//		System.out.println(bean1);//新增========================================================
 		
 //		List<StockCodeBean> beans = null;
 //		try {
@@ -98,7 +104,21 @@ public class StockCodeDAOHibernate implements StockCodeDAO {
 //		System.out.println(bean);//修改========================================================
 	}
 	
+	@Override
+	public List<StockCodeBean> selectBycs_Code(String cs_Code){
+		Query query = getSession().createQuery("from StockCodeBean where cs_Code = ?");
+		query.setParameter(0, cs_Code);
+		return (List<StockCodeBean>)query.list();
+	}
+
+	@Override
+	public List<StockCodeBean> selectByTypeCode(String stock_TypeCode){
+		Query query = getSession().createQuery("from StockCodeBean where stock_TypeCode = ?");
+		query.setParameter(0, stock_TypeCode);
+		return (List<StockCodeBean>)query.list();
+	}
 	
+	@Override
 	public StockCodeBean select(Integer stock_Code) {		
 		return (StockCodeBean)this.getSession().get(StockCodeBean.class, stock_Code);
 	}

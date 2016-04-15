@@ -14,6 +14,10 @@
 	color: #BD63FF;
 	background-color: #77FFCC;
 }
+
+#maintable tr:nth-child(even) {
+	background: #CCEEFF
+	}
 </style>
 
 
@@ -22,7 +26,7 @@
 <body style="margin: 0em 3em">
 	<div class="container">
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-		<jsp:include page="/title.jsp" />
+
 
 
 		<!-- 網頁主要導覽列 -->
@@ -31,7 +35,7 @@
 		</div>
 
 
-		<div style="height: 20em; margin: 2em auto; padding: 2em; width:400px">
+		<div style="margin: 2em auto; padding: 2em; width:800px">
 
 			<!-- 表格開始 -->
 
@@ -42,7 +46,7 @@
 				<input type="submit" name="prodaction" value="搜尋">
 				</center>
 				
-				<table id="maintable" style="border: 2px #FFAC55 solid; padding: 5px; width:400px" rules="all"
+				<table id="maintable" style="border: 2px #FFAC55 solid; padding: 2em; width:800px" rules="all"
 					cellpadding='5'>
 					<thead>
 <!-- 						<tr><td ></td><th></th><td></td></tr> -->

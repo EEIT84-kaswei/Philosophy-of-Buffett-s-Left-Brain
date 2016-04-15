@@ -4,6 +4,9 @@ package _04_stock.model;
 import java.util.List;
 
 public interface StockCodeDAO {
+	
+	List<StockCodeBean> selectBycs_Code(String cs_Code);
+	List<StockCodeBean> selectByTypeCode(String stock_TypeCode);
 	StockCodeBean select(Integer stock_Code);
 	List<StockCodeBean> selectAll();
 	StockCodeBean insert(StockCodeBean bean);
