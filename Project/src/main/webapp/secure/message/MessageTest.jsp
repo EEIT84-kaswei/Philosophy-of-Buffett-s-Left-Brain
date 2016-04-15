@@ -10,6 +10,18 @@
 </head>
 <body>
 
+<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
+
+
+
+<!-- 網頁主要導覽列 -->
+<div>
+<jsp:include page="/nav.jsp" />
+</div>
+
+<h2>還在測試中，請暫別計較(?)</h2>
+
 <form action="<c:url value="/servlet/_06_message.controller.MessageServlet" />" method="get">
 <table>
 	<tr>

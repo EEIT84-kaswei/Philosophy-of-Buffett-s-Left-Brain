@@ -16,8 +16,9 @@
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
 </head>
 
-<body style="margin: 0em 3em">
-	<div class="container">
+<body>
+
+
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 		<jsp:include page="/title.jsp" />
 
@@ -39,6 +40,7 @@
 					<tr>
 						<td>作家名稱 :</td>
 						<td ><input type="text" name="aname" value="${param.aname}"><span class="error">${error.aname}</span></td>
+
 						
 					</tr>
 					<tr>
@@ -61,7 +63,7 @@
 			</form>
 		</div>
 
-	</div>
+
 
 </body>
 </html>

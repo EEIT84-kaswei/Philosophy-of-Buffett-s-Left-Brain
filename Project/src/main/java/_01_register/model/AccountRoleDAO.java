@@ -5,15 +5,13 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-public interface accountRoleDAO {
+public interface AccountRoleDAO {
 
-	Session getSession();
+	AccountRoleBean select(String account);
 
-	accountRoleBean select(String account);
+	List<AccountRoleBean> select();
 
-	List<accountRoleBean> select();
-
-	accountRoleBean insert(accountRoleBean bean);
+	AccountRoleBean insert(AccountRoleBean bean);
 
 	boolean update(String account, String account_Role);
 

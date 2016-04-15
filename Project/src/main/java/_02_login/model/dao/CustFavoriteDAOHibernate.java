@@ -70,13 +70,10 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 	@Override
 
 	public CustFavoriteBean selectByAccountAndStock(String account, Integer stock_Code){
-		if(account!=null && stock_Code!=null){
-			Query query = getSession().createQuery("from CustFavoriteBean where account = ? and stock_Code = ?");
-			query.setParameter(0, account);
-			query.setParameter(1, stock_Code);
-			return (CustFavoriteBean) query.uniqueResult();
-		}
-		return null;
+		CustFavoriteBean bean = new CustFavoriteBean();
+		bean.setAccount(account);
+		bean.setStock_Code(stock_Code);
+		return this.getSession().get(CustFavoriteBean.class, bean);
 	}
 
 	@Override
@@ -84,6 +81,7 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 			getSession().saveOrUpdate(bean);
 			return bean;
 	}
+
 	
 	@Override
 	public CustFavoriteBean update(String account, Integer stock_Code, Integer new_stock_Code){
@@ -103,20 +101,31 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 	@Override
 
 	public boolean delete(String account, Integer stock_Code){
-		if(selectByAccountAndStock(account, stock_Code) != null){
-			Query query = getSession().createQuery("delete from CustFavoriteBean where id = ? and stock_Code = ?");
-			query.setParameter(0, account);
-			query.setParameter(1, stock_Code);
-			int i = query.executeUpdate();
-			System.out.println("刪除比數 = " + i);
-			
-//			SQLQuery query = getSession().createSQLQuery("delete from custFavorite where id = ? and stock_Code = ?");
-//			query.setParameter(0, id);
-//			query.setParameter(1, stock_Code);
-//			int i = query.executeUpdate();
-//			System.out.println("刪除比數 = " + i);
+
+		CustFavoriteBean bean = new CustFavoriteBean();
+		bean.setAccount(account);
+		bean.setStock_Code(stock_Code);
+		CustFavoriteBean temp = this.getSession().get(CustFavoriteBean.class, bean);
+		if(temp!=null){
+			this.getSession().delete(temp);
 			return true;
 		}
 		return false;
+		
+		//		if(selectByAccountAndStock(account, stock_Code) != null){
+//			Query query = getSession().createQuery("delete from CustFavoriteBean where id = ? and stock_Code = ?");
+//			query.setParameter(0, account);
+//			query.setParameter(1, stock_Code);
+//			int i = query.executeUpdate();
+//			System.out.println("刪除比數 = " + i);
+//			
+////			SQLQuery query = getSession().createSQLQuery("delete from custFavorite where id = ? and stock_Code = ?");
+////			query.setParameter(0, id);
+////			query.setParameter(1, stock_Code);
+////			int i = query.executeUpdate();
+////			System.out.println("刪除比數 = " + i);
+//			return true;
+//		}
+//		return false;
 	}
 }

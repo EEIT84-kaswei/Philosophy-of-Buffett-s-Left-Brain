@@ -53,10 +53,10 @@ public class InstantStockOneDAOHibernate implements InstantStockOneDAO {
 			
 //			=========================================================
 //			模糊搜尋 編號
-//			List<InstantStockOneBean> beanList = dao.select(8080);
-//			for(InstantStockOneBean showbean:beanList){
-//				System.out.println(showbean);
-//			}		
+			List<InstantStockOneBean> beanList = dao.select(11);
+			for(InstantStockOneBean showbean:beanList){
+				System.out.println(showbean);
+			}		
 //			=========================================================
 //			模糊搜尋 名稱
 //			List<InstantStockOneBean> beanList = dao.select("新");
@@ -67,10 +67,10 @@ public class InstantStockOneDAOHibernate implements InstantStockOneDAO {
 			//用上市股代號s1 搜尋   or 用概念股c1搜尋
 			
 //			List<InstantStockOneBean> list = dao.selectByType("s1");
-			List<InstantStockOneBean> list = dao.selectByCS("c1");
-			for(InstantStockOneBean xBean : list){
-				System.out.println(xBean);
-			}
+//			List<InstantStockOneBean> list = dao.selectByCS("c1");
+//			for(InstantStockOneBean xBean : list){
+//				System.out.println(xBean);
+//			}
 			//測試刪除
 //				boolean  beanDel=dao.delete(8080);
 //				System.out.println(beanDel);
