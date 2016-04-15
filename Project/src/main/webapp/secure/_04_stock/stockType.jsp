@@ -39,8 +39,7 @@
  			#stockTypeTable tbody tr:HOVER {background-color:#FFE6D9;color:#666}
  			td.favorL:hovor{background-color:#DDD;color:#666;}
 </style>
-<!-- **************************************** 引用jQuery   ***************************************************** -->
-<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-2.2.1.min.js"></script>
+
 <!-- **************************************** 網頁抬頭   ******************************************************* -->
 <title>${stockTypeName}</title>    
 <!-- ************************************** 最外框DIV開始  ***************************************************** -->
@@ -48,7 +47,7 @@
 <body style="margin:0em 3em">
 
 <!-- ************************************** 最外框DIV開始  ***************************************************** -->
-<div class="container" style="border: 1px solid red;">
+<div class="container" style="/*border: 1px solid red;*/">
 
 <!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 
@@ -58,34 +57,35 @@
 <jsp:include page="/nav.jsp" />
 </div>
 
-	<jsp:useBean id="date" class="java.util.Date"></jsp:useBean>
-	<div style="float:right">最後更新時間：<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/></div>
-<br>
+
 <!-- ************************************** 內文DIV開始  ***************************************************** -->
-<div align="center" style="width:90%;margin: 0 auto;border: 1px solid red;">
+<div align="center" style="width:90%;margin: 0 auto;/*border: 1px solid red;*/">
 
 	<!-- ******************************** 各種分類按鈕   ************************************************ -->
-	<div style="width:100%;margin: 0 auto;border: 1px solid black;">
+	<div style="width:100%;margin: 0 auto;/*border: 1px solid black;*/">
 	<table id="menu">
-	<tr>
+	<tr style="border-bottom: 2px solid black;">
 		<td><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></td>
 		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></td>
 		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></td>
 		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></td>
-		<td><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></td>
+		<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="chengFenv"/></c:url>">成分股</a></td>
 	</tr>
 	</table>
 	</div>
-	<br>
+	
+	<jsp:useBean id="date" class="java.util.Date"></jsp:useBean>
+	<div style="float:right">網頁最後更新時間：<fmt:formatDate value="${date}" pattern="yyyy-MM-dd hh:mm:ss"/></div>
 
 	<!-- **************************************表格開始*********************************************** -->	
 	<table id="stockTypeTable">
 		<thead>
-			<tr ><td colspan="9"><b>${stockTypeName}</b></td></tr>          <!-- 要修改成EL取值 -->   
-			<tr style="height: 30px;background:#C7C7E2">
+			<tr><td colspan="9" style="background:#642100; height:31px;border: none;"><b style="color: white">${stockTypeName}</b></td></tr>
+			<tr ><td colspan="9" style="height: 20px;border: none"></td></tr>    
+			<tr style="height: 30px;background:#FFDCB9">
 			<th>加入自選股</th>
 			<th>股票代碼</th>
-			<th>股票名稱</th>
+			<th>&nbsp;&nbsp;股票名稱&nbsp;&nbsp;</th>
 			<th>買進價格</th>
 			<th>賣出價格</th>
 			<th>成交價格</th>
@@ -99,7 +99,7 @@
 		<!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ;不管加入取消都送一個ajax回去-->
 		<c:forEach var="data" items="${stockType}">
 			<tr>
-			<td><img alt="加入自選股" src="<%=request.getContextPath() %>/img/star.gif" height=20 name="star"></td>
+			<td><img alt="加入自選股" onclick="getValue('${data.stock_Code}')" id="${data.stock_Code}" src="<%=request.getContextPath() %>/img/star.gif" height=20 name="star"></td>
 			<td><a href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url>">${data.stock_Code}</a></td>
 			<td>${data.stock_Name}</td>
 			<td>${data.purchase_Price}</td>
@@ -125,40 +125,33 @@
 
 <!-- ************************************** JavaScript ***************************************************** -->
 <script type="text/javascript">
-
-	
-	
-$(document).ready(function() {
-	var trs=$("tbody#tbody tr");  //先找出tbody中有幾個'tr'
-	$("img[name='star']").click(function(){  //當<img>被按下去時，最靠近它的tr是第幾個？（從0起跳）
-      //var index=trs.index($(this).closest("tr"));
-      //console.log("index : " + index);
-	  //var stockCode = $(this).parent().next().css({"color": "red", "border": "2px solid red"});
-	  var codeString = $(this).parent().next().text(); //字串形態
-	  var codeInt = parseInt(codeString); //改成int
-	  console.log("股票代號 : " + codeInt);  
-	  var starPath = $(this).attr("src");  //取出這個點下去的星星路徑
-      //console.log("starPath : " + starPath );
-      var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
-      //console.log("starIndex : " + starIndex );
-      if(starIndex == -1){
-		  $(this).attr("src" , "<%=request.getContextPath() %>/img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
-	  }else{
-		  $(this).attr("src" , "<%=request.getContextPath() %>/img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax
-	  }
-    });
-});
+var path = "${pageContext.request.contextPath}";
 function getValue(value){
-	console.log(value);
-// 	 var URLs = '';
-// 	 $.ajax({
-//         url: URLs,
-//         data: datatype ,
-//         type:"POST",
-//         //dataType:'text',
-//         success: function(msg){
-//             alert(msg);
-//         },
+	var stock_Code = value; //value是股票代號
+	console.log("stock_Code : " + stock_Code); 
+	var starPath = $("img[id='"+value+"']").attr("src") //取出這個點下去的星星路徑
+	console.log("starPath :　" + starPath)
+	var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
+    console.log("starIndex : " + starIndex );
+      if(starIndex == -1){
+    	  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
+	  }else{
+		  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax
+	  }
+	
+    var conceptUrl = path + "/secure/custFavorite.view" ;
+
+    var account = "lara";
+	 $.ajax({
+     url: conceptUrl ,
+     data:"stock_Code="+stock_Code+"&account="+account,
+     type:"GET",
+	 cache:false, //IE不要cache （預設是true）
+	 async:true, //是否採用非同步（預設是true）
+	 contentType:"application/x-www-form-urlencoded",
+         success: function(msg){
+             console.log(msg);
+         },
 //         beforeSend:function(){
 //             $('#loadingIMG').show();
 //         },
@@ -169,20 +162,43 @@ function getValue(value){
 //             alert(xhr.status); 
 //             alert(thrownError); 
 //         }
-//     });
+     });
 }
-
-
-//取位置失敗寫法，待改良
-// window.onload = function () {
-//     var areas = document.getElementsByName("star");
-//     var alen = areas.length;
-//     console.log("有幾顆星星：" + areas.length);
-//     for (var n = 0 ; n < areas.length ; n++) {
-//         areas[n].onclick = function () { doClick(n) };
-//         console.log("doClick(n)" + doClick(n));
-//     }
+// function getValue(value){
+// 	var codeNo = value; //value是股票代號
+// 	console.log("codeNo : " + codeNo); 
+// 	var starPath = $("img[id='"+value+"']").attr("src") //取出這個點下去的星星路徑
+// 	console.log("starPath :　" + starPath)
+// 	var starIndex = starPath.lastIndexOf("chng");  //確認圖片路徑有沒有 chng
+//     console.log("starIndex : " + starIndex );
+//       if(starIndex == -1){
+<%--     	  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax --%>
+// 	  }else{
+<%-- 		  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath() %>/img/star.gif");  //如果有chng，是實心，就移除最愛，送Ajax --%>
+// 	  }
+	
+// // 	 var URLs = '';
+// // 	 $.ajax({
+// //         url: URLs,
+// //         data: datatype ,
+// //         type:"POST",
+// //         //dataType:'text',
+// //         success: function(msg){
+// //             alert(msg);
+// //         },
+// //         beforeSend:function(){
+// //             $('#loadingIMG').show();
+// //         },
+// //         complete:function(){
+// //             $('#loadingIMG').hide();
+// //         },
+// //         error:function(xhr, ajaxOptions, thrownError){ 
+// //             alert(xhr.status); 
+// //             alert(thrownError); 
+// //         }
+// //     });
 // }
+
 
 
 

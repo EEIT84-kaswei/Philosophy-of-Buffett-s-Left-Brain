@@ -48,6 +48,11 @@ public class StockTypeServlet extends HttpServlet{
 		//取值
 		String stockType = request.getParameter("stockType");
 		System.out.println("stockType = " + stockType);
+		if (stockType.equals("chengFenv")) {
+			request.setAttribute("stockTypeName", "成分股");
+			request.getRequestDispatcher("/secure/_04_stock/stockType.jsp").forward(request, response);
+			return;
+		}
 		//呼叫model
 		List<InstantStockOneBean> beans = instantStockOneService.selectByType(stockType);
 		

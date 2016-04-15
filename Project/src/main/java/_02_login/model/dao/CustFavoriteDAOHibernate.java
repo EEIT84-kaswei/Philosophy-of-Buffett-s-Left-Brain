@@ -33,12 +33,12 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 //			List<CustFavoriteBean> bean = dao.selectByAccount("lara");
 //			List<CustFavoriteBean> bean = dao.selectByStock(4108);
 //			CustFavoriteBean bean = dao.selectByAccountAndStock("lara", 2890);
-//			CustFavoriteBean result = new CustFavoriteBean();
-//			result.setAccount("lara");
-//			result.setStock_Code(8888);
-//			CustFavoriteBean bean = dao.insert(result);
+			CustFavoriteBean result = new CustFavoriteBean();
+			result.setAccount("lara");
+			result.setStock_Code(8888);
+			CustFavoriteBean bean = dao.insert(result);
 //			CustFavoriteBean bean = dao.update("lara", 2890, 1234);
-			boolean bean = dao.delete("lara", 4108);
+//			boolean bean = dao.delete("lara", 4108);
 			System.out.println(bean);
 			session.getTransaction().commit();
 		} finally {
@@ -81,7 +81,7 @@ public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 
 	@Override
 	public CustFavoriteBean insert(CustFavoriteBean bean){
-			getSession().saveOrUpdate(bean);
+			getSession().save(bean);;
 			return bean;
 	}
 	
