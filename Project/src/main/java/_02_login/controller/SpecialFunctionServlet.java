@@ -30,7 +30,11 @@ import _04_stock.model.DailyStockBean;
 import _04_stock.model.DailyStockService;
 import _04_stock.model.SecuritiesTradeBean;
 import _04_stock.model.SecuritiesTradeService;
+import _04_stock.model.StockCodeBean;
+import _04_stock.model.StockCodeDAO;
+import _04_stock.model.StockCodeService;
 import _04_stock.model.dao.DailyStockDAOHibernate;
+import _04_stock.model.dao.StockCodeDAOHibernate;
 
 @WebServlet("/secure/SpecialFunctionServlet")
 public class SpecialFunctionServlet extends HttpServlet {
@@ -38,6 +42,7 @@ public class SpecialFunctionServlet extends HttpServlet {
 	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 	private SpecialFunctionService functionService;
 	private CustFavoriteService favoriteService;
+	private StockCodeService stockCodeService;
 	
 
 	public SpecialFunctionServlet() {
@@ -161,9 +166,11 @@ public class SpecialFunctionServlet extends HttpServlet {
 				FC_Trade_Count[1], FC_Trade_Count[2], stock_Code);
 		boolean index5 = favoriteService.Stock_index5(IT_Trade_Count[0],
 				IT_Trade_Count[1], IT_Trade_Count[2], stock_Code);
+		StockCodeBean bean=stockCodeService.selectStockCodeByStockCode(stock_Code);
 		// 根據Model執行結果顯示View
 //		request.setAttribute("stockTable", stockTable);
-		request.setAttribute("stock_Code", stock_Code);
+
+		request.setAttribute("bean", bean);
 		request.setAttribute("index1", index1);
 		request.setAttribute("index2", index2);
 		request.setAttribute("index3", index3);
@@ -186,7 +193,10 @@ public class SpecialFunctionServlet extends HttpServlet {
 		favoriteService = new CustFavoriteService();
 		favoriteService.setCustFavoriteDAO(daoC);
 		
-	
+		StockCodeDAOHibernate stockCodeDAOHibernate=new StockCodeDAOHibernate();
+		stockCodeDAOHibernate.setSessionFactory(HibernateUtil.getSessionFactory());
+		stockCodeService = new StockCodeService();
+		stockCodeService.setStockCodeDAO(stockCodeDAOHibernate);
 	}
 
 }
