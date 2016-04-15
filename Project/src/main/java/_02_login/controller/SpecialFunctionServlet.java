@@ -100,8 +100,9 @@ public class SpecialFunctionServlet extends HttpServlet {
 		int trade_Volume = 0;
 		Integer[] FC_Trade_Count = null;
 		Integer[] IT_Trade_Count = null;
-		// try {		
-		while (true) {
+		// try {
+		int i=1;
+		while (i<=31) {
 			
 			try {
 				B_s_sheetsMax = functionService.selectMax(sDate, stock_Code);
@@ -135,8 +136,7 @@ public class SpecialFunctionServlet extends HttpServlet {
 					break;
 					}				
 			}
-			
-						
+			i++;						
 		}
 
 		// } catch (Exception e) {

@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import _03_stock_market.model.InstantStockBean;
@@ -16,17 +17,20 @@ import misc.HibernateUtil;
 
 
 public class InstantStockDAOHibernate implements InstantStockDAO  {
-	private Session session = null;
-	public InstantStockDAOHibernate(Session session) {
-		this.session = session;
+	private SessionFactory sessionFactory;
+	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
+
 	public static void main(String[] args) {
-		try {
-			Session session =
-					HibernateUtil.getSessionFactory().getCurrentSession();
-			Transaction trx = session.beginTransaction();
-			InstantStockDAO dao = new InstantStockDAOHibernate(session);
-			InstantStockBean bean = new InstantStockBean();
+				
+			InstantStockDAOHibernate dao = new InstantStockDAOHibernate();
+			dao.setSessionFactory(HibernateUtil.getSessionFactory());
+//			InstantStockBean bean = new InstantStockBean();
+			Transaction tx=null;
+		try{
+			tx=HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
 			//測試新增
 //			String inTime="2016-03-31 01:01:01";
 //			SimpleDateFormat sdt= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -75,10 +79,17 @@ public class InstantStockDAOHibernate implements InstantStockDAO  {
 //				
 //				boolean  beanDel=dao.delete(8080,time);
 //				System.out.println(beanDel);
-
-			
-			trx.commit();
+			//測試selectAllByStockCode(Integer stock_Code)
+//			List<InstantStockBean> list=dao.selectAllByStockCode(new Integer(2330));
+//			for(InstantStockBean bean:list){
+//				System.out.println(bean);
+//			}			
+			//測試selectLatestByStockCode(Integer stock_Code)
+//			InstantStockBean bean=dao.selectLatestByStockCode(new Integer(2330));
+//			System.out.println(bean);
+			tx.commit();
 		} catch (Exception e) {
+			tx.rollback();
 			e.printStackTrace();
 		} finally {
 			HibernateUtil.closeSessionFactory();
@@ -90,7 +101,7 @@ public class InstantStockDAOHibernate implements InstantStockDAO  {
 	 */
 	@Override
 	public Session getSession() {
-		return session;
+		return sessionFactory.getCurrentSession();
 	}
 	/* (non-Javadoc)
 	 * @see model.dao.InstantStockDAO#select(int)
@@ -103,13 +114,25 @@ public class InstantStockDAOHibernate implements InstantStockDAO  {
 		bean.setiDatetime(iDatetime);
 		return (InstantStockBean)this.getSession().get(InstantStockBean.class, bean);	
 	}
-	
+	@Override
 	public List<InstantStockBean> selectAllByStockCode(Integer stock_Code){
 		Query query = getSession().createQuery("from InstantStockBean where stock_Code = ?");
 		query.setParameter(0, stock_Code);
 		List<InstantStockBean> result =  query.list();
 		return result;
 	}
+	
+	public InstantStockBean selectLatestByStockCode(Integer stock_Code){
+		InstantStockBean bean=null;
+		Query query=getSession().createQuery("from InstantStockBean where stock_Code=:stock_Code order by iDatetime desc");
+		query.setParameter("stock_Code", stock_Code);
+		List<InstantStockBean> list=query.list();
+		if(!list.isEmpty()){
+			bean=list.get(0);
+		}
+		return bean;
+	}
+	
 	/* (non-Javadoc)
 	 * @see model.dao.InstantStockDAO#select()
 	 */
