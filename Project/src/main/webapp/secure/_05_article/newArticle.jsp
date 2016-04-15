@@ -13,13 +13,13 @@
 
 </style>
 
-
+<script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
 </head>
 
-<body style="margin: 0em 3em">
-	<div class="container">
-		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<body>
 
+		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+		<jsp:include page="/title.jsp" />
 
 
 		<!-- 網頁主要導覽列 -->
@@ -39,6 +39,7 @@
 					<tr>
 						<td>作家名稱 :</td>
 						<td ><input type="text" name="aname" value="${param.aname}"><span class="error">${error.aname}</span></td>
+
 						
 					</tr>
 					<tr>
@@ -48,19 +49,20 @@
 
 					<tr>
 						<td>文章內文 :</td>
-						<td><textarea name="acontext" cols="60" rows="30">${param.acontext}</textarea><br><span class="error">${error.acontext}</span></td>
+						<td><textarea name="acontext" cols="60" rows="30">${param.acontext}</textarea>
+						<script>CKEDITOR.replace( 'acontext', {});</script>
+						<br><span class="error">${error.acontext}</span></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td ><input type="submit" name="prodaction" value="Insert">
-						<!--隱藏的ano資料，為了把資料庫取出來的ano資料帶走↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
-						<div style="display: none;"><input type="text" name="ano" value="${param.ano}"></div></td>
+						<td ><input type="submit" name="prodaction" value="Insert" onclick='processData()'>
+						
 					</tr>
 				</table>
 			</form>
 		</div>
 
-	</div>
+
 
 </body>
 </html>

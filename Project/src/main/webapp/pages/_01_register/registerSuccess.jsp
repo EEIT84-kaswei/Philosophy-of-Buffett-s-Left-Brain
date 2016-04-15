@@ -8,10 +8,10 @@
 <meta http-equiv="Refresh" content="2;url=http://localhost:8080/Project/Welcome.jsp">
 <title>註冊成功</title>
 </head>
-<body style="margin:0em 3em">
-<div class="container">
-<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<body>
 
+<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
 
 
 <!-- 網頁主要導覽列 -->
@@ -26,7 +26,6 @@
 	</div>
 
 
-</div>
 
 
 </body>

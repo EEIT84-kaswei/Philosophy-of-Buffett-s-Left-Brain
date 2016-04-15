@@ -39,6 +39,10 @@ $(document).ready(function() {
 </head>
 <body>
 
+<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
+
+
 		<jsp:include page="/nav.jsp"></jsp:include>
 		
 		

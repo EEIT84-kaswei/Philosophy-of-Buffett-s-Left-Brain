@@ -195,6 +195,14 @@ public class AccountServlet extends HttpServlet {
 			// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
 			request.getRequestDispatcher("registerPage.jsp").forward(request, response);
 			return;
-		}		
+		}
+		//
+		//--------------------------------------------------------------Irina Test
+		//
+		//
+		
+		
+		
+		
 	}
 }

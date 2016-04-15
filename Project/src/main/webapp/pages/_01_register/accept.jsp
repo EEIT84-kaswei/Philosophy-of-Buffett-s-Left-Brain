@@ -8,12 +8,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>申請會員 - 同意書</title>
-<script src="js/bootstrap.min.js"></script>
-</head>
-<body style="margin:0em 3em">
-<div class="container">
-<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 
+</head>
+<body>
+
+<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
 
 
 <!-- 網頁主要導覽列 -->
@@ -22,7 +22,7 @@
 </div>
 
 <p>
-<div style="overflow:scroll;height:30em;width:60em;margin:0 auto">
+<div style="overflow:scroll;height:30em;width:60em;margin:2em auto" class="container">
 <h3 style="color:green;text-align:center">會員服務條款</h3>
 <br>
 歡迎申請加入「巴菲特的左腦哲學──如何投資股市」會員。<br>
@@ -135,16 +135,11 @@ e.請求刪除。
 
 隨著市場環境的改變金石網絡將會不定期修訂網站政策。當我們在使用個人資料的規定上作出大修改時，我們會在網頁上張貼告示，通知相關事項
 
-
-
-
 </div>
-<br><br>
-<div align="center" style="margin:2em">
+
+<div align="center" style="margin:1em">
 <input type="submit" value="同意" onclick="location.href='<c:url value="/pages/_01_register/registerPage.jsp"/>'">
 <input type="button" value="不同意" onclick="location.href='<c:url value="/Welcome.jsp"/>'">
-</div>
-
 </div>
 
 

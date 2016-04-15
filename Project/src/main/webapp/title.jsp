@@ -11,7 +11,7 @@
 <style type="text/css">
 
 body{
-background-color:#FFE8E8;
+/* background-color:#FFE8E8; */
 }
 
 li {
@@ -57,31 +57,31 @@ li {
 	</td>
 	
 	
-	<td style="padding:0 2em">
-				<div class='menu'>
-					<c:if test="${empty LoginOK }">
-						<a href="<c:url value='/pages/_02_login/login.jsp' />"> 登入 </a>
-					</c:if>
-				</div>
+<!-- 	<td style="padding:0 2em"> -->
+<!-- 				<div class='menu'> -->
+<%-- 					<c:if test="${empty LoginOK }"> --%>
+<%-- 						<a href="<c:url value='/pages/_02_login/login.jsp' />"> 登入 </a> --%>
+<%-- 					</c:if> --%>
+<!-- 				</div> -->
 
-				<div class='menu'>
-					<c:if test="${!empty LoginOK }">
-						<a href="<c:url value='/_02_login/logout.jsp' />"> 登出 </a>
-					</c:if>
-				</div>
+<!-- 				<div class='menu'> -->
+<%-- 					<c:if test="${!empty LoginOK }"> --%>
+<%-- 						<a href="<c:url value='/_02_login/logout.jsp' />"> 登出 </a> --%>
+<%-- 					</c:if> --%>
+<!-- 				</div> -->
 
-				<div class='menu'>
-					<c:if test="${LoginOK }">
-						<a href="<c:url value='/secure/backstage/backstageIndex.jsp' />"> 管理員 </a>
-					</c:if>
-				</div>
+<!-- 				<div class='menu'> -->
+<%-- 					<c:if test="${LoginOK }"> --%>
+<%-- 						<a href="<c:url value='/secure/backstage/backstageIndex.jsp' />"> 管理員 </a> --%>
+<%-- 					</c:if> --%>
+<!-- 				</div> -->
 
-				<div class='menu'>
-					<c:if test="${LoginOK }">
-						<a href="<c:url value='/secure/author/authorIndex.jsp' />"> 專欄作家  </a>
-					</c:if>
-				</div>
-	</td>
+<!-- 				<div class='menu'> -->
+<%-- 					<c:if test="${LoginOK }"> --%>
+<%-- 						<a href="<c:url value='/secure/author/authorIndex.jsp' />"> 專欄作家  </a> --%>
+<%-- 					</c:if> --%>
+<!-- 				</div> -->
+<!-- 	</td> -->
 	<td>
 	<div style="width:3em"></div>
 	<div id="google_translate_element" align=right style="width:100%"></div>

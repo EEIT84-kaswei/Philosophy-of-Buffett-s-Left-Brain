@@ -10,6 +10,16 @@
 <title>登出</title>
 </head>
 <body>
+
+<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
+
+
+<!-- 網頁主要導覽列 -->
+<div>
+<jsp:include page="/nav.jsp" />
+</div>
+
 <!-- 先將使用者名稱取出 -->
 <c:set var="memberName" value="${ user.name }" />
 <!-- 移除放在session物件內的屬性物件 -->

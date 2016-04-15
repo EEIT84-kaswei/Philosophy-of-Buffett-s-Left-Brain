@@ -19,10 +19,10 @@
 
 </head>
 
-<body style="margin: 0em 3em">
-	<div class="container">
-		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<body>
 	
+		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+		<jsp:include page="/title.jsp" />
 
 
 		<!-- 網頁主要導覽列 -->
@@ -60,7 +60,7 @@
 
 		</div>
 
-	</div>
+
 
 </body>
 </html>

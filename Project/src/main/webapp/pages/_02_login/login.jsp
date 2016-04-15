@@ -20,12 +20,12 @@
 }
 
 </style>
-<script src="js/bootstrap.min.js"></script>
-</head>
-<body style="margin:0 3em">
- <div class="container"> 
-	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 
+</head>
+<body>
+
+<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
 
 
 <!-- 網頁主要導覽列 -->
@@ -34,20 +34,20 @@
 </div>
 <div align="center">
 
-	<form>
+	<form action="j_security_check" method="post">
 	<table id="logtable" style="border:5px #FFD382 groove;" cellpadding="10" border='0'>
 		<tr>
 			<td>帳號</td>
-			<td><input type="text" size="20" placeholder="請輸入帳號"></td>
+			<td><input type="text" size="20" placeholder="請輸入帳號" name="j_username"></td>
 		</tr>
 		<tr>
 			<td>密碼</td>
-			<td><input type="password" size="20"></td>
+			<td><input type="password" size="20" name="j_password"></td>
 		</tr>	
 		
 	</table>
 	<p>
-			<input type="button" value="登入">
+			<input type="submit" value="登入">
 			<input type="button" value="申請會員" onclick="location.href='<c:url value="/pages/_01_register/accept.jsp"/>'">
 			<input type="button" value="忘記密碼" >
 	
@@ -55,6 +55,6 @@
 
 	</form>
 	</div>
-</div>	
+
 </body>
 </html>

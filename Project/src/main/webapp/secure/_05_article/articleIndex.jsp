@@ -23,10 +23,10 @@
 
 </head>
 
-<body style="margin: 0em 3em">
-	<div class="container">
-		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<body>
 
+		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+		<jsp:include page="/title.jsp" />
 
 
 		<!-- 網頁主要導覽列 -->
@@ -63,7 +63,6 @@
 								<c:param name="ano" value="${row.ano}" />
 							</c:url>
 							<tr>
-								
 								<td><a href="${path}">${row.atitle}</a></td>
 								<td>${row.aname}</td>
 								<td><fmt:formatDate value="${row.atime}" pattern="yyyy-MM-dd" /></td> 
@@ -80,7 +79,7 @@
 
 		</div>
 
-	</div>
+
 
 </body>
 </html>
