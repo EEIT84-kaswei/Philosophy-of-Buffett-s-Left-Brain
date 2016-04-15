@@ -184,7 +184,8 @@ td.favorL:hovor {
 var path = "${pageContext.request.contextPath}";
 var conceptUrl = path + "/secure/custFavorite.view" ;
 
-var account = "lara";  //要改成程式自動抓
+var account = "${pageContext.request.remoteUser}";  //要改成程式自動抓
+console.log("account: " +account)
 
 function getValue(value){
 		var stock_Code = value; //value是股票代號

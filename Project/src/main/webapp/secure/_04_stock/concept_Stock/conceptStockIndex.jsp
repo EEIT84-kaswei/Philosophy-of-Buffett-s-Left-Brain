@@ -202,7 +202,8 @@ td.favorL:hovor {
 	 var path = "${pageContext.request.contextPath}";
      var conceptUrl = path + "/secure/custFavorite.view" ;
 
-     var account = "lara";  //要改成程式自動抓
+     var account = "${pageContext.request.remoteUser}";  //要改成程式自動抓
+     console.log("account: " +account)
 
      function getValue(value){
 			var stock_Code = value; //value是股票代號
@@ -213,10 +214,9 @@ td.favorL:hovor {
 		    console.log("starIndex : " + starIndex );
 		      if(starIndex == -1){
 		    	  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath()%>/img/chngstar.gif");  //如果沒有chng，是空心，就加最愛，送Ajax
-		    	  doConnect(conceptUrl , account , stock_Code , "insert");
+		    	  doConnect(conceptUrl , account , stock_Code ,"insert");
 			  }else{
-				  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath()%>
-	/img/star.gif"); //如果有chng，是實心，就移除最愛，送Ajax
+				  $("img[id='"+value+"']").attr("src" , "<%=request.getContextPath()%>/img/star.gif"); //如果有chng，是實心，就移除最愛，送Ajax
 			doConnect(conceptUrl, account, stock_Code, "delete");
 		}
 
