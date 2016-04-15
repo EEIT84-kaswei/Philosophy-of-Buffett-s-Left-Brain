@@ -8,10 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>歷史資訊</title>
 </head>
-<body style="margin: 0em 3em">
-	<div class="container">
-		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-	
+<body>
+
+<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
+
 
 
 		<!-- 網頁主要導覽列 -->
@@ -23,7 +24,6 @@
 		<script type="text/javascript">
 		var priceData;
 		var volumeData;
-		var volumeColorData;
 		
 		function transferPrice(data){
 			priceData=data
@@ -33,18 +33,42 @@
 			volumeData=data;
 		}
 		
-		function transferVolumeColor(data){
-			volumeColorData=data;
-		}
-		
 		$(document).ready(function () {
+			
+			var originalDrawPoints = Highcharts.seriesTypes.column.prototype.drawPoints;
+
+		    Highcharts.seriesTypes.column.prototype.drawPoints = function () {
+		        var merge  = Highcharts.merge,
+		            series = this,
+		            chart  = this.chart,
+		            points = series.points,
+		            i      = points.length;
+		        
+		        while (i--) {
+		            var candlePoint = chart.series[0].points[i];
+		            var color = (candlePoint.open < candlePoint.close) ? '#FF0000' : '#008000';
+		            var seriesPointAttr = merge(series.pointAttr);
+		            
+		            seriesPointAttr[''].fill = color;
+		            seriesPointAttr.hover.fill = Highcharts.Color(color).brighten(0.3).get();
+		            seriesPointAttr.select.fill = color;
+		            
+		            points[i].pointAttr = seriesPointAttr;
+		        }
+
+		        originalDrawPoints.call(this);
+		    }
+			
 			var contextPath="${pageContext.request.contextPath}";
 			var sourceUrl=contextPath+"/secure/DailyStockServlet";
-			var settings=new Object()
+			
+			var priceStr="stock_Code="+"${bean.stock_Code}"+"&type=price";
+			var volumeStr="stock_Code="+"${bean.stock_Code}"+"&type=volume";
+			
 			$.ajax({
 				method:"GET",
 				url:sourceUrl,
-				data:"stock_Code=2330&type=price",
+				data:priceStr,
 				cache:false,
 				async:false,
 				dataType:"json",
@@ -54,23 +78,13 @@
 			$.ajax({
 				method:"GET",
 				url:sourceUrl,
-				data:"stock_Code=2330&type=volume",
+				data:volumeStr,
 				cache:false,
 				async:false,
 				dataType:"json",
 				success:transferVolume
 			});
-			
-			$.ajax({
-				method:"GET",
-				url:sourceUrl,
-				data:"stock_Code=2330&type=volumeColor",
-				cache:false,
-				async:false,
-				dataType:"json",
-				success:transferVolumeColor
-			});			
-			
+						
 			Highcharts.setOptions({
 		        global: {
 		            timezoneOffset: -8 * 60
@@ -84,35 +98,32 @@
 		    $('#historyChart').highcharts('StockChart',{
 		      navigator:{
 		      xAxis:{
-		      dateTimeLabelFormats:{                
+		      dateTimeLabelFormats:{
+		    	  		month:'%Y/%m',
 		                day: '%b%e日'
 		                }
 		           }
 		      },
 		      
 		      xAxis:{
-		      dateTimeLabelFormats:{                
-		                day: '%b%e日'
+		      dateTimeLabelFormats:{
+		    	  		month: '%Y/%m',
+						week:'%b%e日',
+         			 	day: '%b%e日'
 		            }
 		      },
 		      
 		      yAxis: [{
 		                labels: {
-		                    align: 'right',
-		                    x: -3
-		                },
-		                title: {
-		                    text: 'TSMC'
+		                    align: 'left',
+		                    x: 4
 		                },
 		                height: '60%',
 		                lineWidth: 2
 		            }, {
 		                labels: {
-		                    align: 'right',
-		                    x: -3
-		                },
-		                title: {
-		                    text: 'Volume'
+		                    align: 'left',
+		                    x: 4
 		                },
 		                top: '65%',
 		                height: '35%',
@@ -126,36 +137,47 @@
 		    	},
 		    	
 		    	title:{
-		    		text:'2330 台積電'
+		    		text:'${bean.stock_Code} ${bean.stock_Name}'
 		    	},
 		    	
 		    	 plotOptions: {
 		            candlestick: {
-		            		color: 'green',
+		            	color: 'green',
 		                upColor: 'red',
 		                lineColor: 'green',
 		                upLineColor:'red',
 		                tooltip:{
-		                dateTimeLabelFormats:{minute:'%A, %b%e日, %Y'},
 		                pointFormat:'<b>{series.name}</b><br/>' +
 		                '開盤: {point.open}<br/>' +
 		                '最高: {point.high}<br/>' +
 		                '最低: {point.low}<br/>' +
 		                '收盤: {point.close}<br/>'                
-		                }                
+		                },
+		    		dataGrouping: {
+	                	dateTimeLabelFormats:{
+	                	week:['周 %A, %b %e日, %Y'],
+	                	day:['%A, %b%e日, %Y'],
+	                	}
+	            	},
 		            },
+		            
 		            column:{
-		            colorByPoint: true,
-		            colors:volumeColorData,
 		            tooltip:{
 		               pointFormat:'<span>{series.name}: {point.y}<br/>'
-		            }
+		            },
+		            dataGrouping: {
+		                dateTimeLabelFormats:{
+		                    week:['%A, %b%e日, %Y'],
+		                    day:['%A, %b%e日, %Y'],
+		                    minute:['%A, %b%e日, %Y']
+		                    }
+		                }
 		            }
 		        },
 		    	
 		    	series:[{
 		    		type:'candlestick',
-		    		name:'2330 台積電',
+		    		name:'${bean.stock_Code} ${bean.stock_Name}',
 		    		data:priceData
 		    	},{
 		    		type:'column',
@@ -165,11 +187,10 @@
 		    	}
 		    	]    	
 		    });
-		});
-		
-		
+		});		
 		</script>
-		<h2>股票歷史資訊範例：印楷</h2>
+		
+		<h2>股票歷史資訊：${bean.stock_Name}</h2>
 
 		<div align=center
 			style="border: 1px gray solid; height: 40em; width: 70%">
@@ -216,6 +237,5 @@
 			</table>
 		</div>
 
-	</div>
 </body>
 </html>

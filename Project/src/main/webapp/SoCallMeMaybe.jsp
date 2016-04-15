@@ -3,10 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Refresh" content="2;url=http://localhost:8080/Project/Welcome.jsp">
-<title>註冊成功</title>
+<title>與我聯絡</title>
 </head>
 <body>
 
@@ -14,17 +12,10 @@
 <jsp:include page="/title.jsp" />
 
 
-<!-- 網頁主要導覽列 -->
-<div>
-<jsp:include page="/nav.jsp" />
-</div>
+<jsp:include page="/nav.jsp"></jsp:include>
+		
 
-	<div align="center">
-	
-	<h2>註冊成功！</h2>
-	<h3>2秒後自動導入<a href="<c:url value='/Welcome.jsp' />">首頁</a></h3>
-	</div>
-
+<h2 align="center"><a href="https://www.facebook.com/profile.php?id=100000212802863&fref=ts">專門理財專員</a></h2>
 
 
 

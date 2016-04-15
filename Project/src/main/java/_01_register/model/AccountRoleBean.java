@@ -1,13 +1,13 @@
 package _01_register.model;
 /*張秀維 Hsiu Chang, 01-04-2016 */
 
-public class accountRoleBean {
+public class AccountRoleBean {
 
 	private String account;
 	private String account_Role;
 	
 	
-	public accountRoleBean(){
+	public AccountRoleBean(){
 		
 	}
 

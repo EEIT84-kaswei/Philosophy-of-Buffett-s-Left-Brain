@@ -27,6 +27,15 @@ $(document).ready(function() {
 
 </script>
 <style type="text/css">
+article, aside, figure, figcaption, footer, header, hgroup, menu, nav,
+	section {
+	display: block;
+}
+
+body {
+	font: 62.5% "Trebuchet MS", sans-serif;
+	margin: 50px;
+}	
 #newstable tr:hover {
 	color: #BD63FF;
 	background-color:#77FFCC;
@@ -35,9 +44,14 @@ $(document).ready(function() {
 #newstable tr:nth-child(even) {
 	background: #CCEEFF
 	}
+
 </style>
 </head>
 <body>
+
+<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
+
 
 		<jsp:include page="/nav.jsp"></jsp:include>
 		
@@ -47,7 +61,7 @@ $(document).ready(function() {
 	%>
 
 	<div align=center style="height:20px;width:10px"></div>
-
+	<div style="margin: 2em auto; padding: 2em; width:800px">
 	<div align=center>
 		<div class="row">
 			<form class="form-search" action="<c:url value="/news.do"/>" method="get">
@@ -106,7 +120,29 @@ $(document).ready(function() {
 			<input type="submit" value="新增">
 		</form>
 	</div>
+	</div>
 
-
+	<script language="JavaScript">
+		$(document).ready(function() {
+			var opt = {
+				"oLanguage" : {
+					"sProcessing" : "處理中...",
+					"sLengthMenu" : "顯示 _MENU_ 項結果",
+					"sZeroRecords" : "沒有匹配結果",
+					"sInfo" : "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+					"sInfoEmpty" : "顯示第 0 至 0 項結果，共 0 項",
+					"sInfoFiltered" : "(從 _MAX_ 項結果過濾)",
+					"sSearch" : "搜索:",
+					"oPaginate" : {
+						"sFirst" : "首頁",
+						"sPrevious" : "上頁",
+						"sNext" : "下頁",
+						"sLast" : "尾頁"
+					}
+				}
+			};
+			$("#newstable").dataTable(opt);
+		});
+	</script>
 </body>
 </html>

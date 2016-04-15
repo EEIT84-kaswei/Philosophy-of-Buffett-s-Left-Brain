@@ -13,9 +13,10 @@
 
 </style>
 </head>
-<body style="margin:0em 3em">
-<div class="container">
+<body>
+
 <!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
 
 
 
@@ -54,6 +55,6 @@
 
 <a href="<c:url value='/pages/_03_stock_market/taiex.jsp'/>">加權指數</a>
 <br>所謂的「加權指數」，是為了表達一群股票的整體狀況用加權的方式所算出來的一個總分。我們會讓加權指數show在每個畫面的右方角落。<br>
-</div>
+
 </body>
 </html>

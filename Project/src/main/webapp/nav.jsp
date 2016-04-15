@@ -8,16 +8,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 匯入bootstrap -->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+ 	<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">	 
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> 
+
+
 <!-- 匯入jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  
+  
 <!-- 匯入bootstrap javascript -->
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/themes/hot-sneaks/jquery-ui.css" rel="stylesheet">
+  <script src="<%=request.getContextPath() %>/js/bootstrap.js"></script>
+   <link href="<%=request.getContextPath() %>/css/jquery-ui.css" rel="stylesheet">
   <link href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" rel="stylesheet">
-  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.js"></script>
-<!--   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/jquery-ui.min.js"></script> -->
+<!--   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.js"></script> -->
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/jquery-ui.min.js"></script>
   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>  
+  
+  
   
   
 <title>Insert title here</title>
@@ -25,7 +32,7 @@
 <style type="text/css">
 /* 	 用getContextPath()找到根目錄  */
 
-body { padding-top: 80px;
+body { 
 	background-image:url("<%=request.getContextPath() %>/img/dye_st_0117.gif"); 
 	background-attachment: fixed;
 	font-size:20px;
@@ -33,8 +40,9 @@ body { padding-top: 80px;
  }
  
  #thisone li{
- 	font-size:20px
+	
  }
+ 
  
  a{
  	text-decoration: none;
@@ -47,8 +55,8 @@ body { padding-top: 80px;
 
 
     
-<nav class="nav navbar-inverse navbar-fixed-top" id="thisone" align=center> <!-- 如果要黑色底，請把nav後面的那一串文字改成navbar-inverse -->
-        <div class="container-fluid">
+<nav class="nav navbar-inverse navbar-static-top" id="thisone" align="center"> <!-- 如果要黑色底，請把nav後面的那一串文字改成navbar-inverse -->
+        <div class="container-fluid" style="">
             <div class="navbar-header">
             
             <!-- 成為按鈕 -->
@@ -63,23 +71,23 @@ body { padding-top: 80px;
             <!-- 成為按鈕 -->
             
                 
-                <a class="navbar-brand" href="#"><img src="<%=request.getContextPath() %>/img/logo2.png" style="height:50px">Buffett</a>
+                <a class="navbar-brand" href="#">Buffett</a>
             </div>
             
             <!-- 底下放要縮放的內容 -->
             
             
-            <div class="collapse navbar-collapse" id="myNavbar" style="font-size:15px">
-            <ul class="nav navbar-nav" align=center>
+            <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
                 <li><a href="<c:url value='/Welcome.jsp' />">首頁</a></li>
                 <li><a href="<c:url value='/pages/_03_stock_market/instantStock.jsp'/>">即時股票資訊</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">股票分類<span class="caret"></span></a>
             		<ul class="dropdown-menu">
-              			 <li><a href="<c:url value='/secure/shanShi.view'/>">上市股</a></li>
-               			 <li><a href="<c:url value='/secure/shanQui.view'/>">上櫃股</a></li>
-               			 <li><a href="<c:url value='/secure/xinQui.view'/>">興櫃股</a></li>
-               			 <li><a href="<c:url value='/secure/chengFenv.view'/>">成分股</a></li>
-               			 <li><a href="">概念股</a></li>
+						<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></li> 
+      					<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></li> 
+       					<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></li>  
+               			<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="chengFenv"/></c:url>">成分股</a></li>
+               			<li><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></li>
                		</ul>
         		</li>
                 <li><a href="<c:url value='/pages/article.controller' />">股市專欄</a></li>
@@ -92,7 +100,7 @@ body { padding-top: 80px;
                			 <li><a href="<c:url value='/secure/_02_login/recommend.jsp'/>">股票推薦</a></li>
                		</ul>
         		</li>
-                <li><a href="">與我聯絡</a></li>
+                <li><a href="<c:url value='/SoCallMeMaybe.jsp'/>">與我聯絡</a></li>
             </ul>
             
             
@@ -100,22 +108,30 @@ body { padding-top: 80px;
             
              <ul class="nav navbar-nav navbar-right">
                     <li>
-                    	<c:if test="${empty user}">
-                    	<a href="<c:url value='/pages/_02_login/login.jsp' />">
+                    	<c:if test="${pageContext.request.remoteUser == null}">
+                    	<a href="<c:url value='/secure/_02_login/loginSuccess.jsp'/>">
                     		<span class="glyphicon glyphicon-log-in"></span> 
                     		登入
                     	</a>
                     	</c:if>
                     </li>
                     
-                    <li>
-                    	<c:if test="${!empty user}">
-                    <a href="<c:url value='/pages/_02_login/logout.jsp' />">
-                    		登出
-                    </a>
+                    <li>                  
+                    	<c:if test="${pageContext.request.remoteUser != null}">
+	                    <a href="<c:url value='/pages/_02_login/logout.jsp'/>">
+	                    	<span class="glyphicon glyphicon-log-out"></span>
+							登出
+	                    </a>
 						</c:if>
 					</li>
-		                <li><a href="<c:url value='/secure/_02_login/test.jsp'/>"><span class="glyphicon glyphicon-user"></span> 管理員</a></li>
+		            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">管理員<span class="caret"></span></a>
+            		<ul class="dropdown-menu">
+              			 <li><a href="<c:url value='/member.do' />">會員管理</a></li>
+               			 <li><a href="<c:url value='/secure/admin/stockrevise.jsp'/>">股票管理</a></li>
+               			 <li><a href="<c:url value='/secure/message/MessageTest.jsp'/>">留言板測試</a></li>
+
+               		</ul>
+        		</li>
                 </ul>
             </div>
         </div>

@@ -3,7 +3,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2012/3/7 ?W?? 09:15:15 by Hibernate Tools 3.3.0.GA -->
 <hibernate-mapping>
-    <class name="_01_register.model.accountRoleBean" table="accountRole">
+    <class name="_01_register.model.AccountRoleBean" table="accountRole">
         <id name="account" >
             <column name="account" />
             <generator class="assigned" />

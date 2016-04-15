@@ -8,9 +8,10 @@
 <title>評量結果</title>
 </head>
 
-<body style="margin: 0em 3em">
-	<div class="container">
-		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<body>
+
+<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
 
 
 
@@ -35,8 +36,6 @@
 
 <div><a href="<c:url value='/Welcome.jsp'/>">回首頁</a></div>
 
-
-</div>
 
 </body>
 </html>
