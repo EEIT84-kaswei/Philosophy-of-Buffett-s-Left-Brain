@@ -19,6 +19,7 @@
 			<jsp:include page="/nav.jsp" />
 		</div>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/highstock.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/exporting.js"></script>
 		
 		<script type="text/javascript">
 		var priceData;
@@ -224,7 +225,7 @@
 					</tr>				
 				</tbody>
 			</table><br>
-			<div id="historyChart" style="width: 100%; height: 400px;"></div>
+			<div id="historyChart" style="width: 100%; height: 600px;"></div>
 			<br>
 			<table>
 				<tbody>
