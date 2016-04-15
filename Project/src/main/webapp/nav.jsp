@@ -100,7 +100,7 @@ body {
                			 <li><a href="<c:url value='/secure/_02_login/recommend.jsp'/>">股票推薦</a></li>
                		</ul>
         		</li>
-                <li><a href="">與我聯絡</a></li>
+                <li><a href="<c:url value='/SoCallMeMaybe.jsp'/>">與我聯絡</a></li>
             </ul>
             
             
