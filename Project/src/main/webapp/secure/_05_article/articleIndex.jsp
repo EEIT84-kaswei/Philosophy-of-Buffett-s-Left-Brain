@@ -59,7 +59,6 @@
 								<c:param name="ano" value="${row.ano}" />
 							</c:url>
 							<tr>
-								
 								<td><a href="${path}">${row.atitle}</a></td>
 								<td>${row.aname}</td>
 								<td><fmt:formatDate value="${row.atime}" pattern="yyyy-MM-dd" /></td> 
@@ -68,7 +67,7 @@
 					</tbody>
 				</table>
 						<center>
-						<a href="/Project/secure/_05_article/newArticleIndex.jsp">
+						<a href="/Project/secure/_05_article/newArticle.jsp">
 						<input type="button" value="發表文章">
 						</a>
 						</center>
