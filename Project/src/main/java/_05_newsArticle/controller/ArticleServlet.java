@@ -91,7 +91,6 @@ public class ArticleServlet extends HttpServlet {
 		bean.setAtime(new Date());
 		bean.setAtitle(atitle);
 		bean.setAcontext(acontext);
-		System.out.println(bean);
 		// 根據Model執行結果顯示View
 		
 		
