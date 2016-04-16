@@ -91,6 +91,7 @@
 		            timezoneOffset: -8 * 60
 		        },
 		        lang:{
+		        months:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
 		        shortMonths:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
 		        weekdays:['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
 		        }
@@ -134,7 +135,30 @@
 		      
 		    	rangeSelector:{
 		    		selected:1,
-		    		inputDateFormat:'%Y年%b%e日'
+		    		inputDateFormat:'%Y年%b%e日',
+		    		buttons: [{
+		    			type: 'month',
+		    			count: 1,
+		    			text: '1月'
+		    		}, {
+		    			type: 'month',
+		    			count: 3,
+		    			text: '3月'
+		    		}, {
+		    			type: 'month',
+		    			count: 6,
+		    			text: '6月'
+		    		}, {
+		    			type: 'ytd',
+		    			text: '今年'
+		    		}, {
+		    			type: 'year',
+		    			count: 1,
+		    			text: '1年'
+		    		}, {
+		    			type: 'all',
+		    			text: '全部'
+		    		}]
 		    	},
 		    	
 		    	title:{
@@ -153,9 +177,14 @@
 		                '最高: {point.high}<br/>' +
 		                '最低: {point.low}<br/>' +
 		                '收盤: {point.close}<br/>'                
-		                },
+		                },              
 		    		dataGrouping: {
+		    			approximation: "ohlc",
+		                enabled: true,
+		                forced: true,
+		                units: [['day',[1]]],
 	                	dateTimeLabelFormats:{
+	                	month: ['%Y年  %B'],
 	                	week:['周 %A, %b %e日, %Y'],
 	                	day:['%A, %b%e日, %Y'],
 	                	}
@@ -167,6 +196,10 @@
 		               pointFormat:'<span>{series.name}: {point.y}<br/>'
 		            },
 		            dataGrouping: {
+		            	approximation: "sum",
+		                enabled: true,
+		                forced: true,
+		                units: [['day',[1]]],
 		                dateTimeLabelFormats:{
 		                    week:['%A, %b%e日, %Y'],
 		                    day:['%A, %b%e日, %Y'],
@@ -188,6 +221,75 @@
 		    	}
 		    	]    	
 		    });
+		    
+		    var chart = $('#historyChart').highcharts();
+		    
+			$("#month").click(function(){
+				chart.series[0].update({
+	                dataGrouping: {
+	                approximation: "ohlc",
+	                enabled: true,
+	                forced: true,
+	                units: [['month',[1]]],
+	                }
+	            },false);
+				
+	      		chart.series[1].update({
+	            	dataGrouping: {
+	            	approximation: "sum",
+	            	enabled: true,
+	            	forced: true,
+	            	units: [['month',[1]]],
+	            	}           
+				},false);
+	      		
+	      		chart.redraw();
+			});		    
+		    
+			$("#week").click(function(){
+				chart.series[0].update({
+	                dataGrouping: {
+	                approximation: "ohlc",
+	                enabled: true,
+	                forced: true,
+	                units: [['week',[1]]],
+	                }
+	            },false);
+				
+	      		chart.series[1].update({
+	            	dataGrouping: {
+	            	approximation: "sum",
+	            	enabled: true,
+	            	forced: true,
+	            	units: [['week',[1]]],
+	            	}           
+				},false);
+	      		
+	      		chart.redraw();
+			});
+			
+			$("#day").click(function(){
+				chart.series[0].update({
+	                dataGrouping: {
+	                approximation: "ohlc",
+	                enabled: true,
+	                forced: true,
+	                units: [['day',[1]]],
+	                }
+	            },false);
+				
+	      		chart.series[1].update({
+	            	dataGrouping: {
+	            	approximation: "sum",
+	            	enabled: true,
+	            	forced: true,
+	            	units: [['day',[1]]],
+	            	}           
+				},false);
+	      		
+	      		chart.redraw();
+			});
+			
 		});		
 		</script>
 		
@@ -226,6 +328,9 @@
 					</tr>				
 				</tbody>
 			</table><br>
+			<input id="month" type="button" value="月K" style="float:right;">
+			<input id="week" type="button" value="周K" style="float:right;">
+			<input id="day" type="button" value="日K" style="float:right;">
 			<div id="historyChart" style="width: 100%; height: 600px;"></div>
 			<br>
 			<table>
