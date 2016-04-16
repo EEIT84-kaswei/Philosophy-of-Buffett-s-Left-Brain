@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+    
+    	<!-- 連線池c3p0設定 -->
+		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+		<property name="hibernate.connection.url">jdbc:sqlserver://114.32.176.44:1433;database=Project</property>
+		<property name="hibernate.connection.username">eeit84kaswei</property>
+		<property name="hibernate.connection.password">eeit84eeit84</property>
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.timeout">1800</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+		
+		<!-- JDBC連線池 (預設會使用Hibernate內建的連線池)(不建議用在實際的專案) -->
+<!-- 		<property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> -->
+<!-- 		<property name="hibernate.connection.url">jdbc:sqlserver://114.32.176.44:1433;database=Project</property> -->
+<!-- 		<property name="hibernate.connection.username">eeit84kaswei</property> -->
+<!-- 		<property name="hibernate.connection.password">eeit84eeit84</property> -->
+		
+		
+ 		<!-- JNDI連線池 (Apache Tomcat 連線池DBCP)設定 -->
+<!-- 		<property name="hibernate.connection.datasource">java:/comp/env/jdbc/xxx</property> -->
+
+		<!--SQL方言,以下使用SQLServer -->
+		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+
+		<!--是否要顯示實際操作資料庫時的SQL -->
+		<property name="hibernate.show_sql">true</property>
+
+		<!-- Disable the second-level cache -->
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+		<!--交易管理類型, 以下使用JDBC Transaction -->
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+
+		<!-- Enable Hibernate's automatic session context management -->
+		<property name="hibernate.current_session_context_class">thread</property>
+
+		<!-- 物件與資料庫表格映射文件，mapping屬性改class，值為類別全名 -->
+	    <mapping resource="_01_register/model/AccountRoleBean.hbm.xml" />	
+	    <mapping resource="_01_register/model/Account.hbm.xml" />	
+	    
+	    
+		<mapping resource="_02_login/model/custFavorite.hbm.xml"/>
+		<mapping resource="_02_login/model/QuestionBean.hbm.xml" />
+						
+
+        <mapping resource="_03_stock_market/model/InstantStockBean.hbm.xml" />
+        <mapping resource="_03_stock_market/model/InstantStockOneBean.hbm.xml" />
+		<mapping resource="_03_stock_market/model/legalPerson.hbm.xml"/>
+		<mapping resource="_03_stock_market/model/TAIEX.hbm.xml"/>
+
+		<mapping resource="_04_stock/model/conceptStock.hbm.xml"/>		
+		<mapping resource="_04_stock/model/DailyStockBean.hbm.xml"/>
+		<mapping resource="_04_stock/model/StockCodeBean.hbm.xml" />
+		<mapping resource="_04_stock/model/stockType.hbm.xml"/>
+		<mapping resource="_04_stock/model/securitiesTradeBean.hbm.xml"/>
+		
+		<mapping resource="_05_newsArticle/model/article.hbm.xml"/>
+		<mapping resource="_05_newsArticle/model/news.hbm.xml"/>
+
+		<mapping resource="_06_message/model/message.hbm.xml"/>
+
+		
+
+		
+	</session-factory>
+</hibernate-configuration>
