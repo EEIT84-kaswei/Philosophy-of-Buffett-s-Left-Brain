@@ -91,7 +91,6 @@ public class ArticleServlet extends HttpServlet {
 		bean.setAtime(new Date());
 		bean.setAtitle(atitle);
 		bean.setAcontext(acontext);
-		System.out.println(bean);
 		// 根據Model執行結果顯示View
 		
 		
@@ -100,43 +99,31 @@ public class ArticleServlet extends HttpServlet {
 //		System.out.println("02"+(sname.trim().length() == 0));//沒資料為Null 打開會NullPointerException
 //		System.out.println(bean.getAno());
 		if (prodaction == null&&no!=null) {
-			System.out.println("Servlet呼叫Service.selectByAno方法前");
 			ArticleBean result = articleService.selectByAno(bean);
-			System.out.println("Servlet呼叫Service.selectByAno方法後");
 			HttpSession session = request.getSession();
 			session.setAttribute("singleArticle", result);
-			System.out.println("Servlet執行setAttribute前");
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/secure/_05_article/singleArticle.jsp");
 		}
 		if ((prodaction == null||("搜尋".equals(prodaction)&&sname.trim().length() == 0))&&no==null) {
-			System.out.println("Servlet呼叫Service.select方法前");
 			List<ArticleBean> result = articleService.select();
-			System.out.println("Servlet呼叫Service.select方法後");
 			HttpSession session = request.getSession();
 			session.setAttribute("select", result);
-			System.out.println("Servlet執行setAttribute前");
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
 		}
 		if ("搜尋".equals(prodaction)&&sname.trim().length() != 0) {
-			System.out.println("依名稱搜尋呼叫Service.selectByAname方法前");
 			List<ArticleBean> result = articleService.selectByAname(sname);
-			System.out.println("依名稱搜尋呼叫Service.selectByAname方法後");
 			HttpSession session = request.getSession();
 			session.setAttribute("select", result);
-			System.out.println("Servlet執行setAttribute前");
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
 		}
 		
 		if ("修改".equals(prodaction)) {
-			System.out.println("Servlet呼叫Service.selectByAno方法前");
 			ArticleBean result = articleService.selectByAno(bean);
-			System.out.println("Servlet呼叫Service.selectByAno方法後");
 			HttpSession session = request.getSession();
 			session.setAttribute("updArticle", result);
-			System.out.println("Servlet執行setAttribute前");
 			String path = request.getContextPath();
 			response.sendRedirect(path
 					+ "/secure/_05_article/updArticle.jsp");
@@ -147,37 +134,28 @@ public class ArticleServlet extends HttpServlet {
 			ArticleBean bano = articleService.selectByAno(bean);
 			System.out.println("bano=" + bano);
 			if (bano != null && ano.equals(bano.getAno())) {
-				System.out.println("Servlet呼叫Service.update方法前");
 				articleService.update(bean);
-				System.out.println("Servlet呼叫Service.update方法後");
 				List<ArticleBean> result = articleService.select();
 				HttpSession session = request.getSession();
 				session.setAttribute("select", result);
-				System.out.println("Servlet執行setAttribute前");
 				String path = request.getContextPath();
 				response.sendRedirect(path
 						+ "/secure/_05_article/articleIndex.jsp");
 			} else {
-				System.out.println("Servlet呼叫Service.insert方法前");
 				articleService.insert(bean);
 				List<ArticleBean> result = articleService.select();
-				System.out.println("Servlet呼叫Service.insert方法後");
 				HttpSession session = request.getSession();
 				session.setAttribute("select", result);
-				System.out.println("Servlet執行setAttribute前");
 				String path = request.getContextPath();
 				response.sendRedirect(path
 						+ "/secure/_05_article/articleIndex.jsp");
 			}
 		}
 		if ("刪除".equals(prodaction)) {
-			System.out.println("Servlet呼叫Service.selectPage方法前");
 			articleService.delete(bean);
 			List<ArticleBean> result = articleService.select();
-			System.out.println("Servlet呼叫Service.selectPage方法後");
 			HttpSession session = request.getSession();
 			session.setAttribute("select", result);
-			System.out.println("setAttribute前");
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
 		}
