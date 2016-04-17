@@ -197,7 +197,7 @@
 		            
 		            column:{
 		            tooltip:{
-		               pointFormat:'<span>{series.name}: {point.y}<br/>'
+		               pointFormat:'<span>{series.name}: {point.y}</span><br/>'
 		            },
 		            dataGrouping: {
 		            	approximation: "sum",
@@ -380,31 +380,40 @@
 		            enabled: false
 		        },
 		        
-		        tooltip:{
-		               pointFormat:'<span>{series.name}: {point.y:.2f}<br/>',
+		        plotOptions: {
+		            line: {		            	
+		                tooltip:{
+		                	pointFormat:'<span>{series.name}: {point.y:.2f}</span><br/>',           
+		                },
+		                dataGrouping: {
+			                approximation: "average",
+			                enabled: true,
+			                forced: true,
+			                units: [['minute',[1]]]                
+			                },
 		            },
+		            column:{
+				        tooltip:{
+				           pointFormat:'<span>{series.name}: {point.y}</span><br/>'
+				        },
+				        dataGrouping: {
+			                approximation: "sum",
+			                enabled: true,
+			                forced: true,
+			                units: [['minute',[1]]]                
+			                }				            
+				    }	                
+	           	},
 
 		        series : [{
 		        	type : 'line',
 		            name : '${bean.stock_Code} ${bean.stock_Name}',
-		            data : instantPriceData,
-		            dataGrouping: {
-		                approximation: "average",
-		                enabled: true,
-		                forced: true,
-		                units: [['minute',[1]]]                
-		                }
+		            data : instantPriceData		            
 		        },{
 		    		type:'column',
 		    		name:'成交量',
 		    		data:instantVolumeData,
-		            yAxis: 1,
-		            dataGrouping: {
-		                approximation: "sum",
-		                enabled: true,
-		                forced: true,
-		                units: [['minute',[1]]]                
-		                }
+		            yAxis: 1		            
 		    	}]
 		    });			
 			
