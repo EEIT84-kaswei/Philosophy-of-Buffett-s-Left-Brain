@@ -36,6 +36,7 @@ public class DailyStockService {
 			oneDayArrayBuilder.add(bean.getHighest_Price());
 			oneDayArrayBuilder.add(bean.getLowest_Price());
 			oneDayArrayBuilder.add(bean.getClosing_Price());
+			oneDayArrayBuilder.add(new BigDecimal(bean.getTrade_Volume().intValue()));	
 			oneStockArrayBuilder.add(oneDayArrayBuilder);
 		}
 		String oneStockDataStr=oneStockArrayBuilder.build().toString();
@@ -101,12 +102,12 @@ public class DailyStockService {
 		}
 		
 		try {
-			daoHibernate.getSession().beginTransaction();
-			Integer tradeVolumn = service.selectJustTradeVolumn(1101, trading_Date);
+			daoHibernate.getSession().beginTransaction();			
+//			Integer tradeVolumn = service.selectJustTradeVolumn(1101, trading_Date);
 //			System.out.println(tradeVolumn);
-			DailyStockBean bean = service.selectOneDayofStock(1101, trading_Date1);
+//			DailyStockBean bean = service.selectOneDayofStock(1101, trading_Date1);
 //			System.out.println(bean);
-			String oneStockDataStr = service.selectStockVolumeColor(1101);
+			String oneStockDataStr = service.selectAllofOneStock(new Integer(2330));
 			System.out.println(oneStockDataStr);
 //			for(DailyStockBean bean2 : beans){
 //				System.out.println(bean2);

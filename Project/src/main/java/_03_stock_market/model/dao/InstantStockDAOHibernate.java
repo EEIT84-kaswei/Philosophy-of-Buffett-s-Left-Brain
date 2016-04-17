@@ -116,12 +116,12 @@ public class InstantStockDAOHibernate implements InstantStockDAO  {
 	}
 	@Override
 	public List<InstantStockBean> selectAllByStockCode(Integer stock_Code){
-		Query query = getSession().createQuery("from InstantStockBean where stock_Code = ?");
+		Query query = getSession().createQuery("from InstantStockBean where stock_Code = ? order by iDatetime asc");
 		query.setParameter(0, stock_Code);
 		List<InstantStockBean> result =  query.list();
 		return result;
 	}
-	
+	@Override
 	public InstantStockBean selectLatestByStockCode(Integer stock_Code){
 		InstantStockBean bean=null;
 		Query query=getSession().createQuery("from InstantStockBean where stock_Code=:stock_Code order by iDatetime desc");
@@ -167,7 +167,7 @@ public class InstantStockDAOHibernate implements InstantStockDAO  {
 	public InstantStockBean update(String stock_TypeCode, Integer stock_Code,
 			java.sql.Timestamp iDatetime,String stock_Name,BigDecimal purchase_Price,
 			BigDecimal selling_Price,BigDecimal final_price,BigDecimal change_Amount,
-			BigDecimal change_extent,Integer acc_Trade_Volume) {
+			BigDecimal change_extent,Integer acc_Trade_Volume,Integer trade_Volume) {
 		InstantStockBean bean= new InstantStockBean();
 		bean.setStock_TypeCode(stock_TypeCode);
 		bean.setStock_Code(stock_Code);
@@ -184,6 +184,7 @@ public class InstantStockDAOHibernate implements InstantStockDAO  {
 			result.setChange_Amount(change_Amount);
 			result.setChange_extent(change_extent);
 			result.setAcc_Trade_Volume(acc_Trade_Volume);
+			result.setTrade_Volume(trade_Volume);
 		}
 		return result;
 	}
