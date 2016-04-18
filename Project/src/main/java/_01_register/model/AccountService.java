@@ -14,9 +14,11 @@ import javax.mail.internet.MimeMessage;
 
 import misc.HibernateUtil;
 import _01_register.model.dao.AccountDAOHibernate;
+import _01_register.model.dao.AccountRoleDAOHibernate;
 
 public class AccountService {
 	private AccountDAOHibernate dao;
+
 
 	public void setDao(AccountDAOHibernate dao) {
 		this.dao = dao;
