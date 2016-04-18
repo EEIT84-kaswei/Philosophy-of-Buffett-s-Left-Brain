@@ -1,8 +1,13 @@
 package _03_stock_market.model;
 /*張秀維 Hsiu Chang, 01-04-2016 */
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -22,14 +27,17 @@ public class InstantStockService {
 			Transaction transaction = session.beginTransaction();
 
 			InstantStockService service = new InstantStockService();
-			service.setInstantStockDAO(new InstantStockDAOHibernate(session));
-			List<InstantStockBean> beans = service.select(null);
+			InstantStockDAOHibernate instantStockDAOHibernate=new InstantStockDAOHibernate();
+			instantStockDAOHibernate.setSessionFactory(HibernateUtil.getSessionFactory());
+			service.setInstantStockDAO(instantStockDAOHibernate);
+//			List<InstantStockBean> beans = service.select(null);
 //			System.out.println("beans="+beans);
-			List<InstantStockBean> beans1 = service.selectByOneStock(1101);
-			for(InstantStockBean xBean : beans1){
-				System.out.println(xBean);
-			}
-			
+			//測試selectByOneStock(Integer stock_Code)
+			String oneStockDataStr = service.selectByOneStock(new Integer(2330));
+			System.out.println(oneStockDataStr);
+			//測試selectLatestData(Integer stock_Code)
+//			String latestDataStr=service.selectLatestData(new Integer(2330));
+//			System.out.println(latestDataStr);
 			transaction.commit();
 		} finally {
 			HibernateUtil.closeSessionFactory();
@@ -39,12 +47,41 @@ public class InstantStockService {
 	//[即時K線圖]即時InsertService - 某支股票，當天全部交易資料 
 	//回傳[Insert]股價資料： (1)stock_Code股票代碼   (2)iDateTime時分秒   (3)final_Price成交價格
 	
-	public List<InstantStockBean> selectByOneStock(Integer stock_Code){
+	public String selectByOneStock(Integer stock_Code){
 		List<InstantStockBean> result = null;
 		result = InstantStockDAO.selectAllByStockCode(stock_Code);
-		return result;
+		String oneStockDataStr=null;
+		if(!result.isEmpty()){
+			JsonArrayBuilder oneStockArrayBuilder=Json.createArrayBuilder();
+			Iterator<InstantStockBean> it=result.iterator();
+			while(it.hasNext()){			
+				InstantStockBean bean=it.next();
+				JsonArrayBuilder oneDataArrayBuilder=Json.createArrayBuilder();
+				long timeMillis=bean.getiDatetime().getTime();
+				oneDataArrayBuilder.add(new BigDecimal(timeMillis));
+				oneDataArrayBuilder.add(bean.getFinal_price());
+				oneDataArrayBuilder.add(bean.getTrade_Volume());
+				oneStockArrayBuilder.add(oneDataArrayBuilder);
+			}
+			oneStockDataStr=oneStockArrayBuilder.build().toString();		
+		}
+		return oneStockDataStr;
 	}
 	
+	
+	
+	public String selectLatestData(Integer stock_Code){		
+		InstantStockBean bean=InstantStockDAO.selectLatestByStockCode(stock_Code);
+		String latestDataStr=null;
+		if(bean!=null){
+			JsonArrayBuilder latestDataArrayBuilder=Json.createArrayBuilder();
+			long timeMillis=bean.getiDatetime().getTime();
+			latestDataArrayBuilder.add(new BigDecimal(timeMillis));
+			latestDataArrayBuilder.add(bean.getFinal_price());
+			latestDataStr=latestDataArrayBuilder.build().toString();
+		}		
+		return latestDataStr;
+	}
 	
 	//1隻股某個時間資料 or 全部股票資料
 	public List<InstantStockBean> select(InstantStockBean bean) {
@@ -74,7 +111,7 @@ public class InstantStockService {
 			result = InstantStockDAO.update(bean.getStock_TypeCode(), bean.getStock_Code(),
 						bean.getiDatetime(), bean.getStock_Name(), bean.getPurchase_Price(),
 						bean.getSelling_Price(), bean.getFinal_price(), bean.getChange_Amount(),
-						bean.getChange_extent(), bean.getAcc_Trade_Volume());
+						bean.getChange_extent(), bean.getAcc_Trade_Volume(),bean.getTrade_Volume());
 		}
 		return result;
 	}

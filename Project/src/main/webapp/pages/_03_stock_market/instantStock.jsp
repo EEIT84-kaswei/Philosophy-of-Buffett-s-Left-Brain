@@ -19,9 +19,11 @@ table tr:hover{
 
 </head>
 
-<body style="margin: 0em 3em">
-	<div class="container">
-		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<body>
+
+<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
+
 
 
 
@@ -63,8 +65,6 @@ table tr:hover{
 			</form>
 
 		</div>
-
-	</div>
 
 </body>
 </html>

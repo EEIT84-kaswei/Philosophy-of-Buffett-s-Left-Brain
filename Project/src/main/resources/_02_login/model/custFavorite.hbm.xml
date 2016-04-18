@@ -5,8 +5,10 @@
 <hibernate-mapping>
     <class name="_02_login.model.CustFavoriteBean" table="custFavorite">
         
-        <id name="account" column="account"></id>
-        <property name="stock_Code" column="stock_Code" />
+        <composite-id>
+        	<key-property  name="account" column="account" />
+        	<key-property  name="stock_Code" column="stock_Code" />
+        </composite-id>
         
         
     </class>

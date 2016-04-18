@@ -24,15 +24,14 @@ public class CustFavoriteService {
 	public static void main(String[] args) {
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate();
-
-//		dao.setSessionFactory(HibernateUtil.getSessionFactory());
+		dao.setSessionFactory(HibernateUtil.getSessionFactory());
 		CustFavoriteService service = new CustFavoriteService();
 		service.setCustFavoriteDAO(dao);
 		// 測試查詢
 		try {
 			dao.getSession().beginTransaction();
-			List<CustFavoriteBean> selectBean = service.select();
-			for (CustFavoriteBean beans : selectBean) {
+			List<Integer> selectBean = service.selectByAccount("lara");
+			for (Integer beans : selectBean) {
 				System.out.println(beans);
 			}
 			dao.getSession().getTransaction().commit();
@@ -187,12 +186,17 @@ public class CustFavoriteService {
 		return result;
 	}
 
-	public List<CustFavoriteBean> selectByAccount(String account) {
+	//用使用者帳號，找出自選股的所有股票代號
+	public List<Integer> selectByAccount(String account) {
 		List<CustFavoriteBean> result = null;
+		List<Integer> stock_Code = new ArrayList<Integer>();
 		if (account != null) {
 			result = custFavoriteDAO.selectByAccount(account);
+			for(CustFavoriteBean xBean : result){
+				stock_Code.add(xBean.getStock_Code());
+			}
 		}
-		return result;
+		return stock_Code;
 	}
 
 	public List<CustFavoriteBean> selectByStock(Integer stock_Code) {

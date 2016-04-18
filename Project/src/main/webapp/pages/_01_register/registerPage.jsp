@@ -7,9 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>申請加入會員</title>
-<link rel="stylesheet" href="../../css/carley.css">
-<script type="text/javascript" src="../../js/jquery-2.2.1.min.js"></script>
-<script type="text/javascript" src="../../js/strength.js""></script>
 
 <script>
 	$(document).ready(function($) {
@@ -63,10 +60,10 @@
 	background-color: #fdfdfd;
 }
 </style>
-<body style="margin: 0em 3em">
-	<div class="container">
-		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<body>
 
+		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+<jsp:include page="/title.jsp" />
 
 
 		<!-- 網頁主要導覽列 -->
@@ -147,6 +144,6 @@
 		</div>
 
 
-	</div>
+
 </body>
 </html>

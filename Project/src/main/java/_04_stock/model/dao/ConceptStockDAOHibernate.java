@@ -5,36 +5,37 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import _04_stock.model.ConceptStockBean;
 import _04_stock.model.ConceptStockDAO;
 import misc.HibernateUtil;
 
 public class ConceptStockDAOHibernate implements ConceptStockDAO {
-	private Session session;
+	private SessionFactory sessionFactory;
 
-	public ConceptStockDAOHibernate(Session session) {
-		super();
-		this.session = session;
+	public ConceptStockDAOHibernate(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 	
 	public Session getSession(){
-		return session;
+		return sessionFactory.getCurrentSession();
 	}
 	
 	public static void main(String[] args) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.beginTransaction();
-			ConceptStockDAOHibernate dao = new ConceptStockDAOHibernate(session);
+			ConceptStockDAOHibernate dao = new ConceptStockDAOHibernate(sessionFactory);
 //			List<ConceptStockBean> bean = dao.select();
-//			ConceptStockBean bean = dao.select("c2");
+			ConceptStockBean bean = dao.select("c2");
 //			List<ConceptStockBean> bean = dao.selectByName("福");
 //			ConceptStockBean result = new ConceptStockBean();
 //			result.setCs_Code("c1");
 //			result.setCs_Name("abcdefg");
 //			ConceptStockBean bean = dao.insert(result);
-			boolean bean = dao.delete("c11");
+//			boolean bean = dao.delete("c11");
 			
 			System.out.println(bean);
 			session.getTransaction().commit();
