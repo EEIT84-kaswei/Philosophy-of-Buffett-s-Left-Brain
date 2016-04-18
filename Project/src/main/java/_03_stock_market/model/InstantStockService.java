@@ -59,8 +59,18 @@ public class InstantStockService {
 				JsonArrayBuilder oneDataArrayBuilder=Json.createArrayBuilder();
 				long timeMillis=bean.getiDatetime().getTime();
 				oneDataArrayBuilder.add(new BigDecimal(timeMillis));
-				oneDataArrayBuilder.add(bean.getFinal_price());
-				oneDataArrayBuilder.add(bean.getTrade_Volume());
+				BigDecimal final_price=bean.getFinal_price();
+				if(final_price!=null){
+					oneDataArrayBuilder.add(final_price);
+				}else{
+					oneDataArrayBuilder.add(new BigDecimal("0"));
+				}
+				Integer trade_Volume=bean.getTrade_Volume();
+				if(trade_Volume!=null){
+					oneDataArrayBuilder.add(bean.getTrade_Volume());
+				}else{
+					oneDataArrayBuilder.add(new Integer(0));
+				}				
 				oneStockArrayBuilder.add(oneDataArrayBuilder);
 			}
 			oneStockDataStr=oneStockArrayBuilder.build().toString();		

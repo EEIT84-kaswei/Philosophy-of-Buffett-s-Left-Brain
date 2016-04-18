@@ -8,6 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>申請加入會員</title>
 
+<link rel="stylesheet" href="../../css/carley.css">
+<script type="text/javascript" src="../../js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="../../js/strength.js"></script>
+<script type="text/javascript" src="../../js/account.js"></script>
+
 <script>
 	$(document).ready(function($) {
 
@@ -17,6 +22,13 @@
 			strengthButtonClass : 'button_strength',
 			strengthButtonText : 'Show Password',
 			strengthButtonTextToggle : 'Hide Password'
+		});
+		
+		var path = "${pageContext.request.contextPath}";
+		$('input[name="account"]').blur(function() {
+ 		 	var url = path+"/pages/_01_register/account.view";
+ 			var account = $('input[name="account"]').val();
+		 	sendRequest("GET", url, account, "textText");
 		});
 
 	});

@@ -103,13 +103,13 @@ public class AccountServlet extends HttpServlet {
 				}
 			}
 			if (account == null || account.trim().length() == 0) {
-				error.put("account", "帳號欄必須輸入");
+				error.put("account", "請輸入帳號");
 			}
 			if (passw == null || passw.trim().length() == 0) {
-				error.put("passw", "密碼欄必須輸入");
+				error.put("passw", "請輸入密碼");
 			}
 			if (checkpassw == null || checkpassw.trim().length() == 0) {
-				error.put("checkpassw", "密碼確認欄必須輸入");
+				error.put("checkpassw", "請輸入密碼確認");
 			}
 			if (passw.trim().length() > 0 && checkpassw.trim().length() > 0) {
 				if (!passw.trim().equals(checkpassw.trim())) {
@@ -118,17 +118,17 @@ public class AccountServlet extends HttpServlet {
 				}
 			}
 			if (name == null || name.trim().length() == 0) {
-				error.put("name", "姓名欄必須輸入");
+				error.put("name", "請輸入姓名");
 			}
 			if (idc == null || idc.trim().length() == 0) {
-				error.put("idc", "身分證字號欄必須輸入");
+				error.put("idc", "請輸入身分證字號");
 			} else {
 				if(!service.isValidId(idc)){
 					error.put("idc", "身分證字號格式不符");
 				}
 			}
 			if (email == null || email.trim().length() == 0) {
-				error.put("email", "電子郵件欄必須輸入");
+				error.put("email", "請輸入電子郵件");
 			} else {
 				if(!service.isValidEmail(email)){
 					error.put("email", "電子郵件格式不符");
@@ -145,7 +145,7 @@ public class AccountServlet extends HttpServlet {
 		}
 
 		if (service.accountExists(account)) {
-			error.put("account", "此帳號已存在，請換新帳號");
+			error.put("account", "此帳號已存在，請更換帳號");
 		} else {
 			if("寄送認證信".equals(prodaction)){
 				StringBuffer number = service.createNum();

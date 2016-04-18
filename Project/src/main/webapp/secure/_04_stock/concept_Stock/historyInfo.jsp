@@ -328,12 +328,12 @@
 		            						price.push([data[i][0],data[i][1]]);
 		            						volume.push([data[i][0],data[i][2]]);
 		            					}
-		            					instantPriceData=price;
-		            					instantVolumeData=volume;
+		            					instantChart.series[0].setData(price);
+		            					instantChart.series[1].setData(volume);
 		            					instantChart.redraw();
 		            				}		                    	
 		            			});		                    	
-		                    }, 10000);		                    
+		                    }, 60000);		                    
 		                }
 		            }
 		        },		
@@ -357,6 +357,7 @@
 		            }],
 		        
 		        rangeSelector: {
+		        	enabled:false,
 		            buttons: [{
 		                count: 1,
 		                type: 'minute',

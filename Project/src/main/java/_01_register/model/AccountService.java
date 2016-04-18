@@ -43,6 +43,14 @@ public class AccountService {
 			HibernateUtil.closeSessionFactory();
 		}
 	}
+	
+	public AccountBean selectByAccount(String account){
+		AccountBean result = null; 
+		if(account != null && account.trim().length() != 0){
+			result = dao.selectByAccount(account);
+		}
+		return result;
+	}
 
 	public StringBuffer createNum() {
 		int[] word = new int[8];
