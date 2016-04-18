@@ -15,14 +15,8 @@
 /* 	color: #BD63FF; */
 /* } */
 </style>
-
-
 </head>
-
-
-<body>
-	
-
+<body>	
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 		<jsp:include page="/title.jsp" />
 
@@ -32,33 +26,94 @@
 			<jsp:include page="/nav.jsp" />
 		</div>
 
-
-		<div
-			style="height: 20em; margin: 2em auto; padding: 2em">
-
+		<div style="height: 20em; margin: 2em auto; padding: 2em">
 
 			<!-- 表格開始 -->
-
-
 			
-				<form action="<c:url value="/pages/article.controller">
-					    <c:param name="ano" value="${singleArticle.ano}" /></c:url>" method="post">
-
+				<form action="
+					<c:url value="/pages/article.controller">
+					    <c:param name="sano" value="${singleArticle.ano}" />
+					</c:url>" method="post">
 				
 				<h2 style="text-align:center;color:purple">${singleArticle.atitle}</h2>
 				<p style="text-align:center">${singleArticle.aname}</p>
-				<p style="text-align:center">${singleArticle.atime}</p>
+				<fmt:formatDate var="time" value="${singleArticle.atime}" type="both" dateStyle="long" /> 
+				<p style="text-align:center">${time}</p>
 				<br>
 				<div style="width:500px;margin:0 auto">
-				<p>${singleArticle.acontext}</p>
+					<p>${singleArticle.acontext}</p>
 				</div>
 				<div align=center>
-				<input type="submit" name="prodaction" value="修改">
-				<input type="submit" name="prodaction" value="刪除" onclick="if(confirm('您確定刪除此留言嗎?')) return true;else return false">
-				
-				
+
+					<c:if test='<%=request.isUserInRole("admin")%>'>
+						<input type="submit" name="prodaction" value="修改">
+						<input type="submit" name="prodaction" value="刪除" onclick="if(confirm('您確定刪除此篇文章嗎?')) return true;else return false">								
+					</c:if>
+					
+				<%--
+ 					<h1><%=request.getRemoteUser()%></h1>
+					<h1>${singleArticle.account}</h1> 
+				--%>
+					
+					<c:set var="user" value="<%=request.getRemoteUser()%>" />		
+					<c:if test='${singleArticle.account == user }'>
+						<input type="submit" name="prodaction" value="修改">
+						<input type="submit" name="prodaction" value="刪除" onclick="if(confirm('您確定刪除此篇文章嗎?')) return true;else return false">								
+					</c:if>					
+					
 				</div>
 				</form>
+				
+				<!-- ------------------------------- 楚河漢界 ------------------------------- -->
+				
+				<c:if test="${not empty msg}">
+				<c:forEach var="row" items="${msg}">
+					<c:if test='${row.account == user }'>
+					
+						<form action="<c:url value="/pages/article.controller"/>" method="get">
+							<input type="text" name="mno" value="${row.mno}">
+							<input type="text" name="updm" value="${singleArticle.ano}">
+							<input type="submit" name="prodaction" value="編輯">
+						</form>
+						&nbsp;
+						<form action="<c:url value="/secure/_05_article/message.do"/>" method="get">
+							<input type="text" name="mno" value="${row.mno}">
+							<input type="submit" name="prodaction" value="刪除" 
+								onclick="if(confirm('您確定刪除此留言嗎?')) return true;else return false">
+						</form>
+						
+					</c:if>
+					<table>
+						<tr>
+							<td>${row.account}</td>
+						</tr>
+						<tr>
+							<td><fmt:formatDate value="${row.mtime}"
+									pattern="yyyy-MM-dd HH:mm:ss" /></td>
+						</tr>
+						<tr>
+							<td>${row.mcontext}</td>
+						</tr>
+						<tr>
+							<td>-----------------------------------</td>
+						</tr>
+					</table>
+				</c:forEach>
+			</c:if>
+		
+			<form action="<c:url value="/secure/_05_article/message.do"/>" method="get">
+				<input type="hidden" name="account" value="<%=request.getRemoteUser()%>"> 
+				<input type="hidden" name="ano" value="${singleArticle.ano}">
+				<textarea rows="20" cols="40" name="content" required>Message Test</textarea>
+				<script>
+					CKEDITOR.replace('content', {
+						width:880,
+					});
+				</script>
+				<br /> 
+				<input type="submit" name="prodaction" value="留言">
+			</form>
+				
 
 		</div>
 

@@ -21,8 +21,7 @@ import _05_newsArticle.model.NewsService;
 import _05_newsArticle.model.dao.NewsDAOHibernate;
 import misc.HibernateUtil;
 
-@WebServlet("/news.do")
-//@WebServlet("/news.do")
+@WebServlet("/pages/_05_newsArticle/news.do")
 public class NewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -44,31 +43,53 @@ public class NewsServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
 		String prodaction = request.getParameter("prodaction");
-		String nno = request.getParameter("nno");	
-//		Map<String, String> error = new HashMap<String, String>();
-//		request.setAttribute("error", error);
+		String nno = request.getParameter("nno");
+		String newUrl = request.getParameter("newUrl");
+		Map<String, String> error = new HashMap<String, String>();
+		request.setAttribute("error", error);
+		
+		if(newUrl != null && newUrl.trim().length() != 0){
+			Integer num = Integer.parseInt(newUrl);
+			NewsBean bean = service.selectByNno(num);
+			HttpSession session = request.getSession();
+			session.setAttribute("select", bean);				
+			String path = request.getContextPath();
+			response.sendRedirect(path+"/pages/_05_newsArticle/showNews.jsp");
+			return;
+		}
 		
 		if(nno != null && nno.trim().length() != 0){
 			service.delete(nno);
 			List<NewsBean> bean = service.selectAll();
-			request.setAttribute("select", bean);
-			request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
+			HttpSession session = request.getSession();
+			session.setAttribute("select", bean);				
+			String path = request.getContextPath();
+			response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");
 			return;
 		}
 			
-		if(prodaction == null) {
+		if(prodaction == null && newUrl == null && nno == null) {
 			List<NewsBean> bean = service.selectAll();
-			request.setAttribute("select", bean);
-			request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
+			HttpSession session = request.getSession();
+			session.setAttribute("select", bean);				
+			String path = request.getContextPath();
+			response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");
+			return;
+			
 		} else if("keySearch".equals(prodaction)){
 			String keyword = request.getParameter("keyword");
 			if(keyword != null && keyword.trim().length() != 0){
-				List<NewsBean> bean = service.selectByKeyWord(keyword);
-				request.setAttribute("select", bean);
-				request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);				
+				List<NewsBean> bean = service.selectByKeyWord(keyword);				
+				HttpSession session = request.getSession();
+				session.setAttribute("select", bean);				
+				String path = request.getContextPath();
+				response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");
+				
 			} else {
-				request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
+				String path = request.getContextPath();
+				response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");
 			}
 		} else if("dateSearch".equals(prodaction)){
 			String tempDate = request.getParameter("date");
@@ -79,59 +100,68 @@ public class NewsServlet extends HttpServlet {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				List<NewsBean> bean = service.selectByDate(date);
-				request.setAttribute("select", bean);
-				request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
+				List<NewsBean> bean = service.selectByDate(date);				
+				HttpSession session = request.getSession();
+				session.setAttribute("select", bean);				
+				String path = request.getContextPath();
+				response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");
 			} else {
-				request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
+				String path = request.getContextPath();
+				response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");
 			} 
+			
+		} else if("修改".equals(prodaction)){
+			String updtno = request.getParameter("updtno");
+			Integer n = Integer.parseInt(updtno);
+			NewsBean bean = service.selectByNno(n);			
+			HttpSession session = request.getSession();
+			session.setAttribute("select", bean);				
+			String path = request.getContextPath();
+			response.sendRedirect(path+"/pages/_05_newsArticle/updateNews.jsp");
+			
 		} else if("送出".equals(prodaction)) {
 			String updateNo = request.getParameter("updateNo");
-			
-			//request.setCharacterEncoding("UTF-8")只對位於請求本體的文字資料有效,對GET方法傳送的資料(如查詢字串)無效,
-			//因為Tomcat8.0以前用ISO-8859-1編碼來解讀整個URL。
-			//在Tomcat8.0以前有三種方法解決此問題：
-			//1.在server.xml內的<Connector connectionTimeout="UTF-8" port="8080"...>標籤中,加上URIEncoding="UTF-8"。
-			//2.在<Connector>標籤中加上useBodyEncodingForURI="true"。
-			//3.在程式中使用：
-			//  String name = request.getParameter('CustomerName');
-			//  name = new String(name.getBytes("ISO-8859-1"), "UTF-8");
-			//(Tomcat8.0以後使用UTF-8編碼來解讀整個URL,所以不需要修改。)--------------詳情請參閱：Servlet/JSP 第一冊 ch02-21
-//			java.util.Date Newsdate = null;
 			if(updateNo != null && updateNo.trim().length() != 0) {
-				String title = request.getParameter("title");
-				//title = new String(title.getBytes("ISO-8859-1"), "UTF-8");		
-				java.util.Date Newsdate = new Date();
+				String title = request.getParameter("title");		
+				java.util.Date newsDate = new Date();
 				String context = request.getParameter("context");
-				//context = new String(context.getBytes("ISO-8859-1"), "UTF-8");
-				
+				if(context == null || context.trim().length() == 0){
+					error.put("content", "請輸入新聞內容");
+					request.getRequestDispatcher("/pages/_05_newsArticle/updateNews.jsp").forward(request, response);
+					return;
+				}
 				NewsBean result = new NewsBean();
 				Integer i = Integer.parseInt(updateNo);
 				result.setNno(i);
 				result.setNtitle(title);
-				result.setNtime(Newsdate);
+				result.setNtime(newsDate);
 				result.setNcontext(context);
 				service.update(result);
-				List<NewsBean> bean = service.selectAll();
-				request.setAttribute("select", bean);
-				request.getRequestDispatcher("/pages/_05_newsArticle/news.jsp").forward(request, response);
+				List<NewsBean> bean = service.selectAll();				
+				HttpSession session = request.getSession();
+				session.setAttribute("select", bean);				
+				String path = request.getContextPath();
+				response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");				
 			} else {
 				String title = request.getParameter("title");		
-				java.util.Date Newsdate = new Date();
-				String context = request.getParameter("context");
-				
+				java.util.Date newsDate = new Date();
+				String context = request.getParameter("context");	
+				if(context == null || context.trim().length() == 0){
+					error.put("content", "請輸入新聞內容");
+					request.getRequestDispatcher("/pages/_05_newsArticle/insertNews.jsp").forward(request, response);
+					return;
+				}
 				NewsBean result = new NewsBean();
 				result.setNtitle(title);
-				result.setNtime(Newsdate);
+				result.setNtime(newsDate);
 				result.setNcontext(context);
 				service.insert(result);
 				List<NewsBean> bean = service.selectAll();
 				HttpSession session = request.getSession();
-				session.setAttribute("select", bean);
-				
+				session.setAttribute("select", bean);				
 				String path = request.getContextPath();
 				response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");
-//				request.getRequestDispatcher("/news.jsp").forward(request, response);
+
 			}
 		}	
 	}

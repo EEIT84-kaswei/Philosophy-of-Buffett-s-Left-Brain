@@ -34,12 +34,13 @@
 		<% response.setCharacterEncoding("UTF-8"); %>
 		
 		<form action="<c:url value="/pages/_05_newsArticle/news.do"/>" method="post">
-			<input type="hidden" name="updateNo" value="${select.nno}">
+			<input type="hidden" name="updateNo">
 			<label>Title:</label>
-			<textarea type="text" id="title" name="title" required autofocus>${select.ntitle}</textarea>
+			<textarea type="text" id="title" name="title" required autofocus>${param.title}</textarea>
 			<br /> 
 			<label>Context:</label>
-			<textarea id="context" name="context" rows="50" cols="100" required autofocus>${select.ncontext}</textarea>
+			<textarea id="context" name="context" 
+			rows="50" cols="100" required autofocus>${param.context}</textarea>
 			<script>CKEDITOR.replace( 'context', {width:800});</script>
 			<br />
 			<font size="-1" color="#FF0000">${error.content}</font>

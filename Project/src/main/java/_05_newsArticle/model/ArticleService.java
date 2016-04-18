@@ -10,14 +10,16 @@ import org.hibernate.Transaction;
 import _05_newsArticle.model.dao.ArticleDAOHibernate;
 
 public class ArticleService {
+	
 	private ArticleDAO ArticleDAO;
+	
 	public void setArticleDAO(ArticleDAO ArticleDAO) {
 		this.ArticleDAO = ArticleDAO;
 	}
+	
 	public static void main(String[] args) {
 		try {
-			Session session =
-					HibernateUtil.getSessionFactory().getCurrentSession();
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 			Transaction transaction = session.beginTransaction();
 
 			ArticleDAOHibernate dao = new ArticleDAOHibernate();
@@ -33,44 +35,37 @@ public class ArticleService {
 			HibernateUtil.closeSessionFactory();
 		}
 	}
-	public List<ArticleBean> select() {
-		List<ArticleBean> result = ArticleDAO.select(); 
-		return result;
+	public List<ArticleBean> selectAll() {
+		return ArticleDAO.select();
 	}
-	public List<ArticleBean> selectByAname(String bean) {
+	public List<ArticleBean> selectByAname(String aname) {
 		List<ArticleBean> result = null;
-		if(bean!=null && bean.trim().length()!=0) {
-			result = ArticleDAO.selectByAname(bean);
+		if(aname != null && aname.trim().length() != 0) {
+			result = ArticleDAO.selectByAname(aname);
 		}
 		return result;
 	}
-	public ArticleBean selectByAno(ArticleBean bean) {
-		ArticleBean result = null;
-		if(bean!=null && bean.getAno()!=0) {
-			result = ArticleDAO.selectByAno(bean.getAno());
-		}
-		return result;
+	public ArticleBean selectByAno(int ano) {		
+		return ArticleDAO.selectByAno(ano);
 	}
 	public ArticleBean insert(ArticleBean bean) {
 		ArticleBean result = null;
-		if(bean!=null) {
+		if(bean != null) {
 			result = ArticleDAO.insert(bean);
 		}
 		return result;
 	}
 	public boolean update(ArticleBean bean) {
 		boolean result = false;
-		if(bean!=null) {
-			result = ArticleDAO.update(bean.getAno(),bean.getId(),bean.getAname(),bean.getAtitle(),bean.getAcontext());
+		if(bean != null) {
+			result = ArticleDAO.update(bean.getAno(), bean.getAccount(), 
+					bean.getAname(), bean.getAtitle(), bean.getAcontext());
 		}
 		return result;
 	}
-	public boolean delete(ArticleBean bean) {
-		boolean result = false;
-		if(bean!=null) {
-			result = ArticleDAO.delete(bean.getAno());
-		}
-		return result;
+	public boolean delete(int ano) {
+		return ArticleDAO.delete(ano);
+
 	}
 
 }

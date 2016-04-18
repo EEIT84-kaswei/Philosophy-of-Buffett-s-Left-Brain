@@ -5,7 +5,8 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public interface QuestionDAO {
-	QuestionBean select(Integer id,Timestamp QDate);
+	QuestionBean select(String account,Timestamp QDate);
 	List<QuestionBean> selectAll();
 	QuestionBean insert(QuestionBean bean);
+	List<QuestionBean> select(String account);
 }

@@ -9,7 +9,7 @@
     <class name="_02_login.model.QuestionBean" table="question">
 
         <composite-id>
-        	<key-property name="id" column="id"/>
+        	<key-property name="account" column="account"/>
         	<key-property name="QDate" column="QDate"></key-property>
         </composite-id>
         <property name="Risk_Tolerance" type="integer">

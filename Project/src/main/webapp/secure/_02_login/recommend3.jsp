@@ -39,18 +39,17 @@
 	
 	根據您填寫的風險問卷，您的得分為：(${score.scores})
 	<br>
-	您屬於積極型。
+	您屬於保守型。
 	<br>
 	據此，本網站推薦您選擇下列幾種股票，供您參考。
-	<br>	
+	<br>
 	<ol>
-		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c1&send=送出"></c:url>'>生技醫療類股</a></li>
-		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c11&send=送出"></c:url>'>生質能源類股</a></li>
-		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c8&send=送出"></c:url>'>VR虛擬實境概念股</a></li>
-		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c13&send=送出"></c:url>'>電子3C類股</a></li>
-		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c5&send=送出"></c:url>'>蘋果供應鏈類股</a></li>
-		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c3&send=送出"></c:url>'>物聯網類股</a></li>
-		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c14&send=送出"></c:url>'>能源類股</a></li>		
+		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c2&send=送出"></c:url>'>定存股</a></li>
+		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c12&send=送出"></c:url>'>電信股</a></li>
+		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c17&send=送出"></c:url>'>食品工業股</a></li>
+		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c4&send=送出"></c:url>'>雲端概念股</a></li>		
+		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c16&send=送出"></c:url>'>觀光事業股</a></li>
+		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c7&send=送出"></c:url>'>航運股</a></li>	
 	</ol>
 	</div>
 
