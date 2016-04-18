@@ -7,7 +7,6 @@ import java.util.List;
 import org.hibernate.Session;
 
 public interface InstantStockDAO {
-	
 	InstantStockBean selectLatestByStockCode(Integer stock_Code);
 
 	Session getSession();

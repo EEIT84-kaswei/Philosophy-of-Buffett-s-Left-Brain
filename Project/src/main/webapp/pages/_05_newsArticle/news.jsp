@@ -15,16 +15,15 @@
 <!-- <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> -->
 <script type="text/javascript">
 
-$(document).ready(function() {
-	$('input[name="date"]').attr("readonly", "readonly").datepicker({
-		appendText: "請輸入YYYY-MM-DD",
-		showOn: "focus",
-		changeMonth: true,
-		changeYear: true,
-		dateFormat: "yy-mm-dd",
+	$(document).ready(function() {
+		$('input[name="date"]').attr("readonly", "readonly").datepicker({
+			appendText : "請輸入YYYY-MM-DD",
+			showOn : "focus",
+			changeMonth : true,
+			changeYear : true,
+			dateFormat : "yy-mm-dd",
+		});
 	});
-});
-
 </script>
 <style type="text/css">
 article, aside, figure, figcaption, footer, header, hgroup, menu, nav,
@@ -35,91 +34,79 @@ article, aside, figure, figcaption, footer, header, hgroup, menu, nav,
 body {
 	font: 62.5% "Trebuchet MS", sans-serif;
 	margin: 50px;
-}	
+}
+
 #newstable tr:hover {
 	color: #BD63FF;
-	background-color:#77FFCC;
+	background-color: #77FFCC;
 }
 
 #newstable tr:nth-child(even) {
 	background: #CCEEFF
-	}
-
+}
 </style>
 </head>
 <body>
 
-<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-<jsp:include page="/title.jsp" />
+	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+	<jsp:include page="/title.jsp" />
 
+	<jsp:include page="/nav.jsp"></jsp:include>
 
-		<jsp:include page="/nav.jsp"></jsp:include>
-		
-		
-	<%
-		response.setCharacterEncoding("UTF-8");
-	%>
+	<% response.setCharacterEncoding("UTF-8"); %>
 
-	<div align=center style="height:20px;width:10px"></div>
-	<div style="margin: 2em auto; padding: 2em; width:800px">
-	<div align=center>
-		<div class="row">
-			<form class="form-search" action="<c:url value="/news.do"/>" method="get">
-				<div class="input-append">
-					<input type="text" class="span2 search-query" name="keyword" 
-					placeholder="關鍵字搜尋" value="${param.keyword}" required autofocus>
-					<input class="btn" type="submit" name="prodaction" value="keySearch">
-				</div>
+	<div align=center style="height: 20px; width: 10px"></div>
+	<div style="margin: 2em auto; padding: 2em; width: 800px">
+		<div align=center>
+			<div class="row">
+				<form class="form-search" action="<c:url value="/news.do"/>" method="get">
+					<div class="input-append">
+						<input type="text" class="span2 search-query" name="keyword"
+							placeholder="關鍵字搜尋" value="${param.keyword}" required autofocus>
+						<input class="btn" type="submit" name="prodaction" value="keySearch">
+					</div>
+				</form>
+
+				<form class="form-search" action="<c:url value="/news.do"/>" method="get">
+					<div class="input-append">
+						<input type="text" class="span2 search-query" name="date"
+							placeholder="日期搜尋" value="${param.date}" required autofocus>
+						<input class="btn" type="submit" name="prodaction" value="dateSearch">
+					</div>
+				</form>
+			</div>
+
+			<form>
+				<c:if test="${not empty select}">
+					<table id="newstable" style="border: 2px #FFAC55 solid; padding: 2em; width: 35em" rules="all" cellpadding='5' align=center>
+						<thead>
+							<tr>
+								<th>NewsTitle</th>
+								<th>NewsDate</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="row" items="${select}">
+								<c:url value="/pages/_05_newsArticle/news.do" var="path" scope="page">
+									<c:param name="newUrl" value="${row.nno}" />
+								</c:url>
+
+								<tr style="height: 2em">
+									<td><a href="${path}">${row.ntitle}</a></td>
+									<td><fmt:formatDate value="${row.ntime}" pattern="yyyy-MM-dd" /></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:if>
 			</form>
-
-			<form class="form-search" action="<c:url value="/news.do"/>" method="get">
-				<div class="input-append">
-					<input type="text" class="span2 search-query" name="date" 
-					placeholder="日期搜尋" value="${param.date}" required autofocus>
-					<input class="btn" type="submit" name="prodaction" value="dateSearch">
-				</div>
-			</form>
+			
+			<c:if test='<%=request.isUserInRole("admin")%>'>
+				<form action="<c:url value="/pages/_05_newsArticle/insertNews.jsp"/>" method="post">
+					<input type="submit" value="新增">
+				</form>
+			</c:if>
 		</div>
-
-
-
-<form>
-	<c:if test="${not empty select}">
-
-			<table id="newstable" style="border: 2px #FFAC55 solid; padding:2em; width:35em" rules="all"
-					cellpadding='5' align=center>
-			<thead>
-				<tr>
-					<th>NewsTitle</th>
-					<th>NewsDate</th>
-
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="row" items="${select}">
-					<c:url value="/pages/_05_newsArticle/showNews.jsp" var="path" scope="page">
-						<c:param name="nno" value="${row.nno}" />
-						<c:param name="ntitle" value="${row.ntitle}" />
-						<fmt:formatDate var="time" value="${row.ntime}" pattern="yyyy年MM月dd日" />
-				   		<c:param name="ntime" value="${time}" />
-						<c:param name="ncontext" value="${row.ncontext}" />
-					</c:url>
-
-					<tr style="height:2em">
-						<td><a href="${path}">${row.ntitle}</a></td>
-						<td><fmt:formatDate value="${row.ntime}" pattern="yyyy-MM-dd" /></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</c:if>
-	</form>
-	
-
-		<form action="<c:url value="/pages/_05_newsArticle/updateNews.jsp"/>" method="get">
-			<input type="submit" value="新增">
-		</form>
-	</div>
 	</div>
 
 	<script language="JavaScript">

@@ -48,19 +48,11 @@ body {
 
 			<!-- 表格開始 -->
 
-			<form action="<c:url value="/pages/article.controller" />" method="post">
-				<center>
-				依作家搜尋
-				<input type="text" name="sname" value="">
-				<input type="submit" name="prodaction" value="搜尋">
-				</center>
-				
+			<form action="<c:url value="/pages/article.controller" />" method="post">				
 				<table id="maintable" style="border: 2px #FFAC55 solid; padding: 2em; width:800px" rules="all"
 					cellpadding='5'>
 					<thead>
-<!-- 						<tr><td ></td><th></th><td></td></tr> -->
-						<tr>
-							
+						<tr>							
 							<th>文章標題</th>
 							<th>作者</th>
 							<th>發表日期</th>
@@ -79,11 +71,20 @@ body {
 						</c:forEach>
 					</tbody>
 				</table>
-						<center>
+				<c:if test='<%=request.isUserInRole("admin")%>'>
+					<center>
 						<a href="/Project/secure/_05_article/newArticle.jsp">
-						<input type="button" value="發表文章">
+							<input type="button" value="發表文章">
 						</a>
-						</center>
+					</center>
+				</c:if>
+				<c:if test='<%=request.isUserInRole("writer")%>'>
+					<center>
+						<a href="/Project/secure/_05_article/newArticle.jsp">
+							<input type="button" value="發表文章">
+						</a>
+					</center>
+				</c:if>
 			</form>
 
 		</div>

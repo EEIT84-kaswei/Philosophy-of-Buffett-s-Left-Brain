@@ -1,35 +1,26 @@
 package _06_message.model;
-/* 陳姵吟 Carley Chen, 01-04-2016 */
-
 public class MessageBean {
 	private Integer mno;
-	private Integer id;
+	private String account;
 	private Integer ano;
 	private java.util.Date mtime;
 	private String mcontext;
-	public Object messageDAO;
-	
-	public MessageBean(){
-		
-	}
-	
 	@Override
 	public String toString() {
-		return "MessageBean [mno=" + mno + ", id=" + id + ", ano=" + ano
-				+ ", mtime=" + mtime + ", mcontext=" + mcontext + "]";
+		return "MessageBean [mno=" + mno + ", account=" + account + ", ano="
+				+ ano + ", mtime=" + mtime + ", mcontext=" + mcontext + "]";
 	}
-	
 	public Integer getMno() {
 		return mno;
 	}
 	public void setMno(Integer mno) {
 		this.mno = mno;
 	}
-	public Integer getId() {
-		return id;
+	public String getAccount() {
+		return account;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 	public Integer getAno() {
 		return ano;
@@ -48,6 +39,6 @@ public class MessageBean {
 	}
 	public void setMcontext(String mcontext) {
 		this.mcontext = mcontext;
-	}
-	
+	}			
+
 }

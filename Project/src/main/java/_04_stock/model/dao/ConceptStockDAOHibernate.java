@@ -17,15 +17,6 @@ public class ConceptStockDAOHibernate implements ConceptStockDAO {
 	public ConceptStockDAOHibernate(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	public ConceptStockDAOHibernate() {
-	}
-	
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 	public Session getSession(){
 		return sessionFactory.getCurrentSession();
 	}

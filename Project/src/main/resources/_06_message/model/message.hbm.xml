@@ -1,31 +1,25 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016/3/30 ?U?? 08:04:15 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
 
+<!-- Generated 2016/4/17 ?U?? 01:27:18 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
     <class name="_06_message.model.MessageBean" table="message">
-    
         <id name="mno" type="java.lang.Integer">
-            <column name="mno" />
+            <column name="MNO" />
             <generator class="identity" />
         </id>
-        
-        <property name="id" type="java.lang.Integer">
-            <column name="id" />
+        <property name="account" type="java.lang.String">
+            <column name="ACCOUNT" />
         </property>
-        
         <property name="ano" type="java.lang.Integer">
-            <column name="ano" />
+            <column name="ANO" />
         </property>
-        
         <property name="mtime" type="java.util.Date">
-            <column name="mtime" />
+            <column name="MTIME" />
         </property>
-        
         <property name="mcontext" type="java.lang.String">
-            <column name="mcontext" />
+            <column name="MCONTEXT" />
         </property>
-        
     </class>
 </hibernate-mapping>

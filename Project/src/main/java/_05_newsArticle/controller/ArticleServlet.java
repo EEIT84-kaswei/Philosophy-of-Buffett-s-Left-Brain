@@ -18,146 +18,161 @@ import _05_newsArticle.model.ArticleBean;
 import _05_newsArticle.model.ArticleService;
 import _05_newsArticle.model.dao.ArticleDAOHibernate;
 
+import _06_message.model.MessageBean;
+import _06_message.model.MessageService;
+import _06_message.model.dao.MessageDAOHibernate;
+
 @WebServlet(urlPatterns = { "/pages/article.controller" })
 public class ArticleServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
 	private ArticleService articleService;
+	private MessageService messageService;
 
 	@Override
 	public void init() throws ServletException {
 		ArticleDAOHibernate dao = new ArticleDAOHibernate();
 		dao.setSessionFactory(HibernateUtil.getSessionFactory());
 		articleService = new ArticleService();
-		articleService.setArticleDAO(dao);
+		articleService.setArticleDAO(dao);	
+		
+		MessageDAOHibernate messageDao = new MessageDAOHibernate();
+		messageDao.setSessionFactory(HibernateUtil.getSessionFactory());
+		messageService = new MessageService();
+		messageService.setDao(messageDao);
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// 接收HTML Form資料
 		request.setCharacterEncoding("UTF-8");
-		String no = request.getParameter("ano");
-		String strId = request.getParameter("id");
-		String aname = request.getParameter("aname");
-		String atitle = request.getParameter("atitle");
-		String acontext = request.getParameter("acontext");
-		String prodaction = request.getParameter("prodaction");
-		String sname = request.getParameter("sname");
-		// 轉換HTML Form資料
 		Map<String, String> error = new HashMap<String, String>();
 		request.setAttribute("error", error);
-
-		Integer ano = 0;
-		if (no != null && no.trim().length() != 0) {
-			try {
-				ano = Integer.parseInt(no.trim());
-			} catch (NumberFormatException e) {
-			}
-		}
 		
-		int id = 0;
-		if (strId != null && strId.trim().length() != 0) {
-			try {
-				id = Integer.parseInt(strId.trim());
-			} catch (NumberFormatException e) {
-			}
-		}
-		//帳號ID暫時寫死
-		id=131;
+		String no = request.getParameter("ano");
+		String prodaction = request.getParameter("prodaction");
 		
-		
-		// 驗證HTML Form資料
-		if ("Insert".equals(prodaction)) {
-			if (aname == null || aname.trim().length() == 0) {
-				error.put("aname", "名稱欄位請勿空白");
-			}
-			if (atitle == null || atitle.trim().length() == 0) {
-				error.put("atitle", "標題欄位請勿空白");
-			}
-			if (acontext == null || acontext.trim().length() == 0) {
-				error.put("acontext", "內文欄位請勿空白");
-			}
-		}
-
-		if (error != null && !error.isEmpty() && "Insert".equals(prodaction)) {
-			request.getRequestDispatcher("/secure/_05_article/newArticle.jsp")
-					.forward(request, response);
-			return;
-		}
-		// 呼叫Model
-		ArticleBean bean = new ArticleBean();
-		bean.setId(id);
-		bean.setAno(ano);
-		bean.setAname(aname);
-		bean.setAtime(new Date());
-		bean.setAtitle(atitle);
-		bean.setAcontext(acontext);
-		// 根據Model執行結果顯示View
-		
-		
-		
-//		System.out.println("01"+prodaction);
-//		System.out.println("02"+(sname.trim().length() == 0));//沒資料為Null 打開會NullPointerException
-//		System.out.println(bean.getAno());
-		if (prodaction == null&&no!=null) {
-			ArticleBean result = articleService.selectByAno(bean);
+		if(no != null && no.trim().length() != 0){
+			Integer ano = Integer.parseInt(no);
+			ArticleBean aresult = articleService.selectByAno(ano);
+			List<MessageBean> mresult = messageService.selectByAno(ano);
 			HttpSession session = request.getSession();
-			session.setAttribute("singleArticle", result);
+			session.setAttribute("singleArticle", aresult);
+			session.setAttribute("msg", mresult);
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/secure/_05_article/singleArticle.jsp");
+			return;
 		}
-		if ((prodaction == null||("搜尋".equals(prodaction)&&sname.trim().length() == 0))&&no==null) {
-			List<ArticleBean> result = articleService.select();
+		
+		if (prodaction == null && no == null) {
+			List<ArticleBean> result = articleService.selectAll();
 			HttpSession session = request.getSession();
 			session.setAttribute("select", result);
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
-		}
-		if ("搜尋".equals(prodaction)&&sname.trim().length() != 0) {
-			List<ArticleBean> result = articleService.selectByAname(sname);
-			HttpSession session = request.getSession();
-			session.setAttribute("select", result);
-			String path = request.getContextPath();
-			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
-		}
-		
-		if ("修改".equals(prodaction)) {
-			ArticleBean result = articleService.selectByAno(bean);
-			HttpSession session = request.getSession();
-			session.setAttribute("updArticle", result);
-			String path = request.getContextPath();
-			response.sendRedirect(path
-					+ "/secure/_05_article/updArticle.jsp");
-		}
-		
-		if ("Insert".equals(prodaction)) {
-			ArticleDAOHibernate dao = new ArticleDAOHibernate();
-			ArticleBean bano = articleService.selectByAno(bean);
-			System.out.println("bano=" + bano);
-			if (bano != null && ano.equals(bano.getAno())) {
-				articleService.update(bean);
-				List<ArticleBean> result = articleService.select();
+			return;
+			
+		} else if ("修改".equals(prodaction)) {
+			String sano = request.getParameter("sano");
+			if(sano != null && sano.trim().length() != 0){
+				Integer ano = Integer.parseInt(sano);
+				ArticleBean result = articleService.selectByAno(ano);
 				HttpSession session = request.getSession();
-				session.setAttribute("select", result);
+				session.setAttribute("updArticle", result);
 				String path = request.getContextPath();
-				response.sendRedirect(path
-						+ "/secure/_05_article/articleIndex.jsp");
-			} else {
-				articleService.insert(bean);
-				List<ArticleBean> result = articleService.select();
-				HttpSession session = request.getSession();
-				session.setAttribute("select", result);
-				String path = request.getContextPath();
-				response.sendRedirect(path
-						+ "/secure/_05_article/articleIndex.jsp");
+				response.sendRedirect(path + "/secure/_05_article/updArticle.jsp");
+				return;
 			}
-		}
-		if ("刪除".equals(prodaction)) {
-			articleService.delete(bean);
-			List<ArticleBean> result = articleService.select();
+			
+		} else if ("刪除".equals(prodaction)) {
+			String sano = request.getParameter("sano");
+			if(sano != null && sano.trim().length() != 0){
+				Integer ano = Integer.parseInt(sano);
+				articleService.delete(ano);
+				List<ArticleBean> result = articleService.selectAll();
+				HttpSession session = request.getSession();
+				session.setAttribute("select", result);
+				String path = request.getContextPath();
+				response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
+				return;
+			}
+			
+		} else if ("Insert".equals(prodaction)) {
+			String uano = request.getParameter("uano");
+			if(uano != null && uano.trim().length() != 0){
+				Integer ano = Integer.parseInt(uano);
+				String account = request.getRemoteUser();
+				String aname =  request.getParameter("aname");
+				String atitle =  request.getParameter("atitle");
+				java.util.Date atime = new Date();
+				String acontext =  request.getParameter("acontext");
+				if(acontext.trim().length() == 0){
+					error.put("acontext", "請輸入文章內容");
+					request.getRequestDispatcher("/secure/_05_article/updArticle.jsp").forward(request, response);
+					return;
+				}
+				ArticleBean bean = new ArticleBean();
+				bean.setAno(ano);
+				bean.setAccount(account);
+				bean.setAname(aname);
+				bean.setAtitle(atitle);
+				bean.setAtime(atime);
+				bean.setAcontext(acontext);
+				
+				articleService.update(bean);
+				List<ArticleBean> result = articleService.selectAll();
+				HttpSession session = request.getSession();
+				session.setAttribute("select", result);
+				String path = request.getContextPath();
+				response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
+				return;
+				
+			} else {
+				String account = request.getRemoteUser();
+				String aname =  request.getParameter("aname");
+				String atitle =  request.getParameter("atitle");
+				java.util.Date atime = new Date();
+				String acontext =  request.getParameter("acontext");
+				if(acontext.trim().length() == 0){
+					error.put("acontext", "請輸入文章內容");
+					request.getRequestDispatcher("/secure/_05_article/newArticle.jsp").forward(request, response);
+					return;
+				}
+				ArticleBean bean = new ArticleBean();
+				bean.setAccount(account);
+				bean.setAname(aname);
+				bean.setAtitle(atitle);
+				bean.setAtime(atime);
+				bean.setAcontext(acontext);
+				if(acontext.trim().length() == 0){
+					error.put("acontext", "請輸入文章內容");
+					request.getRequestDispatcher("/pages/_05_newsArticle/updArticle.jsp").forward(request, response);
+					return;
+				}
+				articleService.insert(bean);
+				List<ArticleBean> result = articleService.selectAll();
+				HttpSession session = request.getSession();
+				session.setAttribute("select", result);
+				String path = request.getContextPath();
+				response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
+				return;
+			}
+			
+		} else if ("編輯".equals(prodaction)) {			
+			String updm = request.getParameter("updm");
+			String smno = request.getParameter("mno");
+			Integer ano = Integer.parseInt(updm);
+			Integer mno = Integer.parseInt(smno);
+			
+			ArticleBean aresult = articleService.selectByAno(ano);
+			List<MessageBean> mresult = messageService.selectByAno(ano);
 			HttpSession session = request.getSession();
-			session.setAttribute("select", result);
+			session.setAttribute("singleArticle", aresult);
+			session.setAttribute("msg", mresult);
+			session.setAttribute("updno", mno);
 			String path = request.getContextPath();
-			response.sendRedirect(path + "/secure/_05_article/articleIndex.jsp");
+			response.sendRedirect(path + "/secure/_05_article/updMessage.jsp");
+			return;
 		}
 	}
 

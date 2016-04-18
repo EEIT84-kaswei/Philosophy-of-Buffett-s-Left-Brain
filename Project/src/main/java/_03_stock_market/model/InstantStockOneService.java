@@ -78,6 +78,7 @@ public class InstantStockOneService {
 		return oneStock.get(0);
 	}
 	
+
 	public List<InstantStockOneBean> select(InstantStockOneBean bean) {
 		List<InstantStockOneBean> result = null;
 		

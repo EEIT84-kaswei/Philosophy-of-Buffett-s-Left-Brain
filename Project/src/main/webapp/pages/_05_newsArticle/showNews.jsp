@@ -13,55 +13,44 @@
 </style>
 <script type="text/javascript">
 	function confirmDelete() {
-		if (confirm("確定刪除此項新聞資料(編號:${param.nno})?")) {
-			document.forms[0].action = "<c:url value='/news.do?nno=${param.nno}' />";
+		if (confirm("確定刪除此項新聞資料(編號:${select.nno})?")) {
+			document.forms[0].action = "<c:url value='/pages/_05_newsArticle/news.do?nno=${select.nno}' />";
 			document.forms[0].method = "POST";
 			document.forms[0].submit();
 		} else {
 		}
-	}
-
-	function toUpdateView() {
-		var title=encodeURI("${param.ntitle}");
-		var context=encodeURI("${param.ncontext}");
-		document.forms[0].action = "updateNews.jsp?no=${param.nno}&title="+title+"&context="+context;
-		document.forms[0].method = "POST";
-		document.forms[0].submit();
-	}
-	
+	}	
 </script>
 </head>
 <body>
 
-<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-<jsp:include page="/title.jsp" />
+	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+	<jsp:include page="/title.jsp" />
 
+	<!-- 網頁主要導覽列 -->
+	<div><jsp:include page="/nav.jsp" /></div>
+	
+	<% response.setCharacterEncoding("UTF-8"); %>
 
-
-		<!-- 網頁主要導覽列 -->
-		<div>
-			<jsp:include page="/nav.jsp" />
-		</div>
-	<%
-		response.setCharacterEncoding("UTF-8");
-	%>
-
-<div style="hieght:20px;width:20px;padding:20px;margin:2em">
-</div>
-
-	<form action="news.do" method="POST">
-		
-		<h2 style="text-align:center;color:purple">${param.ntitle}</h2>
-		<p style="text-align:center">${param.ntime}</p>
-		<br>
-		<div style="width:500px;margin:0 auto">
-		<p>${param.ncontext}</p>
-		</div>
-		<div align=center>
-		<input type="button" name="update" value="修改" onclick="toUpdateView()" />
-		&nbsp;&nbsp;&nbsp; 
-		<input type="button" name="delete" value="刪除" onclick="confirmDelete()" />
-		</div>
+	<div style="hieght:20px;width:20px;padding:20px;margin:2em"></div>
+	
+		<form action="<c:url value="/pages/_05_newsArticle/news.do"/>" method="post">
+			<input type="hidden" name="updtno" value="${select.nno}">
+			<h2 style="text-align:center;color:purple">${select.ntitle}</h2>
+			<fmt:formatDate var="time" value="${select.ntime}" pattern="yyyy年MM月dd日" />
+			<p style="text-align:center">${time}</p>
+			<br>
+			<div style="width:500px;margin:0 auto">
+				<p>${select.ncontext}</p>
+			</div>
+			
+			<c:if test='<%=request.isUserInRole("admin")%>'>
+				<div align=center>
+					<input type="submit" name="prodaction" value="修改" />
+					&nbsp;&nbsp;&nbsp; 
+					<input type="button" name="delete" value="刪除" onclick="confirmDelete()" />
+				</div>
+			</c:if>
 	</form>
 
 </body>

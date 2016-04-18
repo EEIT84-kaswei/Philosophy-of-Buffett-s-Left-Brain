@@ -126,7 +126,7 @@ td.favorL:hovor {
 						<tr style="height: 30px; background: #FFDCB9">
 							<th>自選股</th>
 							<th>股票代碼</th>
-							<th>&nbsp;&nbsp;股票名稱&nbsp;&nbsp;</th>
+							<th>&nbsp;&nbsp;股票名稱&nbsp;&nbsp;</th>							
 							<th>買進價格</th>
 							<th>賣出價格</th>
 							<th>成交價格</th>
@@ -148,12 +148,12 @@ td.favorL:hovor {
 								<td><a
 									href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url>">${data.stock_Code}</a></td>
 								<td>${data.stock_Name}</td>
-								<td>${data.purchase_Price}</td>
-								<td>${data.selling_Price}</td>
-								<td>${data.final_price}</td>
-								<td>${data.change_Amount}</td>
-								<td>${data.change_extent}</td>
-								<td>${data.acc_Trade_Volume}</td>
+								<td><c:out value="${data.purchase_Price}" default="-" /></td>
+								<td><c:out value="${data.selling_Price}" default="-" /></td>
+								<td><c:out value="${data.final_price}" default="-" /></td>
+								<td><c:out value="${data.change_Amount}" default="-" /></td>
+								<td><c:out value="${data.change_extent}" default="-" /></td>
+								<td><c:out value="${data.acc_Trade_Volume}" default="-" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -25,7 +25,7 @@ public class ConceptStockService {
 	
 	public static void main(String[] args){
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-		ConceptStockDAOHibernate daoHibernate = new ConceptStockDAOHibernate();
+		ConceptStockDAOHibernate daoHibernate = new ConceptStockDAOHibernate(sessionFactory);
 		ConceptStockService service = new ConceptStockService();
 		service.setConceptStockDAO(daoHibernate);
 		
