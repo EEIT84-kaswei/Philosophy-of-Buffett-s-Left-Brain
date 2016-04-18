@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/4/7 ?W?? 12:09:03 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="_03_stock_market.model.LegalPersonBean" table="legalPerson">
+        <composite-id>
+        	<key-property  name="ldate" column="ldate" />
+        	<key-property  name="stock_Code" column="stock_Code" />
+        </composite-id>
+           
+        <property name="FC_Trade_Count" column="FC_TRADE_COUNT" />
+        <property name="IT_Trade_Count" column="IT_TRADE_COUNT" />
+        <property name="SD_Trade_Count" column="SD_TRADE_COUNT" />
+        <property name="Trade_Total" column="TRADE_TOTAL" />
+
+    </class>
+</hibernate-mapping>
