@@ -40,10 +40,14 @@ public class QuestionServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> error = new HashMap<String, String>();
 		request.setAttribute("error", error);
+		Map<String, Integer> score = new HashMap<String, Integer>();
+		request.setAttribute("score", score);
+		
 		
 		request.setCharacterEncoding("UTF-8");
 
 		// 接收HTML Form資料
+		String account = request.getRemoteUser();
 		String q1 = request.getParameter("question1");
 		String q2 = request.getParameter("question2");
 		String q3 = request.getParameter("question3");
@@ -52,7 +56,7 @@ public class QuestionServlet extends HttpServlet {
 		String q6 = request.getParameter("question6");
 		// 轉換HTML Form資料
 		int Q1 = 0, Q2 = 0, Q3 = 0, Q4 = 0, Q5 = 0, Q6 = 0;
-		Integer id = 4;
+		
 		Integer Risk_Tolerance = 0;
 		SimpleDateFormat sformat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		Timestamp QDate = new Timestamp(new Date().getTime());
@@ -186,16 +190,26 @@ public class QuestionServlet extends HttpServlet {
 		Risk_Tolerance = service.risk(scores);
 		QuestionBean bean = new QuestionBean();
 		try {
-			bean.setId(id);
+			bean.setAccount(account);
 			bean.setQDate(QDate);
 			bean.setRisk_Tolerance(Risk_Tolerance);
 			bean.setScores(scores);
 
 			service.insert(bean);
-			// request.setAttribute("AnswerBean", bean);
+			score.put("scores", scores);
+			if(Risk_Tolerance==1){
 			RequestDispatcher rd = request
-					.getRequestDispatcher("/secure/_01_register/questionnaire/types.jsp");
+					.getRequestDispatcher("/secure/_02_login/recommend.jsp");
 			rd.forward(request, response);
+			}else if(Risk_Tolerance==2){
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/secure/_02_login/recommend2.jsp");
+				rd.forward(request, response);
+			}else {
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/secure/_02_login/recommend3.jsp");
+				rd.forward(request, response);
+			}
 			return;
 			// if(Risk_Tolerance == 1){
 			// rd =

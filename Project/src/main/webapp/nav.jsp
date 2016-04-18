@@ -86,7 +86,6 @@ body {
 						<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></li> 
       					<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></li> 
        					<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></li>  
-               			<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="chengFenv"/></c:url>">成分股</a></li>
                			<li><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></li>
                		</ul>
         		</li>
@@ -127,7 +126,7 @@ body {
 		            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">管理員<span class="caret"></span></a>
             		<ul class="dropdown-menu">
               			 <li><a href="<c:url value='/member.do' />">會員管理</a></li>
-               			 <li><a href="<c:url value='/secure/admin/stockrevise.jsp'/>">股票管理</a></li>
+               			 <li><a href="<c:url value='/secure/StockCodeServlet'/>">股票管理</a></li>
                			 <li><a href="<c:url value='/secure/message/MessageTest.jsp'/>">留言板測試</a></li>
 
                		</ul>
