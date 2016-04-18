@@ -31,8 +31,8 @@ public class AccountRoleService {
 		}
 		return result;
 	}
-	public boolean update(AccountRoleBean bean) {
-		boolean result = false;
+	public AccountRoleBean update(AccountRoleBean bean) {
+		AccountRoleBean result = null;
 		if(bean!=null) {
 			result = accountRoleDAO.update(bean.getaccount(), bean.getaccount_Role());
 		}

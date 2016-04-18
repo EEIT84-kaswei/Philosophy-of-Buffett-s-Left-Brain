@@ -39,8 +39,6 @@ public class QuestionServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> error = new HashMap<String, String>();
 		request.setAttribute("error", error);
-		Map<String, Integer> score = new HashMap<String, Integer>();
-		request.setAttribute("score", score);
 
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("接收HTML Form資料");
@@ -111,12 +109,13 @@ public class QuestionServlet extends HttpServlet {
 		System.out.println("驗證HTML Form資料");
 		// 驗證HTML Form資料
 		QuestionBean beanOne = null;
-		if(service.selectLast(account)==null){
+		if (service.selectLast(account) == null) {
 			RequestDispatcher rd = request
 					.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
-			rd.forward(request, response);			
-		}else beanOne=service.selectLast(account);	
-		
+			rd.forward(request, response);
+		} else
+			beanOne = service.selectLast(account);
+
 		if (account != null && beanOne == null) {
 			if (q1 == null) {
 				error.put("question1", "請回答第一題");
@@ -161,21 +160,7 @@ public class QuestionServlet extends HttpServlet {
 				return;
 			}
 		} else {
-			// if(q1==null||q2==null||q3==null||q4==null||q5==null||q6==null){
-			//
-			// RequestDispatcher rd = request
-			// .getRequestDispatcher("/secure/register/question.jsp");
-			// rd.forward(request, response);
-			//
-			// return;
-			// }
 
-			// Integer scores = Q1+Q2+Q3+Q4+Q5+Q6;
-			// if(scores <= 11){
-			// Risk_Tolerance = 1;
-			// }else if(scores>11 && scores<=21){
-			// Risk_Tolerance = 2;
-			// }else Risk_Tolerance = 3;
 			System.out.println("錯誤前");
 			System.out.println(error.isEmpty());
 			if (!error.isEmpty()) {
@@ -193,60 +178,64 @@ public class QuestionServlet extends HttpServlet {
 				Q4 = 3;
 			} else if (Q4 > 1) {
 				Q4 = 2;
-			} else
+			} else if(Q4==1)
 				Q4 = 1;
 			// 呼叫Model
 			Integer scores = service.scores(Q1, Q2, Q3, Q4, Q5, Q6);
 			Risk_Tolerance = service.risk(scores);
 			QuestionBean bean = new QuestionBean();
+			if (scores == 0) {
+				if (account != null && beanOne != null) {
+					if (beanOne.getRisk_Tolerance() == 1) {
+						request.setAttribute("oldScores", beanOne.getScores());
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/secure/_02_login/recommend.jsp");
+						rd.forward(request, response);
 
-			System.out.println("account =" + account);
-			System.out.println("account" + account);
-			if (account != null && beanOne != null) {
-				if (beanOne.getRisk_Tolerance() == 1) {
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/secure/_02_login/recommend.jsp");
-					rd.forward(request, response);
+					} else if (beanOne.getRisk_Tolerance() == 2) {
+						request.setAttribute("oldScores", beanOne.getScores());
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/secure/_02_login/recommend2.jsp");
+						rd.forward(request, response);
+
+					} else if (beanOne.getRisk_Tolerance() == 3) {
+						request.setAttribute("oldScores", beanOne.getScores());
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/secure/_02_login/recommend3.jsp");
+						rd.forward(request, response);
+
+					}
+				}
+			} else {
+				try {
+					bean.setAccount(account);
+					bean.setQDate(QDate);
+					bean.setRisk_Tolerance(Risk_Tolerance);
+					bean.setScores(scores);
+					service.insert(bean);
+					beanOne = service.selectLast(account);
+					if (Risk_Tolerance == 1) {
+						request.setAttribute("oldScores", beanOne.getScores());
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/secure/_02_login/recommend.jsp");
+						rd.forward(request, response);
+					} else if (Risk_Tolerance == 2) {
+						request.setAttribute("oldScores", beanOne.getScores());
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/secure/_02_login/recommend2.jsp");
+						rd.forward(request, response);
+					} else {
+						request.setAttribute("oldScores", beanOne.getScores());
+						RequestDispatcher rd = request
+								.getRequestDispatcher("/secure/_02_login/recommend3.jsp");
+						rd.forward(request, response);
+					}
 					return;
-				} else if (beanOne.getRisk_Tolerance() == 2) {
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/secure/_02_login/recommend2.jsp");
-					rd.forward(request, response);
-					return;
-				} else if (beanOne.getRisk_Tolerance() == 3) {
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/secure/_02_login/recommend3.jsp");
-					rd.forward(request, response);
+
+				} catch (Exception e) {
+					e.printStackTrace();
 					return;
 				}
-			}
-
-			try {
-				bean.setAccount(account);
-				bean.setQDate(QDate);
-				bean.setRisk_Tolerance(Risk_Tolerance);
-				bean.setScores(scores);
-
-				service.insert(bean);
-				score.put("scores", scores);
-				if (Risk_Tolerance == 1) {
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/secure/_02_login/recommend.jsp");
-					rd.forward(request, response);
-				} else if (Risk_Tolerance == 2) {
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/secure/_02_login/recommend2.jsp");
-					rd.forward(request, response);
-				} else {
-					RequestDispatcher rd = request
-							.getRequestDispatcher("/secure/_02_login/recommend3.jsp");
-					rd.forward(request, response);
-				}
-				return;
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				return;
 			}
 		}
 	}

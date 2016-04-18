@@ -10,8 +10,9 @@
 
 <style type="text/css">
 #mainDIV{
-	border:1px blue solid;
-	height:30em;
+
+	/*border:1px blue solid;*/
+	/*height:15em;*/
 	margin:1em;
 	padding:1em;
 	align:center;
@@ -31,13 +32,13 @@
 <jsp:include page="/nav.jsp" />
 </div>
 
-<div align=center id="mainDIV">
+<div align="center" id="mainDIV">
 
-<h3 align=center>推薦股票</h3>
+<h3 align="center">推薦股票</h3>
 
 	<div>
 	
-	根據您填寫的風險問卷，您的得分為：(${score.scores})
+	根據您填寫的風險問卷，您的得分為：(${oldScores})
 	<br>
 	您屬於保守型。
 	<br>

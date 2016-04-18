@@ -95,7 +95,7 @@ public class QuestionDAOHibernate implements QuestionDAO{
 		bean.setQDate(QDate);
 		return this.getSession().get(QuestionBean.class, bean);
 	}
-	private static final String SELECT_BY_ACCOUNT = "from QuestionBean where account=:account order by QDate";
+	private static final String SELECT_BY_ACCOUNT = "from QuestionBean where account=:account order by QDate desc";
 	public List<QuestionBean> select(String account){
 		Query query = getSession().createQuery(SELECT_BY_ACCOUNT);
 		query.setParameter("account", account);
