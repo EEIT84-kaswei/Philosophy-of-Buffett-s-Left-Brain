@@ -1,9 +1,15 @@
 package _03_stock_market.model;
 /*張秀維 Hsiu Chang, 01-04-2016 */
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class InstantStockOneBean{
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+
+@XmlRootElement(name="instantStockOne")
+public class InstantStockOneBean implements Serializable{
 	
 		
 	
