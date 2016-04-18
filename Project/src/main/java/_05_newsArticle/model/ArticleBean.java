@@ -5,17 +5,17 @@ import java.io.Serializable;
 
 public class ArticleBean implements Serializable{
 	private Integer ano;
-	private Integer id;
+	private String account;
 	private String aname;
 	private java.util.Date atime;
 	private String atitle;
-	private String acontext;		
-	
+	private String acontext;
+		
 	@Override
 	public String toString() {
-		return "ArticleBean [ano=" + ano + ", id=" + id + ", aname=" + aname
-				+ ", atime=" + atime + ", atitle=" + atitle + ", acontext="
-				+ acontext + "]";
+		return "ArticleBean [ano=" + ano + ", account=" + account + ", aname="
+				+ aname + ", atime=" + atime + ", atitle=" + atitle
+				+ ", acontext=" + acontext + "]";
 	}
 	
 	public Integer getAno() {
@@ -24,11 +24,11 @@ public class ArticleBean implements Serializable{
 	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-	public Integer getId() {
-		return id;
+	public String getAccount() {
+		return account;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 	public String getAname() {
 		return aname;
@@ -53,6 +53,6 @@ public class ArticleBean implements Serializable{
 	}
 	public void setAcontext(String acontext) {
 		this.acontext = acontext;
-	}
-
+	}		
+	
 }

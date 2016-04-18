@@ -1,8 +1,7 @@
 package _06_message.model;
-/* 陳姵吟 Carley Chen, 01-04-2016 */
+
 
 import java.util.List;
-
 import _06_message.model.MessageBean;
 
 public interface MessageDAO {
@@ -11,7 +10,8 @@ public interface MessageDAO {
 
 	public abstract MessageBean selectByMno(int mno);
 
-	public abstract List<MessageBean> selectById(int id);
+	public abstract List<MessageBean> selectByAccount(String account);
+
 
 	public abstract List<MessageBean> selectByAno(int ano);
 

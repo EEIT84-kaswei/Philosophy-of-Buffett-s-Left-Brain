@@ -10,58 +10,56 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>專欄文章</title>
 <style type="text/css">
-
 </style>
-
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
 </head>
-
 <body>
 
-		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-		<jsp:include page="/title.jsp" />
+	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+	<jsp:include page="/title.jsp" />
+
+	<!-- 網頁主要導覽列 -->
+	<div><jsp:include page="/nav.jsp" /></div>
+	<div style="height: 20em; margin: 2em auto; padding: 2em;">
+
+		<!-- 表格開始 -->
+
+		<form action="<c:url value="/pages/article.controller" />" method="post">
+			<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all" cellpadding='5' align=center>
+				
+				<tr>
+					<td>作家名稱 :</td>
+					<td>
+						<input type="text" name="aname" value="${updArticle.aname}" required>
+				   <%-- <span class="error">${error.aname}</span> --%>
+					</td>
+				</tr>
+				<tr>
+					<td>文章標題:</td>
+					<td>
+						<input type="text" name="atitle" value="${updArticle.atitle}" required> 
+				   <%-- <span class="error">${error.atitle}</span> --%>
+					</td>
+				</tr>
+				<tr>
+					<td>文章內文 :</td>
+					<td><textarea name="acontext" cols="60" rows="30">${updArticle.acontext}</textarea>
+						<script>
+							CKEDITOR.replace('acontext', {});
+						</script> 
+						<br>
+						<span class="error">${error.acontext}</span>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name="uano" value="${updArticle.ano}"></td>
+					<td><input type="submit" name="prodaction" value="Insert"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
 
 
-		<!-- 網頁主要導覽列 -->
-		<div>
-			<jsp:include page="/nav.jsp" />
-		</div>
-
-
-		<div style="height: 20em; margin: 2em auto; padding: 2em;">
-
-			<!-- 表格開始 -->
-
-			<form action="<c:url value="/pages/article.controller" />" method="post">
-				<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all"
-					cellpadding='5' align=center>
-
-					<tr>
-						<td>作家名稱 :</td>
-						<td ><input type="text" name="aname" value="${updArticle.aname}"><span class="error">${error.aname}</span></td>
-						
-					</tr>
-					<tr>
-						<td>文章標題:</td>
-						<td><input type="text" name="atitle" value="${updArticle.atitle}"><span class="error">${error.atitle}</span></td>
-					</tr>
-
-					<tr>
-						<td>文章內文 :</td>
-						<td><textarea name="acontext" cols="60" rows="30">${updArticle.acontext}</textarea>
-						<script>CKEDITOR.replace( 'acontext', {});</script>
-						<br><span class="error">${error.acontext}</span></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td ><input type="submit" name="prodaction" value="Insert" onclick='processData()'>
-						<!--隱藏的ano資料，為了把資料庫取出來的ano資料帶走↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
-						<div style="display: none;"><input type="text" name="ano" value="${updArticle.ano}"></div></td>
-					</tr>
-				</table>
-			</form>
-		</div>
-
-	
 </body>
 </html>
+

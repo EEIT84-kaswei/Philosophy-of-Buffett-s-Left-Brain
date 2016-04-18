@@ -24,9 +24,6 @@
   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/jquery-ui.min.js"></script>
   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>  
   
-  
-  
-  
 <title>Insert title here</title>
 
 <style type="text/css">
@@ -91,7 +88,7 @@ body {
                		</ul>
         		</li>
                 <li><a href="<c:url value='/pages/article.controller' />">股市專欄</a></li>
-                <li><a href="<c:url value='/news.do' />">股市新聞</a></li>
+                <li><a href="<c:url value='/pages/_05_newsArticle/news.do' />">股市新聞</a></li>
                 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">會員專區<span class="caret"></span></a>
             		<ul class="dropdown-menu">
@@ -124,14 +121,17 @@ body {
 	                    </a>
 						</c:if>
 					</li>
-		            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">管理員<span class="caret"></span></a>
-            		<ul class="dropdown-menu">
-              			 <li><a href="<c:url value='/member.do' />">會員管理</a></li>
-               			 <li><a href="<c:url value='/secure/admin/stockrevise.jsp'/>">股票管理</a></li>
-               			 <li><a href="<c:url value='/secure/message/MessageTest.jsp'/>">留言板測試</a></li>
+					<c:if test='<%=request.isUserInRole("admin")%>'>
+			            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">管理員<span class="caret"></span></a>
+		            		<ul class="dropdown-menu">
+		              			 <li><a href="<c:url value='/member.do' />">會員管理</a></li>
+		               			 <li><a href="<c:url value='/secure/admin/stockrevise.jsp'/>">股票管理</a></li>
+		               			 <li><a href="<c:url value='/secure/message/MessageTest.jsp'/>">留言板測試</a></li>
+		
+		               		</ul>
+	        			</li>
+        			</c:if>
 
-               		</ul>
-        		</li>
                 </ul>
             </div>
         </div>
