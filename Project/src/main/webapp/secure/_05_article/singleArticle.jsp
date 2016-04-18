@@ -64,9 +64,14 @@
 					
 				</div>
 				</form>
-				
+				</div>
 				<!-- ------------------------------- 楚河漢界 ------------------------------- -->
 				
+				<div>
+				<h3 style="text-align:center;color:blue">~~~~~~~~~~留~言~板~~~~~~~~~~</h3>
+				<br>
+
+				<div align="center">
 				<c:if test="${not empty msg}">
 				<c:forEach var="row" items="${msg}">
 					<c:if test='${row.account == user }'>					
@@ -97,7 +102,7 @@
 					</table>
 				</c:forEach>
 			</c:if>
-		
+			
 			<form action="<c:url value="/pages/article.controller"/>" method="post">
 				<input type="hidden" name="account" value="<%=request.getRemoteUser()%>"> 
 				<input type="hidden" name="sano" value="${singleArticle.ano}">
@@ -110,7 +115,7 @@
 				<br /> 
 				<input type="submit" name="revise" value="留言">
 			</form>
-				
+				</div>
 
 		</div>
 
