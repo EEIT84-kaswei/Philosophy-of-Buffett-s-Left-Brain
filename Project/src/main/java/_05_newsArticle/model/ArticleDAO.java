@@ -9,7 +9,6 @@ public interface ArticleDAO {
 
 	public abstract List<ArticleBean> select();
 	
-
 	public List<ArticleBean> selectByAccount(String account); 
 
 	public abstract ArticleBean selectByAno(int ano);

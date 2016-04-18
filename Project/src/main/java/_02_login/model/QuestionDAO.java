@@ -10,4 +10,5 @@ public interface QuestionDAO {
 	QuestionBean insert(QuestionBean bean);
 	List<QuestionBean> select(String account);
 	QuestionBean selectLast(String account);
+
 }

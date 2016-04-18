@@ -21,6 +21,15 @@ public class InstantStockOneDAOHibernate implements InstantStockOneDAO {
 	public InstantStockOneDAOHibernate(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	public InstantStockOneDAOHibernate() {
+	}
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	public static void main(String[] args) {
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		try {
