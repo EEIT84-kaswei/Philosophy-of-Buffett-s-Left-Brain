@@ -92,7 +92,7 @@ body {
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">會員專區<span class="caret"></span></a>
             		<ul class="dropdown-menu">
               			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
-               			 <li><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>">自選股</a></li>
+               			 <li><a href="<c:url value='/secure/custFavorite.view'/>">自選股</a></li>
                			 <li><a href="<c:url value='/secure/_02_login/recommend.jsp'/>">股票推薦</a></li>
                		</ul>
         		</li>
