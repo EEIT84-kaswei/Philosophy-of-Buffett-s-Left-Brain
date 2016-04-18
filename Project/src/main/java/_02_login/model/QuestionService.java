@@ -83,6 +83,14 @@ public class QuestionService {
 		return result;
 		
 	}
+	
+	public QuestionBean selectLast(String account){
+		QuestionBean result = null;
+		if(account!=null){
+			result = questionDAO.selectLast(account);
+		}
+		return result;
+	}
 		
 	
 	public QuestionBean insert(QuestionBean bean){
@@ -113,6 +121,8 @@ public class QuestionService {
 		return Risk_Tolerance;
 		
 	}
+	
+	
 	
 	
 

@@ -101,6 +101,15 @@ public class QuestionDAOHibernate implements QuestionDAO{
 		query.setParameter("account", account);
 		return (List<QuestionBean>)query.list();		
 	}
+	
+	public QuestionBean selectLast(String account){
+		Query query = getSession().createQuery(SELECT_BY_ACCOUNT);
+		query.setParameter("account", account);
+		if(!query.list().isEmpty()){
+		return (QuestionBean)query.list().get(0);
+		}else return null;
+	}
+	
 	private static final String SELECT_ALL = "from QuestionBean order by account";
 	@Override
 	public List<QuestionBean> selectAll() {		

@@ -93,7 +93,7 @@ body {
             		<ul class="dropdown-menu">
               			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
                			 <li><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>">自選股</a></li>
-               			 <li><a href="<c:url value='/secure/_02_login/recommend.jsp'/>">股票推薦</a></li>
+               			 <li><a href="<c:url value='/secure/_02_login.controller/QuestionServlet'/>">股票推薦</a></li>
                		</ul>
         		</li>
                 <li><a href="<c:url value='/SoCallMeMaybe.jsp'/>">與我聯絡</a></li>
@@ -132,7 +132,6 @@ body {
 	        			</li>
         			</c:if>
 
->>>>>>> branch 'master' of https://github.com/EEIT84-kaswei/Philosophy-of-Buffett-s-Left-Brain.git
                 </ul>
             </div>
         </div>
