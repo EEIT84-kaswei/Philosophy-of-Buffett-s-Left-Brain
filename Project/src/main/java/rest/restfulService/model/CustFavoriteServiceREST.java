@@ -1,4 +1,4 @@
-package _02_login.model;
+package rest.restfulService.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,30 +6,37 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
 import misc.HibernateUtil;
+import rest.restfulService.model.dao.CustFavoriteDAOHibernate;
 
-import org.hibernate.Session;
 
-import _02_login.model.dao.CustFavoriteDAOHibernate;
+@Path("/custFavorites")
+public class CustFavoriteServiceREST {
+	/*不能用set注入工廠，所以改用建構子方式注入工廠*/
+	private CustFavoriteDAOHibernate custFavoriteDAO 
+							= new CustFavoriteDAOHibernate(HibernateUtil.getSessionFactory());
+	
 
-public class CustFavoriteService {
-//	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-	private CustFavoriteDAO custFavoriteDAO;
-
-	public void setCustFavoriteDAO(CustFavoriteDAO custFavoriteDAO) {
+	public void setCustFavoriteDAO(CustFavoriteDAOHibernate custFavoriteDAO) {
 		this.custFavoriteDAO = custFavoriteDAO;
 	}
 
 
 	public static void main(String[] args) {
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate();
-		dao.setSessionFactory(HibernateUtil.getSessionFactory());
-		CustFavoriteService service = new CustFavoriteService();
+		CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate(HibernateUtil.getSessionFactory());
+		CustFavoriteServiceREST service = new CustFavoriteServiceREST();
 		service.setCustFavoriteDAO(dao);
 		// 測試查詢
 		try {
 			dao.getSession().beginTransaction();
+			List<InstantStockOneBean> result = service.selectInstantByAccount("lara");
+			for(InstantStockOneBean xBean : result){
+				System.out.println(xBean);
+			}
 //			List<Integer> selectBean = service.selectByAccount("lara");
 //			for (Integer beans : selectBean) {
 //				System.out.println(beans);
@@ -179,7 +186,6 @@ public class CustFavoriteService {
 
 		HibernateUtil.closeSessionFactory();
 	}
-	
 
 	public List<CustFavoriteBean> select() {
 		List<CustFavoriteBean> result = new ArrayList<CustFavoriteBean>();
@@ -187,6 +193,28 @@ public class CustFavoriteService {
 		return result;
 	}
 
+	//用使用者帳號，找出自選股的所有股票代號，再找出所有股票資料。RESTful用
+	@GET
+	@Path("/list/{account}")
+	@Produces({MediaType.APPLICATION_XML , MediaType.APPLICATION_JSON})
+	public List<InstantStockOneBean> selectInstantByAccount(@PathParam("account") String account) {
+		InstantStockOneServiceREST instantService = new InstantStockOneServiceREST();
+		List<InstantStockOneBean> result = null;
+		List<CustFavoriteBean> temp = null;
+		
+		if (account != null) {
+			temp = custFavoriteDAO.selectByAccount(account);
+			result = new ArrayList<InstantStockOneBean>();
+			for(CustFavoriteBean xBean : temp){ 
+				InstantStockOneBean bean = instantService.selectOne(xBean.getStock_Code()); //取ID xBean.getStock_Code()
+				System.out.println(bean);
+				result.add(bean);
+			}
+		}
+		return result;
+	}
+
+	
 	//用使用者帳號，找出自選股的所有股票代號
 	public List<Integer> selectByAccount(String account) {
 		List<CustFavoriteBean> result = null;
