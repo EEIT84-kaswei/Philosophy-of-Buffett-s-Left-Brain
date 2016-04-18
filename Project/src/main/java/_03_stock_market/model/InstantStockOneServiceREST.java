@@ -3,6 +3,8 @@ package _03_stock_market.model;
 
 import java.util.List;
 
+import javax.ws.rs.*;
+
 import misc.HibernateUtil;
 
 import org.hibernate.Session;
@@ -12,10 +14,15 @@ import org.hibernate.Transaction;
 import _03_stock_market.model.dao.InstantStockOneDAOHibernate;
 
 
-public class InstantStockOneService {
-	private InstantStockOneDAO InstantStockOneDAO;
-	public void setInstantStockOneDAO(InstantStockOneDAO InstantStockOneDAO) {
-		this.InstantStockOneDAO = InstantStockOneDAO;
+@Path("/instantStockOnes")
+public class InstantStockOneServiceREST {
+	
+	//因為Restful搭配的是spring，Spring的工廠是一開機就由XML注入了；但只有Hibernate的狀況下，直接使用service沒有人給工廠，所以要在這手動加入工廠
+	private InstantStockOneDAOHibernate instantStockOneDAO
+									= new InstantStockOneDAOHibernate(HibernateUtil.getSessionFactory());
+	
+	public void setInstantStockOneDAO(InstantStockOneDAOHibernate instantStockOneDAO) {
+		this.instantStockOneDAO = instantStockOneDAO;
 	}
 	public static void main(String[] args) {
 		
@@ -26,7 +33,7 @@ public class InstantStockOneService {
 			Session session = sessionFactory.getCurrentSession();
 			Transaction transaction = session.beginTransaction();
 
-			InstantStockOneService service = new InstantStockOneService();
+			InstantStockOneServiceREST service = new InstantStockOneServiceREST();
 			service.setInstantStockOneDAO(new InstantStockOneDAOHibernate(sessionFactory));
 			//上市股搜尋  or 概念股搜尋
 //			List<InstantStockOneBean> list = service.selectByType("s1");
@@ -52,12 +59,29 @@ public class InstantStockOneService {
 		}
 	}
 	
+	
+	@GET
+	@Path("/code/{stock_Code}")
+	@Produces({ "application/xml", "application/json" })
+	public InstantStockOneBean selectOne(@PathParam("stock_Code")Integer stock_Code) {
+		System.out.println("stock_Code : " + stock_Code);
+		List<InstantStockOneBean> oneStock = null;
+		if (stock_Code != null) {
+			oneStock = instantStockOneDAO.select(stock_Code);
+		}
+		return oneStock.get(0);
+	}
+	
+	
 	/*用上市股分類搜尋*/
-	public List<InstantStockOneBean> selectByType(String stock_TypeCode){
-		if(stock_TypeCode==null || stock_TypeCode.trim().length()==0 ){
+	@GET
+	@Path("/list/{stock_TypeCode}")
+	@Produces({ "application/xml", "application/json" })
+	public List<InstantStockOneBean> selectByType(@PathParam("stock_TypeCode") String stock_TypeCode) {
+		if (stock_TypeCode == null || stock_TypeCode.trim().length() == 0) {
 			return null;
-		}else{
-			return (List<InstantStockOneBean>)InstantStockOneDAO.selectByType(stock_TypeCode);
+		} else {
+			return (List<InstantStockOneBean>) instantStockOneDAO.selectByType(stock_TypeCode);
 		}
 	}
 
@@ -66,50 +90,41 @@ public class InstantStockOneService {
 		if(concept_Stock==null || concept_Stock.trim().length()==0 ){
 			return null;
 		}else{
-			return (List<InstantStockOneBean>)InstantStockOneDAO.selectByCS(concept_Stock);
+			return (List<InstantStockOneBean>)instantStockOneDAO.selectByCS(concept_Stock);
 		}
 	}
 	
-	public InstantStockOneBean selectOne(Integer code){
-		List<InstantStockOneBean> oneStock=null;
-		if(code!=null){
-			oneStock=InstantStockOneDAO.select(code);
-		}
-		return oneStock.get(0);
-	}
-	
-
 	public List<InstantStockOneBean> select(InstantStockOneBean bean) {
 		List<InstantStockOneBean> result = null;
 		
 		if(bean!=null &&bean.getStock_Code()!=null &&bean.getStock_Code()!=0) {
-			result = InstantStockOneDAO.select(bean.getStock_Code());
+			result = instantStockOneDAO.select(bean.getStock_Code());
 //			if(temp!=null) {
 //				result = new ArrayList<InstantStockOneBean>();
 //				result.add(temp);
 //			}
 		}else if(bean!=null && bean.getStock_Name()!=null){
-			result = InstantStockOneDAO.select(bean.getStock_Name());
+			result = instantStockOneDAO.select(bean.getStock_Name());
 //			if(temp!=null) {
 //				result = new ArrayList<InstantStockOneBean>();
 //				result.add(temp);
 //			}
 		}else{
-			result = InstantStockOneDAO.select(); 
+			result = instantStockOneDAO.select(); 
 		}
 		return result;
 	}
 	public InstantStockOneBean insert(InstantStockOneBean bean) {
 		InstantStockOneBean result = null;
 		if(bean!=null) {
-			result = InstantStockOneDAO.insert(bean);
+			result = instantStockOneDAO.insert(bean);
 		}
 		return result;
 	}
 	public InstantStockOneBean update(InstantStockOneBean bean) {
 		InstantStockOneBean result = null;
 		if(bean!=null) {
-			result = InstantStockOneDAO.update(bean.getStock_TypeCode(),bean.getConcept_Stock(),
+			result = instantStockOneDAO.update(bean.getStock_TypeCode(),bean.getConcept_Stock(),
 					bean.getStock_Name(),bean.getPurchase_Price(),bean.getSelling_Price(),
 					bean.getFinal_price(),bean.getChange_Amount(),bean.getChange_extent(),
 					bean.getAcc_Trade_Volume(),bean.getStock_Code());
@@ -119,7 +134,7 @@ public class InstantStockOneService {
 	public boolean delete(InstantStockOneBean bean) {
 		boolean result = false;
 		if(bean!=null) {
-			result = InstantStockOneDAO.delete(bean.getStock_Code());
+			result = instantStockOneDAO.delete(bean.getStock_Code());
 		}
 		return result;
 	}

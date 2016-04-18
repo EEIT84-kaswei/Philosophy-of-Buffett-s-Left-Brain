@@ -77,7 +77,6 @@ body {
             <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="<c:url value='/Welcome.jsp' />">首頁</a></li>
-                <li><a href="<c:url value='/pages/_03_stock_market/instantStock.jsp'/>">即時股票資訊</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">股票分類<span class="caret"></span></a>
             		<ul class="dropdown-menu">
 						<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></li> 
@@ -88,17 +87,16 @@ body {
         		</li>
                 <li><a href="<c:url value='/pages/article.controller' />">股市專欄</a></li>
                 <li><a href="<c:url value='/pages/_05_newsArticle/news.do' />">股市新聞</a></li>
-                <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">會員專區<span class="caret"></span></a>
             		<ul class="dropdown-menu">
               			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
-               			 <li><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>">自選股</a></li>
+               			 <li><a href="<c:url value='/secure/custFavorite.view'/>">自選股</a></li>
                			 <li><a href="<c:url value='/secure/_02_login/recommend.jsp'/>">股票推薦</a></li>
                		</ul>
         		</li>
-                <li><a href="<c:url value='/SoCallMeMaybe.jsp'/>">與我聯絡</a></li>
+                <li><a href="<c:url value='https://www.facebook.com/profile.php?id=100000212802863&fref=ts'/>" title="So Call Me Maybe">與我聯絡</a></li>
             </ul>
-            
+<%--             <c:url value='/SoCallMeMaybe.jsp'/> --%>
             
         <!-- 到右邊開始 -->
             
@@ -132,7 +130,6 @@ body {
 	        			</li>
         			</c:if>
 
->>>>>>> branch 'master' of https://github.com/EEIT84-kaswei/Philosophy-of-Buffett-s-Left-Brain.git
                 </ul>
             </div>
         </div>

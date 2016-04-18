@@ -6,6 +6,7 @@ import javax.transaction.Synchronization;
 /* 黃胤凱 Kevin Huang, 01-04-2016 */
 
 public class StockCodeBean implements Serializable{
+
 	private Integer stock_Code;
 	private String stock_Name;
 	private String stock_TypeCode; 

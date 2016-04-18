@@ -10,8 +10,8 @@
 
 <style type="text/css">
 #mainDIV{
-	border:1px blue solid;
-	height:15em;
+	/*border:1px blue solid;*/
+	/*height:15em;*/
 	margin:1em;
 	padding:1em;
 	align:center;
@@ -31,9 +31,9 @@
 <jsp:include page="/nav.jsp" />
 </div>
 
-<div align=center id="mainDIV">
+<div align="center" id="mainDIV">
 
-<h3 align=center>推薦股票</h3>
+<h3 align="center">推薦股票</h3>
 
 	<div>
 	
@@ -50,7 +50,7 @@
 		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c13&send=送出"></c:url>'>電子3C類股</a></li>
 		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c5&send=送出"></c:url>'>蘋果供應鏈類股</a></li>
 		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c3&send=送出"></c:url>'>物聯網類股</a></li>
-		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c14&send=送出"></c:url>'>能源類股</a></li>		
+		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c14&send=送出"></c:url>'>能源類股</a></li>	
 	</ol>
 	</div>
 

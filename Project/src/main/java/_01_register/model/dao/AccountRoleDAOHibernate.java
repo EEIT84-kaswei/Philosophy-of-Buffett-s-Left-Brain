@@ -50,15 +50,15 @@ public class AccountRoleDAOHibernate implements AccountRoleDAO {
 	
 
 	@Override
-	public boolean update(String account,
+	public AccountRoleBean update(String account,
 			String account_Role) {
 		AccountRoleBean result = (AccountRoleBean)
 				this.getSession().get(AccountRoleBean.class, account);
 		if(result!=null) {
 			result.setaccount_Role(account_Role);
-			return true;
+			return result;
 		}
-		return false;
+		return result;
 	}
 
 	@Override
