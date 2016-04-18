@@ -65,8 +65,9 @@ public class StockTypeServlet extends HttpServlet{
 			request.setAttribute("stockTypeName", "興櫃股");
 		}
 		request.setAttribute("stockType", beans);
+		request.setAttribute("stockTypeCode", stockType);
 		request.getRequestDispatcher("/secure/_04_stock/stockType.jsp").forward(request, response);
-
+		
 //		HttpSession session = request.getSession();
 //		session.setAttribute("stockTypeName", "上市股");
 //		session.setAttribute("stockType", beans);
