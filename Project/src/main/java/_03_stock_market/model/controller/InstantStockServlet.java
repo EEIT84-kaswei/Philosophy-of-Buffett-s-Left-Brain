@@ -1,4 +1,4 @@
-package _04_stock.controller;
+package _03_stock_market.model.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,18 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import misc.HibernateUtil;
-import _04_stock.model.DailyStockService;
-import _04_stock.model.dao.DailyStockDAOHibernate;
+import _03_stock_market.model.InstantStockService;
+import _03_stock_market.model.dao.InstantStockDAOHibernate;
 
-@WebServlet(urlPatterns={"/secure/DailyStockServlet"})
-public class DailyStockServlet extends HttpServlet {
-	private DailyStockService dailyStockService;
+@WebServlet(urlPatterns={"/pages/InstantStockServlet"})
+public class InstantStockServlet extends HttpServlet {
+	private InstantStockService instantStockService;
+
 	@Override
 	public void init() throws ServletException {
-		DailyStockDAOHibernate dao=new DailyStockDAOHibernate();
-		dao.setSessionFactory(HibernateUtil.getSessionFactory());
-		dailyStockService=new DailyStockService();
-		dailyStockService.setDailyStockDAO(dao);
+		InstantStockDAOHibernate instantStockDAOHibernate=new InstantStockDAOHibernate();
+		instantStockDAOHibernate.setSessionFactory(HibernateUtil.getSessionFactory());
+		instantStockService=new InstantStockService();
+		instantStockService.setInstantStockDAO(instantStockDAOHibernate);;
 	}
 
 	@Override
@@ -48,7 +49,7 @@ public class DailyStockServlet extends HttpServlet {
 		
 		//驗證資料
 		if(stock_CodeStr==null || stock_CodeStr.trim().length()==0){
-			errorMsg.add("<span>請輸入股票代號</span><br>");
+			errorMsg.add("<span>請輸入股票代碼</span><br>");
 		}
 		if(!errorMsg.isEmpty()){
 			response.setContentType("text/html; charset=UTF-8"); 
@@ -60,10 +61,9 @@ public class DailyStockServlet extends HttpServlet {
 		}
 		
 		//呼叫Model
-
-		String priceData=dailyStockService.selectAllofOneStock(stock_Code);
+		String allData=instantStockService.selectByOneStock(stock_Code);
 		response.setContentType("application/json; charset=UTF-8");
-		pw.print(priceData);
+		pw.print(allData);
 		pw.close();
 	}
 

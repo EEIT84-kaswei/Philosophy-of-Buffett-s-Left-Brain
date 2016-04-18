@@ -34,5 +34,8 @@
         <property name="acc_Trade_Volume" >
             <column name="acc_Trade_Volume" />
         </property>
+        <property name="trade_Volume" >
+            <column name="trade_Volume" />
+        </property>
     </class>
 </hibernate-mapping>
