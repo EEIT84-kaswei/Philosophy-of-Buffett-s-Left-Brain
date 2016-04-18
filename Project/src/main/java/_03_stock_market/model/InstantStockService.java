@@ -54,7 +54,7 @@ public class InstantStockService {
 		if(!result.isEmpty()){
 			JsonArrayBuilder oneStockArrayBuilder=Json.createArrayBuilder();
 			Iterator<InstantStockBean> it=result.iterator();
-			while(it.hasNext()){			
+			while(it.hasNext()){
 				InstantStockBean bean=it.next();
 				JsonArrayBuilder oneDataArrayBuilder=Json.createArrayBuilder();
 				long timeMillis=bean.getiDatetime().getTime();

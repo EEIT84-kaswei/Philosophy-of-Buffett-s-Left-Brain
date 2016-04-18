@@ -23,72 +23,47 @@
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/exporting.js"></script>
 		
 		<script type="text/javascript">
-		var historyPriceData;
-		var historyVolumeData;
-		var instantPriceData;
-		var instantVolumeData;
+		var historyPriceData=[];
+		var historyVolumeData=[];
+		var historyMA20Data=[];
+		var historyMA60Data=[];
+		var historyMA240Data=[];
+		var instantPriceData=[];
+		var instantVolumeData=[];
 		
 		function transferHistoryData(data){
-			var price=[]
-			var volume=[]
-			for(i=0;i<data.length;i++){
-				price.push([data[i][0],data[i][1],data[i][2],data[i][3],data[i][4]]);
-				volume.push([data[i][0],data[i][5]]);
+			var movingAverage20Array=[];
+			var movingAverage60Array=[];
+			var movingAverage240Array=[];
+			var dataLength=data.length;
+			for(i=0;i<dataLength;i++){
+				historyPriceData.push([data[i][0],data[i][1],data[i][2],data[i][3],data[i][4]]);
+				historyVolumeData.push([data[i][0],data[i][5]]);
+				
+				if(i>=19){
+					historyMA20Data.push([data[i][0],data[i][6]]);
+				}
+				
+				if(i>=59){
+					historyMA60Data.push([data[i][0],data[i][7]]);
+				}
+				
+				if(i>=239){
+					historyMA240Data.push([data[i][0],data[i][8]]);
+				}
 			}
-			historyPriceData=price;
-			historyVolumeData=volume;
 		}
 				
 		function transferInstantData(data){
 			var price=[]
 			var volume=[]
 			for(i=0;i<data.length;i++){
-				price.push([data[i][0],data[i][1]]);
-				volume.push([data[i][0],data[i][2]]);
+				instantPriceData.push([data[i][0],data[i][1]]);
+				instantVolumeData.push([data[i][0],data[i][2]]);
 			}
-			instantPriceData=price;
-			instantVolumeData=volume;
 		}
 				
-		$(document).ready(function () {
-			
-			var originalDrawPoints = Highcharts.seriesTypes.column.prototype.drawPoints;
-
-		    Highcharts.seriesTypes.column.prototype.drawPoints = function () {
-		        var merge  = Highcharts.merge,
-		            series = this,
-		            chart  = this.chart,
-		            points = series.points,
-		            i      = points.length;
-		        
-		        while (i--) {
-		            var candlePoint = chart.series[0].points[i];
-		            var color = (candlePoint.open < candlePoint.close) ? '#FF0000' : '#008000';
-		            var seriesPointAttr = merge(series.pointAttr);
-		            
-		            seriesPointAttr[''].fill = color;
-		            seriesPointAttr.hover.fill = Highcharts.Color(color).brighten(0.3).get();
-		            seriesPointAttr.select.fill = color;
-		            
-		            points[i].pointAttr = seriesPointAttr;
-		        }
-
-		        originalDrawPoints.call(this);
-		    }		    
-		    
-			var contextPath="${pageContext.request.contextPath}";
-			var historySourceUrl=contextPath+"/secure/DailyStockServlet";			
-			var historyQueryStr="stock_Code="+"${bean.stock_Code}";
-			
-			$.ajax({
-				method:"GET",
-				url:historySourceUrl,
-				data:historyQueryStr,
-				cache:false,
-				async:false,
-				dataType:"json",
-				success:transferHistoryData
-			});
+		$(document).ready(function () {				
 					
 			Highcharts.setOptions({
 		        global: {
@@ -99,201 +74,9 @@
 		        shortMonths:['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
 		        weekdays:['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
 		        }
-		    });
+		    });		    			
 			
-		    $('#historyChart').highcharts('StockChart',{
-		      navigator:{
-		      xAxis:{
-		      dateTimeLabelFormats:{
-		    	  		month:'%Y/%m',
-		                day: '%b%e日'
-		                }
-		           }
-		      },
-		      
-		      xAxis:{
-		      dateTimeLabelFormats:{
-		    	  		month: '%Y/%m',
-						week:'%b%e日',
-         			 	day: '%b%e日'
-		            }
-		      },
-		      
-		      yAxis: [{
-		                labels: {
-		                    align: 'left',
-		                    x: 4
-		                },
-		                height: '60%',
-		                lineWidth: 2
-		            }, {
-		                labels: {
-		                    align: 'left',
-		                    x: 4
-		                },
-		                top: '65%',
-		                height: '35%',
-		                offset: 0,
-		                lineWidth: 2
-		            }],
-		      
-		    	rangeSelector:{
-		    		selected:1,
-		    		inputDateFormat:'%Y年%b%e日',
-		    		buttons: [{
-		    			type: 'month',
-		    			count: 1,
-		    			text: '1月'
-		    		}, {
-		    			type: 'month',
-		    			count: 3,
-		    			text: '3月'
-		    		}, {
-		    			type: 'month',
-		    			count: 6,
-		    			text: '6月'
-		    		}, {
-		    			type: 'ytd',
-		    			text: '今年'
-		    		}, {
-		    			type: 'year',
-		    			count: 1,
-		    			text: '1年'
-		    		}, {
-		    			type: 'all',
-		    			text: '全部'
-		    		}]
-		    	},
-		    	
-		    	title:{
-		    		text:'${bean.stock_Code} ${bean.stock_Name} 技術分析'
-		    	},
-		    	
-		    	 plotOptions: {
-		            candlestick: {
-		            	color: 'green',
-		                upColor: 'red',
-		                lineColor: 'green',
-		                upLineColor:'red',
-		                tooltip:{
-		                pointFormat:'<b>{series.name}</b><br/>' +
-		                '開盤: {point.open}<br/>' +
-		                '最高: {point.high}<br/>' +
-		                '最低: {point.low}<br/>' +
-		                '收盤: {point.close}<br/>'                
-		                },              
-		    		dataGrouping: {
-		    			approximation: "ohlc",
-		                enabled: true,
-		                forced: true,
-		                units: [['day',[1]]],
-	                	dateTimeLabelFormats:{
-	                	month: ['%Y年  %B'],
-	                	week:['周 %A, %b %e日, %Y'],
-	                	day:['%A, %b%e日, %Y'],
-	                	}
-	            	},
-		            },
-		            
-		            column:{
-		            tooltip:{
-		               pointFormat:'<span>{series.name}: {point.y}</span><br/>'
-		            },
-		            dataGrouping: {
-		            	approximation: "sum",
-		                enabled: true,
-		                forced: true,
-		                units: [['day',[1]]],
-		                dateTimeLabelFormats:{
-		                    week:['%A, %b%e日, %Y'],
-		                    day:['%A, %b%e日, %Y'],
-		                    minute:['%A, %b%e日, %Y']
-		                    }
-		                }
-		            }
-		        },
-		    	
-		    	series:[{
-		    		type:'candlestick',
-		    		name:'${bean.stock_Code} ${bean.stock_Name}',
-		    		data:historyPriceData
-		    	},{
-		    		type:'column',
-		    		name:'成交量',
-		    		data:historyVolumeData,
-		              yAxis: 1              
-		    	}
-		    	]    	
-		    });
-		    
-		    var historyChart = $('#historyChart').highcharts();
-		    
-			$("#month").click(function(){
-				historyChart.series[0].update({
-	                dataGrouping: {
-	                approximation: "ohlc",
-	                enabled: true,
-	                forced: true,
-	                units: [['month',[1]]],
-	                }
-	            },false);
-				
-				historyChart.series[1].update({
-	            	dataGrouping: {
-	            	approximation: "sum",
-	            	enabled: true,
-	            	forced: true,
-	            	units: [['month',[1]]],
-	            	}           
-				},false);
-	      		
-	      		historyChart.redraw();
-			});		    
-		    
-			$("#week").click(function(){
-				historyChart.series[0].update({
-	                dataGrouping: {
-	                approximation: "ohlc",
-	                enabled: true,
-	                forced: true,
-	                units: [['week',[1]]],
-	                }
-	            },false);
-				
-				historyChart.series[1].update({
-	            	dataGrouping: {
-	            	approximation: "sum",
-	            	enabled: true,
-	            	forced: true,
-	            	units: [['week',[1]]],
-	            	}           
-				},false);
-	      		
-	      		historyChart.redraw();
-			});
-			
-			$("#day").click(function(){
-				historyChart.series[0].update({
-	                dataGrouping: {
-	                approximation: "ohlc",
-	                enabled: true,
-	                forced: true,
-	                units: [['day',[1]]],
-	                }
-	            },false);
-				
-				historyChart.series[1].update({
-	            	dataGrouping: {
-	            	approximation: "sum",
-	            	enabled: true,
-	            	forced: true,
-	            	units: [['day',[1]]],
-	            	}           
-				},false);
-	      		
-	      		historyChart.redraw();
-			});			
-			
+			var contextPath="${pageContext.request.contextPath}";
 			var instantSourceUrl=contextPath+"/pages/InstantStockServlet";
 			var instantQueryStr="stock_Code="+"${bean.stock_Code}";			
 			
@@ -328,8 +111,8 @@
 		            						price.push([data[i][0],data[i][1]]);
 		            						volume.push([data[i][0],data[i][2]]);
 		            					}
-		            					instantChart.series[0].setData(price);
-		            					instantChart.series[1].setData(volume);
+		            					instantChart.series[0].setData(price,false);
+		            					instantChart.series[1].setData(volume,false);
 		            					instantChart.redraw();
 		            				}		                    	
 		            			});		                    	
@@ -420,6 +203,264 @@
 			
 			var instantChart = $('#instantChart').highcharts();
 			
+			
+			var originalDrawPoints = Highcharts.seriesTypes.column.prototype.drawPoints;
+
+		    Highcharts.seriesTypes.column.prototype.drawPoints = function () {
+		        var merge  = Highcharts.merge,
+		            series = this,
+		            chart  = this.chart,
+		            points = series.points,
+		            i      = points.length;
+		        
+		        while (i--) {
+		            var candlePoint = chart.series[0].points[i];
+		            var color = (candlePoint.open < candlePoint.close) ? '#FF0000' : '#008000';
+		            var seriesPointAttr = merge(series.pointAttr);
+		            
+		            seriesPointAttr[''].fill = color;
+		            seriesPointAttr.hover.fill = Highcharts.Color(color).brighten(0.3).get();
+		            seriesPointAttr.select.fill = color;
+		            
+		            points[i].pointAttr = seriesPointAttr;
+		        }
+
+		        originalDrawPoints.call(this);
+		    }		    
+		    
+			var historySourceUrl=contextPath+"/secure/DailyStockServlet";			
+			var historyQueryStr="stock_Code="+"${bean.stock_Code}";	
+			
+			$.ajax({
+				method:"GET",
+				url:historySourceUrl,
+				data:historyQueryStr,
+				cache:false,
+				async:false,
+				dataType:"json",
+				success:transferHistoryData
+			});
+			
+			$('#historyChart').highcharts('StockChart',{
+			      navigator:{
+			      xAxis:{
+			      dateTimeLabelFormats:{
+			    	  		month:'%Y/%m',
+			                day: '%b%e日'
+			                }
+			           }
+			      },
+			      
+			      xAxis:{
+			      dateTimeLabelFormats:{
+			    	  		month: '%Y/%m',
+							week:'%b%e日',
+	         			 	day: '%b%e日'
+			            }
+			      },
+			      
+			      yAxis: [{
+			                labels: {
+			                    align: 'left',
+			                    x: 4
+			                },
+			                height: '60%',
+			                lineWidth: 2
+			            }, {
+			                labels: {
+			                    align: 'left',
+			                    x: 4
+			                },
+			                top: '65%',
+			                height: '35%',
+			                offset: 0,
+			                lineWidth: 2
+			            }],
+			      
+			    	rangeSelector:{
+			    		selected:1,
+			    		inputDateFormat:'%Y年%b%e日',
+			    		buttons: [{
+			    			type: 'month',
+			    			count: 1,
+			    			text: '1月'
+			    		}, {
+			    			type: 'month',
+			    			count: 3,
+			    			text: '3月'
+			    		}, {
+			    			type: 'month',
+			    			count: 6,
+			    			text: '6月'
+			    		}, {
+			    			type: 'ytd',
+			    			text: '今年'
+			    		}, {
+			    			type: 'year',
+			    			count: 1,
+			    			text: '1年'
+			    		}, {
+			    			type: 'all',
+			    			text: '全部'
+			    		}]
+			    	},
+			    	
+			    	title:{
+			    		text:'${bean.stock_Code} ${bean.stock_Name} 技術分析'
+			    	},
+			    	
+			    	 plotOptions: {
+			            candlestick: {
+			            	color: 'green',
+			                upColor: 'red',
+			                lineColor: 'green',
+			                upLineColor:'red',
+			                tooltip:{
+			                pointFormat:'<b>{series.name}</b><br/>' +
+			                '開盤: {point.open}<br/>' +
+			                '最高: {point.high}<br/>' +
+			                '最低: {point.low}<br/>' +
+			                '收盤: {point.close}<br/>'                
+			                },              
+			    		dataGrouping: {
+			    			approximation: "ohlc",
+			                enabled: true,
+			                forced: true,
+			                units: [['day',[1]]],
+		                	dateTimeLabelFormats:{
+		                	month: ['%Y年  %B'],
+		                	week:['周 %A, %b %e日, %Y'],
+		                	day:['%A, %b%e日, %Y'],
+		                	}
+		            	},
+			            },
+			            
+			            column:{
+			            tooltip:{
+			               pointFormat:'<span>{series.name}: {point.y}</span><br/>'
+			            },
+			            dataGrouping: {
+			            	approximation: "sum",
+			                enabled: true,
+			                forced: true,
+			                units: [['day',[1]]],
+			                dateTimeLabelFormats:{
+			                    week:['%A, %b%e日, %Y'],
+			                    day:['%A, %b%e日, %Y'],
+			                    minute:['%A, %b%e日, %Y']
+			                    }
+			                }
+			            },
+			            
+			            spline: {		            	
+			                tooltip:{
+			                	pointFormat:' <span style="color:{point.color}">\u25CF</span> {series.name}: {point.y:.2f}<br/>',           
+			                },
+			                dataGrouping: {
+				                approximation: "average",
+				                enabled: true,
+				                forced: true,
+				                units: [['day',[1]]]                
+				                },
+			            }
+			        },
+			    	
+			    	series:[{
+			    		type:'candlestick',
+			    		name:'${bean.stock_Code} ${bean.stock_Name}',
+			    		data:historyPriceData
+			    	},{
+			    		type:'column',
+			    		name:'成交量',
+			    		data:historyVolumeData,
+			              yAxis: 1              
+			    	},{
+			    		type:'spline',
+			    		color:'#f24385',
+			    		name:'MA20',
+			    		data:historyMA20Data
+			    	},{
+			    		type:'spline',
+			    		color:'#57b846',
+			    		name:'MA60',
+			    		data:historyMA60Data
+			    	},{
+			    		type:'spline',
+			    		color:'#9e5ccd',
+			    		name:'MA240',
+			    		data:historyMA240Data
+			    	}
+			    	]    	
+			    });
+			    
+			    var historyChart = $('#historyChart').highcharts();
+			    
+				$("#month").click(function(){
+					historyChart.series[0].update({
+		                dataGrouping: {
+		                approximation: "ohlc",
+		                enabled: true,
+		                forced: true,
+		                units: [['month',[1]]],
+		                }
+		            },false);
+					
+					historyChart.series[1].update({
+		            	dataGrouping: {
+		            	approximation: "sum",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['month',[1]]],
+		            	}           
+					},false);
+		      		
+		      		historyChart.redraw();
+				});		    
+			    
+				$("#week").click(function(){
+					historyChart.series[0].update({
+		                dataGrouping: {
+		                approximation: "ohlc",
+		                enabled: true,
+		                forced: true,
+		                units: [['week',[1]]],
+		                }
+		            },false);
+					
+					historyChart.series[1].update({
+		            	dataGrouping: {
+		            	approximation: "sum",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['week',[1]]],
+		            	}           
+					},false);
+		      		
+		      		historyChart.redraw();
+				});
+				
+				$("#day").click(function(){
+					historyChart.series[0].update({
+		                dataGrouping: {
+		                approximation: "ohlc",
+		                enabled: true,
+		                forced: true,
+		                units: [['day',[1]]],
+		                }
+		            },false);
+					
+					historyChart.series[1].update({
+		            	dataGrouping: {
+		            	approximation: "sum",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['day',[1]]],
+		            	}           
+					},false);
+		      		
+		      		historyChart.redraw();
+				});
+						
 		});		
 		</script>
 		
