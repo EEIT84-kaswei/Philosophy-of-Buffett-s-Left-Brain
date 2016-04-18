@@ -89,7 +89,7 @@ public class DailyStockDAOHibernate implements DailyStockDAO {
 	public DailyStockBean select(Integer stock_Code,Date trading_Date){
 		DailyStockBean beanSelect=new DailyStockBean();
 		beanSelect.setStock_Code(stock_Code);		
-		beanSelect.setTrading_Date(trading_Date);		
+		beanSelect.setTrading_Date(trading_Date);
 		return this.getSession().get(DailyStockBean.class, beanSelect);
 	}
 	@Override

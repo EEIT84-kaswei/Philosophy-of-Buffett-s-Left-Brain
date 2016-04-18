@@ -1,5 +1,6 @@
 package _06_message.model;
 
+
 import java.util.List;
 
 import _06_message.model.dao.MessageDAOHibernate;
@@ -37,3 +38,4 @@ public class MessageService {
 		return false;
 	}
 }
+

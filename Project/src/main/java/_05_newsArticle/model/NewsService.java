@@ -36,10 +36,12 @@ public class NewsService {
 		return dao.select();
 	}
 	
+
 	public NewsBean selectByNno(int nno) {
 			return dao.select(nno);
 	}
 	
+
 	public List<NewsBean> selectByDate(java.util.Date date){
 		List<NewsBean> result = null;
 		if(date != null){

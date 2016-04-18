@@ -90,6 +90,7 @@ public class MessageDAOHibernate implements MessageDAO {
 		if(selectByMno(bean.getMno())!= null){
 			MessageBean result = (MessageBean) selectByMno(bean.getMno());
 			result.setAccount(bean.getAccount());
+
 			result.setAno(bean.getAno());
 			result.setMtime(bean.getMtime());
 			result.setMcontext(bean.getMcontext());

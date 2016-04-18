@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
 <!-- Generated 2016/4/17 ?U?? 06:07:20 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="_05_newsArticle.model.ArticleBean" table="article">
@@ -23,5 +24,6 @@
         <property name="acontext" type="java.lang.String">
             <column name="ACONTEXT" />
         </property>
+
     </class>
 </hibernate-mapping>

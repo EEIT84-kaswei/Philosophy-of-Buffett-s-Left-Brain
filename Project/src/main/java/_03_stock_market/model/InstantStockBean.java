@@ -18,9 +18,18 @@ public class InstantStockBean implements Serializable{
 	private BigDecimal change_Amount;
 	private BigDecimal change_extent;
 	private Integer acc_Trade_Volume;
+	private Integer trade_Volume;
 	
 	public InstantStockBean(){
 		
+	}
+
+	public Integer getTrade_Volume() {
+		return trade_Volume;
+	}
+
+	public void setTrade_Volume(Integer trade_Volume) {
+		this.trade_Volume = trade_Volume;
 	}
 
 	@Override
@@ -101,8 +110,6 @@ public class InstantStockBean implements Serializable{
 	public void setChange_extent(BigDecimal change_extent) {
 		this.change_extent = change_extent;
 	}
-
-
 	
 	public Integer getAcc_Trade_Volume() {
 		return acc_Trade_Volume;

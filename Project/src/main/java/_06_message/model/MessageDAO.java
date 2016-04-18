@@ -1,5 +1,6 @@
 package _06_message.model;
 
+
 import java.util.List;
 import _06_message.model.MessageBean;
 
@@ -10,6 +11,7 @@ public interface MessageDAO {
 	public abstract MessageBean selectByMno(int mno);
 
 	public abstract List<MessageBean> selectByAccount(String account);
+
 
 	public abstract List<MessageBean> selectByAno(int ano);
 

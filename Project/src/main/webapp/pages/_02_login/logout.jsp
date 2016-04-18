@@ -16,7 +16,9 @@
 <!-- 下列六行敘述設定登出後要顯示的感謝訊息 -->
 <c:set var="logoutMessage" scope="request">
 <font color='blue' ><BR>
+
 訪客${pageContext.request.remoteUser}，感謝您使用本系統。<BR>
+
 您已經登出<BR>
 </font>
 </c:set>

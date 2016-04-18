@@ -17,6 +17,7 @@ import misc.HibernateUtil;
 import _05_newsArticle.model.ArticleBean;
 import _05_newsArticle.model.ArticleService;
 import _05_newsArticle.model.dao.ArticleDAOHibernate;
+
 import _06_message.model.MessageBean;
 import _06_message.model.MessageService;
 import _06_message.model.dao.MessageDAOHibernate;

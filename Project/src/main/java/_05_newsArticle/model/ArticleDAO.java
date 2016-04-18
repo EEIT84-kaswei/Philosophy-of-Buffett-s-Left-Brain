@@ -9,6 +9,7 @@ public interface ArticleDAO {
 
 	public abstract List<ArticleBean> select();
 	
+
 	public List<ArticleBean> selectByAccount(String account); 
 
 	public abstract ArticleBean selectByAno(int ano);
@@ -18,6 +19,7 @@ public interface ArticleDAO {
 	public abstract ArticleBean insert(ArticleBean bean);
 
 	public boolean update(Integer ano, String account, String aname, String atitle, String acontext);
+
 
 	public abstract boolean delete(int ano);
 

@@ -161,6 +161,7 @@ public class NewsServlet extends HttpServlet {
 				session.setAttribute("select", bean);				
 				String path = request.getContextPath();
 				response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");
+
 			}
 		}	
 	}

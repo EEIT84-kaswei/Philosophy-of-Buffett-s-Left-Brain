@@ -65,6 +65,7 @@ public class ArticleService {
 	}
 	public boolean delete(int ano) {
 		return ArticleDAO.delete(ano);
+
 	}
 
 }

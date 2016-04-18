@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>申請加入會員</title>
+
 <link rel="stylesheet" href="../../css/carley.css">
 <script type="text/javascript" src="../../js/jquery-2.2.1.min.js"></script>
 <script type="text/javascript" src="../../js/strength.js"></script>
