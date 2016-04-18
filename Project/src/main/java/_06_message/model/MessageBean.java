@@ -1,6 +1,4 @@
 package _06_message.model;
-
-
 public class MessageBean {
 	private Integer mno;
 	private String account;

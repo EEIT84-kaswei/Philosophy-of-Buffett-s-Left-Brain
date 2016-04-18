@@ -26,9 +26,9 @@ public class DailyStockService {
 	public String selectAllofOneStock(Integer stock_Code){
 		List<DailyStockBean> result = dailyStockDAO.selectByStockCode(stock_Code);
 		JsonArrayBuilder oneStockArrayBuilder=Json.createArrayBuilder();
-		Iterator<DailyStockBean> it=result.iterator();
-		while(it.hasNext()){
-			DailyStockBean bean=it.next();
+		int resultSize=result.size();
+		for(int i=0;i<resultSize;i++){
+			DailyStockBean bean=result.get(i);
 			JsonArrayBuilder oneDayArrayBuilder=Json.createArrayBuilder();
 			long dateMillis=bean.getTrading_Date().getTime();
 			oneDayArrayBuilder.add(new BigDecimal(dateMillis));
@@ -36,9 +36,48 @@ public class DailyStockService {
 			oneDayArrayBuilder.add(bean.getHighest_Price());
 			oneDayArrayBuilder.add(bean.getLowest_Price());
 			oneDayArrayBuilder.add(bean.getClosing_Price());
-			oneDayArrayBuilder.add(new BigDecimal(bean.getTrade_Volume().intValue()));	
+			oneDayArrayBuilder.add(new BigDecimal(bean.getTrade_Volume().intValue()));
+			
+			if(i>=19){
+				int index=i;
+				BigDecimal sum20=new BigDecimal("0");
+				for(int j=1;j<=20;j++){
+					sum20=sum20.add(result.get(index).getClosing_Price());
+					index--;
+				}
+				BigDecimal avg20=sum20.divide(new BigDecimal("20"),2,BigDecimal.ROUND_HALF_UP);
+				oneDayArrayBuilder.add(avg20);
+			}else{
+				oneDayArrayBuilder.add(new BigDecimal("0"));
+			}
+			
+			if(i>=59){
+				int index=i;
+				BigDecimal sum60=new BigDecimal("0");
+				for(int j=1;j<=60;j++){
+					sum60=sum60.add(result.get(index).getClosing_Price());
+					index--;
+				}
+				BigDecimal avg60=sum60.divide(new BigDecimal("60"),2,BigDecimal.ROUND_HALF_UP);
+				oneDayArrayBuilder.add(avg60);
+			}else{
+				oneDayArrayBuilder.add(new BigDecimal("0"));
+			}
+			
+			if(i>=239){
+				int index=i;
+				BigDecimal sum240=new BigDecimal("0");
+				for(int j=1;j<=240;j++){
+					sum240=sum240.add(result.get(index).getClosing_Price());
+					index--;
+				}
+				BigDecimal avg240=sum240.divide(new BigDecimal("240"),2,BigDecimal.ROUND_HALF_UP);
+				oneDayArrayBuilder.add(avg240);
+			}else{
+				oneDayArrayBuilder.add(new BigDecimal("0"));
+			}
 			oneStockArrayBuilder.add(oneDayArrayBuilder);
-		}
+		}		
 		String oneStockDataStr=oneStockArrayBuilder.build().toString();
 		return oneStockDataStr;
 	}

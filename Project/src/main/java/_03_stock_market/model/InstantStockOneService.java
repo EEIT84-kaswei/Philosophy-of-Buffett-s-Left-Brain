@@ -70,6 +70,15 @@ public class InstantStockOneService {
 		}
 	}
 	
+	public InstantStockOneBean selectOne(Integer code){
+		List<InstantStockOneBean> oneStock=null;
+		if(code!=null){
+			oneStock=InstantStockOneDAO.select(code);
+		}
+		return oneStock.get(0);
+	}
+	
+
 	public List<InstantStockOneBean> select(InstantStockOneBean bean) {
 		List<InstantStockOneBean> result = null;
 		
