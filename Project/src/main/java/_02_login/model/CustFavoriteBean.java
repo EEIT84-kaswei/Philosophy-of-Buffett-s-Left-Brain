@@ -2,9 +2,12 @@ package _02_login.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 /* 陳姵吟 Carley Chen, 01-04-2016 */
 
+@XmlRootElement(name="custFavorite")
 public class CustFavoriteBean implements Serializable{
 	private String account;
 	private Integer stock_Code;

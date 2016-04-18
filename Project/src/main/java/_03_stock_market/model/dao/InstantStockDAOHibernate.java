@@ -4,7 +4,11 @@ package _03_stock_market.model.dao;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import misc.HibernateUtil;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,7 +17,6 @@ import org.hibernate.Transaction;
 
 import _03_stock_market.model.InstantStockBean;
 import _03_stock_market.model.InstantStockDAO;
-import misc.HibernateUtil;
 
 
 public class InstantStockDAOHibernate implements InstantStockDAO  {
@@ -115,8 +118,27 @@ public class InstantStockDAOHibernate implements InstantStockDAO  {
 	}
 	@Override
 	public List<InstantStockBean> selectAllByStockCode(Integer stock_Code){
-		Query query = getSession().createQuery("from InstantStockBean where stock_Code = ? order by iDatetime asc");
+		Query query = getSession().createQuery("from InstantStockBean where stock_Code = ? and iDatetime > ? order by iDatetime asc");
+		String openingTimeStr="09:00:00";
 		query.setParameter(0, stock_Code);
+		SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd ");
+		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar cal=Calendar.getInstance();
+		int dayOfWeek=cal.get(Calendar.DAY_OF_WEEK);
+		if(dayOfWeek==1){
+			cal.add(Calendar.DAY_OF_WEEK, -2);
+		}else if(dayOfWeek==7){
+			cal.add(Calendar.DAY_OF_WEEK, -1);
+		}
+		Date targetTime=cal.getTime();
+		String dateOfToday=sdf1.format(targetTime);
+		Date openingTimeOfToday=null;
+		try {
+			openingTimeOfToday=sdf2.parse(dateOfToday+openingTimeStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		query.setParameter(1, openingTimeOfToday);
 		List<InstantStockBean> result =  query.list();
 		return result;
 	}
