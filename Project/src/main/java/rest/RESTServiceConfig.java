@@ -8,6 +8,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class RESTServiceConfig extends ResourceConfig {
 	
 	public RESTServiceConfig(){
-		this.packages("_02_login","_03_stock_market");
+		this.packages("/*");
 	}
 }

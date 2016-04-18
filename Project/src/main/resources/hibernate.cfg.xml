@@ -66,8 +66,8 @@
 
 		<mapping resource="_06_message/model/message.hbm.xml"/>
 		
-		<mapping resource="rest/model/InstantStockOneBean.hbm.xml"/>
-		<mapping resource="rest/model/custFavorite.hbm.xml"/>
+<!-- 		<mapping resource="rest/model/InstantStockOneBean.hbm.xml"/> -->
+<!-- 		<mapping resource="rest/model/custFavorite.hbm.xml"/> -->
 
 		
 

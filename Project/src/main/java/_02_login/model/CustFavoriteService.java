@@ -30,10 +30,10 @@ public class CustFavoriteService {
 		// 測試查詢
 		try {
 			dao.getSession().beginTransaction();
-//			List<Integer> selectBean = service.selectByAccount("lara");
-//			for (Integer beans : selectBean) {
-//				System.out.println(beans);
-//			}
+			List<Integer> selectBean = service.selectByAccount("lara");
+			for (Integer beans : selectBean) {
+				System.out.println(beans);
+			}
 			dao.getSession().getTransaction().commit();
 		} catch (Exception e) {
 			dao.getSession().getTransaction().rollback();
@@ -179,7 +179,6 @@ public class CustFavoriteService {
 
 		HibernateUtil.closeSessionFactory();
 	}
-	
 
 	public List<CustFavoriteBean> select() {
 		List<CustFavoriteBean> result = new ArrayList<CustFavoriteBean>();

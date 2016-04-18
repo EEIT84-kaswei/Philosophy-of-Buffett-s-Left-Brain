@@ -1,4 +1,4 @@
-package rest.restfulService.model;
+package _03_stock_market.model;
 /*張秀維 Hsiu Chang, 01-04-2016 */
 
 import java.util.List;
@@ -6,11 +6,12 @@ import java.util.List;
 import javax.ws.rs.*;
 
 import misc.HibernateUtil;
-import rest.restfulService.model.dao.InstantStockOneDAOHibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import _03_stock_market.model.dao.InstantStockOneDAOHibernate;
 
 
 @Path("/instantStockOnes")
