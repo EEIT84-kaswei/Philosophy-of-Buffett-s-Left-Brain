@@ -10,8 +10,8 @@
 
 <style type="text/css">
 #mainDIV{
-	border:1px blue solid;
-	height:15em;
+	/*border:1px blue solid;*/
+	/*height:15em;*/
 	margin:1em;
 	padding:1em;
 	align:center;
@@ -31,9 +31,9 @@
 <jsp:include page="/nav.jsp" />
 </div>
 
-<div align=center id="mainDIV">
+<div align="center" id="mainDIV">
 
-<h3 align=center>推薦股票</h3>
+<h3 align="center">推薦股票</h3>
 
 	<div>
 	

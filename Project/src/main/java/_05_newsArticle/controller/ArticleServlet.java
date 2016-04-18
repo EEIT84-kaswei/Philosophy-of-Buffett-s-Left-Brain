@@ -51,6 +51,8 @@ public class ArticleServlet extends HttpServlet {
 		
 		String no = request.getParameter("ano");
 		String prodaction = request.getParameter("prodaction");
+		String revise = request.getParameter("revise");
+		System.out.println("revise = " + revise);
 		
 		if(no != null && no.trim().length() != 0){
 			Integer ano = Integer.parseInt(no);
@@ -64,7 +66,7 @@ public class ArticleServlet extends HttpServlet {
 			return;
 		}
 		
-		if (prodaction == null && no == null) {
+		if (prodaction == null && no == null && revise == null) {
 			List<ArticleBean> result = articleService.selectAll();
 			HttpSession session = request.getSession();
 			session.setAttribute("select", result);
@@ -158,12 +160,13 @@ public class ArticleServlet extends HttpServlet {
 				return;
 			}
 			
-		} else if ("編輯".equals(prodaction)) {			
+		} 
+		System.out.println("revise = " + revise);
+		if ("編輯".equals(revise)) {			
 			String updm = request.getParameter("updm");
 			String smno = request.getParameter("mno");
 			Integer ano = Integer.parseInt(updm);
-			Integer mno = Integer.parseInt(smno);
-			
+			Integer mno = Integer.parseInt(smno);			
 			ArticleBean aresult = articleService.selectByAno(ano);
 			List<MessageBean> mresult = messageService.selectByAno(ano);
 			HttpSession session = request.getSession();
@@ -172,6 +175,82 @@ public class ArticleServlet extends HttpServlet {
 			session.setAttribute("updno", mno);
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/secure/_05_article/updMessage.jsp");
+			return;
+			
+		} else if("刪除".equals(revise)){
+			String updm = request.getParameter("updm");
+			String smno = request.getParameter("mno");
+			Integer ano = Integer.parseInt(updm);
+			messageService.delete(smno);
+			ArticleBean aresult = articleService.selectByAno(ano);
+			List<MessageBean> mresult = messageService.selectByAno(ano);
+			HttpSession session = request.getSession();
+			session.setAttribute("singleArticle", aresult);
+			session.setAttribute("msg", mresult);
+			String path = request.getContextPath();
+			response.sendRedirect(path + "/secure/_05_article/singleArticle.jsp");
+			return;
+		} else if("留言".equals(revise)){
+			String account = request.getParameter("account");
+			System.out.println("account = " + account);
+			String sano = request.getParameter("sano");
+			Integer ano = Integer.parseInt(sano);
+			System.out.println("ano = " + ano);
+			java.util.Date mtime = new Date();
+			System.out.println("mtime = " + mtime);
+			String mcontext = request.getParameter("content");
+			System.out.println("mcontext = " + mcontext);
+			MessageBean bean = new MessageBean();
+			bean.setAccount(account);
+			bean.setAno(ano);
+			bean.setMtime(mtime);
+			bean.setMcontext(mcontext);
+			System.out.println("bean = " + bean);
+			ArticleBean aresult = articleService.selectByAno(ano);
+			MessageBean result = messageService.insert(bean);
+			List<MessageBean> mresult = messageService.selectByAno(ano);
+			HttpSession session = request.getSession();
+			session.setAttribute("singleArticle", aresult);
+			session.setAttribute("msg", mresult);
+			String path = request.getContextPath();
+			response.sendRedirect(path + "/secure/_05_article/singleArticle.jsp");
+			return;
+		} else if("確認".equals(revise)){
+			String umno = request.getParameter("umno");
+			String uano = request.getParameter("uano");
+			
+			Integer mno = Integer.parseInt(umno);
+			String account = request.getParameter("account");
+			Integer ano = Integer.parseInt(uano);
+			java.util.Date mtime = new Date();
+			String mcontext = request.getParameter("mcontent");
+			
+			MessageBean bean = new MessageBean();
+			bean.setMno(mno);
+			bean.setAccount(account);
+			bean.setAno(ano);
+			bean.setMtime(mtime);
+			bean.setMcontext(mcontext);
+			messageService.update(bean);
+			ArticleBean aresult = articleService.selectByAno(ano);
+			List<MessageBean> mresult = messageService.selectByAno(ano);
+			HttpSession session = request.getSession();
+			session.setAttribute("singleArticle", aresult);
+			session.setAttribute("msg", mresult);
+			String path = request.getContextPath();
+			response.sendRedirect(path + "/secure/_05_article/singleArticle.jsp");
+			return;
+						
+		} else if("取消".equals(revise)){
+			String uano = request.getParameter("uano");
+			Integer ano = Integer.parseInt(uano);
+			ArticleBean aresult = articleService.selectByAno(ano);
+			List<MessageBean> mresult = messageService.selectByAno(ano);
+			HttpSession session = request.getSession();
+			session.setAttribute("singleArticle", aresult);
+			session.setAttribute("msg", mresult);
+			String path = request.getContextPath();
+			response.sendRedirect(path + "/secure/_05_article/singleArticle.jsp");
 			return;
 		}
 	}

@@ -41,7 +41,7 @@ body {
 
 	<center>
 		<div style="width: 1000px; height: 600px">
-			<form action="<c:url value='/member.do' />" method="post">
+				
 				<table id="table1">
 					<thead>
 						<tr>
@@ -52,14 +52,18 @@ body {
 							<th>刪除會員</th>
 						</tr>
 					</thead>
+					
 					<tbody>
-						<c:forEach var="row" items="${yeah}">
+						
 						
 							
+							<c:forEach var="row" items="${yeah}">
 							<tr>
+							<form action="<c:url value='/member.do' />" method="post">
 								<td style="display:none;"><input type="text" value="${row.account}" name="accountName"></td>
 								<td>${row.account}</td>
-								<td><select name="role">
+								<td>
+									<select name="role">
 										<c:if test="${row.account_Role == 'admin'}">
 											<option>admin</option>
 											<option>customer</option>
@@ -75,18 +79,19 @@ body {
 											<option>writer</option>
 											<option>admin</option>
 										</c:if>
-								</select></td>
-								<td><input type="submit" name="revise" value="修改">
-								</td>
-								<td><input type="submit" name="revise" value="刪除">
-								</td>
+									</select></td>
+								<td><input type="submit" name="revise" value="update"></td>
+								<td><input type="submit" name="revise" value="delete"></td>
+							</form>
 							</tr>
-						
 						</c:forEach>
+						
+						
 
 					</tbody>
+					
 				</table>
-			</form>
+			
 		</div>
 		<p style="text-align: center">功能還沒寫完</p>
 	</center>

@@ -464,10 +464,10 @@
 		});		
 		</script>
 		
+		<center>
 		<h2>股票歷史資訊：${bean.stock_Name}</h2>
-
-		<div align=center
-			style="border: 1px gray solid; height: 40em; width: 70%">
+		
+		<div style="border: 1px gray solid; height: 40em; width: 70%">
 			
 			
 			<h4>即時數據</h4>
@@ -515,6 +515,6 @@
 			
 			</table>
 		</div>
-
+		</center>
 </body>
 </html>

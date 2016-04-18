@@ -13,7 +13,7 @@ public interface AccountRoleDAO {
 
 	AccountRoleBean insert(AccountRoleBean bean);
 
-	boolean update(String account, String account_Role);
+	AccountRoleBean update(String account, String account_Role);
 
 	boolean delete(String account);
 
