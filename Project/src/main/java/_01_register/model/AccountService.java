@@ -18,7 +18,7 @@ import _01_register.model.dao.AccountRoleDAOHibernate;
 
 public class AccountService {
 	private AccountDAOHibernate dao;
-
+	private AccountRoleDAOHibernate ardao;
 
 	public void setDao(AccountDAOHibernate dao) {
 		this.dao = dao;
@@ -161,5 +161,10 @@ public class AccountService {
 		} else {
 			return false;
 		}
+		
+
+	
 	}
+	
+	
 }
