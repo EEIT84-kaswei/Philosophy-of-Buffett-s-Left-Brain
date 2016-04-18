@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>專欄文章</title>
+<script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
 <style type="text/css">
 /* table tr:hover { */
 /* 	background-color:#77FFCC; */
@@ -68,21 +69,17 @@
 				
 				<c:if test="${not empty msg}">
 				<c:forEach var="row" items="${msg}">
-					<c:if test='${row.account == user }'>
-					
+					<c:if test='${row.account == user }'>					
 						<form action="<c:url value="/pages/article.controller"/>" method="get">
-							<input type="text" name="mno" value="${row.mno}">
-							<input type="text" name="updm" value="${singleArticle.ano}">
-							<input type="submit" name="prodaction" value="編輯">
-						</form>
-						&nbsp;
-						<form action="<c:url value="/secure/_05_article/message.do"/>" method="get">
-							<input type="text" name="mno" value="${row.mno}">
-							<input type="submit" name="prodaction" value="刪除" 
+							<input type="hidden" name="mno" value="${row.mno}">
+							<input type="hidden" name="updm" value="${singleArticle.ano}">
+							<input type="submit" name="revise" value="編輯">
+							&nbsp;
+							<input type="submit" name="revise" value="刪除" 
 								onclick="if(confirm('您確定刪除此留言嗎?')) return true;else return false">
-						</form>
-						
+						</form>									
 					</c:if>
+					
 					<table>
 						<tr>
 							<td>${row.account}</td>
@@ -101,9 +98,9 @@
 				</c:forEach>
 			</c:if>
 		
-			<form action="<c:url value="/secure/_05_article/message.do"/>" method="get">
+			<form action="<c:url value="/pages/article.controller"/>" method="post">
 				<input type="hidden" name="account" value="<%=request.getRemoteUser()%>"> 
-				<input type="hidden" name="ano" value="${singleArticle.ano}">
+				<input type="hidden" name="sano" value="${singleArticle.ano}">
 				<textarea rows="20" cols="40" name="content" required>Message Test</textarea>
 				<script>
 					CKEDITOR.replace('content', {
@@ -111,7 +108,7 @@
 					});
 				</script>
 				<br /> 
-				<input type="submit" name="prodaction" value="留言">
+				<input type="submit" name="revise" value="留言">
 			</form>
 				
 

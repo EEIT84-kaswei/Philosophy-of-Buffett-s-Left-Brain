@@ -52,16 +52,18 @@
 					
 					<tr>								
 						<c:if test="${row.mno == updno}">							
-							<form action="<c:url value="/secure/_05_article/message.do"/>" method="get">
-								<input type="hidden" name="mno" value="${row.mno}"> 
+							<form action="<c:url value="/pages/article.controller"/>" method="post">
+								<input type="hidden" name="umno" value="${row.mno}"> 
+								<input type="hidden" name="account" value="${row.account}"> 								
+								<input type="hidden" name="uano" value="${row.ano}">
 								<textarea rows="20" cols="40" name="mcontent">${row.mcontext}</textarea>
 								<script>
 									CKEDITOR.replace('mcontent', {
 										width : 880,
 									});
 								</script>
-								<input type="submit" name="prodaction" value="確認"> 
-								<input type="submit" name="prodaction" value="取消">
+								<input type="submit" name="revise" value="確認"> 
+								<input type="submit" name="revise" value="取消">
 							</form>
 						</c:if>
 					</tr>
