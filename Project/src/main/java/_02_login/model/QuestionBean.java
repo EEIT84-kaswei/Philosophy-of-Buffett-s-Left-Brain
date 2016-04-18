@@ -13,21 +13,19 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class QuestionBean implements Serializable{
-	private Integer id;
+	private String account;
 	private Timestamp QDate;//對應SQL的datetime型態
 	private	Integer Risk_Tolerance ;
 	private Integer scores;
 	
 	public QuestionBean(){
 	}
-	
-	
-	
-	public Integer getId() {
-		return id;
+		
+	public String getAccount() {
+		return account;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 	public Timestamp getQDate() {
 		return QDate;
@@ -47,10 +45,12 @@ public class QuestionBean implements Serializable{
 	public void setScores(Integer scores) {
 		this.scores = scores;
 	}
+	
 	@Override
 	public String toString() {
-		return "questionBean [id=" + id + ", QDate=" + QDate + ", Risk_Tolerance="
-				+ Risk_Tolerance + ", scores=" + scores + "]";
+		return "QuestionBean [account=" + account + ", QDate=" + QDate
+				+ ", Risk_Tolerance=" + Risk_Tolerance + ", scores=" + scores
+				+ "]";
 	}
 	public boolean equals(Object obj){
 		if(obj == this){
@@ -60,10 +60,12 @@ public class QuestionBean implements Serializable{
 		return false;
 		}
 		QuestionBean bean = (QuestionBean) obj;
-		return new EqualsBuilder().append(this.id, bean.getId()).append(this.QDate, bean.getQDate()).isEquals();
+		return new EqualsBuilder().append(this.account, bean.getAccount()).append(this.QDate, bean.getQDate()).isEquals();
 	}
+	
+
 	public int hashCode(){
-		return new HashCodeBuilder().append(this.id).append(this.QDate).toHashCode();
+		return new HashCodeBuilder().append(this.account).append(this.QDate).toHashCode();
 	}
 	
 	

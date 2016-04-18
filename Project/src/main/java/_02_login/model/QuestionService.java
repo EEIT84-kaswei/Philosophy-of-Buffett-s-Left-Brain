@@ -42,29 +42,29 @@ public class QuestionService {
 //			e.printStackTrace();
 //		}
 		
-		QuestionBean beans = new QuestionBean();				//測試:新增資料
-		QuestionBean bean2 = null;
-		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-		Date date = null;
-		try {
-			date = sFormat.parse("2016-02-07 13-30-30");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Timestamp stamp = new Timestamp(date.getTime());
-		try {
-			dao.getSession().beginTransaction();
-			beans.setId(3);
-			beans.setQDate(stamp);
-			beans.setRisk_Tolerance(2);
-			beans.setScores(14);
-			bean2 = service.insert(beans);
-			dao.getSession().getTransaction().commit();
-		} catch (Exception e) {
-			dao.getSession().getTransaction().rollback();
-			e.printStackTrace();
-		}
+//		QuestionBean beans = new QuestionBean();				//測試:新增資料
+//		QuestionBean bean2 = null;
+//		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+//		Date date = null;
+//		try {
+//			date = sFormat.parse("2016-02-07 13-30-30");
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Timestamp stamp = new Timestamp(date.getTime());
+//		try {
+//			dao.getSession().beginTransaction();
+//			beans.setId(3);
+//			beans.setQDate(stamp);
+//			beans.setRisk_Tolerance(2);
+//			beans.setScores(14);
+//			bean2 = service.insert(beans);
+//			dao.getSession().getTransaction().commit();
+//		} catch (Exception e) {
+//			dao.getSession().getTransaction().rollback();
+//			e.printStackTrace();
+//		}
 	}
 	
 	
@@ -72,25 +72,19 @@ public class QuestionService {
 		List<QuestionBean> result = null;
 		result = questionDAO.selectAll();
 		return result;
-//		QuestionBean beanKey = new QuestionBean();
-//		if(bean!=null){
-//		beanKey.setId(bean.getId());
-//		beanKey.setQDate(bean.getQDate());
-//		}
-//		List<QuestionBean> result = null;
-//				
-//		if(beanKey!=null){
-//			QuestionBean temp = questionDAO.select(bean.getId(), bean.getQDate());
-//			if(temp!=null){
-//				result = new ArrayList<QuestionBean>();
-//				result.add(temp);
-//			}
-//		}else{
-//			result =questionDAO.selectAll();
-//		}		
-//		return result;
-					
+							
 	}
+	
+	public List<QuestionBean> select(String account){
+		List<QuestionBean> result = null;
+		if(account!=null){
+		result = questionDAO.select(account);
+		}
+		return result;
+		
+	}
+		
+	
 	public QuestionBean insert(QuestionBean bean){
 		QuestionBean result =new QuestionBean();
 		QuestionServlet servlet = new QuestionServlet();
@@ -109,11 +103,11 @@ public class QuestionService {
 	public Integer risk(Integer scores){
 		Integer Risk_Tolerance = 0;
 		if(scores<=11){
-			Risk_Tolerance = 1;
+			Risk_Tolerance = 3;
 		}else if(scores>11 && scores<=21){
 			Risk_Tolerance = 2;
 		}else if(scores>21){
-			Risk_Tolerance = 3;
+			Risk_Tolerance = 1;
 		}
 		
 		return Risk_Tolerance;

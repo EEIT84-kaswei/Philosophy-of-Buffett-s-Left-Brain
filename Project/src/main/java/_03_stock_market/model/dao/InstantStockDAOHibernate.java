@@ -22,7 +22,6 @@ public class InstantStockDAOHibernate implements InstantStockDAO  {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
 	public static void main(String[] args) {
 				
 			InstantStockDAOHibernate dao = new InstantStockDAOHibernate();

@@ -83,7 +83,6 @@ body {
 						<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></li> 
       					<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></li> 
        					<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></li>  
-               			<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="chengFenv"/></c:url>">成分股</a></li>
                			<li><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></li>
                		</ul>
         		</li>
@@ -93,7 +92,7 @@ body {
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">會員專區<span class="caret"></span></a>
             		<ul class="dropdown-menu">
               			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
-               			 <li><a href="<c:url value='/secure/_02_login/personal_stock.jsp'/>">自選股</a></li>
+               			 <li><a href="<c:url value='/secure/custFavorite.view'/>">自選股</a></li>
                			 <li><a href="<c:url value='/secure/_02_login/recommend.jsp'/>">股票推薦</a></li>
                		</ul>
         		</li>
@@ -121,6 +120,7 @@ body {
 	                    </a>
 						</c:if>
 					</li>
+
 					<c:if test='<%=request.isUserInRole("admin")%>'>
 			            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">管理員<span class="caret"></span></a>
 		            		<ul class="dropdown-menu">
