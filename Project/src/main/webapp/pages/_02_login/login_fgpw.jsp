@@ -103,7 +103,7 @@
 		// 預設顯示第一個頁籤
 		// 並先把 .tabs, .tabs li 及 .tab_content, .tab_content li 等元素取出
 		// 同時也要取得 .tab_content 的寬
-		var _default = 0, $block = $('#abgne-block-20120327'), $tabs = $block
+		var _default = 1, $block = $('#abgne-block-20120327'), $tabs = $block
 				.find('.tabs'), $tabsLi = $tabs.find('li'), $tab_content = $block
 				.find('.tab_content'), $tab_contentLi = $tab_content.find('li'), _width = $tab_content
 				.width();
@@ -181,8 +181,7 @@
 									</tr>
 									<tr>
 								</table>
-								<span><font color="#ff0000" style="font-weight: bold">${changePassword}</font></span>
-								<br>
+								<h4><span style="color: #ffad99">${changePassword}</span></h4>
 								<input type="submit" value="送出" style="margin:10px">
 								</form>
 							</div>

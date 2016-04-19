@@ -101,6 +101,11 @@ body {
         <!-- 到右邊開始 -->
             
              <ul class="nav navbar-nav navbar-right">
+             		<li>
+	             		<c:if test="${pageContext.request.remoteUser != null}">
+             			<font style="color:#CCCCCC;font-size:110%">您好，${pageContext.request.remoteUser}</font>
+             			</c:if>
+             		</li>
                     <li>
                     	<c:if test="${pageContext.request.remoteUser == null}">
                     	<a href="<c:url value='/secure/_02_login/loginSuccess.jsp'/>">
