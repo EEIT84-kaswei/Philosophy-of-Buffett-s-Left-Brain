@@ -11,7 +11,7 @@
 		width: 400px;
 		height: 400px;
 		position: fixed;
-		right: 4%;
+		right: 0.5%;
 		top: 0;
 		margin: auto 0;
 		bottom: 0;
@@ -44,6 +44,20 @@
 		var taiexPriceData=[];
 		var taiexVolumeData=[];
 		
+		function transferTaiexData(data){
+			for(i=0;i<data.length;i++){
+				taiexPriceData.push([data[i][0],data[i][1]]);
+				taiexVolumeData.push([data[i][0],data[i][2]]);
+			}
+		}	
+				
+		function transferInstantData(data){
+			for(i=0;i<data.length;i++){
+				instantPriceData.push([data[i][0],data[i][1]]);
+				instantVolumeData.push([data[i][0],data[i][2]]);
+			}
+		}
+		
 		function transferHistoryData(data){
 			var dataLength=data.length;
 			for(i=0;i<dataLength;i++){
@@ -61,20 +75,6 @@
 				if(i>=239){
 					historyMA240Data.push([data[i][0],data[i][8]]);
 				}
-			}
-		}
-				
-		function transferInstantData(data){
-			for(i=0;i<data.length;i++){
-				instantPriceData.push([data[i][0],data[i][1]]);
-				instantVolumeData.push([data[i][0],data[i][2]]);
-			}
-		}
-		
-		function transferTaiexData(data){
-			for(i=0;i<data.length;i++){
-				taiexPriceData.push([data[i][0],data[i][1]]);
-				taiexVolumeData.push([data[i][0],data[i][2]]);
 			}
 		}
 				
@@ -200,6 +200,7 @@
 		    });
 			
 			var weightedIndexChart = $('#weightedIndexChart').highcharts();
+			
 			
 			var instantSourceUrl=contextPath+"/pages/InstantStockServlet";
 			var instantQueryStr="stock_Code="+"${bean.stock_Code}";			

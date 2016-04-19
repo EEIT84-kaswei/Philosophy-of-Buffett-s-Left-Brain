@@ -2,18 +2,24 @@ package _03_stock_market.model;
 /*張秀維 Hsiu Chang, 01-04-2016 */
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 
+import misc.HibernateUtil;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import _03_stock_market.model.dao.InstantStockDAOHibernate;
-import misc.HibernateUtil;
 
 public class InstantStockService {
 	private InstantStockDAO InstantStockDAO;
@@ -47,9 +53,34 @@ public class InstantStockService {
 	//[即時K線圖]即時InsertService - 某支股票，當天全部交易資料 
 	//回傳[Insert]股價資料： (1)stock_Code股票代碼   (2)iDateTime時分秒   (3)final_Price成交價格
 	
-	public String selectByOneStock(Integer stock_Code){
-		List<InstantStockBean> result = null;
-		result = InstantStockDAO.selectAllByStockCode(stock_Code);
+	public String selectByOneStock(Integer stock_Code){		
+		String openingTimeStr="09:00:00";
+		SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd ");
+		SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar cal=Calendar.getInstance();
+		int dayOfWeek=cal.get(Calendar.DAY_OF_WEEK);
+		int hourOfDay=cal.get(Calendar.HOUR_OF_DAY);
+		if(dayOfWeek==1){
+			cal.add(Calendar.DAY_OF_WEEK, -2);
+		}else if(dayOfWeek==7){
+			cal.add(Calendar.DAY_OF_WEEK, -1);
+		}else{
+			if(hourOfDay>=0 && hourOfDay <9){
+				cal.add(Calendar.DAY_OF_WEEK, -1);
+			}
+		}
+		Date targetTime=cal.getTime();
+		String dateOfToday=sdf1.format(targetTime);
+		Date openingTimeOfToday=null;
+		try {
+			openingTimeOfToday=sdf2.parse(dateOfToday+openingTimeStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}		
+		Timestamp iDatetime=new Timestamp(openingTimeOfToday.getTime());
+		
+		List<InstantStockBean> result = null;		
+		result = InstantStockDAO.selectAllByStockCode(stock_Code,iDatetime);
 		String oneStockDataStr=null;
 		if(!result.isEmpty()){
 			JsonArrayBuilder oneStockArrayBuilder=Json.createArrayBuilder();
