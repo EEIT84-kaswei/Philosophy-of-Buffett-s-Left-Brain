@@ -182,6 +182,7 @@ td.favorL:hovor {
 								<td><c:out value="${data.acc_Trade_Volume}" default="-" /></td>
 							</tr>
 							<c:remove var="have" scope="page"/>
+
 						</c:forEach>
 					</tbody>
 

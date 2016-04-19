@@ -10,6 +10,7 @@
 
 <style type="text/css">
 #mainDIV{
+
 	/*border:1px blue solid;*/
 	/*height:15em;*/
 	margin:1em;
@@ -37,7 +38,7 @@
 
 	<div>
 	
-	根據您填寫的風險問卷，您的得分為：(${score.scores})
+	根據您填寫的風險問卷，您的得分為：(${oldScores})
 	<br>
 	您屬於穩建型。
 	<br>

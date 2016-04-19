@@ -19,9 +19,9 @@ this.style.width=(this.offsetWidth > 200)?"200px":"auto"});
 	body {
     margin:0;
     padding:0;
-    background: #E0E0FF; 
-    -moz-background-size: cover;
-    background-size: cover;
+/*     background: #E0E0FF;  */
+/*     -moz-background-size: cover; */
+/*     background-size: cover; */
 }/*
 	.main{
 	margin:0;
@@ -74,7 +74,7 @@ $('document').ready(function(){
 
 <div class="container" id="container" align="center">
 <!-- <center><img src="img/logo.png" onload="resizeImage()" margin="0" border="0"></center> -->
-	<div class="main">
+	<div class="main" style="background-image: url('<%=request.getContextPath() %>/img/BG2.jpg')">
 		<a href="<%=request.getContextPath() %>/Welcome.jsp">
     <img src="<%=request.getContextPath() %>/img/logo.png" id="full_screen"  title="Philosophy of Buffett's Left Brain" style="max-width:700"/></a>
 	</div>

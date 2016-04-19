@@ -81,7 +81,6 @@ body {
             		<ul class="dropdown-menu">
 						<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></li> 
       					<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></li> 
-       					<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></li>  
                			<li><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></li>
                		</ul>
         		</li>
@@ -91,7 +90,8 @@ body {
             		<ul class="dropdown-menu">
               			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
                			 <li><a href="<c:url value='/secure/custFavorite.view'/>">自選股</a></li>
-               			 <li><a href="<c:url value='/secure/_02_login/recommend.jsp'/>">股票推薦</a></li>
+               			 <li><a href="<c:url value='/secure/_02_login.controller/QuestionServlet'/>">股票推薦</a></li>
+						 <li><a href="<c:url value='/secure/_02_login/memberPersonalDataPage.jsp'/>">會員資料管理</a></li>
                		</ul>
         		</li>
                 <li><a href="<c:url value='https://www.facebook.com/profile.php?id=100000212802863&fref=ts'/>" title="So Call Me Maybe">與我聯絡</a></li>
@@ -123,9 +123,7 @@ body {
 			            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">管理員<span class="caret"></span></a>
 		            		<ul class="dropdown-menu">
 		              			 <li><a href="<c:url value='/member.do' />">會員管理</a></li>
-		               			 <li><a href="<c:url value='/secure/admin/stockrevise.jsp'/>">股票管理</a></li>
-		               			 <li><a href="<c:url value='/secure/message/MessageTest.jsp'/>">留言板測試</a></li>
-		
+		               			 <li><a href="<c:url value='/secure/StockCodeServlet'/>">股票管理</a></li>
 		               		</ul>
 	        			</li>
         			</c:if>

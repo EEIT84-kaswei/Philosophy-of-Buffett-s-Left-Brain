@@ -3,11 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>標題</title>
+
 <style type="text/css">
 
 body{
@@ -28,8 +26,6 @@ li {
 }
 </style>
 
-</head>
-
 
 	<!-- 標題 START -->
 <center>	
@@ -48,7 +44,7 @@ li {
 <tr>
 	<td>
 		<div id="logoimg">
-			<a href="<c:url value='/index.jsp'/>"><img src="<c:url value="/img/logo2.png"/>" style="float: left; height: 100px;"></a>
+			<a href="<c:url value='/index.jsp'/>"><img src="<%=request.getContextPath() %>/img/logo2.png" style="float: left; height: 100px;"></a>
 		</div>
 	</td>
 	<td style="padding:0 2em">
@@ -94,4 +90,3 @@ li {
 	<!-- 標題 END -->
 </center>
 
-</html>

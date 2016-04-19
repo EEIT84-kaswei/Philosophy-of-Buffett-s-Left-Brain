@@ -9,4 +9,6 @@ public interface QuestionDAO {
 	List<QuestionBean> selectAll();
 	QuestionBean insert(QuestionBean bean);
 	List<QuestionBean> select(String account);
+	QuestionBean selectLast(String account);
+
 }
