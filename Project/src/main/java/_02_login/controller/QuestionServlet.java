@@ -40,9 +40,12 @@ public class QuestionServlet extends HttpServlet {
 		Map<String, String> error = new HashMap<String, String>();
 		request.setAttribute("error", error);
 
+		QuestionBean beanOne = null;
+
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("接收HTML Form資料");
 		// 接收HTML Form資料
+		String insert = request.getParameter("insert");
 		String account = request.getRemoteUser();
 		String q1 = request.getParameter("question1");
 		String q2 = request.getParameter("question2");
@@ -51,6 +54,7 @@ public class QuestionServlet extends HttpServlet {
 		String q5 = request.getParameter("question5");
 		String q6 = request.getParameter("question6");
 		System.out.println("轉換HTML Form資料");
+
 		// 轉換HTML Form資料
 		int Q1 = 0, Q2 = 0, Q3 = 0, Q4 = 0, Q5 = 0, Q6 = 0;
 
@@ -108,15 +112,8 @@ public class QuestionServlet extends HttpServlet {
 		}
 		System.out.println("驗證HTML Form資料");
 		// 驗證HTML Form資料
-		QuestionBean beanOne = null;
-		if (service.selectLast(account) == null) {
-			RequestDispatcher rd = request
-					.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
-			rd.forward(request, response);
-		} else
-			beanOne = service.selectLast(account);
-
-		if (account != null && beanOne == null) {
+		beanOne = service.selectLast(account);
+		if (account != null && insert != null) {
 			if (q1 == null) {
 				error.put("question1", "請回答第一題");
 				RequestDispatcher rd = request
@@ -159,17 +156,13 @@ public class QuestionServlet extends HttpServlet {
 				rd.forward(request, response);
 				return;
 			}
-		} else {
-
-			System.out.println("錯誤前");
-			System.out.println(error.isEmpty());
 			if (!error.isEmpty()) {
 				RequestDispatcher rd = request
 						.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
 				rd.forward(request, response);
 				return;
 			}
-			System.out.println("錯誤後");
+
 			if (Q4 > 4) {
 				Q4 = 5;
 			} else if (Q4 > 3) {
@@ -178,66 +171,69 @@ public class QuestionServlet extends HttpServlet {
 				Q4 = 3;
 			} else if (Q4 > 1) {
 				Q4 = 2;
-			} else if(Q4==1)
+			} else if (Q4 == 1)
 				Q4 = 1;
-			// 呼叫Model
-			Integer scores = service.scores(Q1, Q2, Q3, Q4, Q5, Q6);
-			Risk_Tolerance = service.risk(scores);
-			QuestionBean bean = new QuestionBean();
-			if (scores == 0) {
-				if (account != null && beanOne != null) {
-					if (beanOne.getRisk_Tolerance() == 1) {
-						request.setAttribute("oldScores", beanOne.getScores());
-						RequestDispatcher rd = request
-								.getRequestDispatcher("/secure/_02_login/recommend.jsp");
-						rd.forward(request, response);
+		}
+		// 呼叫Model
+		Integer scores = service.scores(Q1, Q2, Q3, Q4, Q5, Q6);
+		Risk_Tolerance = service.risk(scores);
+		QuestionBean bean = new QuestionBean();
 
-					} else if (beanOne.getRisk_Tolerance() == 2) {
-						request.setAttribute("oldScores", beanOne.getScores());
-						RequestDispatcher rd = request
-								.getRequestDispatcher("/secure/_02_login/recommend2.jsp");
-						rd.forward(request, response);
+		if (scores == 0) {
+			beanOne = service.selectLast(account);
+			if (account != null && beanOne != null) {
+				if (beanOne.getRisk_Tolerance() == 1) {
+					request.setAttribute("oldScores", beanOne.getScores());
+					RequestDispatcher rd = request
+							.getRequestDispatcher("/secure/_02_login/recommend.jsp");
+					rd.forward(request, response);
 
-					} else if (beanOne.getRisk_Tolerance() == 3) {
-						request.setAttribute("oldScores", beanOne.getScores());
-						RequestDispatcher rd = request
-								.getRequestDispatcher("/secure/_02_login/recommend3.jsp");
-						rd.forward(request, response);
+				} else if (beanOne.getRisk_Tolerance() == 2) {
+					request.setAttribute("oldScores", beanOne.getScores());
+					RequestDispatcher rd = request
+							.getRequestDispatcher("/secure/_02_login/recommend2.jsp");
+					rd.forward(request, response);
 
-					}
-				}
-			} else {
-				try {
-					bean.setAccount(account);
-					bean.setQDate(QDate);
-					bean.setRisk_Tolerance(Risk_Tolerance);
-					bean.setScores(scores);
-					service.insert(bean);
-					beanOne = service.selectLast(account);
-					if (Risk_Tolerance == 1) {
-						request.setAttribute("oldScores", beanOne.getScores());
-						RequestDispatcher rd = request
-								.getRequestDispatcher("/secure/_02_login/recommend.jsp");
-						rd.forward(request, response);
-					} else if (Risk_Tolerance == 2) {
-						request.setAttribute("oldScores", beanOne.getScores());
-						RequestDispatcher rd = request
-								.getRequestDispatcher("/secure/_02_login/recommend2.jsp");
-						rd.forward(request, response);
-					} else {
-						request.setAttribute("oldScores", beanOne.getScores());
-						RequestDispatcher rd = request
-								.getRequestDispatcher("/secure/_02_login/recommend3.jsp");
-						rd.forward(request, response);
-					}
-					return;
+				} else if (beanOne.getRisk_Tolerance() == 3) {
+					request.setAttribute("oldScores", beanOne.getScores());
+					RequestDispatcher rd = request
+							.getRequestDispatcher("/secure/_02_login/recommend3.jsp");
+					rd.forward(request, response);
 
-				} catch (Exception e) {
-					e.printStackTrace();
-					return;
 				}
 			}
+		} else {
+			try {
+				bean.setAccount(account);
+				bean.setQDate(QDate);
+				bean.setRisk_Tolerance(Risk_Tolerance);
+				bean.setScores(scores);
+				service.insert(bean);
+				beanOne = service.selectLast(account);
+				if (Risk_Tolerance == 1) {
+					request.setAttribute("oldScores", beanOne.getScores());
+					RequestDispatcher rd = request
+							.getRequestDispatcher("/secure/_02_login/recommend.jsp");
+					rd.forward(request, response);
+				} else if (Risk_Tolerance == 2) {
+					request.setAttribute("oldScores", beanOne.getScores());
+					RequestDispatcher rd = request
+							.getRequestDispatcher("/secure/_02_login/recommend2.jsp");
+					rd.forward(request, response);
+				} else {
+					request.setAttribute("oldScores", beanOne.getScores());
+					RequestDispatcher rd = request
+							.getRequestDispatcher("/secure/_02_login/recommend3.jsp");
+					rd.forward(request, response);
+				}
+				return;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				return;
+			}
 		}
+
 	}
 
 	// 在未使用spring前，先使用init方法取得session

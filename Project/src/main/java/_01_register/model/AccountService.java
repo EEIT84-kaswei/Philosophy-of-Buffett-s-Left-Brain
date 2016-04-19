@@ -160,10 +160,16 @@ public class AccountService {
 			return true;
 		} else {
 			return false;
-		}
-		
-
+		}	
 	
+	}
+	public AccountBean update(AccountBean bean){
+		AccountBean result = null;
+		if(bean!=null){
+			result = dao.update(bean);
+		}
+		return bean;
+		
 	}
 	
 	
