@@ -20,12 +20,12 @@
 		</div>
 
 <div align=center>
-<br><h3>忘記帳號或密碼</h3><br>
-<input type="radio" name="question1" value="1">忘記帳號<br>
-<input type="radio" name="question1" value="1">忘記密碼<br>
-<input type="radio" name="question1" value="1">忘記帳號與密碼<br>
+<br><h3>忘記密碼</h3><br>
+請輸入您註冊時登記的e-mail：<input type="text" name="email" size="30"><br>
 <br>
-<input type="submit" value="送出">
+本站將寄送新的密碼至您的e-mail地址，請使用新密碼重新登入。<br>
+登入後，請即時修改您的密碼，以維護個人隱私權益。<br>
+<input type="submit" value="送出" onclick="location.href='<c:url value="/pages/_02_login/login.jsp"/>'">
 </div>
 
 

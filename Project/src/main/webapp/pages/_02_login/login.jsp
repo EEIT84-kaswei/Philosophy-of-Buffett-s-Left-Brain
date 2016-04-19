@@ -53,7 +53,7 @@
 	<p>
 			<input type="submit" value="登入">
 			<input type="button" value="申請會員" onclick="location.href='<c:url value="/pages/_01_register/accept.jsp"/>'">
-			<input type="button" value="忘記密碼" >
+			<input type="button" value="忘記密碼" onclick="location.href='<c:url value="/pages/_02_login/forgetPassword.jsp"/>'">
 	
 	</p>
 

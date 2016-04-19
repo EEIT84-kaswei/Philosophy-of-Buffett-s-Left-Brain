@@ -125,8 +125,6 @@ body {
 		            		<ul class="dropdown-menu">
 		              			 <li><a href="<c:url value='/member.do' />">會員管理</a></li>
 		               			 <li><a href="<c:url value='/secure/admin/stockrevise.jsp'/>">股票管理</a></li>
-		               			 <li><a href="<c:url value='/secure/message/MessageTest.jsp'/>">留言板測試</a></li>
-		
 		               		</ul>
 	        			</li>
         			</c:if>
