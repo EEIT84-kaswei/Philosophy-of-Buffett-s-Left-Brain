@@ -12,20 +12,12 @@
 <title>管理員主控台</title>
 
 <style>
-article, aside, figure, figcaption, footer, header, hgroup, menu, nav,
-	section {
-	display: block;
-}
 
-body {
-	font: 62.5% "Trebuchet MS", sans-serif;
-	margin: 50px;
-}
+
 </style>
 </head>
 <body>
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-	<jsp:include page="/title.jsp" />
 
 
 	<!-- 網頁主要導覽列 -->
@@ -111,8 +103,7 @@ body {
 
 			<table id="table2">
 				<thead>
-					<form action="<c:url value="/secure/StockCodeServlet" />"
-						method="post">
+					<form action="<c:url value='/secure/StockCodeServlet' />" method="post">
 						<tr>
 							<td><input type="text" size="12" name="deleteMsg"></td>
 							<td><input type="submit" value="Delete" name="stockManage"></td>

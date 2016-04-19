@@ -69,10 +69,10 @@
 				<!-- ------------------------------- 楚河漢界 ------------------------------- -->
 				
 				<div>
-				<h3 style="text-align:center;color:blue">~~~~~~~~~~留~言~板~~~~~~~~~~</h3>
+				<h3 style="text-align:center;color:blue">~~~~~~~~~~讀~者~回~應~~~~~~~~~~</h3>
 				<br>
 
-				<div align="center">
+				<div style="max-width:50em;margin:0 auto">
 				<c:if test="${not empty msg}">
 				<c:forEach var="row" items="${msg}">
 					<c:if test='${row.account == user }'>					
@@ -88,14 +88,14 @@
 					
 					<table>
 						<tr>
-							<td>${row.account}</td>
+							<td>回應者：${row.account}</td>
 						</tr>
 						<tr>
-							<td><fmt:formatDate value="${row.mtime}"
+							<td>回應時間：<fmt:formatDate value="${row.mtime}"
 									pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						</tr>
 						<tr>
-							<td>${row.mcontext}</td>
+							<td>回應內容：<br>${row.mcontext}</td>
 						</tr>
 						<tr>
 							<td>-----------------------------------</td>
