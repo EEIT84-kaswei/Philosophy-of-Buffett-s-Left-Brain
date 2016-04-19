@@ -27,7 +27,7 @@
 			<jsp:include page="/nav.jsp" />
 		</div>
 
-		<div style="height: 20em; margin: 2em auto; padding: 2em">
+		<div style="margin: 2em auto; padding: 2em">
 
 			<!-- 表格開始 -->
 			
@@ -41,7 +41,7 @@
 				<fmt:formatDate var="time" value="${singleArticle.atime}" type="both" dateStyle="long" /> 
 				<p style="text-align:center">${time}</p>
 				<br>
-				<div style="width:500px;margin:0 auto">
+				<div style="max-width:50em;margin:0 auto">
 					<p>${singleArticle.acontext}</p>
 				</div>
 				<div align=center>
@@ -55,12 +55,13 @@
  					<h1><%=request.getRemoteUser()%></h1>
 					<h1>${singleArticle.account}</h1> 
 				--%>
-					
-					<c:set var="user" value="<%=request.getRemoteUser()%>" />		
-					<c:if test='${singleArticle.account == user }'>
-						<input type="submit" name="prodaction" value="修改">
-						<input type="submit" name="prodaction" value="刪除" onclick="if(confirm('您確定刪除此篇文章嗎?')) return true;else return false">								
-					</c:if>					
+					<c:if test='<%=request.isUserInRole("writer")%>'>
+						<c:set var="user" value="<%=request.getRemoteUser()%>" />		
+						<c:if test='${singleArticle.account == user }'>
+							<input type="submit" name="prodaction" value="修改">
+							<input type="submit" name="prodaction" value="刪除" onclick="if(confirm('您確定刪除此篇文章嗎?')) return true;else return false">								
+						</c:if>
+					</c:if>				
 					
 				</div>
 				</form>
@@ -68,10 +69,10 @@
 				<!-- ------------------------------- 楚河漢界 ------------------------------- -->
 				
 				<div>
-				<h3 style="text-align:center;color:blue">~~~~~~~~~~留~言~板~~~~~~~~~~</h3>
+				<h3 style="text-align:center;color:blue">~~~~~~~~~~讀~者~回~應~~~~~~~~~~</h3>
 				<br>
 
-				<div align="center">
+				<div style="max-width:50em;margin:0 auto">
 				<c:if test="${not empty msg}">
 				<c:forEach var="row" items="${msg}">
 					<c:if test='${row.account == user }'>					
@@ -87,14 +88,14 @@
 					
 					<table>
 						<tr>
-							<td>${row.account}</td>
+							<td>回應者：${row.account}</td>
 						</tr>
 						<tr>
-							<td><fmt:formatDate value="${row.mtime}"
+							<td>回應時間：<fmt:formatDate value="${row.mtime}"
 									pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						</tr>
 						<tr>
-							<td>${row.mcontext}</td>
+							<td>回應內容：<br>${row.mcontext}</td>
 						</tr>
 						<tr>
 							<td>-----------------------------------</td>
@@ -106,7 +107,7 @@
 			<form action="<c:url value="/pages/article.controller"/>" method="post">
 				<input type="hidden" name="account" value="<%=request.getRemoteUser()%>"> 
 				<input type="hidden" name="sano" value="${singleArticle.ano}">
-				<textarea rows="20" cols="40" name="content" required>Message Test</textarea>
+				<textarea rows="20" cols="40" name="content" required></textarea>
 				<script>
 					CKEDITOR.replace('content', {
 						width:880,

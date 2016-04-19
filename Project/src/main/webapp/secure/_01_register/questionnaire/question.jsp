@@ -60,7 +60,7 @@
 		</div>
 <H2 align=center>風險屬性問卷</H2>
 <div align=center id="midTable">
-<form action="<c:url value='/_02_login.controller/QuestionServlet' />" method="POST">
+<form action="<c:url value='/secure/_02_login.controller/QuestionServlet' />" method="POST">
 <table id="middleTable">
 	<tr><td>1.客戶年齡層？<br></td>
 				 <td><input type="radio" name="question1" value="1">70歲以上/未滿20歲<br></td>
