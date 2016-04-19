@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/3/31 ?U?? 05:13:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="_04_stock.model.StockTypeBean" table="stockType">
+        <id name="stock_TypeCode" type="java.lang.String">
+            <column name="stock_TypeCode" />
+            <generator class="assigned" />
+        </id>
+        <property name="stock_TypeName" type="java.lang.String">
+            <column name="stock_TypeName" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012/3/7 ?W?? 09:15:15 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+	<class name="_04_stock.model.SecuritiesTradeBean" table="securitiesTrade">
+		<composite-id>
+			<key-property name="stock_Code" column="stock_Code"/>
+			<key-property name="sDate" column="sDate"></key-property>
+			<key-property name="securities_Supplier" column="securities_Supplier"></key-property>												
+		</composite-id>
+		
+		<property name="buy_Sheets" type="integer">
+			<column name="buy_Sheets"></column>
+		</property>
+		<property name="sell_Sheets" type="integer">
+			<column name="sell_Sheets"></column>
+		</property>
+		<property name="b_s_sheets" type="integer">
+			<column name="b_s_sheets"></column>
+		</property>
+	
+	</class>
+</hibernate-mapping>
