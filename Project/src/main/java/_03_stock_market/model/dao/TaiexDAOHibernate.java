@@ -101,6 +101,7 @@ public class TaiexDAOHibernate implements TaiexDAO {
 			}
 			result.setTaiex_Code("POW00");
 			result.setTaiex(bean.getTaiex());
+			result.setTaiex_Volume(bean.getTaiex_Volume());
 			return result;
 		}
 		return null;
