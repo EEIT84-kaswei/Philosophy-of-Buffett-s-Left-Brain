@@ -55,8 +55,8 @@
  					<h1><%=request.getRemoteUser()%></h1>
 					<h1>${singleArticle.account}</h1> 
 				--%>
+					<c:set var="user" value="<%=request.getRemoteUser()%>" />		
 					<c:if test='<%=request.isUserInRole("writer")%>'>
-						<c:set var="user" value="<%=request.getRemoteUser()%>" />		
 						<c:if test='${singleArticle.account == user }'>
 							<input type="submit" name="prodaction" value="修改">
 							<input type="submit" name="prodaction" value="刪除" onclick="if(confirm('您確定刪除此篇文章嗎?')) return true;else return false">								

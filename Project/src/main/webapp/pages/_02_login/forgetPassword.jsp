@@ -19,16 +19,6 @@
 			<jsp:include page="/nav.jsp" />
 		</div>
 
-<div align=center>
-<br><h3>忘記帳號或密碼</h3><br>
-<input type="radio" name="question1" value="1">忘記帳號<br>
-<input type="radio" name="question1" value="1">忘記密碼<br>
-<input type="radio" name="question1" value="1">忘記帳號與密碼<br>
-<br>
-<input type="submit" value="送出">
-</div>
-
-
 
 </body>
 </html>

@@ -82,6 +82,11 @@ li {
 	<div style="width:3em"></div>
 	<div id="google_translate_element" align=right style="width:100%"></div>
 	</td>
+	<td>
+		<div style="margin:0 7em">
+
+         </div>
+	</td>
 </tr>
 </tbody>
 </table>
