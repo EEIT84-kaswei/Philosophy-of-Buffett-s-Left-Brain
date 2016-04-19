@@ -8,6 +8,12 @@ import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Transaction;
+
+import misc.HibernateUtil;
+import _03_stock_market.model.dao.TaiexDAOHibernate;
+
 public class TaiexService {	
 	private TaiexDAO taiexDAO;	
 	
@@ -15,8 +21,22 @@ public class TaiexService {
 		this.taiexDAO = taiexDAO;
 	}
 
-	public static void main(String[] args) {		
-
+	public static void main(String[] args) {
+		TaiexService taiexService=new TaiexService();
+		TaiexDAOHibernate taiexDAOHibernate=new TaiexDAOHibernate();
+		taiexDAOHibernate.setSessionFactory(HibernateUtil.getSessionFactory());
+		String taiexData;
+		Transaction tx=null;
+		try {
+			tx=HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+			taiexService.setTaiexDAO(taiexDAOHibernate);
+			taiexData = taiexService.getTaiexData();
+			System.out.println(taiexData);
+			tx.commit();
+		} catch (HibernateException e) {
+			tx.rollback();
+			e.printStackTrace();
+		}		
 	}
 	
 	public String getTaiexData(){

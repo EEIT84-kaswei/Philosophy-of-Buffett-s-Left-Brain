@@ -6,6 +6,17 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+	#weightedIndexChart{
+		width: 400px;
+		height: 400px;
+		position: fixed;
+		right: 4%;
+		top: 0;
+		margin: auto 0;
+		bottom: 0;
+	}
+</style>
 <title>歷史資訊</title>
 </head>
 <body>
@@ -30,11 +41,10 @@
 		var historyMA240Data=[];
 		var instantPriceData=[];
 		var instantVolumeData=[];
+		var taiexPriceData=[];
+		var taiexVolumeData=[];
 		
 		function transferHistoryData(data){
-			var movingAverage20Array=[];
-			var movingAverage60Array=[];
-			var movingAverage240Array=[];
 			var dataLength=data.length;
 			for(i=0;i<dataLength;i++){
 				historyPriceData.push([data[i][0],data[i][1],data[i][2],data[i][3],data[i][4]]);
@@ -55,11 +65,16 @@
 		}
 				
 		function transferInstantData(data){
-			var price=[]
-			var volume=[]
 			for(i=0;i<data.length;i++){
 				instantPriceData.push([data[i][0],data[i][1]]);
 				instantVolumeData.push([data[i][0],data[i][2]]);
+			}
+		}
+		
+		function transferTaiexData(data){
+			for(i=0;i<data.length;i++){
+				taiexPriceData.push([data[i][0],data[i][1]]);
+				taiexVolumeData.push([data[i][0],data[i][2]]);
 			}
 		}
 				
@@ -77,6 +92,115 @@
 		    });		    			
 			
 			var contextPath="${pageContext.request.contextPath}";
+			
+			var taiexSourceUrl=contextPath+"/pages/TaiexServlet";
+			var taiexQueryStr="code=taiex";			
+			
+			$.ajax({
+				method:"GET",
+				url:taiexSourceUrl,
+				data:taiexQueryStr,
+				cache:false,
+				async:false,
+				dataType:"json",
+				success:transferTaiexData
+			});
+			
+			$('#weightedIndexChart').highcharts('StockChart', {
+				
+		        chart : {
+		            events : {
+		                load : function () {
+		                    var series = this.series[0];
+		                    setInterval(function () {
+		                    	$.ajax({
+		            				method:"GET",
+		            				url:taiexSourceUrl,
+		            				data:taiexQueryStr,
+		            				cache:false,
+		            				async:true,
+		            				dataType:"json",
+		            				success:function(data){
+		            					var price=[]
+		            					var volume=[]
+		            					for(i=0;i<data.length;i++){
+		            						price.push([data[i][0],data[i][1]]);
+		            						volume.push([data[i][0],data[i][2]]);
+		            					}
+		            					weightedIndexChart.series[0].setData(price,false);
+		            					weightedIndexChart.series[1].setData(volume,false);
+		            					weightedIndexChart.redraw();
+		            				}		                    	
+		            			});		                    	
+		                    }, 60000);		                    
+		                }
+		            }
+		        },		
+
+				yAxis: [{
+		                labels: {
+		                    align: 'left',
+		                    x: 4
+		                },
+		                height: '60%',
+		                lineWidth: 2
+		            }, {
+		                labels: {
+		                    align: 'left',
+		                    x: 4
+		                },
+		                top: '65%',
+		                height: '35%',
+		                offset: 0,
+		                lineWidth: 2
+		            }],
+		        
+		        rangeSelector: {
+		        	enabled:false,
+		        },
+
+		        title : {
+		            text : '加權指數'
+		        },
+
+		        exporting: {
+		            enabled: false
+		        },
+		        
+		        plotOptions: {
+		            line: {		            	
+		                tooltip:{
+		                	pointFormat:'<span>{series.name}: {point.y:.2f}</span><br/>',
+		                },
+		                dataGrouping: {
+		                	enabled: false,
+			                },
+		            },
+		            area:{
+				        tooltip:{
+				           	pointFormat:'<span>{series.name}: {point.y:.2f}億</span><br/>'
+				        },
+				        dataGrouping: {
+				        	enabled: false
+			                }				            
+				    }	                
+	           	},
+
+		        series : [{
+		        	type : 'line',
+		            name : '加權指數',
+		            data : taiexPriceData		            
+		        },{
+		    		type: 'area',
+		    		color: '#f5b537',
+		    		name: '成交金額',
+		    		data: taiexVolumeData,
+		            yAxis: 1
+		    	}]
+		    });
+			
+			var weightedIndexChart = $('#weightedIndexChart').highcharts();
+			
 			var instantSourceUrl=contextPath+"/pages/InstantStockServlet";
 			var instantQueryStr="stock_Code="+"${bean.stock_Code}";			
 			
@@ -141,19 +265,6 @@
 		        
 		        rangeSelector: {
 		        	enabled:false,
-		            buttons: [{
-		                count: 1,
-		                type: 'minute',
-		                text: '1分'
-		            }, {
-		                count: 5,
-		                type: 'minute',
-		                text: '5分'
-		            }, {
-		                type: 'all',
-		                text: '全部'
-		            }],
-		            inputEnabled: false,
 		        },
 
 		        title : {
@@ -413,6 +524,33 @@
 		            	units: [['month',[1]]],
 		            	}           
 					},false);
+					
+					historyChart.series[2].update({
+		            	dataGrouping: {
+		            	approximation: "average",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['month',[1]]],
+		            	}           
+					},false);
+					
+					historyChart.series[3].update({
+		            	dataGrouping: {
+		            	approximation: "average",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['month',[1]]],
+		            	}           
+					},false);
+					
+					historyChart.series[4].update({
+		            	dataGrouping: {
+		            	approximation: "average",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['month',[1]]],
+		            	}           
+					},false);
 		      		
 		      		historyChart.redraw();
 				});		    
@@ -436,6 +574,33 @@
 		            	}           
 					},false);
 		      		
+					historyChart.series[2].update({
+		            	dataGrouping: {
+		            	approximation: "average",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['week',[1]]],
+		            	}           
+					},false);
+					
+					historyChart.series[3].update({
+		            	dataGrouping: {
+		            	approximation: "average",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['week',[1]]],
+		            	}           
+					},false);
+					
+					historyChart.series[4].update({
+		            	dataGrouping: {
+		            	approximation: "average",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['week',[1]]],
+		            	}           
+					},false);
+					
 		      		historyChart.redraw();
 				});
 				
@@ -457,6 +622,33 @@
 		            	units: [['day',[1]]],
 		            	}           
 					},false);
+					
+					historyChart.series[2].update({
+		            	dataGrouping: {
+		            	approximation: "average",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['day',[1]]],
+		            	}           
+					},false);
+					
+					historyChart.series[3].update({
+		            	dataGrouping: {
+		            	approximation: "average",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['day',[1]]],
+		            	}           
+					},false);
+					
+					historyChart.series[4].update({
+		            	dataGrouping: {
+		            	approximation: "average",
+		            	enabled: true,
+		            	forced: true,
+		            	units: [['day',[1]]],
+		            	}           
+					},false);
 		      		
 		      		historyChart.redraw();
 				});
@@ -464,7 +656,7 @@
 		});		
 		</script>
 		
-		<center>
+		
 		<h2>股票歷史資訊：${bean.stock_Name}</h2>
 		
 		<div style="border: 1px gray solid; height: 40em; width: 70%">
@@ -515,6 +707,6 @@
 			
 			</table>
 		</div>
-		</center>
+		<div id="weightedIndexChart"></div>
 </body>
 </html>

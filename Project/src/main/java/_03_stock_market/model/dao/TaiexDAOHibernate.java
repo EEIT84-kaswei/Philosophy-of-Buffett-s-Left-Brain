@@ -7,20 +7,21 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import _03_stock_market.model.TaiexBean;
 import _03_stock_market.model.TaiexDAO;
 import misc.HibernateUtil;
 
 public class TaiexDAOHibernate implements TaiexDAO {
-	private Session session;	
-
-	public TaiexDAOHibernate(Session session) {
-		this.session = session;
-	}
+	private SessionFactory sessionFactory;
 	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	public Session getSession(){
-		return session;
+		return sessionFactory.getCurrentSession();
 	}
 	
 	public static void main(String[] args) {
@@ -28,24 +29,31 @@ public class TaiexDAOHibernate implements TaiexDAO {
 		try {
 			session.beginTransaction();
 			
-			TaiexDAOHibernate dao = new TaiexDAOHibernate(session);
+			TaiexDAOHibernate dao = new TaiexDAOHibernate();
+			dao.setSessionFactory(HibernateUtil.getSessionFactory());
 //			List<TaiexBean> bean = dao.select();
 			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-			java.util.Date dateTime = sdf1.parse("2016-03-01 00:00:05");
+			java.util.Date dateTime = sdf1.parse("2016-04-19 00:00:05");
+			
+			//測試selectByDate(java.util.Date tDate)
+			List<TaiexBean> list = dao.selectByDate(dateTime);
+			for(TaiexBean bean:list){
+				System.out.println(bean);
+			}
+			
 //			TaiexBean bean = dao.select(dateTime);
 //			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 //			java.util.Date date = sdf2.parse("2016-03-01");
-//			List<TaiexBean> bean = dao.selectByDate(date);
 //			TaiexBean result = new TaiexBean();
 //			result.settDateTime(dateTime);
 //			result.settDate(date);
 //			result.setTaiex(5678.0);
 //			TaiexBean bean = dao.insert(result);
 //			TaiexBean bean = dao.update(result);
-			boolean bean = dao.delete(dateTime);
-			
-			System.out.println(bean);
-			
+//			boolean bean = dao.delete(dateTime);
+//			
+//			System.out.println(bean);
+//			
 			session.getTransaction().commit();
 		} catch (ParseException e) {
 			e.printStackTrace();
