@@ -103,7 +103,7 @@
 		// 預設顯示第一個頁籤
 		// 並先把 .tabs, .tabs li 及 .tab_content, .tab_content li 等元素取出
 		// 同時也要取得 .tab_content 的寬
-		var _default = 0, $block = $('#abgne-block-20120327'), $tabs = $block
+		var _default = 1, $block = $('#abgne-block-20120327'), $tabs = $block
 				.find('.tabs'), $tabsLi = $tabs.find('li'), $tab_content = $block
 				.find('.tab_content'), $tab_contentLi = $tab_content.find('li'), _width = $tab_content
 				.width();
@@ -198,7 +198,7 @@
 								<br>
 								<p></p>
 								<p></p>
-								<font color="#ff0000" style="font-weight: bold;margin:10px auto">${error.account}</font>
+								<p><font color="#ff0000" style="font-weight: bold;margin:10px auto">${error.account}</font></p>
 								<p></p>
 								<p></p>
 								<font style="color:#FFFFFF;font-weight: bold;">本站將寄送新的密碼至您註冊時的e-mail地址，</font><br>

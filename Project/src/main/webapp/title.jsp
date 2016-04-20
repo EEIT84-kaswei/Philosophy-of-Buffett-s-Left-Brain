@@ -4,7 +4,6 @@
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <style type="text/css">
@@ -82,6 +81,11 @@ li {
 	<td>
 	<div style="width:3em"></div>
 	<div id="google_translate_element" align=right style="width:100%"></div>
+	</td>
+	<td>
+		<div style="margin:0 7em">
+
+         </div>
 	</td>
 </tr>
 </tbody>

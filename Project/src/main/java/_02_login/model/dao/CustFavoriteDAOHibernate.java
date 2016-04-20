@@ -15,7 +15,12 @@ import misc.HibernateUtil;
 public class CustFavoriteDAOHibernate implements CustFavoriteDAO {
 	private SessionFactory sessionFactory;	
 
-	
+
+	public CustFavoriteDAOHibernate(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	public CustFavoriteDAOHibernate() {
+	}
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}

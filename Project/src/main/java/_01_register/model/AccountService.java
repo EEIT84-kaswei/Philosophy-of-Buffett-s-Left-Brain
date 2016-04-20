@@ -107,6 +107,10 @@ public class AccountService {
 		}
 		return result;
 	}
+	
+	public String selectPasswByAccount(String account){
+		return dao.selectPasswByAccount(account);
+	}
 
 	public boolean accountExists(String account) {
 		AccountBean bean = dao.selectByAccount(account);
@@ -116,7 +120,11 @@ public class AccountService {
 			return true;
 		}
 	}
-
+	
+	public AccountBean updateAccount(AccountBean bean){
+		return dao.update(bean);
+	}
+	
 	public AccountBean saveAccount(AccountBean bean) {
 		return dao.insert(bean);
 	}
@@ -160,7 +168,9 @@ public class AccountService {
 			return true;
 		} else {
 			return false;
+
 		}	
+
 	
 	}
 	public AccountBean update(AccountBean bean){

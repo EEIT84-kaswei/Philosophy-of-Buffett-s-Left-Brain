@@ -8,16 +8,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import misc.HibernateUtil;
 
 import org.hibernate.SessionFactory;
 
+import _02_login.model.CustFavoriteService;
+import _02_login.model.dao.CustFavoriteDAOHibernate;
 import _03_stock_market.model.InstantStockOneBean;
 import _03_stock_market.model.InstantStockOneService;
 import _03_stock_market.model.dao.InstantStockOneDAOHibernate;
-import _04_stock.model.StockCodeService;
-import _04_stock.model.dao.StockCodeDAOHibernate;
-import misc.HibernateUtil;
 
 @WebServlet(
 		urlPatterns={"/secure/stockType.view"}    )
@@ -29,6 +29,7 @@ public class StockTypeServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	/*用即時UpdateService找出股票資料，找出分類在 上市股這分類內的，所有股票即時交易資料（興櫃股沒抓到）*/
 	private InstantStockOneService instantStockOneService; 
+	private CustFavoriteService custFavoriteService;
 	
 	@Override
 	public void init() throws ServletException {
@@ -36,6 +37,10 @@ public class StockTypeServlet extends HttpServlet{
 		InstantStockOneDAOHibernate oneDao = new InstantStockOneDAOHibernate(sessionFactory);
 		instantStockOneService = new InstantStockOneService();
 		instantStockOneService.setInstantStockOneDAO(oneDao);
+		
+		CustFavoriteDAOHibernate cfDao = new CustFavoriteDAOHibernate(sessionFactory);
+		custFavoriteService = new CustFavoriteService();
+		custFavoriteService.setCustFavoriteDAO(cfDao);
 	}
 	
 	
@@ -47,6 +52,8 @@ public class StockTypeServlet extends HttpServlet{
 		 * **/
 		//取值
 		String stockType = request.getParameter("stockType");
+		String loginAccount = request.getRemoteUser();
+		
 		System.out.println("stockType = " + stockType);
 		if (stockType.equals("chengFenv")) {
 			request.setAttribute("stockTypeName", "成分股");
@@ -55,6 +62,7 @@ public class StockTypeServlet extends HttpServlet{
 		}
 		//呼叫model
 		List<InstantStockOneBean> beans = instantStockOneService.selectByType(stockType);
+		List<Integer> cuBeans=custFavoriteService.selectByAccount(loginAccount);
 		
 		//將值 設定到request內，並轉到承接的View
 		if(stockType.equals("s1")){
@@ -65,6 +73,7 @@ public class StockTypeServlet extends HttpServlet{
 			request.setAttribute("stockTypeName", "興櫃股");
 		}
 		request.setAttribute("stockType", beans);
+		request.setAttribute("cuCode", cuBeans);
 		request.setAttribute("stockTypeCode", stockType);
 		request.getRequestDispatcher("/secure/_04_stock/stockType.jsp").forward(request, response);
 		

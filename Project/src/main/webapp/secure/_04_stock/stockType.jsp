@@ -137,14 +137,40 @@ td.favorL:hovor {
 					</thead>
 
 					<tbody id="tbody">
+					
 						<!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ;不管加入取消都送一個ajax回去-->
 						<c:forEach var="data" items="${stockType}">
 							<tr>
-								<td><img alt="加入自選股"
+								<c:forEach var="cuCode" items="${cuCode}">
+ 								<!--data.stock_Code==cuCode -->
+ 								
+								<c:if test="${data.stock_Code==cuCode}">
+									<c:set var="have" scope="page" value="true"/>
+								</c:if>
+								</c:forEach>
+								
+ 								<%--<c:out value="${have}"/> <!--上市股是否在自選股內--> --%>
+									<c:choose>
+
+   									<c:when test="${have}"> <!--如果-->
+									<td><img alt="加入自選股"
+									onclick="getValue('${data.stock_Code}')"
+									id="${data.stock_Code}"
+									src="<%=request.getContextPath() %>/img/chngstar.gif" height=20
+									name="star"></td>
+   									</c:when>
+   
+   									<c:otherwise>  <!--否則-->
+   									<td><img alt="加入自選股"
 									onclick="getValue('${data.stock_Code}')"
 									id="${data.stock_Code}"
 									src="<%=request.getContextPath() %>/img/star.gif" height=20
 									name="star"></td>
+   									</c:otherwise>
+  
+									</c:choose>
+									
+									
 								<td><a
 									href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url>">${data.stock_Code}</a></td>
 								<td>${data.stock_Name}</td>
@@ -155,6 +181,8 @@ td.favorL:hovor {
 								<td><c:out value="${data.change_extent}" default="-" /></td>
 								<td><c:out value="${data.acc_Trade_Volume}" default="-" /></td>
 							</tr>
+							<c:remove var="have" scope="page"/>
+
 						</c:forEach>
 					</tbody>
 

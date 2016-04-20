@@ -52,6 +52,7 @@
 	<jsp:include page="/title.jsp" />
 
 
+
 	<!-- 網頁主要導覽列 -->
 	<div>
 		<jsp:include page="/nav.jsp" />
@@ -145,6 +146,7 @@
 						<c:if test="${param.question5 eq '4'}">checked</c:if>>9%~12%（每年希望獲利9~12萬元）<br></td>
 					<td><input type="radio" name="question5" value="5"
 						<c:if test="${param.question5 eq '5'}">checked</c:if>>12%以上（每年希望獲利12萬元以上）<br></td>
+
 
 					<td style="color: red"><span class="error">${error.question5}</td>
 

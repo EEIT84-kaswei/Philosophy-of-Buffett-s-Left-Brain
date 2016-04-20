@@ -22,4 +22,8 @@ public interface AccountDAO {
 
 	public abstract boolean delete(Integer id);
 
+	public abstract String selectPasswByAccount(String account);
+
+	public abstract String selectEmailByAccount(String account);
+
 }
