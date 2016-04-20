@@ -91,6 +91,7 @@ body {
               			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
                			 <li><a href="<c:url value='/secure/custFavorite.view'/>">自選股</a></li>
                			 <li><a href="<c:url value='/secure/_02_login.controller/QuestionServlet'/>">股票推薦</a></li>
+
 						 <li><a href="<c:url value='/secure/_02_login/member.do' />">會員資料管理</a></li>
                		</ul>
         		</li>
@@ -127,8 +128,10 @@ body {
 					<c:if test='<%=request.isUserInRole("admin")%>'>
 			            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">管理員<span class="caret"></span></a>
 		            		<ul class="dropdown-menu">
+
 		              			 <li><a href="<c:url value='/member.do' />">會員管理</a></li>
-		               			 <li><a href="<c:url value='/secure/StockCodeServlet'/>">股票管理</a></li>
+		               			 <li><a href="<c:url value='/secure/StockCodeServlet'/>">股票管理</a></li>	               			
+
 		               		</ul>
 	        			</li>
         			</c:if>

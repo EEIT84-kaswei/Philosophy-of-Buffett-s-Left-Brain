@@ -60,10 +60,12 @@
 
 	<jsp:include page="/nav.jsp" />
 
+
 	<h2 style="text-align: center">會員資料管理</h2>
 	<div id="mid" align="center">
 		<form action='<c:url value="/secure/_02_login/member.do"/>' method='POST'>
 			<table class="table4_2" style="padding: 1em; height: 3em">
+
 
 			<input type="hidden" name="id" value="${user.id}">
 				<tr>

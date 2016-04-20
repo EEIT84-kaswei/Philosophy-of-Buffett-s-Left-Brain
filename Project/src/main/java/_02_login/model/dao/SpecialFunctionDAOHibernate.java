@@ -42,25 +42,25 @@ public class SpecialFunctionDAOHibernate implements SpecialFunctionDAO{
 		Session session = sessionFactory.getCurrentSession();
 		Date sDate = null;
 		Date trading_Date = null;		
-		Integer stock_Code = 2882;
+		Integer stock_Code = 1101;
 		SimpleDateFormat sFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 		try {
-			sDate = sFormat.parse("2016-03-15");
-			trading_Date = sFormat.parse("2014-01-02");			
+			sDate = sFormat.parse("2016-04-15");
+			trading_Date = sFormat.parse("2016-04-15");			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		// //查詢最大b_s_sheets值 //查詢最小b_s_sheets值
+//		// //查詢最大b_s_sheets值 //查詢最小b_s_sheets值
 		try {
 
 			daoS.getSession().beginTransaction();
-			selectBean = daoS.selectMax(sDate, stock_Code); //查詢最大b_s_sheets值
-			System.out.println(selectBean.get(0).getClass().getName());
+//			selectBean = daoS.selectMax(sDate, stock_Code); //查詢最大b_s_sheets值
+//			System.out.println(selectBean.get(0).getClass().getName());
 //			selectBean = daoS.selectlow(sDate, stock_Code); //查詢最小b_s_sheets值
 //			selectBean = daoS.selsctBuyTop15(sDate, stock_Code);//查詢TOP15b_s_sheets值
 //			selectBean = daoS.selectBuyLow15(sDate, stock_Code);//查詢LOW15b_s_sheets值
-//			selectBean = daoS.select_FC_Trade(stock_Code);//查詢外資連買
+			selectBean = daoS.select_FC_Trade(stock_Code);//查詢外資連買
 //			selectBean = daoS.select_IT_Trade(stock_Code);//查詢投信連買
 
 			daoS.getSession().getTransaction().commit();
@@ -71,16 +71,16 @@ public class SpecialFunctionDAOHibernate implements SpecialFunctionDAO{
 			e.printStackTrace();
 		}
 		// 查詢成交量
-		// try {
-		// daoS.getSession().beginTransaction();
-		// selectBean = daoS.selectTrade_Volume(trading_Date, stock_Code);
-		// daoS.getSession().getTransaction().commit();
-		// System.out.println(selectBean);
-		// } catch (Exception e) {
-		// System.out.println("Error");
-		// daoS.getSession().getTransaction().rollback();
-		// e.printStackTrace();
-		// }
+//		 try {
+//		 daoS.getSession().beginTransaction();
+//		 selectBean = daoS.selectTrade_Volume(trading_Date, stock_Code);
+//		 daoS.getSession().getTransaction().commit();
+//		 System.out.println(selectBean);
+//		 } catch (Exception e) {
+//		 System.out.println("Error");
+//		 daoS.getSession().getTransaction().rollback();
+//		 e.printStackTrace();
+//		 }
 
 		HibernateUtil.closeSessionFactory();
 	}

@@ -13,16 +13,16 @@ import org.hibernate.Session;
 import _02_login.model.dao.CustFavoriteDAOHibernate;
 
 public class CustFavoriteService {
-//	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+	// Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 	private CustFavoriteDAO custFavoriteDAO;
 
 	public void setCustFavoriteDAO(CustFavoriteDAO custFavoriteDAO) {
 		this.custFavoriteDAO = custFavoriteDAO;
 	}
 
-
 	public static void main(String[] args) {
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		// Session session =
+		// HibernateUtil.getSessionFactory().getCurrentSession();
 		CustFavoriteDAOHibernate dao = new CustFavoriteDAOHibernate();
 		dao.setSessionFactory(HibernateUtil.getSessionFactory());
 		CustFavoriteService service = new CustFavoriteService();
@@ -186,13 +186,13 @@ public class CustFavoriteService {
 		return result;
 	}
 
-	//用使用者帳號，找出自選股的所有股票代號
+	// 用使用者帳號，找出自選股的所有股票代號
 	public List<Integer> selectByAccount(String account) {
 		List<CustFavoriteBean> result = null;
 		List<Integer> stock_Code = new ArrayList<Integer>();
 		if (account != null) {
 			result = custFavoriteDAO.selectByAccount(account);
-			for(CustFavoriteBean xBean : result){
+			for (CustFavoriteBean xBean : result) {
 				stock_Code.add(xBean.getStock_Code());
 			}
 		}
@@ -207,10 +207,12 @@ public class CustFavoriteService {
 		return result;
 	}
 
-	public CustFavoriteBean selectByAccountAndStock(String account, Integer stock_Code) {
+	public CustFavoriteBean selectByAccountAndStock(String account,
+			Integer stock_Code) {
 		CustFavoriteBean result = null;
 		if (account != null && stock_Code != null) {
-			result = custFavoriteDAO.selectByAccountAndStock(account, stock_Code);
+			result = custFavoriteDAO.selectByAccountAndStock(account,
+					stock_Code);
 		}
 		return result;
 	}
@@ -223,11 +225,13 @@ public class CustFavoriteService {
 		return result;
 	}
 
-	public CustFavoriteBean update(String account, Integer stock_Code, Integer new_stock_Code) {
+	public CustFavoriteBean update(String account, Integer stock_Code,
+			Integer new_stock_Code) {
 		CustFavoriteBean result = null;
 		if (selectByAccountAndStock(account, stock_Code) != null
 				&& selectByAccountAndStock(account, new_stock_Code) == null) {
-			result = custFavoriteDAO.update(account, stock_Code, new_stock_Code);
+			result = custFavoriteDAO
+					.update(account, stock_Code, new_stock_Code);
 		}
 		return result;
 	}
@@ -241,11 +245,20 @@ public class CustFavoriteService {
 	}
 
 	// 指標1
-	public boolean Stock_index1(Integer stock_Code, Integer B_s_sheets, int trade_Volume) {
+	public boolean Stock_index1(Integer stock_Code, Integer B_s_sheets,
+			int trade_Volume) {
 		boolean result = false;
-		double dou_B_s_sheets = B_s_sheets;
-		double dou_Trade_Volume = trade_Volume;
-		double weight_proportion = dou_B_s_sheets / dou_Trade_Volume;// 重壓比例
+		double dou_B_s_sheets = 0.0;
+		double dou_Trade_Volume = 0.0;
+		double weight_proportion = 0.0;// 重壓比例
+		if (stock_Code != null && B_s_sheets != null && trade_Volume != 0) {
+			dou_B_s_sheets = B_s_sheets;
+			dou_Trade_Volume = trade_Volume;
+			weight_proportion = dou_B_s_sheets / dou_Trade_Volume;// 重壓比例
+		} else {
+			return result;
+		}
+
 		System.out.println("重壓比例 = " + weight_proportion);
 		if (weight_proportion > 0.3) {// 重壓比例>30%
 			result = true;
@@ -254,9 +267,16 @@ public class CustFavoriteService {
 	}
 
 	// 指標2
-	public boolean Stock_index2(Integer top1_B_s_sheets, Integer lowest_B_s_sheets) {
+	public boolean Stock_index2(Integer top1_B_s_sheets,
+			Integer lowest_B_s_sheets) {
 		boolean result = false;
-		int Overoverbought = top1_B_s_sheets / lowest_B_s_sheets;// 超額買超
+		int Overoverbought = 0;// 超額買超
+		if (top1_B_s_sheets != null && lowest_B_s_sheets != null) {
+			Overoverbought = top1_B_s_sheets / lowest_B_s_sheets;// 超額買超
+		} else {
+			return result;
+		}
+
 		System.out.println("超額買超 = " + Overoverbought);
 		if (top1_B_s_sheets > 500) {// 卷商買超張數>500
 			if (Overoverbought > 4) {// 超額買超>4倍
@@ -267,17 +287,24 @@ public class CustFavoriteService {
 	}
 
 	// 指標3
-	public boolean Stock_index3(Integer[] top_B_s_sheets, Integer[] low_B_s_sheets, int trade_Volume) {
+	public boolean Stock_index3(Integer[] top_B_s_sheets,
+			Integer[] low_B_s_sheets, int trade_Volume) {
 		boolean result = false;
 		int top = 0;
 		int low = 0;
-		for (Integer i : top_B_s_sheets) {// 前15買超
-			top += i;
+		if (top_B_s_sheets != null && low_B_s_sheets != null
+				&& trade_Volume == 0) {
+			for (Integer i : top_B_s_sheets) {// 前15買超
+				top += i;
+			}
+			System.out.println("top = " + top);
+			for (Integer i : low_B_s_sheets) {// 前15賣超
+				low += i;
+			}
+		} else {
+			return result;
 		}
-		System.out.println("top = " + top);
-		for (Integer i : low_B_s_sheets) {// 前15賣超
-			low += i;
-		}
+
 		System.out.println("low = " + low);
 		int sum = top + low;// 籌碼集中
 		if ((sum) > 0) {
@@ -293,30 +320,39 @@ public class CustFavoriteService {
 	}
 
 	// 指標6
-	public boolean Stock_index4(Integer FC_Trade_Count1, Integer FC_Trade_Count2, Integer FC_Trade_Count3,
-			Integer stock_Code) {
+	public boolean Stock_index4(Integer FC_Trade_Count1,
+			Integer FC_Trade_Count2, Integer FC_Trade_Count3, Integer stock_Code) {
 		boolean result = false;
 		// FC_Trade_Count外資
-		if (FC_Trade_Count1 > 0 && FC_Trade_Count2 > 0 && FC_Trade_Count3 > 0) {// 外資連買三天
-			int sum = FC_Trade_Count1 + FC_Trade_Count2 + FC_Trade_Count3;
-			System.out.println("外資三天加總 = " + sum);
-			if (sum > 1000) {// 買超>1000張
-				result = true;
+		if (FC_Trade_Count1 != null && FC_Trade_Count2 != null
+				&& FC_Trade_Count3 != null && stock_Code != 0) {
+			if (FC_Trade_Count1 > 0 && FC_Trade_Count2 > 0
+					&& FC_Trade_Count3 > 0) {// 外資連買三天
+				int sum = FC_Trade_Count1 + FC_Trade_Count2 + FC_Trade_Count3;
+				System.out.println("外資三天加總 = " + sum);
+				if (sum > 1000) {// 買超>1000張
+					result = true;
+				}
 			}
 		}
+
 		return result;
 	}
 
 	// IT_Trade_Count投信
 	// 指標7
-	public boolean Stock_index5(Integer IT_Trade_Count1, Integer IT_Trade_Count2, Integer IT_Trade_Count3,
-			Integer stock_Code) {
+	public boolean Stock_index5(Integer IT_Trade_Count1,
+			Integer IT_Trade_Count2, Integer IT_Trade_Count3, Integer stock_Code) {
 		boolean result = false;
-		if (IT_Trade_Count1 > 0 && IT_Trade_Count2 > 0 && IT_Trade_Count3 > 0) {// 投信連買三天
-			int sum = IT_Trade_Count1 + IT_Trade_Count2 + IT_Trade_Count3;
-			System.out.println("投信三天加總 = " + sum);
-			if (sum > 1000) {// 買超>1000張
-				result = true;
+		if (IT_Trade_Count1 != null && IT_Trade_Count2 != null
+				&& IT_Trade_Count3 != null && stock_Code != 0) {
+			if (IT_Trade_Count1 > 0 && IT_Trade_Count2 > 0
+					&& IT_Trade_Count3 > 0) {// 投信連買三天
+				int sum = IT_Trade_Count1 + IT_Trade_Count2 + IT_Trade_Count3;
+				System.out.println("投信三天加總 = " + sum);
+				if (sum > 1000) {// 買超>1000張
+					result = true;
+				}
 			}
 		}
 		return result;
