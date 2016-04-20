@@ -61,11 +61,14 @@
 
 <h2 style="text-align:center">會員資料管理</h2>
 <div id="mid" align="center">
-<form>
+<form action="<c:url value='/secure/AccountUpdateServlet' />" method="POST">
 			<table class="table4_2" style="padding: 1em; height: 3em">
+					
+					
+					
 					<tr>
 						<th>帳號</th>
-						<td><input id="myPassword" type="text" name="passw" value="${param.passw}" size="35" readonly="readonly"></td>
+						<td><input id="myPassword" type="text" name="account" value="${param.account}${Select.account}" size="35" readonly="readonly"></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -80,38 +83,41 @@
 					</tr>
 					<tr>
 						<th>再輸入一次</th>
-						<td><input type="password" name="checkpassw" value="${param.checkpassw}" size="35"></td>
+						<td><input type="password" name="checkpassw2" value="${param.checkpassw}" size="35"></td>
 						<td><font size="-1" color="#FF0000">${error.checkpassw}</font></td>
 					</tr>
 					<tr>
 						<th>姓名</th>
 						<td><input type="text" name="name" size="35"
-							value="${param.name}" placeholder="請填寫中文姓名"></td>
+							value="${param.name}${Select.name}" placeholder="請填寫中文姓名"></td>
 						<td><font size="-1" color="#FF0000">${error.name}</font></td>
 					</tr>
 					<tr>
 						<th>身分證字號</th>
 						<td><input type="text" name="idc" size="35"
-							value="${param.idc}" readonly="readonly"></td>
+							value="${param.idc}${Select.idc}" readonly="readonly"></td>
 						<td><font size="-1" color="#FF0000">${error.idc}</font></td>
 					</tr>
 					<tr>
 						<th>電子郵件信箱</th>
-						<td><input type="text" name="email" value="${param.email}" size="35"></td>
+						<td><input type="text" name="email" value="${param.email}${Select.email}" size="35"></td>
 						<td><font size="-1" color="#FF0000">${error.email}</font></td>
 					</tr>
 					<tr>
 						<th>電話區碼</th>
-						<td><input type="text" name="area_phone" value="${param.area_phone}" size="35"></td>
+						<td><input type="text" name="area_phone" value="${param.area_phone}${Select.area_phone}" size="35"></td>
 					</tr>
 					<tr>
 						<th>電話號碼</th>
-						<td><input type="text" name="phone" value="${param.phone}" size="35"></td>
+						<td><input type="text" name="phone" value="${param.phone}${Select.phone}" size="35"></td>
 					</tr>
 					<tr>
 						<th>通訊地址</th>
-						<td><input type="text" name="address" value="${param.address}" size="35"></td>
-					</tr>
+						<td><input type="text" name="address" value="${param.address}${Select.address}" size="35"></td>
+					</tr>				
+						
+
+					
 			</table>
 			
 				<div align="center" style="margin: 2em">

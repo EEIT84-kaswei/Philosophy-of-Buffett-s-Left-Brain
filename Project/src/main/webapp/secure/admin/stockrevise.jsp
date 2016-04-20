@@ -32,73 +32,30 @@ body {
 
 	<jsp:include page="/nav.jsp" />
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$("#table2 > tbody > tr > td:nth-child(6)")
-									.children()
-									.each(
-											function() {
-												$(this)
-														.click(
-																function() {
-																	var commend = $(
-																			this)
-																			.parent()
-																			.prevAll()[0].firstChild.value;
-																	var cs_Code = $(
-																			this)
-																			.parent()
-																			.prevAll()[1].firstChild.value;
-																	var stock_TypeCode = $(
-																			this)
-																			.parent()
-																			.prevAll()[2].firstChild.value;
-																	var stock_Name = $(
-																			this)
-																			.parent()
-																			.prevAll()[3].firstChild.value;
-																	var stock_Code = $(
-																			this)
-																			.parent()
-																			.prevAll()[4].firstChild.value;
-																	var stockManage;
-																	if (stock_Name == undefined
-																			|| stock_Code == undefined) {
-																		stockManage = "Update";
-																		stock_Name = $(
-																				this)
-																				.parent()
-																				.prevAll()[3].firstChild.nodeValue;
-																		stock_Code = $(
-																				this)
-																				.parent()
-																				.prevAll()[4].firstChild.nodeValue;
-																	} else {
-																		stockManage = "Insert";
-																	}
-																	document.forms[1].action = "<c:url value='/secure/StockCodeServlet?stockManage="
-																			+ stockManage
-																			+ "&stock_Code="
-																			+ stock_Code
-																			+ "&stock_Name="
-																			+ stock_Name
-																			+ "&stock_TypeCode="
-																			+ stock_TypeCode
-																			+ "&cs_Code="
-																			+ cs_Code
-																			+ "&commend="
-																			+ commend
-																			+ "' />";
-																	document.forms[1].method = "POST";
-																	document.forms[1]
-																			.submit();
-																})
-											});
+		$(document).ready(function() {$("#table2 > tbody > tr > td:nth-child(6)").children().each(
+				function() {$(this).click(
+								function() {
+									var commend = $(this).parent().prevAll()[0].firstChild.value;
+									var cs_Code = $(this).parent().prevAll()[1].firstChild.value;
+								    var stock_TypeCode = $(this).parent().prevAll()[2].firstChild.value;
+								    var stock_Name = $(this).parent().prevAll()[3].firstChild.value;
+									var stock_Code = $(this).parent().prevAll()[4].firstChild.value;
+									var stockManage;
+									if (stock_Name == undefined|| stock_Code == undefined) {
+										stockManage = "Update";
+										stock_Name = $(this).parent().prevAll()[3].firstChild.nodeValue;
+										stock_Code = $(this).parent().prevAll()[4].firstChild.nodeValue;
+										} else {stockManage = "Insert";
+										}
+									document.forms[1].action = "<c:url value='/secure/StockCodeServlet?stockManage=" + stockManage + "&stock_Code=" + stock_Code + "&stock_Name="+ stock_Name  + "&stock_TypeCode=" + stock_TypeCode + "&cs_Code=" + cs_Code + "&commend=" + commend + "' />";
+									document.forms[1].method = "POST";
+									document.forms[1].submit();
+									})
+							});
 
-						});
+					});
 	</script>
-	
+
 	<br>
 	<br>
 	<br>
@@ -111,8 +68,7 @@ body {
 
 			<table id="table2">
 				<thead>
-					<form action="<c:url value="/secure/StockCodeServlet" />"
-						method="post">
+					<form action="<c:url value="/secure/StockCodeServlet" />" method="post">
 						<tr>
 							<td><input type="text" size="12" name="deleteMsg"></td>
 							<td><input type="submit" value="Delete" name="stockManage"></td>
