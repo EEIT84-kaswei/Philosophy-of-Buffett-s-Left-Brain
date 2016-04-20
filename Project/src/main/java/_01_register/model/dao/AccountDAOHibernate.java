@@ -38,7 +38,7 @@ public class AccountDAOHibernate implements AccountDAO {
 			HibernateUtil.closeSessionFactory();
 		}
 	}
-	
+
 	@Override
 	public AccountBean selectById(Integer id){
 		return (AccountBean) this.getSession().get(AccountBean.class, id);
@@ -50,9 +50,17 @@ public class AccountDAOHibernate implements AccountDAO {
 		query.setParameter(0, account);
 		return (AccountBean)query.uniqueResult();
 	}
-	
+
+	@Override
 	public String selectEmailByAccount(String account){
 		Query query = this.getSession().createQuery("select email from AccountBean where account = ?");
+		query.setParameter(0, account);
+		return (String) query.uniqueResult();
+	}
+
+	@Override
+	public String selectPasswByAccount(String account){
+		Query query = this.getSession().createQuery("select passw from AccountBean where account = ?");
 		query.setParameter(0, account);
 		return (String) query.uniqueResult();
 	}
@@ -64,7 +72,7 @@ public class AccountDAOHibernate implements AccountDAO {
 		query.setParameter(1, email);
 		return (AccountBean)query.uniqueResult();
 	}
-	
+
 	@Override
 	public AccountBean selectByEmail(String email){
 		Query query = this.getSession().createQuery("from AccountBean where email = ?");

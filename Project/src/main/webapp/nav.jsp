@@ -91,7 +91,7 @@ body {
               			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
                			 <li><a href="<c:url value='/secure/custFavorite.view'/>">自選股</a></li>
                			 <li><a href="<c:url value='/secure/_02_login.controller/QuestionServlet'/>">股票推薦</a></li>
-						 <li><a href="<c:url value='/secure/_02_login/memberPersonalDataPage.jsp'/>">會員資料管理</a></li>
+						 <li><a href="<c:url value='/secure/_02_login/member.do' />">會員資料管理</a></li>
                		</ul>
         		</li>
                 <li><a href="<c:url value='https://www.facebook.com/profile.php?id=100000212802863&fref=ts'/>" title="So Call Me Maybe">與我聯絡</a></li>
