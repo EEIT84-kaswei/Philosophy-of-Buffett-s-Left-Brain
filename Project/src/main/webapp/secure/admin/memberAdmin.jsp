@@ -42,7 +42,7 @@ body {
 	<center>
 		<div style="width: 1000px; height: 600px">
 				
-				<table id="table1">
+				<table id="table1" class="table-responsive">
 					<thead>
 						<tr>
 							<th style="display:none;">id</th>

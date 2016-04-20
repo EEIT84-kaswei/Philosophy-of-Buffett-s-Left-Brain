@@ -47,7 +47,7 @@ li {
 			<a href="<c:url value='/index.jsp'/>"><img src="<%=request.getContextPath() %>/img/logo2.png" style="float: left; height: 100px;"></a>
 		</div>
 	</td>
-	<td style="padding:0 2em">
+	<td style="padding:0 3em">
 			<h1>巴菲特的左腦哲學</h1>
 			<font size="1px">EEIT84 project | Philosophy of Buffett's Left Brain</font>
 	</td>
