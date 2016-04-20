@@ -19,7 +19,7 @@
 
 	<div align="center">
 	
-	<h2>註冊失敗，請重新輸入！</h2>
+	<h2>登入失敗，請重新輸入！</h2>
 	<h3>2秒後自動導入<a href="<c:url value='/pages/_02_login/login.jsp' />">登入</a>頁面</h3>
 	</div>
 
