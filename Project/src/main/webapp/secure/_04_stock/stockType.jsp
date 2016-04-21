@@ -76,8 +76,8 @@ td.favorL:hovor {
 <title>${stockTypeName}</title>
 <!-- **************************************** 網頁抬頭  結束 ***************************************************** -->
 </head>
+<!-- **************************************** body開始  ******************************************************* -->
 <body style="margin: 0em 3em">
-	<!-- ************************************** 最外框DIV開始  ***************************************************** -->
 
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 		<jsp:include page="/title.jsp" />
@@ -142,30 +142,23 @@ td.favorL:hovor {
 						<c:forEach var="data" items="${stockType}">
 							<tr>
 								<c:forEach var="cuCode" items="${cuCode}">
- 								<!--data.stock_Code==cuCode -->
  								
-								<c:if test="${data.stock_Code==cuCode}">
-									<c:set var="have" scope="page" value="true"/>
-								</c:if>
+									<c:if test="${data.stock_Code==cuCode}">
+										<c:set var="have" scope="page" value="true"/>
+									</c:if>
 								</c:forEach>
 								
  								<%--<c:out value="${have}"/> <!--上市股是否在自選股內--> --%>
 									<c:choose>
 
    									<c:when test="${have}"> <!--如果-->
-									<td><img alt="加入自選股"
-									onclick="getValue('${data.stock_Code}')"
-									id="${data.stock_Code}"
-									src="<%=request.getContextPath() %>/img/chngstar.gif" height=20
-									name="star"></td>
+									<td><img alt="加入自選股" onclick="getValue('${data.stock_Code}')" id="${data.stock_Code}"
+									src="<%=request.getContextPath() %>/img/chngstar.gif" height=20 name="star"></td>
    									</c:when>
    
    									<c:otherwise>  <!--否則-->
-   									<td><img alt="加入自選股"
-									onclick="getValue('${data.stock_Code}')"
-									id="${data.stock_Code}"
-									src="<%=request.getContextPath() %>/img/star.gif" height=20
-									name="star"></td>
+   									<td><img alt="加入自選股" onclick="getValue('${data.stock_Code}')" id="${data.stock_Code}"
+									src="<%=request.getContextPath() %>/img/star.gif" height=20 name="star"></td>
    									</c:otherwise>
   
 									</c:choose>
@@ -193,9 +186,8 @@ td.favorL:hovor {
 			<!-- ************************************** 內文DIV結束  ***************************************************** -->
 
 
-		</div>
-		<!-- ************************************** 最外框DIV結束  ***************************************************** -->
 </body>
+<!-- ************************************** body結束  ********************************************************* -->
 
 <!-- ************************************** JavaScript ***************************************************** -->
 
