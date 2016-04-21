@@ -44,7 +44,9 @@ li {
 <tr>
 	<td>
 		<div id="logoimg">
-			<a href="<c:url value='/index.jsp'/>"><img src="<%=request.getContextPath() %>/img/logo2.png" style="float: left; height: 100px;"></a>
+			<a href="<c:url value='/index.jsp'/>">
+			<img src="<%=request.getContextPath() %>/img/logo2.png" style="float: left; height: 100px;">
+			</a>
 		</div>
 	</td>
 	<td style="padding:0 3em">
