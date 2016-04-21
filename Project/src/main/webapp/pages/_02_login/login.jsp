@@ -11,28 +11,13 @@
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <style>
-#logtable {
-	
-	padding: 1em;
-	/*border: 0.2px;*/
-	/*border-color: green;*/
-	/*border-radius: 8px;*/
-	color: purple;
-
-}
-
 #abgne-block-20120327 {
 	width: 640px;
-	margin:3em 2em;
-	background-color: #666666;
-	border-radius:20px;
-	-moz-border-radius:20px;
-	-webkit-border-radius:20px;
 }
 
 #abgne-block-20120327 ul, #abgne-block-20120327 li {
 	list-style: none;
-	margin: 0;
+	margin: 2em 2em 0 2em;
 	padding: 0;
 }
 
@@ -53,7 +38,7 @@
 }
 
 #abgne-block-20120327 .tabs li.hover {
-/* 	background: #f5f5f5; */
+	background: #f5f5f5;
 }
 
 #abgne-block-20120327 .tabs span {
@@ -66,24 +51,26 @@
 #abgne-block-20120327 .tab_container {
 	clear: both;
 	border: 1px solid #DDD;
-/* 	background: #fff; */
+	background: #fff;
 	overflow: hidden;
 	border-radius: 5px;
 }
 
 #abgne-block-20120327 .tab_container ul {
 	position: relative;
-	height: 19em;
-	overflow: hidden;
+	height: 27em;
+/* 	overflow: hidden; */
+/* 	overflow-y: scroll; */
+	
 }
 
 #abgne-block-20120327 .tab_container .tab_content li {
 	position: absolute;
-	width: 610px;
-	height: 100%;
+	width: 80%;
+/*  	height: 100%;  */
 	padding: 15px;
 	margin-top: 10px;
-/* 	background: #fff; */
+	background: #fff;
 }
 
 #abgne-block-20120327 .tab_container .tab_content li img {
@@ -110,7 +97,8 @@
 
 		// 當滑鼠移到 .tabs li 上時要套用 .hover 樣式
 		// 移出時要移除 .hover 樣式
-		$tabsLi.hover(function() {
+		$tabsLi
+				.hover(function() {
 					var $this = $(this);
 
 					// 若被滑鼠移上去的 li 是目前顯示的頁籤就不做任何動作
@@ -157,69 +145,163 @@
 	<!-- 網頁主要導覽列 -->
 
 	<jsp:include page="/nav.jsp" />
-
+<script>	
+	$(document).ready(function () {
+       var obheight = 700;//超過容器高度自動捲軸
+       var obname = '#out';//容器的ID
+       var mc = $(obname).height();
+       if(mc>obheight) $(obname).height(obheight+'px');
+});
+</script>
 	<center>
 		<div id="abgne-block-20120327">
-			
-				<div class="tab_container">
-					<ul class="tab_content">
-						<li>
+			<ul class="tabs">
+				<li style="background-color: #FFDEFF"><span>登入</span></li>
+				<li style="background-color: #FFDEFF"><span>忘記密碼</span></li>
+				<li style="background-color: #FFDEFF"><span>申請會員</span></li>
+			</ul>
+			<div class="tab_container" style="background-color: #DEFFFF">
+				<ul class="tab_content">
+					<li style="background-color: #DEFFFF">
+						<h3>登入</h3>
 
-							<h2><font style="color:#ffffb3;font-weight:bold;">登入</font></h2>
-							<div align="center">
-								<form action="j_security_check" method="post">
-								<table id="logtable" border='0'>
-									<tr style="height:50px">
-										<td><font style="color:#FFFFFF">帳號&nbsp;&nbsp;</font></td>
-										<td><input type="text" size="20" name="j_username"
-											placeholder="請輸入帳號"></td>
-									</tr>
-									<tr style="height:50px">
-										<td><font style="color:#FFFFFF">密碼&nbsp;&nbsp;</font></td>
-										<td><input type="password" size="20" name="j_password">
-										</td>
-									</tr>
-									<tr>
-								</table>
-								<span><font color="#ff0000" style="font-weight: bold">${changePassword}</font></span>
-								<br>
-								
-								<input type="submit" value="送出" style="margin:0.5em;font-size:100%" 
-									class="btn btn-primary" >
-								</form>
+						<form action="j_security_check" method="post" class="form-inline">
+							<div class="form-group">
+								<label for="exampleInputName2">輸入帳號</label>
+								<input type="text" class="form-control" 
+								name="j_username" placeholder="請輸入帳號">
 							</div>
-						</li>
-						<li>
-							<h2><font style="color:#ffffb3;font-weight:bold;">忘記密碼</font></h2>
-							<form action='<c:url value="/pages/_02_login/password.do"/>'
-								method='POST'>
-								<font style="color:#FFFFFF;margin:15px auto">請輸入您的帳號： </font>
-								<input type="text" name="account" size="30" required> 
+							<br>
+							<div class="form-group">
+								<label for="exampleInputEmail2">輸入密碼</label> 
+								<input type="password" class="form-control"
+									placeholder="請輸入密碼" name="j_password">
+							</div>
+							<br> <span><font color="#ff0000"
+								style="font-weight: bold">${changePassword}</font></span> <br>
+							<button type="submit" class="btn btn-primary">送出</button>
+
+						</form>
+
+
+					</li>
+					<li style="background-color: #DEFFFF">
+
+						<h3>忘記密碼</h3>
+
+						<form action="<c:url value='/pages/_02_login/password.do'/>" method="post" class="form-inline">
+							<div class="form-group">
+								<label for="exampleInputName2">輸入帳號</label> 
+								<input type="text" class="form-control" name="account" placeholder="請輸入帳號">
+							</div>
+							<br>
+							<br> <span><font color="#00FF00"
+								style="font-weight: bold">${error.fp}</font></span> <br>
 								<br>
-								<p></p>
-								<p></p>
-								<font color="#ff0000" style="font-weight: bold;margin:10px auto">${error.account}</font>
-								<p></p>
-								<p></p>
-								<font style="color:#FFFFFF;font-weight: bold;">本站將寄送新的密碼至您註冊時的e-mail地址，</font><br>
-								<font style="color:#FFFFFF;font-weight: bold;">請使用新密碼重新登入。</font><br>
-								<font style="color:#FFFFFF;font-weight: bold;">登入後，請即時修改您的密碼，以維護個人隱私權益。</font><br> <br>
-								<input type="submit" value="送出" style="margin:0.5em;font-size:100%" 
-									class="btn btn-primary" >
-							</form>
-						</li>
+							<font style="color: #636363; ">本站將寄送新的密碼至您註冊時的e-mail地址，</font><br>
+								<font style="color: #636363;">請使用新密碼重新登入。</font><br>
+								<font style="color: #636363;">登入後，請即時修改您的密碼，</font><br>
+								<font style="color: #636363;">以維護個人隱私權益。</font><br>
+								<br> 
+							<button type="submit" class="btn btn-primary">送出</button>
 
-					</ul>
-				</div>
-				<ul class="tabs">
-					<li><span>登入</span></li>
-					<li><span>忘記密碼</span></li>
+						</form>
 
+
+					</li>
+					<li style="background-color: #DEFFFF">
+
+						<h3>註冊會員</h3>
+
+						<form action='<c:url value="/pages/_01_register/account.do"/>'
+							ENCTYPE='multipart/form-data' method='POST' class="form-inline">
+							<div id="out" style="overflow-y:scroll;">
+							<div class="form-group">
+								<label for="exampleInputName2">帳號</label> <input type="text"
+									name="account" class="form-control" value="${param.account}"
+									placeholder="請輸入帳號"> <font size="-1" color="#FF0000">${error.account}</font>
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="exampleInputPassword">密碼</label> <input
+									type="password" class="form-control"
+									placeholder="請輸入密碼" name="passw" value="${param.passw}">
+								<font size="-1" color="#FF0000">${error.passw}</font>
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="exampleInputName2">密碼確認</label> 
+								<input type="password"
+									class="form-control" name="checkpassw"
+									value="${param.checkpassw}"
+									placeholder="請再輸入一次密碼">
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="exampleInputName2">姓名</label> <input type="text"
+									class="form-control"
+									placeholder="請輸入姓名" name="name" value="${param.name}">
+								<font size="-1" color="#FF0000">${error.checkpassw}</font>
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="exampleInputName2">身分證字號</label> <input type="text"
+									class="form-control" name="idc" value="${param.idc}"
+									placeholder="請輸入身分證字號"> <font
+									size="-1" color="#FF0000">${error.idc}</font>
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="exampleInputEmail1">電子郵件信箱</label> <input
+									type="email" class="form-control" name="email"
+									value="${param.email}"
+									placeholder="請輸入電子郵件信箱"> <font size="-1" color="#FF0000">${error.email}</font>
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="exampleInputName2">電話區碼</label> <input type=text
+									class="form-control" name="area_phone"
+									value="${param.area_phone}"
+									placeholder="請輸入市內電話區碼">
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="exampleInputName2">電話號碼</label> <input type="text"
+									class="form-control" name="phone" value="${param.phone}"
+									 placeholder="請輸入手機或市內電話">
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="exampleInputName2">通訊地址</label> <input type="text"
+									class="form-control" name="address" value="${param.address}"
+									 placeholder="請輸入通訊地址">
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="exampleInputName2">認證碼</label> <input type="text"
+									class="form-control" name="auth" 
+									placeholder="請輸入郵件中的認證碼"> <font size="-1" color="#FF0000">${error.auth}</font>
+							</div>
+
+
+							<div align="center" style="margin: 1em">
+								<button type="submit" class="btn btn-default" name="prodaction" value="寄送認證信">寄送認證信</button>
+								<button type="submit" class="btn btn-default" name="prodaction" value="送出">送出</button>
+								<button class="btn btn-default"
+									onclick="location.href='../../Welcome.jsp'">返回</button>
+								<button type="reset" class="btn btn-default">清除表單</button>
+							</div>
+							</div>
+						</form>
+
+
+
+					</li>
 				</ul>
-			
+			</div>
+
 		</div>
 	</center>
-
 
 </body>
 </html>

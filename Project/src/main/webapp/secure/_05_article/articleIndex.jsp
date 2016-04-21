@@ -80,7 +80,7 @@ body {
 				</c:if>
 				<c:if test='<%=request.isUserInRole("writer")%>'>
 					<center>
-						<a href="<c:url value='/Project/secure/_05_article/newArticle.jsp'/>">
+						<a href="<c:url value='/secure/_05_article/newArticle.jsp'/>">
 							<input type="button" value="發表文章">
 						</a>
 					</center>

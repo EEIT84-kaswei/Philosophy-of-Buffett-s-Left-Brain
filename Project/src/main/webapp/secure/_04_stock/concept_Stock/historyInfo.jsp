@@ -7,15 +7,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
-	#weightedIndexChart{
-		width: 400px;
-		height: 400px;
-		position: fixed;
-		right: 0.5%;
-		top: 0;
-		margin: auto 0;
-		bottom: 0;
-	}
+		
+
+ 		#weightedIndexChart{
+  		width: 300px;
+		height: 300px;
+/* 		position: fixed; */
+/* 		right: 0.5%; */
+/* 		top: 0; */
+/* 		margin: auto 2em; */
+/* 		bottom: 0; */
+		display: inline-block;
+		padding:0;
+		}
+		
+
+ 		 #leftone
+ 		 {
+  		max-width: 60em;
+  		width:80%;
+  		float:left;
+  		margin:1em 3em;
+		 }
+
+	
 </style>
 <title>歷史資訊</title>
 </head>
@@ -657,14 +672,14 @@
 		});		
 		</script>
 		
-		
+
 		<h2>股票歷史資訊：${bean.stock_Name}</h2>
 		
-		<div style="border: 1px gray solid; height: 40em; width: 70%">
+		<div id="leftone"> 
 			
 			
 			<h4>即時數據</h4>
-			<div id="instantChart" style="width: 100%; height: 400px;"></div>
+			<div id="instantChart" style="height: 400px;"></div>
 			<table style="border: 2px black solid; padding: 5px;" rules="all"
 						cellpadding='5' align=center>
 				<thead>
@@ -709,5 +724,6 @@
 			</table>
 		</div>
 		<div id="weightedIndexChart"></div>
+
 </body>
 </html>

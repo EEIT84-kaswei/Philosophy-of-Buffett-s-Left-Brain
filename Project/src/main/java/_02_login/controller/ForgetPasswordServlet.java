@@ -42,17 +42,17 @@ public class ForgetPasswordServlet extends HttpServlet {
 		String account = request.getParameter("account");
 		
 		if (account == null || account.trim().length() == 0) {
-			error.put("account", "請輸入您的帳號");
+			error.put("fp", "請輸入您的帳號");
 		} else {
 			AccountBean result = service.selectByAccount(account);
 			if(result == null){
-				error.put("account", "此帳號不存在，請重新輸入。");
+				error.put("fp", "此帳號不存在，請重新輸入。");
 			}
 		}
 		
 		if (!error.isEmpty()) {
 			// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
-			request.getRequestDispatcher("login_fgpw.jsp").forward(request, response);
+			request.getRequestDispatcher("forgetPassword.jsp").forward(request, response);
 			return;
 		}
 		

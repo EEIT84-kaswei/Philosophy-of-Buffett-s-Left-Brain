@@ -190,21 +190,18 @@
 							</div>
 						</li>
 						<li>
-							<h2><font style="color:#ffffb3;font-weight:bold;">忘記密碼</font></h2>
+							<h2><font style="color:#ffffb3;font-weight:bold">忘記密碼</font></h2>
 							<form action='<c:url value="/pages/_02_login/password.do"/>'
 								method='POST'>
-								<font style="color:#FFFFFF;margin:15px auto">請輸入您的帳號： </font>
-								<input type="text" name="account" size="30" required> 
+								<font style="color:#FFFFFF">請輸入您的帳號： </font>
+								<input type="text" name="account" size="30" required style="margin:15px 0 15px 0"> 
 								<br>
-								<p></p>
-								<p></p>
-								<p><font color="#ff0000" style="font-weight: bold;margin:10px auto">${error.account}</font></p>
-								<p></p>
-								<p></p>
-								<font style="color:#FFFFFF;font-weight: bold;">本站將寄送新的密碼至您註冊時的e-mail地址，</font><br>
-								<font style="color:#FFFFFF;font-weight: bold;">請使用新密碼重新登入。</font><br>
-								<font style="color:#FFFFFF;font-weight: bold;">登入後，請即時修改您的密碼，以維護個人隱私權益。</font><br> <br>
-								<input type="submit" value="送出" style="margin:0.5em;font-size:100%" 
+								<font color="#ff0000" style="font-weight: bold;margin:10px 0 20px 0">${error.account}</font>
+								<br>
+								<font style="color:#ffe6e6;font-weight: bold;">本站將寄送新的密碼至您註冊時的e-mail地址，</font><br>
+								<font style="color:#ffe6e6;font-weight: bold;">請使用新密碼重新登入。</font><br>
+								<font style="color:#ffe6e6;font-weight: bold;">登入後，請即時修改您的密碼，以維護個人隱私權益。</font><br> <br>
+								<input type="submit" value="送出" style="font-size:100%" 
 									class="btn btn-primary" >
 							</form>
 						</li>
