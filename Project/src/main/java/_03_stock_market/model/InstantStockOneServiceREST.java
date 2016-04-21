@@ -86,7 +86,10 @@ public class InstantStockOneServiceREST {
 	}
 
 	/*用概念股分類搜尋*/
-	public List<InstantStockOneBean> selectByCS(String concept_Stock){
+	@GET
+	@Path("/CS/{concept_Stock}")
+	@Produces({ "application/xml", "application/json" })
+	public List<InstantStockOneBean> selectByCS(@PathParam("concept_Stock") String concept_Stock){
 		if(concept_Stock==null || concept_Stock.trim().length()==0 ){
 			return null;
 		}else{

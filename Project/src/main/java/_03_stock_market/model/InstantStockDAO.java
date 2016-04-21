@@ -2,6 +2,7 @@ package _03_stock_market.model;
 /*張秀維 Hsiu Chang, 01-04-2016 */
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -13,7 +14,7 @@ public interface InstantStockDAO {
 
 	InstantStockBean select(Integer stock_Code,java.sql.Timestamp iDatetime);
 	
-	List<InstantStockBean> selectAllByStockCode(Integer stock_Code);
+	List<InstantStockBean> selectAllByStockCode(Integer stock_Code,Timestamp iDatetime);
 
 	List<InstantStockBean> select();
 	

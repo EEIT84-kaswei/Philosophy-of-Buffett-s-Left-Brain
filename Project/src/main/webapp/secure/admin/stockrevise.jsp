@@ -4,6 +4,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<<<<<<< HEAD
+<![endif]-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>管理員主控台</title>
+
+<style>
+article, aside, figure, figcaption, footer, header, hgroup, menu, nav,
+	section {
+	display: block;
+}
+=======
 <![endif]-->
 
 <html>
@@ -13,84 +27,49 @@
 
 <style>
 
+>>>>>>> branch 'master' of https://github.com/EEIT84-kaswei/Philosophy-of-Buffett-s-Left-Brain.git
 
+<<<<<<< HEAD
+body {
+	font: 62.5% "Trebuchet MS", sans-serif;
+	margin: 50px;
+}
 </style>
 </head>
 <body>
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
+	<jsp:include page="/title.jsp" />
 
 
 	<!-- 網頁主要導覽列 -->
 
 	<jsp:include page="/nav.jsp" />
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$("#table2 > tbody > tr > td:nth-child(6)")
-									.children()
-									.each(
-											function() {
-												$(this)
-														.click(
-																function() {
-																	var commend = $(
-																			this)
-																			.parent()
-																			.prevAll()[0].firstChild.value;
-																	var cs_Code = $(
-																			this)
-																			.parent()
-																			.prevAll()[1].firstChild.value;
-																	var stock_TypeCode = $(
-																			this)
-																			.parent()
-																			.prevAll()[2].firstChild.value;
-																	var stock_Name = $(
-																			this)
-																			.parent()
-																			.prevAll()[3].firstChild.value;
-																	var stock_Code = $(
-																			this)
-																			.parent()
-																			.prevAll()[4].firstChild.value;
-																	var stockManage;
-																	if (stock_Name == undefined
-																			|| stock_Code == undefined) {
-																		stockManage = "Update";
-																		stock_Name = $(
-																				this)
-																				.parent()
-																				.prevAll()[3].firstChild.nodeValue;
-																		stock_Code = $(
-																				this)
-																				.parent()
-																				.prevAll()[4].firstChild.nodeValue;
-																	} else {
-																		stockManage = "Insert";
-																	}
-																	document.forms[1].action = "<c:url value='/secure/StockCodeServlet?stockManage="
-																			+ stockManage
-																			+ "&stock_Code="
-																			+ stock_Code
-																			+ "&stock_Name="
-																			+ stock_Name
-																			+ "&stock_TypeCode="
-																			+ stock_TypeCode
-																			+ "&cs_Code="
-																			+ cs_Code
-																			+ "&commend="
-																			+ commend
-																			+ "' />";
-																	document.forms[1].method = "POST";
-																	document.forms[1]
-																			.submit();
-																})
-											});
+		$(document).ready(function() {$("#table2 > tbody > tr > td:nth-child(6)").children().each(
+				function() {$(this).click(
+								function() {
+									var commend = $(this).parent().prevAll()[0].firstChild.value;
+									var cs_Code = $(this).parent().prevAll()[1].firstChild.value;
+								    var stock_TypeCode = $(this).parent().prevAll()[2].firstChild.value;
+								    var stock_Name = $(this).parent().prevAll()[3].firstChild.value;
+									var stock_Code = $(this).parent().prevAll()[4].firstChild.value;
+									var stockManage;
+									if (stock_Name == undefined|| stock_Code == undefined) {
+										stockManage = "Update";
+										stock_Name = $(this).parent().prevAll()[3].firstChild.nodeValue;
+										stock_Code = $(this).parent().prevAll()[4].firstChild.nodeValue;
+										} else {stockManage = "Insert";
+										}
+									document.forms[1].action = "<c:url value='/secure/StockCodeServlet?stockManage=" + stockManage + "&stock_Code=" + stock_Code + "&stock_Name="+ stock_Name  + "&stock_TypeCode=" + stock_TypeCode + "&cs_Code=" + cs_Code + "&commend=" + commend + "' />";
+									document.forms[1].method = "POST";
+									document.forms[1].submit();
+									})
+							});
 
-						});
+					});
+
 	</script>
-	
+
 	<br>
 	<br>
 	<br>
@@ -103,7 +82,7 @@
 
 			<table id="table2">
 				<thead>
-					<form action="<c:url value='/secure/StockCodeServlet' />" method="post">
+					<form action="<c:url value="/secure/StockCodeServlet" />" method="post">
 						<tr>
 							<td><input type="text" size="12" name="deleteMsg"></td>
 							<td><input type="submit" value="Delete" name="stockManage"></td>

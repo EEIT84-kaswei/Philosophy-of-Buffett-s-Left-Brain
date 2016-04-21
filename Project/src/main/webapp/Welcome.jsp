@@ -23,9 +23,9 @@
 <jsp:include page="/nav.jsp" />
 </div>
 <!-- 主畫面 -->
-<!-- <div style="height:20px;width:200px;margin:15em auto"> -->
-<%-- <jsp:include page="/defaultView.jsp" /> --%>
-
+<div style="height:20px;width:200px;margin:15em auto">
+<jsp:include page="/defaultView.jsp" />
+</div>
 這是首頁
 
 </body>

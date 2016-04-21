@@ -71,8 +71,14 @@ public class SpecialFunctionServlet extends HttpServlet {
 		// System.out.println(cal.get(Calendar.DAY_OF_WEEK));
 		String yesterdayStr = sformat.format(cal.getTime());
 		String time = "00:00:00";
-
 		Date sDate = null;
+		
+		String answer1 ;
+		String answer2 ;
+		String answer3 ;
+		String answer4 ;
+		String answer5 ;
+		
 		try {
 			sDate = sformat2.parse(yesterdayStr + " " + time);
 		} catch (ParseException e) {
@@ -98,8 +104,8 @@ public class SpecialFunctionServlet extends HttpServlet {
 		Integer[] top_B_s_sheets = null;
 		Integer[] low_B_s_sheets = null;
 		int trade_Volume = 0;
-		Integer[] FC_Trade_Count = null;
-		Integer[] IT_Trade_Count = null;
+		Integer[] FC_Trade_Count = {null,null,null};
+		Integer[] IT_Trade_Count = {null,null,null};
 		// try {
 		int i=1;
 		while (i<=31) {
@@ -120,7 +126,7 @@ public class SpecialFunctionServlet extends HttpServlet {
 				
 				System.out.println(e1.getMessage());
 				if (B_s_sheetsMax == null||B_s_sheetsMin==null||top_B_s_sheets==null||low_B_s_sheets==null
-						) {
+					||trade_Volume==0) {
 					cal.add(Calendar.DAY_OF_MONTH, -1);
 					yesterdayStr = sformat.format(cal.getTime());
 					System.out.println(yesterdayStr);
@@ -167,15 +173,35 @@ public class SpecialFunctionServlet extends HttpServlet {
 		boolean index5 = favoriteService.Stock_index5(IT_Trade_Count[0],
 				IT_Trade_Count[1], IT_Trade_Count[2], stock_Code);
 		StockCodeBean bean=stockCodeService.selectStockCodeByStockCode(stock_Code);
+		
+		
+		if(index1==true){
+			answer1 = "符合";
+		}else{answer1 = "尚未符合";}
+		if(index2==true){
+			answer2 = "符合";
+		}else{answer2 = "尚未符合";}
+		if(index3==true){
+			answer3 = "符合";
+		}else{answer3 = "尚未符合";}
+		if(index4==true){
+			answer4 = "符合";
+		}else{answer4 = "尚未符合";}
+		if(index5==true){
+			answer5 = "符合";
+		}else{answer5 = "尚未符合";}
+		
+		
+		
 		// 根據Model執行結果顯示View
 //		request.setAttribute("stockTable", stockTable);
-
+		
 		request.setAttribute("bean", bean);
-		request.setAttribute("index1", index1);
-		request.setAttribute("index2", index2);
-		request.setAttribute("index3", index3);
-		request.setAttribute("index4", index4);
-		request.setAttribute("index5", index5);
+		request.setAttribute("index1", answer1);
+		request.setAttribute("index2", answer2);
+		request.setAttribute("index3", answer3);
+		request.setAttribute("index4", answer4);
+		request.setAttribute("index5", answer5);
 		request.getRequestDispatcher(
 				"/secure/_04_stock/concept_Stock/historyInfo.jsp").forward(
 				request, response);

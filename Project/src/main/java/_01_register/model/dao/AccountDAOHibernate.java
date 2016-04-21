@@ -30,14 +30,15 @@ public class AccountDAOHibernate implements AccountDAO {
 			session.beginTransaction();
 			AccountDAOHibernate dao = new AccountDAOHibernate();
 			dao.setSessionFactory(HibernateUtil.getSessionFactory());
-			AccountBean bean = dao.selectByEmail("f90432@yahoo.com.tw");
+//			AccountBean bean = dao.selectByEmail("f90432@yahoo.com.tw");
+			String bean = dao.selectEmailByAccount("kitty");
 			System.out.println(bean);
 			session.getTransaction().commit();
 		} finally {
 			HibernateUtil.closeSessionFactory();
 		}
 	}
-	
+
 	@Override
 	public AccountBean selectById(Integer id){
 		return (AccountBean) this.getSession().get(AccountBean.class, id);
@@ -45,9 +46,23 @@ public class AccountDAOHibernate implements AccountDAO {
 
 	@Override
 	public AccountBean selectByAccount(String account){
-		Query query = this.getSession().createQuery("from AccountBean where account=?");
+		Query query = this.getSession().createQuery("from AccountBean where account = ?");
 		query.setParameter(0, account);
 		return (AccountBean)query.uniqueResult();
+	}
+
+	@Override
+	public String selectEmailByAccount(String account){
+		Query query = this.getSession().createQuery("select email from AccountBean where account = ?");
+		query.setParameter(0, account);
+		return (String) query.uniqueResult();
+	}
+
+	@Override
+	public String selectPasswByAccount(String account){
+		Query query = this.getSession().createQuery("select passw from AccountBean where account = ?");
+		query.setParameter(0, account);
+		return (String) query.uniqueResult();
 	}
 
 	@Override
@@ -57,7 +72,7 @@ public class AccountDAOHibernate implements AccountDAO {
 		query.setParameter(1, email);
 		return (AccountBean)query.uniqueResult();
 	}
-	
+
 	@Override
 	public AccountBean selectByEmail(String email){
 		Query query = this.getSession().createQuery("from AccountBean where email = ?");
