@@ -50,17 +50,17 @@ public class QuestionServlet extends HttpServlet {
 		String q1 = request.getParameter("question1");
 		String q2 = request.getParameter("question2");
 		String q3 = request.getParameter("question3");
-		String q4 = request.getParameter("question4");
+		String[] q4 = request.getParameterValues("question4");
 		String q5 = request.getParameter("question5");
 		String q6 = request.getParameter("question6");
 		System.out.println("轉換HTML Form資料");
 
 		// 轉換HTML Form資料
-		int Q1 = 0, Q2 = 0, Q3 = 0, Q4 = 0, Q5 = 0, Q6 = 0;
-
+		int Q1 = 0, Q2 = 0, Q3 = 0,Q4 = 0,  Q5 = 0, Q6 = 0;		
 		Integer Risk_Tolerance = 0;
 		SimpleDateFormat sformat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 		Timestamp QDate = new Timestamp(new Date().getTime());
+		
 		if (q1 != null) {
 			try {
 				Q1 = Integer.parseInt(q1);
@@ -86,8 +86,15 @@ public class QuestionServlet extends HttpServlet {
 			}
 		}
 		if (q4 != null) {
-			try {
-				Q4 = Integer.parseInt(q4);
+			try {				
+				for(int a = 0 ;a< q4.length;a++){
+					int temp = Integer.parseInt(q4[a]);
+					if(temp>Q4){
+						Q4=temp;
+					}
+				}
+				System.out.println(Q4);
+
 			} catch (NumberFormatException e1) {
 				error.put("question4", "請回答第四題");
 				e1.printStackTrace();
@@ -162,7 +169,7 @@ public class QuestionServlet extends HttpServlet {
 				rd.forward(request, response);
 				return;
 			}
-
+			
 			if (Q4 > 4) {
 				Q4 = 5;
 			} else if (Q4 > 3) {
