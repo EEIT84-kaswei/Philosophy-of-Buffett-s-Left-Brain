@@ -91,7 +91,6 @@ body {
               			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
                			 <li><a href="<c:url value='/secure/custFavorite.view'/>">自選股</a></li>
                			 <li><a href="<c:url value='/secure/_02_login.controller/QuestionServlet'/>">股票推薦</a></li>
-
 						 <li><a href="<c:url value='/secure/_02_login/member.do' />">會員資料管理</a></li>
                		</ul>
         		</li>
@@ -102,39 +101,46 @@ body {
         <!-- 到右邊開始 -->
             
              <ul class="nav navbar-nav navbar-right">
-             		<li>
-	             		<c:if test="${pageContext.request.remoteUser != null}">
-             			<font style="color:#CCCCCC;font-size:110%">您好，${pageContext.request.remoteUser}</font>
-             			</c:if>
-             		</li>
+                    <li>
+                    	<c:if test="${pageContext.request.remoteUser != null}">
+	                    	<a href="<c:url value='/secure/_02_login/member.do' />">
+	                    		<span class="glyphicon glyphicon-user"></span> 
+	                    		您好，${pageContext.request.remoteUser}
+	                    	</a>
+                    	</c:if>
+                    </li>
+                    
                     <li>
                     	<c:if test="${pageContext.request.remoteUser == null}">
-                    	<a href="<c:url value='/secure/_02_login/loginSuccess.jsp'/>">
-                    		<span class="glyphicon glyphicon-log-in"></span> 
-                    		登入
-                    	</a>
+	                    	<a href="<c:url value='/secure/_02_login/loginSuccess.jsp'/>">
+	                    		<span class="glyphicon glyphicon-log-in"></span> 
+	                    		登入
+	                    	</a>
                     	</c:if>
                     </li>
                     
                     <li>                  
                     	<c:if test="${pageContext.request.remoteUser != null}">
-	                    <a href="<c:url value='/pages/_02_login/logout.jsp'/>">
-	                    	<span class="glyphicon glyphicon-log-out"></span>
-							登出
-	                    </a>
+		                    <a href="<c:url value='/pages/_02_login/logout.jsp'/>">
+		                    	<span class="glyphicon glyphicon-log-out"></span>
+								登出
+		                    </a>
 						</c:if>
 					</li>
 
-					<c:if test='<%=request.isUserInRole("admin")%>'>
-			            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">管理員<span class="caret"></span></a>
-		            		<ul class="dropdown-menu">
-
-		              			 <li><a href="<c:url value='/member.do' />">會員管理</a></li>
-		               			 <li><a href="<c:url value='/secure/StockCodeServlet'/>">股票管理</a></li>	               			
-
-		               		</ul>
-	        			</li>
-        			</c:if>
+        		<c:if test='<%=request.isUserInRole("admin")%>'>
+	                <li class="dropdown">
+	                	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	                		<span class="glyphicon glyphicon-wrench"></span> 
+	                			管理員
+	                		<span class="caret">
+	                	</a>
+	            		<ul class="dropdown-menu">
+              				<li><a href="<c:url value='/member.do' />">會員管理</a></li>
+               				<li><a href="<c:url value='/secure/StockCodeServlet'/>">股票管理</a></li>	
+	               		</ul>
+	        		</li>
+        		</c:if>
 
                 </ul>
             </div>
