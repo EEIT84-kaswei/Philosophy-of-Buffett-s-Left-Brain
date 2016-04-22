@@ -50,8 +50,16 @@ public class ArticleDAOHibernate implements ArticleDAO{
 	}
 
 	@Override
-	public ArticleBean selectByAno(int ano){
-		return (ArticleBean) getSession().get(ArticleBean.class, ano);
+	public ArticleBean selectByAno(int ano){	//改用HQL
+		ArticleBean bean = null;
+		Query query = getSession().createQuery("from ArticleBean where ano = ?");
+		query.setParameter(0, ano);
+		List<ArticleBean> list = query.list();
+		if(!list.isEmpty()){
+			bean = list.get(0);
+		}
+		return bean;
+//		return (ArticleBean) getSession().get(ArticleBean.class, ano);
 	}
 	
 	@Override
@@ -69,8 +77,8 @@ public class ArticleDAOHibernate implements ArticleDAO{
 	
 	@Override
 	public boolean update(Integer ano, String account, String aname, String atitle, String acontext){
-		if(ano != 0||ano!=null){
-			ArticleBean result = (ArticleBean) getSession().get(ArticleBean.class, ano);
+		if(atitle!=null){
+			ArticleBean result = (ArticleBean) getSession().get(ArticleBean.class, atitle);
 			result.setAccount(account);
 			result.setAname(aname);
 			result.setAtime(new Date());

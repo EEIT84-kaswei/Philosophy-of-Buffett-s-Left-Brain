@@ -12,9 +12,10 @@ body{
 /* background-color:#FFE8E8; */
 }
 
-li {
+#google_translate_element, #titleMark {
 	font-size: 20px;
 	color: purple;
+	display:inline;
 }
 
 #fl_right {
@@ -28,7 +29,7 @@ li {
 
 
 	<!-- 標題 START -->
-<center>	
+	
 	<script type="text/javascript">
 	function googleTranslateElementInit() {
 		new google.translate.TranslateElement({
@@ -37,59 +38,23 @@ li {
 		}, 'google_translate_element');
 	}
 </script>
-
-
-<table>
-<tbody>
-<tr>
-	<td>
-		<div id="logoimg">
-			<a href="<c:url value='/index.jsp'/>"><img src="<%=request.getContextPath() %>/img/logo2.png" style="float: left; height: 100px;"></a>
-		</div>
-	</td>
-	<td style="padding:0 3em">
-			<h1>巴菲特的左腦哲學</h1>
-			<font size="1px">EEIT84 project | Philosophy of Buffett's Left Brain</font>
-	</td>
-	
-	
-<!-- 	<td style="padding:0 2em"> -->
-<!-- 				<div class='menu'> -->
-<%-- 					<c:if test="${empty LoginOK }"> --%>
-<%-- 						<a href="<c:url value='/pages/_02_login/login.jsp' />"> 登入 </a> --%>
-<%-- 					</c:if> --%>
-<!-- 				</div> -->
-
-<!-- 				<div class='menu'> -->
-<%-- 					<c:if test="${!empty LoginOK }"> --%>
-<%-- 						<a href="<c:url value='/_02_login/logout.jsp' />"> 登出 </a> --%>
-<%-- 					</c:if> --%>
-<!-- 				</div> -->
-
-<!-- 				<div class='menu'> -->
-<%-- 					<c:if test="${LoginOK }"> --%>
-<%-- 						<a href="<c:url value='/secure/backstage/backstageIndex.jsp' />"> 管理員 </a> --%>
-<%-- 					</c:if> --%>
-<!-- 				</div> -->
-
-<!-- 				<div class='menu'> -->
-<%-- 					<c:if test="${LoginOK }"> --%>
-<%-- 						<a href="<c:url value='/secure/author/authorIndex.jsp' />"> 專欄作家  </a> --%>
-<%-- 					</c:if> --%>
-<!-- 				</div> -->
-<!-- 	</td> -->
-	<td>
-	<div style="width:3em"></div>
-	<div id="google_translate_element" align=right style="width:100%"></div>
-	</td>
-	<td>
-		<div style="margin:0 7em">
-
-         </div>
-	</td>
-</tr>
-</tbody>
-</table>
+<script type="text/javascript">
+$('document').ready(function(){
+    $('#container').height($(window).height());    
+}); 
+</script>
+<center>
+<div class="container">
+	<ul>
+		<li id="titleMark">
+			<a href="<c:url value='/index.jsp'/>">
+			<img src="<%=request.getContextPath() %>/img/EEIT84-titleIMG.png" style="max-width:700" class="img-responsive"/>
+        	</a>
+        </li>
+		<li id="google_translate_element" style="float:right;display:inline">
+		</li>
+	</ul>
+</div>
 <script type="text/javascript"
 	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 	<!-- 標題 END -->

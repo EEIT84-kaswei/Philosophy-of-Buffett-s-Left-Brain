@@ -5,8 +5,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="refresh" content="5;url=/Project/Welcome.jsp">
 <title>index.html</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" >
-<script src="js/bootstrap.min.js" ></script>
+
+
+<!-- 匯入bootstrap -->
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">	 
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> 
+
+
+<!-- 匯入jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  
+  
+<!-- 匯入bootstrap javascript -->
+  <script src="<%=request.getContextPath() %>/js/bootstrap.js"></script>
+   <link href="<%=request.getContextPath() %>/css/jquery-ui.css" rel="stylesheet">
+  <link href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" rel="stylesheet">
+<!--   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.js"></script> -->
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>  
+  
 
 <style type="text/css">
 /*
@@ -76,7 +93,7 @@ $('document').ready(function(){
 <!-- <center><img src="img/logo.png" onload="resizeImage()" margin="0" border="0"></center> -->
 	<div class="main" style="background-image: url('<%=request.getContextPath() %>/img/BG2.jpg')">
 		<a href="<%=request.getContextPath() %>/Welcome.jsp">
-    <img src="<%=request.getContextPath() %>/img/logo.png" id="full_screen"  title="Philosophy of Buffett's Left Brain" style="max-width:700"/></a>
+    <img src="<%=request.getContextPath() %>/img/logo.png" id="full_screen"  title="Philosophy of Buffett's Left Brain" class="img-responsive"/></a>
 	</div>
 <!-- 	圖片自適應畫面大小：1.設定圖片最大尺寸。2. 設定JS如下面兩行。 -->
 <!-- 	$('document').ready(function(){ -->

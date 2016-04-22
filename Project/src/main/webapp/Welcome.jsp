@@ -23,10 +23,10 @@
 <jsp:include page="/nav.jsp" />
 </div>
 <!-- 主畫面 -->
-<div style="height:20px;width:200px;margin:15em auto">
+<div align="center" style="margin:3em">
 <jsp:include page="/defaultView.jsp" />
 </div>
-這是首頁
+
 
 </body>
 </html>
