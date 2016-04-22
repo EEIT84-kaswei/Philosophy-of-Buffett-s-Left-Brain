@@ -164,7 +164,7 @@
 				<li style="background-color: #FFDEFF"><span>申請會員</span></li>
 			</ul>
 			<div class="tab_container" style="background-color: #DEFFFF">
-				<ul class="tab_content" style="overflow-y:auto;overflow-x:hidden">
+				<ul class="tab_content" style="overflow-y:auto;overflow-x:auto">
 					<li style="background-color: #DEFFFF">
 						<h3>登入</h3>
 
