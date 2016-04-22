@@ -18,6 +18,22 @@
 #maintable tr:nth-child(even) {
 	background: #CCEEFF
 	}
+	
+#Atitle{
+	width: 20em;
+	white-space: nowrap;
+	text-overflow: ellipsis; 
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+#Aname{
+	width: 10em;
+	white-space: nowrap;
+	text-overflow: ellipsis; 
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}	
 
 article, aside, figure, figcaption, footer, header, hgroup, menu, nav,
 	section {
@@ -44,18 +60,18 @@ body {
 		</div>
 
 
-		<div style="margin: 2em auto; padding: 2em; width:800px">
+		<div style="margin: 2em auto; padding: 2em; width:50em">
 
 			<!-- 表格開始 -->
 
 			<form action="<c:url value="/pages/article.controller" />" method="post">				
-				<table id="maintable" style="border: 2px #FFAC55 solid; padding: 2em; width:800px" rules="all"
+				<table id="maintable" style="border: 2px #FFAC55 solid; padding: 2em; width:47em" rules="all"
 					cellpadding='5'>
 					<thead>
 						<tr>							
-							<th>文章標題</th>
-							<th>作者</th>
-							<th>發表日期</th>
+							<th style="width: 50%; text-align: center">文章標題</th>
+							<th style="width: 25%; text-align: center">作者</th>
+							<th style="width: 25%; text-align: center">發表日期</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -64,16 +80,16 @@ body {
 								<c:param name="ano" value="${row.ano}" />
 							</c:url>
 							<tr>
-								<td><a href="${path}">${row.atitle}</a></td>
-								<td>${row.aname}</td>
-								<td><fmt:formatDate value="${row.atime}" pattern="yyyy-MM-dd" /></td> 
+								<td><div id="Atitle"><a href="${path}">${row.atitle}</a></div></td>
+								<td><div id="Aname">${row.aname}</div></td>
+								<td style="text-align: center"><fmt:formatDate value="${row.atime}" pattern="yyyy/MM/dd HH:mm" /></td> 
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<c:if test='<%=request.isUserInRole("admin")%>'>
 					<center>
-						<a href="<c:url value='/Project/secure/_05_article/newArticle.jsp'/>">
+						<a href="<c:url value='/secure/_05_article/newArticle.jsp'/>">
 							<input type="button" value="發表文章">
 						</a>
 					</center>

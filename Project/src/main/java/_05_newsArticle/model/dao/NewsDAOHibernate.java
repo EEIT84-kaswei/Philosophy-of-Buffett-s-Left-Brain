@@ -47,7 +47,8 @@ public class NewsDAOHibernate implements NewsDAO {
 //			NewsBean bean = dao.insert(result);
 //			NewsBean bean = dao.update(result);
 //			boolean bean = dao.delete(11);
-			List<NewsBean> bean = dao.selectByKeyWord("美股");
+//			List<NewsBean> bean = dao.selectByKeyWord("美股");
+			NewsBean bean = dao.select(6);
 			
 			System.out.println(bean);
 
@@ -67,9 +68,11 @@ public class NewsDAOHibernate implements NewsDAO {
 
 	@Override
 	public NewsBean select(int nno) {
-		return getSession().get(NewsBean.class, nno);
+		Query query = getSession().createQuery("from NewsBean where nno = ?");
+		query.setParameter(0, nno);
+		return (NewsBean) query.uniqueResult();
 	}
-
+	
 	@Override
 	public List<NewsBean> selectByDate(java.util.Date ntime) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

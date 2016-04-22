@@ -32,12 +32,11 @@
 	
 	<% response.setCharacterEncoding("UTF-8"); %>
 
-	<div style="margin: 2em auto; padding: 2em"></div>
-	
+	<div style="margin: 2em auto; padding: 2em">	
 		<form action="<c:url value="/pages/_05_newsArticle/news.do"/>" method="post">
 			<input type="hidden" name="updtno" value="${select.nno}">
 			<h2 style="text-align:center;color:purple">${select.ntitle}</h2>
-			<fmt:formatDate var="time" value="${select.ntime}" pattern="yyyy年MM月dd日" />
+			<fmt:formatDate var="time" value="${select.ntime}" type="both" dateStyle="long" pattern="yyyy年MM月dd日  HH:mm"/>
 			<p style="text-align:center">${time}</p>
 			<br>
 			<div style="max-width:50em;margin:0 auto">
@@ -52,6 +51,6 @@
 				</div>
 			</c:if>
 	</form>
-
+</div>
 </body>
 </html>

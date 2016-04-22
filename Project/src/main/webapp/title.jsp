@@ -12,7 +12,7 @@ body{
 /* background-color:#FFE8E8; */
 }
 
-ul,li {
+#google_translate_element, #titleMark {
 	font-size: 20px;
 	color: purple;
 	display:inline;
@@ -44,17 +44,14 @@ $('document').ready(function(){
 }); 
 </script>
 <center>
-<div style="max-width:80%;margin:0 3em" class="container">
+<div class="container">
 	<ul>
-		<li id="logoimg">
+		<li id="titleMark">
 			<a href="<c:url value='/index.jsp'/>">
-			<img src="<%=request.getContextPath() %>/img/logo2.png" style="float: left; max-height: 90px" class="hidden-xs">
-			</a>
-		</li>
-		<li>
-			<img src="<%=request.getContextPath() %>/img/EEIT84TITLE.png" style="max-width:700" class="img-responsive"/>
+			<img src="<%=request.getContextPath() %>/img/EEIT84-titleIMG.png" style="max-width:700" class="img-responsive"/>
+        	</a>
         </li>
-		<li id="google_translate_element" style="float:right;margin:0 2em">
+		<li id="google_translate_element" style="float:right;">
 		</li>
 	</ul>
 </div>
