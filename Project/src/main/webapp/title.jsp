@@ -51,7 +51,7 @@ $('document').ready(function(){
 			<img src="<%=request.getContextPath() %>/img/EEIT84-titleIMG.png" style="max-width:700" class="img-responsive"/>
         	</a>
         </li>
-		<li id="google_translate_element" style="float:right;">
+		<li id="google_translate_element" style="float:right;display:inline">
 		</li>
 	</ul>
 </div>
