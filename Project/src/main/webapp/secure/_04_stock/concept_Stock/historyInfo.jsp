@@ -680,33 +680,28 @@
 			
 			<h4>即時數據</h4>
 			<div id="instantChart" style="height: 400px;"></div>
-			<table style="border: 2px black solid; padding: 5px;" rules="all"
+			<table style="background-color:	#d3a4ff;border: 2px black solid;border-radius:10px;border-style:none; padding: 5px;" rules="all"
 						cellpadding='5' align=center>
 				<thead>
 					<tr>
-						<td><h4>券商重押>30%</h4></td>
-						<td><h4>TOP券商買超>500張<br>超額買超>4倍</h4></td>
-						<td><h4>短線籌碼集中<br>一日集中>20%</h4></td>
-						<td><h4>外資連買>3天<br>買超>1000張</h4></td>
-						<td><h4>投信連買>3天<br>買超>1000張</h4></td>
+						<td style="text-align:center;padding:10px 10px 10px 10px;border-style:none;"><h4>券商重押>30%</h4></td>
+						<td style="text-align:center;padding:10px 10px 10px 10px;border-style:none;"><h4>TOP券商買超>500張<br>超額買超>4倍</h4></td>
+						<td style="text-align:center;padding:10px 10px 10px 10px;border-style:none;"><h4>短線籌碼集中<br>一日集中>20%</h4></td>
+						<td style="text-align:center;padding:10px 10px 10px 10px;border-style:none;"><h4>外資連買>3天<br>買超>1000張</h4></td>
+						<td style="text-align:center;padding:10px 10px 10px 10px;border-style:none;"><h4>投信連買>3天<br>買超>1000張</h4></td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td>${index1}</td>
-						<td>${index2}</td>
-						<td>${index3}</td>
-						<td>${index4}</td>
-						<td>${index5}</td>
+						<td style="text-align:center;padding:5px 15px 15px 15px;border-style:none;">${index1}</td>
+						<td style="text-align:center;padding:5px 15px 15px 15px;border-style:none;">${index2}</td>
+						<td style="text-align:center;padding:5px 15px 15px 15px;border-style:none;">${index3}</td>
+						<td style="text-align:center;padding:5px 15px 15px 15px;border-style:none;">${index4}</td>
+						<td style="text-align:center;padding:5px 15px 15px 15px;border-style:none;">${index5}</td>
 					</tr>
 				</tbody>
 				
-				<tbody>
-					<tr>
-						<td>${stockTable}</td>
-					
-					</tr>				
-				</tbody>
+				
 			</table><br>
 			<input id="month" type="button" value="月K" style="float:right;">
 			<input id="week" type="button" value="周K" style="float:right;">
