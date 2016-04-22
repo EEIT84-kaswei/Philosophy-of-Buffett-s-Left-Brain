@@ -209,6 +209,14 @@ public class QuestionServlet extends HttpServlet {
 
 				}
 
+			}else if(beanOne==null){
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
+				rd.forward(request, response);
+			}else{
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/pages/_02_login/login.jsp");
+				rd.forward(request, response);
 			}
 		} else {
 			try {
