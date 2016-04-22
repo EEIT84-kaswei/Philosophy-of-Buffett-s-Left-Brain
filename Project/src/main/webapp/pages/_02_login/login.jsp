@@ -157,19 +157,19 @@
 });
 </script>
 	<center>
-		<div id="abgne-block-20120327">
-			<ul class="tabs" style="margin:1em 0 0 0">
-				<li style="background-color: #FFDEFF"><span>登入</span></li>
-				<li style="background-color: #FFDEFF"><span>忘記密碼</span></li>
-				<li style="background-color: #FFDEFF"><span>申請會員</span></li>
+		<div id="abgne-block-20120327" style="margin:2em">
+			<ul class="tabs">
+				<li style="background-color: #FFDEFF;margin:1em 0 0 0"><span>登入</span></li>
+				<li style="background-color: #FFDEFF;margin:1em 0 0 0"><span>忘記密碼</span></li>
+				<li style="background-color: #FFDEFF;margin:1em 0 0 0"><span>申請會員</span></li>
 			</ul>
-			<div class="tab_container" style="background-color: #DEFFFF">
+			<div class="tab_container" style="background-color: #DEFFFF;margin:3em 0 0 0">
 				<ul class="tab_content" style="overflow-y:auto;overflow-x:hidden">
 					<li style="background-color: #DEFFFF">
 						<h3>登入</h3>
 
 						<form action="j_security_check" method="post" class="form-inline">
-							<div class="form-group">
+							<div class="form-group" style="margin:2em 0 0 0">
 								<label for="exampleInputName2">輸入帳號</label>
 								<input type="text" class="form-control" 
 								name="j_username" placeholder="請輸入帳號">

@@ -3,12 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 匯入bootstrap -->
- 	<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">	 
+ 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.css">	 
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> 
 
 
@@ -77,6 +77,12 @@ body {
             <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="<c:url value='/Welcome.jsp' />">首頁</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">基礎概念<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+						<li><a href="<c:url value='/pages/_03_stock_market/basicTermList.jsp' />">重要術語</a></li> 
+      					<li><a href="<c:url value='/pages/_03_stock_market/basicTerms.jsp' />">重要指標</a></li> 
+               		</ul>
+                </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">股票分類<span class="caret"></span></a>
             		<ul class="dropdown-menu">
 						<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></li> 
@@ -133,7 +139,7 @@ body {
 	                	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 	                		<span class="glyphicon glyphicon-wrench"></span> 
 	                			管理員
-	                		<span class="caret">
+	                		<span class="caret"/>
 	                	</a>
 	            		<ul class="dropdown-menu">
               				<li><a href="<c:url value='/member.do' />">會員管理</a></li>

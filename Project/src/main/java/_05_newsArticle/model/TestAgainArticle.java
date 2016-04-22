@@ -25,8 +25,8 @@ public class TestAgainArticle {
 
 	public static void main(String[] args) throws IOException {
 		
-		int i=1700259;
-		while(i<1900000){
+		int i=1510000;
+		while(i<1700000){
 			System.out.println(i);
 			String s = Integer.toString(i);
 			String url = "http://money.udn.com/money/story/8543/" + s;
