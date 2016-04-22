@@ -73,7 +73,7 @@ body {
 				</table>
 				<c:if test='<%=request.isUserInRole("admin")%>'>
 					<center>
-						<a href="<c:url value='/Project/secure/_05_article/newArticle.jsp'/>">
+						<a href="<c:url value='/secure/_05_article/newArticle.jsp'/>">
 							<input type="button" value="發表文章">
 						</a>
 					</center>
