@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="refresh" content="5;url=http://localhost:8080/Project/Welcome.jsp">
+<meta http-equiv="refresh" content="5;url=/Project/Welcome.jsp">
 <title>index.html</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" >
 <script src="js/bootstrap.min.js" ></script>
