@@ -8,7 +8,7 @@
         <id name="atitle" type="java.lang.String">
             <column name="ATITLE" />
         </id>
-        <property name="ano" type="java.lang.Integer">
+        <property name="ano" type="java.lang.Integer" generated="insert">
             <column name="ANO" />
         </property>
         <property name="account" type="java.lang.String">
