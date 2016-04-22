@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="refresh" content="2;url=http://localhost:8080/Project/pages/_02_login/login.jsp">
+<meta http-equiv="refresh" content="2;url=${pageContext.request.contextPath}/pages/_02_login/login.jsp">
 <title>登入失敗</title>
 </head>
 <body>
