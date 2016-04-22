@@ -37,6 +37,7 @@
       <transport-guarantee>NONE</transport-guarantee>
     </user-data-constraint>
   </security-constraint>
+
   <error-page>
     <error-code>404</error-code>
     <location>/Exception.jsp</location>
@@ -45,4 +46,5 @@
     <exception-type>java.lang.Exception</exception-type>
     <location>/Exception.jsp</location>
   </error-page>
+
 </web-app>
