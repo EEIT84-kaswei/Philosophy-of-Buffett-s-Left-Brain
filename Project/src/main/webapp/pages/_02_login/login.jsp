@@ -226,7 +226,9 @@
 
 						<form action='<c:url value="/pages/_01_register/account.do"/>'
 							ENCTYPE='multipart/form-data' method='POST' class="form-inline">
+
 							<div id="out">
+
 							<div class="form-group">
 								<label for="exampleInputName2">帳號　　　　</label> <input type="text"
 									name="account" class="form-control" value="${param.account}"

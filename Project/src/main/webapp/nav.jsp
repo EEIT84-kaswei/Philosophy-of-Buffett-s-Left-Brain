@@ -94,7 +94,7 @@ body {
 						 <li><a href="<c:url value='/secure/_02_login/member.do' />">會員資料管理</a></li>
                		</ul>
         		</li>
-                <li><a href="<c:url value='https://www.facebook.com/profile.php?id=100000212802863&fref=ts'/>" title="So Call Me Maybe">與我聯絡</a></li>
+                <li><a href="mailto:eeit84kaswei@gmail.com" title="So Call Me Maybe">與我聯絡</a></li>
             </ul>
 <%--             <c:url value='/SoCallMeMaybe.jsp'/> --%>
             
