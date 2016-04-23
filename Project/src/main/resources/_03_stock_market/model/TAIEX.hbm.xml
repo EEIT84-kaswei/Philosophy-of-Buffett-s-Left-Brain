@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/3/31 ?U?? 03:51:06 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="_03_stock_market.model.TaiexBean" table="TAIEX">
+        <id name="tDateTime" type="java.sql.Timestamp" access="field">
+            <column name="tDateTime" />
+            <generator class="assigned" />
+        </id>
+        <property name="tDate" type="java.util.Date" access="field">
+            <column name="tDate" />
+        </property>
+        <property name="taiex_Code" type="java.lang.String">
+            <column name="taiex_Code" />
+        </property>
+        <property name="taiex" type="java.math.BigDecimal">
+            <column name="taiex" />
+        </property>
+        <property name="taiex_Volume" type="java.math.BigDecimal">
+            <column name="taiex_Volume" />
+        </property>
+    </class>
+</hibernate-mapping>

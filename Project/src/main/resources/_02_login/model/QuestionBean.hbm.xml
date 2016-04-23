@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012/3/7 ?W?? 09:15:15 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+
+
+
+    <class name="_02_login.model.QuestionBean" table="question">
+
+        <composite-id>
+        	<key-property name="account" column="account"></key-property>
+        	<key-property name="QDate" column="QDate"></key-property>
+        </composite-id>
+        <property name="Risk_Tolerance" type="integer">
+            <column name="Risk_Tolerance" />
+        </property>
+        
+        <property name="scores" type="integer">
+            <column name="scores" />
+        </property>
+       
+    </class>
+</hibernate-mapping>

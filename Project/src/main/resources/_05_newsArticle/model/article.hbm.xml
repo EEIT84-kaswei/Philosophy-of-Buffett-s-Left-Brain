@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!-- Generated 2016/4/17 ?U?? 06:07:20 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="_05_newsArticle.model.ArticleBean" table="article">
+        <id name="atitle" type="java.lang.String">
+            <column name="ATITLE" />
+        </id>
+        <property name="ano" type="java.lang.Integer" generated="insert">
+            <column name="ANO" />
+        </property>
+        <property name="account" type="java.lang.String">
+            <column name="ACCOUNT" />
+        </property>
+        <property name="aname" type="java.lang.String">
+            <column name="ANAME" />
+        </property>
+        <property name="atime" type="java.util.Date">
+            <column name="ATIME" />
+        </property>
+        <property name="acontext" type="java.lang.String">
+            <column name="ACONTEXT" />
+        </property>
+
+    </class>
+</hibernate-mapping>
