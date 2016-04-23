@@ -25,7 +25,7 @@ public class TestAgainArticle {
 
 	public static void main(String[] args) throws IOException {
 		
-		int i=1530000;
+		int i=1510000;
 		while(i<1700000){
 			System.out.println(i);
 			String s = Integer.toString(i);
