@@ -49,7 +49,11 @@ public class TaiexService {
 			cal.add(Calendar.DAY_OF_WEEK, -1);
 		}else{
 			if(hourOfDay>=0 && hourOfDay <9){
-				cal.add(Calendar.DAY_OF_WEEK, -1);
+				if(dayOfWeek==2){
+					cal.add(Calendar.DAY_OF_WEEK, -3);
+				}else{
+					cal.add(Calendar.DAY_OF_WEEK, -1);
+				}				
 			}
 		}
 		Date targetTime=cal.getTime();

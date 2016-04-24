@@ -24,25 +24,35 @@ public class DailyStockService {
 	//[歷史股價 -1隻股、全部天數、全部資料]
 	//回傳歷史股價：全部資料LIST
 	public String selectAllofOneStock(Integer stock_Code){
-		List<DailyStockBean> result = dailyStockDAO.selectByStockCode(stock_Code);
+		List<Object[]> result = dailyStockDAO.selectByStockCode(stock_Code);
 		JsonArrayBuilder oneStockArrayBuilder=Json.createArrayBuilder();
 		int resultSize=result.size();
 		for(int i=0;i<resultSize;i++){
-			DailyStockBean bean=result.get(i);
+			Object[] dailyStockData=result.get(i);
 			JsonArrayBuilder oneDayArrayBuilder=Json.createArrayBuilder();
-			long dateMillis=bean.getTrading_Date().getTime();
+			long dateMillis=((java.sql.Date)dailyStockData[1]).getTime();
 			oneDayArrayBuilder.add(new BigDecimal(dateMillis));
-			oneDayArrayBuilder.add(bean.getOpening_Price());
-			oneDayArrayBuilder.add(bean.getHighest_Price());
-			oneDayArrayBuilder.add(bean.getLowest_Price());
-			oneDayArrayBuilder.add(bean.getClosing_Price());
-			oneDayArrayBuilder.add(new BigDecimal(bean.getTrade_Volume().intValue()));
+			oneDayArrayBuilder.add((BigDecimal)dailyStockData[2]);
+			oneDayArrayBuilder.add((BigDecimal)dailyStockData[3]);
+			oneDayArrayBuilder.add((BigDecimal)dailyStockData[4]);
+			oneDayArrayBuilder.add((BigDecimal)dailyStockData[5]);
+			if(dailyStockData[6]!=null){
+				oneDayArrayBuilder.add((BigDecimal)dailyStockData[6]);
+			}else{
+				oneDayArrayBuilder.add("-");
+			}
+			if(dailyStockData[7]!=null){
+				oneDayArrayBuilder.add((BigDecimal)dailyStockData[7]);
+			}else{
+				oneDayArrayBuilder.add("-");
+			}
+			oneDayArrayBuilder.add(new BigDecimal(((Integer)dailyStockData[8]).intValue()));
 			
 			if(i>=19){
 				int index=i;
 				BigDecimal sum20=new BigDecimal("0");
 				for(int j=1;j<=20;j++){
-					sum20=sum20.add(result.get(index).getClosing_Price());
+					sum20=sum20.add((BigDecimal)result.get(index)[5]);
 					index--;
 				}
 				BigDecimal avg20=sum20.divide(new BigDecimal("20"),2,BigDecimal.ROUND_HALF_UP);
@@ -55,7 +65,7 @@ public class DailyStockService {
 				int index=i;
 				BigDecimal sum60=new BigDecimal("0");
 				for(int j=1;j<=60;j++){
-					sum60=sum60.add(result.get(index).getClosing_Price());
+					sum60=sum60.add((BigDecimal)result.get(index)[5]);
 					index--;
 				}
 				BigDecimal avg60=sum60.divide(new BigDecimal("60"),2,BigDecimal.ROUND_HALF_UP);
@@ -68,7 +78,7 @@ public class DailyStockService {
 				int index=i;
 				BigDecimal sum240=new BigDecimal("0");
 				for(int j=1;j<=240;j++){
-					sum240=sum240.add(result.get(index).getClosing_Price());
+					sum240=sum240.add((BigDecimal)result.get(index)[5]);
 					index--;
 				}
 				BigDecimal avg240=sum240.divide(new BigDecimal("240"),2,BigDecimal.ROUND_HALF_UP);
@@ -76,6 +86,10 @@ public class DailyStockService {
 			}else{
 				oneDayArrayBuilder.add(new BigDecimal("0"));
 			}
+			
+			oneDayArrayBuilder.add((BigDecimal)dailyStockData[9]);
+			oneDayArrayBuilder.add((BigDecimal)dailyStockData[10]);		
+			
 			oneStockArrayBuilder.add(oneDayArrayBuilder);
 		}		
 		String oneStockDataStr=oneStockArrayBuilder.build().toString();
@@ -83,15 +97,15 @@ public class DailyStockService {
 	}
 	
 	public String selectStockVolume(Integer stock_Code){
-		List<DailyStockBean> result = dailyStockDAO.selectByStockCode(stock_Code);
+		List<Object[]> result = dailyStockDAO.selectByStockCode(stock_Code);
 		JsonArrayBuilder oneStockArrayBuilder=Json.createArrayBuilder();
-		Iterator<DailyStockBean> it=result.iterator();
+		Iterator<Object[]> it=result.iterator();
 		while(it.hasNext()){
-			DailyStockBean bean=it.next();
+			Object[] dailyStockVolume=it.next();
 			JsonArrayBuilder oneDayArrayBuilder=Json.createArrayBuilder();
-			long dateMillis=bean.getTrading_Date().getTime();
+			long dateMillis=((java.sql.Date)dailyStockVolume[1]).getTime();
 			oneDayArrayBuilder.add(new BigDecimal(dateMillis));
-			oneDayArrayBuilder.add(new BigDecimal(bean.getTrade_Volume().intValue()));			
+			oneDayArrayBuilder.add(new BigDecimal(((Integer)dailyStockVolume[8]).intValue()));			
 			oneStockArrayBuilder.add(oneDayArrayBuilder);
 		}
 		String oneStockDataStr=oneStockArrayBuilder.build().toString();
@@ -99,7 +113,7 @@ public class DailyStockService {
 	}
 	
 	public String selectStockVolumeColor(Integer stock_Code){
-		List<DailyStockBean> result = dailyStockDAO.selectByStockCode(stock_Code);
+		List<Object[]> result = dailyStockDAO.selectByStockCode(stock_Code);
 		JsonArrayBuilder oneStockColorArrayBuilder=Json.createArrayBuilder();
 		
 		for(int i=0;i<result.size();i++){
@@ -108,8 +122,8 @@ public class DailyStockService {
 				oneStockColorArrayBuilder.add("gray");
 				continue;
 			}
-			BigDecimal closing_Price_Today=result.get(i).getClosing_Price();
-			BigDecimal closing_Price_Yesterday=result.get(i-1).getClosing_Price();
+			BigDecimal closing_Price_Today=(BigDecimal)result.get(i)[5];
+			BigDecimal closing_Price_Yesterday=(BigDecimal)result.get(i-1)[5];
 			if(closing_Price_Today.subtract(closing_Price_Yesterday).compareTo(new BigDecimal("0"))==1){
 				oneStockColorArrayBuilder.add("red");
 			}else if(closing_Price_Today.subtract(closing_Price_Yesterday).compareTo(new BigDecimal("0"))==0){

@@ -93,10 +93,10 @@ public class DailyStockDAOHibernate implements DailyStockDAO {
 		return this.getSession().get(DailyStockBean.class, beanSelect);
 	}
 	@Override
-	public List<DailyStockBean> selectByStockCode(Integer stock_Code){
-		Query query = this.getSession().createQuery("from DailyStockBean where stock_Code = ?");
-		query.setParameter(0, stock_Code);
-		List<DailyStockBean> beans = query.list();
+	public List<Object[]> selectByStockCode(Integer stock_Code){
+		Query query = this.getSession().createSQLQuery("select d.stock_Code,d.trading_Date,d.opening_Price,d.highest_Price,d.lowest_Price,d.closing_Price,d.change_Amount,d.change_Extent,d.trade_Volume,kd.K,kd.D from dailyStock d left outer join stock_KD kd on d.stock_Code=kd.stock_Code and d.trading_Date=kd.trading_Date where d.stock_Code=:stock_Code order by trading_Date asc");
+		query.setParameter("stock_Code", stock_Code);
+		List<Object[]> beans = query.list();
 		return beans;
 	}
 	

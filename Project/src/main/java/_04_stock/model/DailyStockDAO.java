@@ -8,7 +8,7 @@ public interface DailyStockDAO {
 
 	public abstract DailyStockBean select(Integer stock_Code, Date trading_Date);
 	
-	public abstract List<DailyStockBean> selectByStockCode(Integer stock_Code);
+	public abstract List<Object[]> selectByStockCode(Integer stock_Code);
 
 	public abstract List<DailyStockBean> select();
 
