@@ -1097,7 +1097,7 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: #D1E9E9;
   text-decoration: none;
 }
 a:hover,
@@ -4595,7 +4595,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: #222;
   border-color: #080808;
   font-weight: bold;
-  font-size: 120%;
+  font-size: 110%;
   letter-spacing: 2px;
   font-family: '微軟正黑體';
 }
@@ -4615,7 +4615,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #D1E9E9;
+  color: #ffbf80;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,

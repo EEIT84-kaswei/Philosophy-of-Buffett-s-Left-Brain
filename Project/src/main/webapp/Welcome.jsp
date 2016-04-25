@@ -23,10 +23,11 @@
 <jsp:include page="/nav.jsp" />
 </div>
 <!-- 主畫面 -->
-<div align="center" style="margin:2em auto 2em auto">
+<center>
+<div align="center" style="margin:4em auto 2em auto; background-color: rgba(0, 0, 0, 0.3);padding:5em;max-width:30em;height:30em" class="container">
 <jsp:include page="/defaultView.jsp" />
 </div>
-
+</center>
 
 </body>
 </html>
