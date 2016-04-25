@@ -24,7 +24,7 @@ body {
 	background-size: cover;
 }
 #full_screen {
-    width: 42.5%;
+    width: 70.5%;
     height: auto;
 }
 </style>
