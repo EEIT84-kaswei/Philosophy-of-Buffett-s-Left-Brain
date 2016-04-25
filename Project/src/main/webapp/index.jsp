@@ -151,7 +151,7 @@ body {
 
 #full_screen {
 	margin: 5em 0 0 0;
-	width: 70.5%;
+	width: 40%;
 	height: auto;
 }
 </style>
