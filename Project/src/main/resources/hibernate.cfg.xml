@@ -48,6 +48,8 @@
 	    
 		<mapping resource="_02_login/model/custFavorite.hbm.xml"/>
 		<mapping resource="_02_login/model/QuestionBean.hbm.xml" />
+		<mapping resource="_02_login/model/StockAnalysisBean.hbm.xml" />
+	
 						
 
         <mapping resource="_03_stock_market/model/InstantStockBean.hbm.xml" />

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/4/25 ?U?? 03:57:27 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="_02_login.model.StockAnalysisBean" table="stockAnalysis">
+        <id name="stock_Code" type="java.lang.Integer">
+            <column name="STOCK_CODE" />
+            <generator class="assigned" />
+        </id>
+        <property name="stock_Name" type="java.lang.String">
+            <column name="STOCK_NAME" />
+        </property>
+        <property name="index1" type="java.lang.String">
+            <column name="INDEX1" />
+        </property>
+        <property name="index2" type="java.lang.String">
+            <column name="INDEX2" />
+        </property>
+        <property name="index3" type="java.lang.String">
+            <column name="INDEX3" />
+        </property>
+        <property name="index4" type="java.lang.String">
+            <column name="INDEX4" />
+        </property>
+        <property name="index5" type="java.lang.String">
+            <column name="INDEX5" />
+        </property>
+    </class>
+</hibernate-mapping>

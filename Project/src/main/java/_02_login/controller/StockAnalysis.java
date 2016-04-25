@@ -1,6 +1,5 @@
 package _02_login.controller;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,43 +8,62 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import misc.HibernateUtil;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
+import misc.HibernateUtil;
 import _02_login.model.CustFavoriteService;
 import _02_login.model.SpecialFunctionService;
 import _02_login.model.StockAnalysisBean;
+import _02_login.model.StockAnalysisService;
+import _02_login.model.dao.CustFavoriteDAOHibernate;
+import _02_login.model.dao.SpecialFunctionDAOHibernate;
+import _02_login.model.dao.StockAnalysisDAOHibernate;
 import _03_stock_market.model.InstantStockOneBean;
 import _03_stock_market.model.InstantStockOneService;
 import _03_stock_market.model.LegalPersonBean;
+import _03_stock_market.model.dao.InstantStockOneDAOHibernate;
 import _04_stock.model.DailyStockBean;
 import _04_stock.model.SecuritiesTradeBean;
-
 import _04_stock.model.StockCodeService;
-@WebServlet("/secure/StockAnalys")
-public class StockAnalysServlet {
-	private static final long serialVersionUID = 1L;
-	Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-	private SpecialFunctionService functionService;
-	private CustFavoriteService favoriteService;
-	private StockCodeService stockCodeService;
+import _04_stock.model.dao.StockCodeDAOHibernate;
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
+public class StockAnalysis {
+	private static SpecialFunctionService functionService;
+	private static CustFavoriteService favoriteService;
+	private static StockCodeService stockCodeService;
+	private static InstantStockOneService service4 ;
+	private static StockAnalysisService analysisService;
+	//======================================================================================
+	public static void main(String[] args) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();				
+		SpecialFunctionDAOHibernate dao = new SpecialFunctionDAOHibernate();
+		dao.setSessionFactory(sessionFactory);
+		functionService = new SpecialFunctionService();
+		functionService.setSpecialFunctionDAO(dao);
+		
+		InstantStockOneDAOHibernate daoOne = new InstantStockOneDAOHibernate();
+		daoOne.setSessionFactory(sessionFactory);
+		service4 = new InstantStockOneService();
+		service4.setInstantStockOneDAO(daoOne);
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		CustFavoriteDAOHibernate daoC = new CustFavoriteDAOHibernate();
+		daoC.setSessionFactory(sessionFactory);
+		favoriteService = new CustFavoriteService();
+		favoriteService.setCustFavoriteDAO(daoC);
+		
+		StockCodeDAOHibernate stockCodeDAOHibernate=new StockCodeDAOHibernate();
+		stockCodeDAOHibernate.setSessionFactory(sessionFactory);
+		stockCodeService = new StockCodeService();
+		stockCodeService.setStockCodeDAO(stockCodeDAOHibernate);
+		
 
-		// 轉換HTML Form資料
-
+		StockAnalysisDAOHibernate daoAnalysis = new StockAnalysisDAOHibernate();
+		daoAnalysis.setSessionFactory(sessionFactory);
+		analysisService = new StockAnalysisService();
+		analysisService.setDao(daoAnalysis);
+		//======================================================================================	
 		SimpleDateFormat sformat = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat sformat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -77,9 +95,18 @@ public class StockAnalysServlet {
 		DailyStockBean DBean = new DailyStockBean();
 		SecuritiesTradeBean SBean = new SecuritiesTradeBean();
 		LegalPersonBean LBean = new LegalPersonBean();
-		InstantStockOneService service4 = new InstantStockOneService();
-		List<InstantStockOneBean> IBean = service4.select(null);
-		List<StockAnalysisBean> beanS = new ArrayList<StockAnalysisBean>();
+		List<StockAnalysisBean> beans = new ArrayList<StockAnalysisBean>();
+		
+		List<InstantStockOneBean> IBean = new ArrayList<InstantStockOneBean>();
+		Session session1 = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session1.beginTransaction();
+			IBean = service4.select(null);
+			session1.getTransaction().commit();
+		} catch (Exception e2) {
+			session1.getTransaction().rollback();
+			e2.printStackTrace();
+		}		
 
 		for (InstantStockOneBean temp : IBean) {
 			Integer stock_Code = temp.getStock_Code();
@@ -100,8 +127,10 @@ public class StockAnalysServlet {
 			// try {
 			int i = 1;
 			while (i <= 31) {
-
+				Session session3 = HibernateUtil.getSessionFactory().getCurrentSession();
+				
 				try {
+					session3.beginTransaction();
 					B_s_sheetsMax = functionService.selectMax(sDate, stock_Code);
 					B_s_sheetsMin = functionService.selectMin(sDate, stock_Code);
 					top_B_s_sheets = functionService.selsctBuyTop15(sDate,
@@ -115,6 +144,7 @@ public class StockAnalysServlet {
 					if (B_s_sheetsMax != null) {
 						break;
 					}
+					session3.getTransaction().commit();
 				} catch (IndexOutOfBoundsException e1) {
 
 					System.out.println(e1.getMessage());
@@ -133,7 +163,9 @@ public class StockAnalysServlet {
 						System.out.println(sDate);
 						trading_Date = sDate;
 					} else {
+						session3.getTransaction().rollback();
 						break;
+						
 					}
 				}
 				i++;
@@ -175,16 +207,33 @@ public class StockAnalysServlet {
 			} else {
 				bean.setIndex5("尚未符合");
 			}
-			beanS.add(bean);
+			beans.add(bean);
 		}
-
 		
-		// 根據Model執行結果顯示View
-		// request.setAttribute("stockTable", stockTable);		
-		request.setAttribute("beanS", beanS);		
-		request.getRequestDispatcher(
-				"/secure/_02_login/StockAnalys.jsp").forward(
-				request, response);
+		
+		
+		
+		
+		
+		
+		Session session2 = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session2.beginTransaction();
+			for(StockAnalysisBean X:beans){
+				analysisService.insert(X);
+				System.out.println(X);
+			}
+			session2.getTransaction().commit();
+		} catch (Exception e) {
+			session2.getTransaction().rollback();
+			e.printStackTrace();
+		}		
+		HibernateUtil.closeSessionFactory();
+		
+
 
 	}
+	
+	
+
 }
