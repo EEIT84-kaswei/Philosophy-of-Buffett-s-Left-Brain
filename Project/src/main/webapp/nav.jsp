@@ -35,10 +35,21 @@ body {
  }
 </style>
 
- <c:set var="loc" value="${param.locale}"/>
-    <c:if test="${! empty (param.locale)}">
-       <c:set var="loc" value="${param.locale}"/>
-    </c:if>
+<%--  <c:set var="loc" value="${param.locale}"/> --%>
+<c:choose>
+	<c:when test="${! empty (param.locale)}">
+		<c:set var="loc" value="${param.locale}" scope="session"/>
+	</c:when>
+	<c:when test="${! empty (sessionScope.loc)}">
+		<c:set var="loc" value="${sessionScope.loc}" scope="session"/>
+	</c:when>
+	<c:otherwise>
+		<c:set var="loc" value="${pageContext.request.locale}" scope="session"/>
+	</c:otherwise>
+</c:choose>
+<%--     <c:if test="${! empty (param.locale)}"> --%>
+<%--        <c:set var="loc" value="${param.locale}"/> --%>
+<%--     </c:if> --%>
    
  <fmt:setLocale value="${loc}"/>  
 
