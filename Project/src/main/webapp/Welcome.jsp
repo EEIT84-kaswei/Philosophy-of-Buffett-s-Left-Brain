@@ -24,7 +24,7 @@
 </div>
 <!-- 主畫面 -->
 <center>
-<div align="center" style="margin:4em auto 2em auto; background-color: rgba(0, 0, 0, 0.3);padding:5em;max-width:35em;height:35em" class="container">
+<div align="center" style="margin:20px 0 0 0; background-color: rgba(0, 0, 0, 0.3);padding:3em;max-width:31em;height:31em" class="container">
 <jsp:include page="/defaultView.jsp" />
 </div>
 </center>

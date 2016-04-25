@@ -9,8 +9,10 @@
 <!-- </head> -->
 <style>
 #weightedIndexChart{
-		width: 25em;
-		height: 25em;
+ 		width: auto;
+  		height : auto;
+		max-width: 25em;
+		max-height: 25em;
 	}
 </style>
 
