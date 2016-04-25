@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -24,10 +27,16 @@ dd{
 
 
 </style>
-
+ <c:set var="loc" value="${param.locale}"/>
+    <c:if test="${! empty (param.locale)}">
+       <c:set var="loc" value="${param.locale}"/>
+    </c:if>
+   
+ <fmt:setLocale value="${loc}"/>  
 </head>
 
 <body>
+ <fmt:bundle basename="message">  
 <!-- <div class="container"> -->
 <!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 <jsp:include page="/title.jsp" />
@@ -38,7 +47,7 @@ dd{
 
 
 <div style="max-width:80em;margin:2em 10px">
-<h2 style="text-align:center">重要術語</h2>
+<h2 style="text-align:center"><fmt:message key="importantTerms"/></h2>
 
 <div style="max-width:60%;margin:3em auto">
 <ul class="list-inline">
@@ -282,5 +291,6 @@ dd{
 
 
 </div>
+</fmt:bundle>
 </body>
 </html>

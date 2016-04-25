@@ -91,8 +91,20 @@ $('document').ready(function(){
 		</li>
 	</ul>
 </div>
-<script type="text/javascript"
-	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- <script type="text/javascript" -->
+<!-- 	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+	
+		<c:url var="engURL" value="">
+			<c:param name="locale" value="en_US" />
+		</c:url>
+		<a href="${engURL}">English</a>
+
+
+		<c:url var="chineseURL" value="">
+			<c:param name="locale" value="zh_TW" />
+
+		</c:url>
+		<a href="${chineseURL}">中文</a>
 	<!-- 標題 END -->
 </center>
 

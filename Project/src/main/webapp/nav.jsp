@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -34,9 +35,14 @@ body {
  }
 </style>
 
+ <c:set var="loc" value="${param.locale}"/>
+    <c:if test="${! empty (param.locale)}">
+       <c:set var="loc" value="${param.locale}"/>
+    </c:if>
+   
+ <fmt:setLocale value="${loc}"/>  
 
-
-    
+ <fmt:bundle basename="message">   
 <nav class="nav navbar-inverse navbar-static-top" id="thisone" align="center"> <!-- 如果要黑色底，請把nav後面的那一串文字改成navbar-inverse -->
         <div class="container-fluid" style="">
             <div class="navbar-header">
@@ -53,7 +59,7 @@ body {
             <!-- 成為按鈕 -->
             
                 
-                <a class="navbar-brand" href="<c:url value='/index.jsp'/>">Buffett</a>
+                <a class="navbar-brand" href="<c:url value='/index.jsp'/>"><fmt:message key="home" /></a>
             </div>
             
             <!-- 底下放要縮放的內容 -->
@@ -61,30 +67,30 @@ body {
             
             <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">基礎概念<span class="caret"></span></a>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><fmt:message key="basicConcept" /><span class="caret"></span></a>
                     <ul class="dropdown-menu">
-						<li><a href="<c:url value='/pages/_03_stock_market/basicTermList.jsp' />">重要術語</a></li> 
-      					<li><a href="<c:url value='/pages/_03_stock_market/basicTerms.jsp' />">重要指標</a></li> 
+						<li><a href="<c:url value='/pages/_03_stock_market/basicTermList.jsp' />"><fmt:message key="importantTerms"/></a></li> 
+      					<li><a href="<c:url value='/pages/_03_stock_market/basicTerms.jsp' />"><fmt:message key="importantIndex" /></a></li> 
                		</ul>
                 </li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">股票分類<span class="caret"></span></a>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><fmt:message key="stockCategory"/><span class="caret"></span></a>
             		<ul class="dropdown-menu">
-						<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></li> 
-      					<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></li> 
-               			<li><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></li>
+						<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>"><fmt:message key="listedStock"/></a></li> 
+      					<li><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>"><fmt:message key="otcStock"/></a></li> 
+               			<li><a href="<c:url value='/secure/conceptStock.view'/>"><fmt:message key="conceptStock"/></a></li>
                		</ul>
         		</li>
-                <li><a href="<c:url value='/pages/article.controller' />">股市專欄</a></li>
-                <li><a href="<c:url value='/pages/_05_newsArticle/news.do' />">股市新聞</a></li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">會員專區<span class="caret"></span></a>
+                <li><a href="<c:url value='/pages/article.controller' />"><fmt:message key="stockColumn" /></a></li>
+                <li><a href="<c:url value='/pages/_05_newsArticle/news.do' />"><fmt:message key="stockNews" /></a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><fmt:message key="membersOnly" /><span class="caret"></span></a>
             		<ul class="dropdown-menu">
-              			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />">風險評估</a></li>
-               			 <li><a href="<c:url value='/secure/custFavorite.view'/>">自選股</a></li>
-               			 <li><a href="<c:url value='/secure/_02_login.controller/QuestionServlet'/>">股票推薦</a></li>
-						 <li><a href="<c:url value='/secure/_02_login/member.do' />">會員資料管理</a></li>
+              			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />"><fmt:message key="riskAssessment" /></a></li>
+               			 <li><a href="<c:url value='/secure/custFavorite.view'/>"><fmt:message key="optionalStock" /></a></li>
+               			 <li><a href="<c:url value='/secure/_02_login.controller/QuestionServlet'/>"><fmt:message key="recommendedStocks"/></a></li>
+						 <li><a href="<c:url value='/secure/_02_login/member.do' />"><fmt:message key="memberInformationManagement" /></a></li>
                		</ul>
         		</li>
-                <li><a href="mailto:eeit84kaswei@gmail.com" title="So Call Me Maybe">與我聯絡</a></li>
+                <li><a href="mailto:eeit84kaswei@gmail.com" title="So Call Me Maybe"><fmt:message key="soCallMeMaybe"/></a></li>
             </ul>
 <%--             <c:url value='/SoCallMeMaybe.jsp'/> --%>
             
@@ -95,7 +101,7 @@ body {
                     	<c:if test="${pageContext.request.remoteUser != null}">
 	                    	<a href="<c:url value='/secure/_02_login/member.do' />">
 	                    		<span class="glyphicon glyphicon-user"></span> 
-	                    		您好，${pageContext.request.remoteUser}
+	                    		<fmt:message key="hello"/>${pageContext.request.remoteUser}
 	                    	</a>
                     	</c:if>
                     </li>
@@ -104,7 +110,7 @@ body {
                     	<c:if test="${pageContext.request.remoteUser == null}">
 	                    	<a href="<c:url value='/secure/_02_login/loginSuccess.jsp'/>">
 	                    		<span class="glyphicon glyphicon-log-in"></span> 
-	                    		登入
+	                    		<fmt:message key="login"/>
 	                    	</a>
                     	</c:if>
                     </li>
@@ -113,7 +119,7 @@ body {
                     	<c:if test="${pageContext.request.remoteUser != null}">
 		                    <a href="<c:url value='/pages/_02_login/logout.jsp'/>">
 		                    	<span class="glyphicon glyphicon-log-out"></span>
-								登出
+								<fmt:message key="logout"/>
 		                    </a>
 						</c:if>
 					</li>
@@ -122,12 +128,12 @@ body {
 	                <li class="dropdown">
 	                	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 	                		<span class="glyphicon glyphicon-wrench"></span> 
-	                			管理員
+	                			<fmt:message key="admin"/>
 	                		<span class="caret"/>
 	                	</a>
 	            		<ul class="dropdown-menu">
-              				<li><a href="<c:url value='/member.do' />">會員管理</a></li>
-               				<li><a href="<c:url value='/secure/StockCodeServlet'/>">股票管理</a></li>	
+              				<li><a href="<c:url value='/member.do' />"><fmt:message key="memberManagement"/></a></li>
+               				<li><a href="<c:url value='/secure/StockCodeServlet'/>"><fmt:message key="stockManagement" /></a></li>	
 	               		</ul>
 	        		</li>
         		</c:if>
@@ -140,4 +146,4 @@ body {
         
     </nav>
 
-
+</fmt:bundle>
