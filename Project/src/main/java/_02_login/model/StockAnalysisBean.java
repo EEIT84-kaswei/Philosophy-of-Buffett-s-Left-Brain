@@ -3,11 +3,12 @@ package _02_login.model;
 public class StockAnalysisBean {
 	private Integer stock_Code;
 	private String stock_Name;
-	private boolean index1;
-	private boolean index2;
-	private boolean index3;
-	private boolean index4;
-	private boolean index5;
+	private String index1;
+	private String index2;
+	private String index3;
+	private String index4;
+	private String index5;
+	
 	
 	@Override
 	public String toString() {
@@ -28,35 +29,38 @@ public class StockAnalysisBean {
 	public void setStock_Name(String stock_Name) {
 		this.stock_Name = stock_Name;
 	}
-	public boolean isIndex1() {
+	public String getIndex1() {
 		return index1;
 	}
-	public void setIndex1(boolean index1) {
+	public void setIndex1(String index1) {
 		this.index1 = index1;
 	}
-	public boolean isIndex2() {
+	public String getIndex2() {
 		return index2;
 	}
-	public void setIndex2(boolean index2) {
+	public void setIndex2(String index2) {
 		this.index2 = index2;
 	}
-	public boolean isIndex3() {
+	public String getIndex3() {
 		return index3;
 	}
-	public void setIndex3(boolean index3) {
+	public void setIndex3(String index3) {
 		this.index3 = index3;
 	}
-	public boolean isIndex4() {
+	public String getIndex4() {
 		return index4;
 	}
-	public void setIndex4(boolean index4) {
+	public void setIndex4(String index4) {
 		this.index4 = index4;
 	}
-	public boolean isIndex5() {
+	public String getIndex5() {
 		return index5;
 	}
-	public void setIndex5(boolean index5) {
+	public void setIndex5(String index5) {
 		this.index5 = index5;
 	}
+
+	
+	
 	
 }
