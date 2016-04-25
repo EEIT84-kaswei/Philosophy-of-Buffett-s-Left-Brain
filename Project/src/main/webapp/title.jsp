@@ -102,7 +102,6 @@ $('document').ready(function(){
 
 		<c:url var="chineseURL" value="">
 			<c:param name="locale" value="zh_TW" />
-
 		</c:url>
 		<a href="${chineseURL}">中文</a>
 	<!-- 標題 END -->

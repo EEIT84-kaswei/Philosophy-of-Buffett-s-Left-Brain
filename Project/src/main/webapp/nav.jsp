@@ -16,9 +16,9 @@
 /* 	 用getContextPath()找到根目錄  */
 
 body { 
-	background-image:url("<%=request.getContextPath() %>/img/dye_st_0117.gif"); 
+	background-image:url("<%=request.getContextPath() %>/img/carley1.jpg"); 
 	background-attachment: fixed;
-	
+	background-size:cover;
  }
  
  #thisone{
