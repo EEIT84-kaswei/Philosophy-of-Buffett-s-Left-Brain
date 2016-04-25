@@ -98,6 +98,7 @@ body {
               			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />"><fmt:message key="riskAssessment" /></a></li>
                			 <li><a href="<c:url value='/secure/custFavorite.view'/>"><fmt:message key="optionalStock" /></a></li>
                			 <li><a href="<c:url value='/secure/_02_login.controller/QuestionServlet'/>"><fmt:message key="recommendedStocks"/></a></li>
+               			 <li><a href="#"><fmt:message key="stockAnalysis" /></a></li>
 						 <li><a href="<c:url value='/secure/_02_login/member.do' />"><fmt:message key="memberInformationManagement" /></a></li>
                		</ul>
         		</li>
