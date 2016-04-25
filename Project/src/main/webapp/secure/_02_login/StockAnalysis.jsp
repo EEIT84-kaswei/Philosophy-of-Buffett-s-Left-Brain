@@ -8,66 +8,42 @@
 <title>Insert title here</title>
 
 <!-- **************************************** CSS開始   ***************************************************** -->
-<link rel="stylesheet" type="text/css"
-	href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
+<!-- <link rel="stylesheet" type="text/css" -->
+<!-- 	href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" /> -->
 <style type="text/css">
 
-/*分類股  按鈕設定*/
-#menu {
-	overflow: auto !important;
-	overflow /**/: hidden;
-}
-
-#menu td {
-	float: left;
-	list-style-type: none;
-	width: 4em;
-	font-size: 115%
-}
-
-#menu td a {
-	display: block;
-	width: 100%;
-	line-height: 2.5em;
-	color: #7E3D76;
-	text-decoration: none;
-	text-align: center
-}
-
-#menu td a:hover {
-	background-color: #DDD;
-	color: #666
-}
-
 /*分類股表格設定*/
-#stockTypeTable {
-	width: 100%;
-	border: 0px solid #BEBEBE; /*測完要改顏色*/
-	border-collapse: collapse; /*把內外框的距離清掉*/
-	margin: 0 auto;
-}
+/* #stockTypeTable { */
+/* 	width: 100%; */
+/* 	border: 0px solid #BEBEBE; /*測完要改顏色*/ */
+/* 	border-collapse: collapse; /*把內外框的距離清掉*/ */
+/* 	margin: 0 auto; */
+/* } */
 
-#stockTypeTable th {
-	border: 1px solid #BEBEBE;
-	text-align: center;
-	height: 35px;
-}
+/* #stockTypeTable th { */
+/* 	border: 1px solid #BEBEBE; */
+/* 	text-align: center; */
+/* 	height: 35px; */
 
-#stockTypeTable td {
-	border: 1px solid #BEBEBE;
-	text-align: center;
-	height: 35px;
-}
+/* } */
 
-#stockTypeTable tbody tr:HOVER {
-	background-color: #FFE6D9;
-	color: #666
-}
+/* #stockTypeTable td { */
+/* 	border: 1px solid #BEBEBE; */
+/* 	text-align: center; */
+/* 	height: 35px; */
+/* 	color:#333333; */
+/* 	font-weight: bold; */
+/* } */
 
-td.favorL:hovor {
-	background-color: #DDD;
-	color: #666;
-}
+ #stockTypeTable tbody:hover { 
+ 	background-color: #FFE6D9; 
+ 	font-color: yellow; 
+ } 
+
+/* #tbody tr:hovor { */
+/* 	background-color: #fff; */
+/* 	font-color: yellow; */
+/* } */
 </style>
 
 <!-- **************************************** 網頁抬頭   ******************************************************* -->
@@ -78,10 +54,10 @@ td.favorL:hovor {
 <body>
 
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
-	<jsp:include page="/title.jsp" />
+<%-- 	<jsp:include page="/title.jsp" /> --%>
 
 	<!-- 網頁主要導覽列 -->
-	<div><jsp:include page="/nav.jsp" /></div>
+<%-- 	<div><jsp:include page="/nav.jsp" /></div> --%>
 
 
 	<!-- ************************************** 內文DIV開始  ***************************************************** -->
@@ -119,19 +95,53 @@ td.favorL:hovor {
 				</tr>
 			</thead>
 
-			<tbody id="tbody">
+			<tbody>
 
 				
 				<c:forEach var="data" items="${beanS}">
-					<tr>
+					<tr style="background-color:rgba(120, 120, 120, 0.8)">
 						<td>${data.stock_Code}</td>			
 						<td>${data.stock_Name}</td>
-						<td>${data.index1}</td>
-						<td>${data.index2}</td>
-						<td>${data.index3}</td>
-						<td>${data.index4}</td>
-						<td>${data.index5}</td>
-												
+						<c:choose>
+						<c:when test="${data.index1 eq '符合'}">
+							<td style="color:red;">${data.index1}</td>
+						</c:when>						
+						<c:otherwise>
+							<td>${data.index1}</td>
+						</c:otherwise>						
+						</c:choose>	
+						<c:choose>
+						<c:when test="${data.index2 eq '符合'}">
+							<td style="color:red;">${data.index2}</td>
+						</c:when>						
+						<c:otherwise>
+							<td>${data.index2}</td>
+						</c:otherwise>						
+						</c:choose>			
+						<c:choose>
+						<c:when test="${data.index3 eq '符合'}">
+							<td style="color:red;">${data.index3}</td>
+						</c:when>						
+						<c:otherwise>
+							<td>${data.index3}</td>
+						</c:otherwise>						
+						</c:choose>			
+						<c:choose>
+						<c:when test="${data.index4 eq '符合'}">
+							<td style="color:red;">${data.index4}</td>
+						</c:when>						
+						<c:otherwise>
+							<td>${data.index4}</td>
+						</c:otherwise>						
+						</c:choose>			
+						<c:choose>
+						<c:when test="${data.index5 eq '符合'}">
+							<td style="color:red;">${data.index5}</td>
+						</c:when>						
+						<c:otherwise>
+							<td>${data.index5}</td>
+						</c:otherwise>						
+						</c:choose>								
 					</tr>					
 
 				</c:forEach>
