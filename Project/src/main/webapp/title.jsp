@@ -11,7 +11,7 @@
 <script src="<%=request.getContextPath() %>/js/jquery-1.12.3.js"></script>
 
 <!-- 匯入jQuery UI CSS -->
-<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui.css"> --%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui.css">
 
 <!-- 匯入bootstrap JS -->
 <script src="<%=request.getContextPath() %>/js/bootstrap.js"></script>

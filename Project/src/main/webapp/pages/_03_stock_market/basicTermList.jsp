@@ -23,6 +23,13 @@ dl{
 dd{
 	color:black;
 	font-size:100%;
+	margin:0 2em 0 0;
+}
+.list-inline a{
+	color:#006699;
+}
+.dl-horizontal a{
+	color:#006666;
 }
 
 
@@ -57,8 +64,8 @@ dd{
 </div>
 
 
-<div style="max-width:80em;margin:2em 10px">
-<h2 style="text-align:center"><fmt:message key="importantTerms"/></h2>
+<div style="max-width:80em;margin:2em auto;background-color: #cccccc">
+<h2 style="text-align:center;padding:2em 2em 0em 2em"><fmt:message key="importantTerms"/></h2>
 
 <div style="max-width:60%;margin:3em auto">
 <ul class="list-inline">

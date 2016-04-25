@@ -34,7 +34,9 @@
 #middleTable tr:nth-child(odd) {
 	background: #EFEFEF
 }
-
+#middleTable tr:nth-child(even) {
+	background: #ccccff
+}
 #middleTable tr:hover {
 	background-color: #77FFCC;
 }
@@ -57,7 +59,7 @@
 	<div>
 		<jsp:include page="/nav.jsp" />
 	</div>
-	<H2 align=center>風險屬性問卷</H2>
+	<H2 align="center" style="color:pink">風險屬性問卷</H2>
 	<div align=center id="midTable">
 		<form
 			action="<c:url value='/secure/_02_login.controller/QuestionServlet?insert=new' />"

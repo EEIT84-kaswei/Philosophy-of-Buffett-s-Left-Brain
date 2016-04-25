@@ -16,7 +16,7 @@
 }
 
 #maintable tr:nth-child(even) {
-	background: #CCEEFF
+	background: #d9d9d9
 	}
 	
 #Atitle{
@@ -60,19 +60,19 @@ body {
 		</div>
 
 <div class="table-responsive">
-	<div style="margin: 2em auto; padding: 2em 0; max-width:38em;">
+	<div style="margin: 2em auto; padding: 2em 0; max-width:48em;">
 
 			<!-- 表格開始 -->
 
 			<form action="<c:url value="/pages/article.controller" />" method="post">				
 				<table id="maintable" class="table table-hover table-bordered"
-					style="border: 2px #FFAC55 solid; margin: 2em 0;width:100%"
+					style="border: 2px #000066 solid; margin: 2em 0;width:100%"
 					rules="all" cellpadding='5' align="center">
 					<thead>
 						<tr>							
-							<th style="width: 50%; text-align: center">文章標題</th>
-							<th style="width: 25%; text-align: center">作者</th>
-							<th style="width: 25%; text-align: center">發表日期</th>
+							<th style="width: 50%; text-align: center;background-color: #4d4d4d"><font style="color:#fff">文章標題</font></th>
+							<th style="width: 25%; text-align: center;background-color: #4d4d4d"><font style="color:#fff">作者</font></th>
+							<th style="width: 25%; text-align: center;background-color: #4d4d4d"><font style="color:#fff">發表日期</font></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -81,7 +81,7 @@ body {
 								<c:param name="ano" value="${row.ano}" />
 							</c:url>
 							<tr>
-								<td><div id="Atitle"><a href="${path}">${row.atitle}</a></div></td>
+								<td><div id="Atitle"><a href="${path}"><font style="color:#0066cc">${row.atitle}</font></a></div></td>
 								<td><div id="Aname">${row.aname}</div></td>
 								<td style="text-align: center"><fmt:formatDate value="${row.atime}" pattern="yyyy/MM/dd HH:mm" /></td> 
 							</tr>

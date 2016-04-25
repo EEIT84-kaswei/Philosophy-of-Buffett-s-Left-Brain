@@ -27,7 +27,7 @@
 			<jsp:include page="/nav.jsp" />
 		</div>
 
-		<div style="margin: 2em auto; padding: 2em">
+		<div style="margin: 2em auto; padding: 2em;background-color: rgba(204, 204, 204, 0.99);max-width:80%"">
 
 			<!-- 表格開始 -->
 			
@@ -36,10 +36,10 @@
 					    <c:param name="sano" value="${singleArticle.ano}" />
 					</c:url>" method="post">
 				
-				<h2 style="text-align:center;color:purple">${singleArticle.atitle}</h2>
+				<h2 style="text-align:center;color:#008080">${singleArticle.atitle}</h2>
 				<p style="text-align:center">${singleArticle.aname}</p>
 				<fmt:formatDate var="time" value="${singleArticle.atime}" type="both" dateStyle="long" /> 
-				<p style="text-align:center">${time}</p>
+				<p style="text-align:center;color:#999999">${time}</p>
 				<br>
 				<div style="max-width:50em;margin:0 auto">
 					<p>${singleArticle.acontext}</p>
