@@ -123,7 +123,7 @@ body {
 			<form action="<c:url value="/pages/_05_newsArticle/insertNews.jsp"/>"
 				method="post">
 				<center>
-					<input type="submit" value="新增">
+					<input type="submit" value="新增" class="btn">
 				</center>
 			</form>
 		</c:if>

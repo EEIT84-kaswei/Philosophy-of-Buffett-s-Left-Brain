@@ -26,6 +26,11 @@ body {
 /* 	font: 62.5% "Trebuchet MS", sans-serif; */
 /* 	margin: 50px; */
 }
+
+#table2 th{
+	background-color:#000080;
+ 	color:#ccffff;
+}
 </style>
 </head>
 <body>
@@ -64,8 +69,8 @@ body {
 	<br>
 	<br>
 	<br>
-	<h2 align="center">管理員平台</h2>
-	<h4 align="center">個股資料管理</h4>
+	<h2 align="center" style="color:#ffe6ff">管理員平台</h2>
+	<h4 align="center" style="color:#ffe6ff">個股資料管理</h4>
 	<br>
 
 	<center>
@@ -76,7 +81,7 @@ body {
 					<form action="<c:url value="/secure/StockCodeServlet" />" method="post">
 						<tr>
 							<td><input type="text" size="5" name="deleteMsg" placeholder="股票編號"></td>
-							<td><input type="submit" value="Delete" name="stockManage"></td>
+							<td><input type="submit" value="Delete" name="stockManage" class="btn btn-primary"></td>
 						</tr>
 					</form>
 					<tr>
@@ -101,7 +106,7 @@ body {
 							placeholder="概念股分類"></td>
 						<td><input type="text" size="5" name="commend"
 							placeholder="風險等級"></td>
-						<td><input type="submit" value="Insert" name="stockManage"></td>
+						<td><input type="submit" value="Insert" name="stockManage" class="btn btn-primary"></td>
 
 					</tr>
 					<c:forEach var="row" items="${Select}">
@@ -114,7 +119,7 @@ body {
 								value="${row.cs_Code}"></td>
 							<td><input type="text" name="commend" size="5"
 								value="${row.commend}"></td>
-							<td><input type="button" value="Update" name="stockManage"></td>
+							<td><input type="button" value="Update" name="stockManage" class="btn btn-primary"></td>
 
 						</tr>
 
