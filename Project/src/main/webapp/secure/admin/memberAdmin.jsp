@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--[if lt IE 9]>
 <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,10 +16,13 @@ article, aside, figure, figcaption, footer, header, hgroup, menu, nav,
 	section {
 	display: block;
 }
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
 
 body {
-	font: 62.5% "Trebuchet MS", sans-serif;
-	margin: 50px;
+/* 	font: 62.5% "Trebuchet MS", sans-serif; */
+/* 	margin: 2em; */
 }
 </style>
 </head>
@@ -32,6 +36,7 @@ body {
 
 	<jsp:include page="/nav.jsp" />
 
+<div style="margin:0 auto 2em auto">
 	<br>
 	<br>
 	<br>
@@ -39,17 +44,18 @@ body {
 	<h4 align="center">會員權限管理</h4>
 	<br>
 
-	<center>
-		<div style="width: 1000px; height: 600px">
+	
+	
+		<div style="max-width:40em;margin:0 auto">
 				
-				<table id="table1" class="table-responsive">
+				<table class="table table-hover table-bordered" id="thisTable1" style="margin:0 auto">
 					<thead>
 						<tr>
 							<th style="display:none;">id</th>
-							<th>登入帳號(account)</th>
-							<th>會員權限(account_Role)</th>
+							<th>會員帳號</th>
+							<th>會員權限</th>
 							<th>修改權限</th>
-							<th>刪除會員</th>
+							<th>刪除</th>
 						</tr>
 					</thead>
 					
@@ -93,8 +99,6 @@ body {
 				</table>
 			
 		</div>
-		<p style="text-align: center">功能還沒寫完</p>
-	</center>
 	<script language="JavaScript">
 		$(document).ready(function() {
 			var opt = {
@@ -114,8 +118,9 @@ body {
 					}
 				}
 			};
-			$("#table1").dataTable(opt);
+			$("#thisTable1").dataTable(opt);
 		});
 	</script>
+	</div>
 </body>
 </html>

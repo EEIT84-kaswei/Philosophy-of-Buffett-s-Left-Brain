@@ -23,7 +23,7 @@
 <jsp:include page="/nav.jsp" />
 </div>
 <!-- 主畫面 -->
-<div align="center" style="margin:3em">
+<div align="center" style="margin:2em auto 2em auto">
 <jsp:include page="/defaultView.jsp" />
 </div>
 

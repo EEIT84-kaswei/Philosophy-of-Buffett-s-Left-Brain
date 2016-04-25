@@ -117,7 +117,7 @@ public class StockCodeServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("Select", result);
 			String path = request.getContextPath();
-			response.sendRedirect(path + "/secure/_02_login/stockrevise.jsp");
+			response.sendRedirect(path + "/secure/admin/stockrevise.jsp");
 		}
 		if (stockManage != null && "Insert".equals(stockManage)) {
 			System.out.println("進入Insert執行方法前");
@@ -127,7 +127,7 @@ public class StockCodeServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("Select", result);
 				String path = request.getContextPath();
-				response.sendRedirect(path + "/secure/_02_login/stockrevise.jsp");
+				response.sendRedirect(path + "/secure/admin/stockrevise.jsp");
 			}
 		if (stockManage != null && "Update".equals(stockManage)) {
 			System.out.println("進入Update執行方法前");
@@ -137,7 +137,7 @@ public class StockCodeServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("Select", result);
 				String path = request.getContextPath();
-				response.sendRedirect(path + "/secure/_02_login/stockrevise.jsp");
+				response.sendRedirect(path + "/secure/admin/stockrevise.jsp");
 			}
 		if (stockManage != null && "Delete".equals(stockManage)) {
 			System.out.println("進入Delete執行方法前");
@@ -147,7 +147,7 @@ public class StockCodeServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("Select", result);
 				String path = request.getContextPath();
-				response.sendRedirect(path + "/secure/_02_login/stockrevise.jsp");
+				response.sendRedirect(path + "/secure/admin/stockrevise.jsp");
 			}
 	}
 

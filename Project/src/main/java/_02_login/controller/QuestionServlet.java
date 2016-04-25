@@ -56,6 +56,7 @@ public class QuestionServlet extends HttpServlet {
 		System.out.println("轉換HTML Form資料");
 
 		// 轉換HTML Form資料
+
 		int Q1 = 0, Q2 = 0, Q3 = 0,Q4 = 0,  Q5 = 0, Q6 = 0;		
 		Integer Risk_Tolerance = 0;
 		SimpleDateFormat sformat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
@@ -209,6 +210,14 @@ public class QuestionServlet extends HttpServlet {
 
 				}
 
+			}else if(beanOne==null){
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
+				rd.forward(request, response);
+			}else{
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/pages/_02_login/login.jsp");
+				rd.forward(request, response);
 			}
 		} else {
 			try {

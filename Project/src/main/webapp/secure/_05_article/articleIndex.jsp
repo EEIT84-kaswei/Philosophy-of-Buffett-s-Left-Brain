@@ -59,14 +59,15 @@ body {
 			<jsp:include page="/nav.jsp" />
 		</div>
 
-
-		<div style="margin: 2em auto; padding: 2em; width:50em">
+<div class="table-responsive">
+	<div style="margin: 2em auto; padding: 2em 0; max-width:38em;">
 
 			<!-- 表格開始 -->
 
 			<form action="<c:url value="/pages/article.controller" />" method="post">				
-				<table id="maintable" style="border: 2px #FFAC55 solid; padding: 2em; width:47em" rules="all"
-					cellpadding='5'>
+				<table id="maintable" class="table table-hover table-bordered"
+					style="border: 2px #FFAC55 solid; margin: 2em 0;width:100%"
+					rules="all" cellpadding='5' align="center">
 					<thead>
 						<tr>							
 							<th style="width: 50%; text-align: center">文章標題</th>
@@ -104,7 +105,7 @@ body {
 			</form>
 
 		</div>
-
+</div>
 
 	<script language="JavaScript">
 		$(document).ready(function() {

@@ -77,7 +77,7 @@ td.favorL:hovor {
 <!-- **************************************** 網頁抬頭  結束 ***************************************************** -->
 </head>
 <!-- **************************************** body開始  ******************************************************* -->
-<body style="margin: 0em 3em">
+<body>
 
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 		<jsp:include page="/title.jsp" />
@@ -170,8 +170,34 @@ td.favorL:hovor {
 								<td><c:out value="${data.purchase_Price}" default="-" /></td>
 								<td><c:out value="${data.selling_Price}" default="-" /></td>
 								<td><c:out value="${data.final_price}" default="-" /></td>
-								<td><c:out value="${data.change_Amount}" default="-" /></td>
-								<td><c:out value="${data.change_extent}" default="-" /></td>
+								<c:choose>
+									<c:when test="${data.change_Amount eq null}">
+										<td>-</td>
+									</c:when>
+									<c:when test="${data.change_Amount > 0}">
+										<td style="color:red;">${data.change_Amount}</td>
+									</c:when>
+									<c:when test="${data.change_Amount < 0}">
+										<td style="color:green;">${data.change_Amount}</td>
+									</c:when>
+									<c:otherwise>
+										<td>${data.change_Amount}</td>
+									</c:otherwise>
+								</c:choose>								
+								<c:choose>
+									<c:when test="${data.change_extent eq null}">
+										<td>-</td>
+									</c:when>
+									<c:when test="${data.change_extent > 0}">
+										<td style="color:red;">${data.change_extent}</td>
+									</c:when>
+									<c:when test="${data.change_extent < 0}">
+										<td style="color:green;">${data.change_extent}</td>
+									</c:when>
+									<c:otherwise>
+										<td>${data.change_extent}</td>
+									</c:otherwise>
+								</c:choose>								
 								<td><c:out value="${data.acc_Trade_Volume}" default="-" /></td>
 							</tr>
 							<c:remove var="have" scope="page"/>

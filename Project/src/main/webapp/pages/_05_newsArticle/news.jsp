@@ -5,12 +5,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>股市新聞</title>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
 
-<script type="text/javascript" src="../js/jquery-2.2.1.min.js"></script>
-<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<!-- <script type="text/javascript" src="../js/jquery-2.2.1.min.js"></script> -->
+<!-- <script type="text/javascript" src="../js/jquery-ui.min.js"></script> -->
 <!-- <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script> -->
 <!-- <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> -->
 <script type="text/javascript">
@@ -45,7 +46,7 @@ body {
 }
 
 #myTitle {
-	width: 25em;
+	width: 23em;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
@@ -58,14 +59,14 @@ body {
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 	<jsp:include page="/title.jsp" />
 
-	<jsp:include page="/nav.jsp"></jsp:include>
+	<jsp:include page="/nav.jsp" />
 
 	<%
 		response.setCharacterEncoding("UTF-8");
 	%>
 
-	<div align=center style="height: 20px; width: 10px"></div>
-	<div style="margin: 2em auto; padding: 2em; width: 45em">
+<div class="table-responsive">
+	<div style="margin: 2em auto; padding: 2em 0; max-width:38em;">
 		<!-- 		<div align=center> -->
 		<!-- 			<div class="row"> -->
 		<%-- 				<form class="form-search" action="<c:url value="/news.do"/>" method="get"> --%>
@@ -87,13 +88,13 @@ body {
 
 		<form>
 			<c:if test="${not empty select}">
-				<table id="newstable"
-					style="border: 2px #FFAC55 solid; padding: 2em; width: 40em"
-					rules="all" cellpadding='5' align=center>
+				<table id="newstable" class="table table-hover table-bordered"
+					style="border: 2px #FFAC55 solid; margin: 2em 0;width:100%"
+					rules="all" cellpadding='5' align="center">
 					<thead>
 						<tr>
 							<th style="text-align: center">新聞標題</th>
-							<th style="width: 28%; text-align: center">發佈日期</th>
+							<th style="text-align: center">發佈日期</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -103,12 +104,14 @@ body {
 								<c:param name="newUrl" value="${row.nno}" />
 							</c:url>
 
-							<tr style="height: 2em">
-								<td id="mytd"><a href="${path}">
-										<div id="myTitle">${row.ntitle}</div>
-								</a></td>
+							<tr style="height: 150%">
+								<td><a href="${path}">
+										<font id="myTitle">${row.ntitle}</font>
+									</a>
+								</td>
 								<td style="text-align: center"><fmt:formatDate
-										value="${row.ntime}" pattern="yyyy/MM/dd HH:mm" /></td>
+										value="${row.ntime}" pattern="yyyy/MM/dd HH:mm" />
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -126,6 +129,7 @@ body {
 		</c:if>
 	</div>
 	</div>
+	
 
 	<script language="JavaScript">
 		$(document).ready(function() {
@@ -149,5 +153,6 @@ body {
 			$("#newstable").dataTable(opt);
 		});
 	</script>
+	
 </body>
 </html>

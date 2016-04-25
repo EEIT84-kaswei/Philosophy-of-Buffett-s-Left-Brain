@@ -62,7 +62,7 @@ public class NewsDAOHibernate implements NewsDAO {
 
 	@Override
 	public List<NewsBean> select() {
-		Query query = getSession().createQuery("from NewsBean");
+		Query query = getSession().createQuery("from NewsBean order by ntime desc");
 		return (List<NewsBean>) query.list();
 	}
 

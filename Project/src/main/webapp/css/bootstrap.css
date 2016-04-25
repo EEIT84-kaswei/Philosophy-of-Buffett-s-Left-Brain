@@ -4597,10 +4597,10 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   font-weight: bold;
   font-size: 120%;
   letter-spacing: 2px;
-  
+  font-family: '微軟正黑體';
 }
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+  color: #CCC000;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
@@ -4611,7 +4611,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #9d9d9d;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #FFF4C1;
+  color: #d9d9d;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {

@@ -15,16 +15,17 @@
 	margin:10px;
 }
 #abgne-block-20120327 {
-	width: 640px;
+	max-width: 35em;
 }
 
 #abgne-block-20120327 ul, #abgne-block-20120327 li {
 	list-style: none;
 	margin: 0em 2em 0 2em;
 	padding: 0;
+	align:center;
 }
 
-#abgne-block-20120327 .tabs li {
+.tabtab {
 	float: left;
 	margin: 0;
 	border: 1px solid #ddd;
@@ -33,6 +34,18 @@
 	cursor: pointer;
 	border-radius: 5px 5px 0 0;
 }
+
+.tabContent{
+/*  border: 1px solid #ddd; */
+	background: #fafafa;
+/* 	height: 32px; */
+/* 	cursor: pointer; */
+/* 	border-radius: 5px 5px0 0 ; */
+	margin:1em auto;
+	text-align:center;
+	align:center;
+ }
+
 
 #abgne-block-20120327 .tabs li.active {
 	background: #fff;
@@ -46,7 +59,8 @@
 
 #abgne-block-20120327 .tabs span {
 	display: block;
-	float: left;
+ 	float: none;
+/* 	margin: 0 auto; */
 	overflow: hidden;
 	padding: 0px 15px 0px 15px;
 }
@@ -61,7 +75,7 @@
 
 #abgne-block-20120327 .tab_container ul {
 	position: relative;
-	height: 29em;
+	height: 26em;
 /* 	overflow: hidden; */
 /* 	overflow-y: scroll; */
 	
@@ -69,18 +83,13 @@
 
 #abgne-block-20120327 .tab_container .tab_content li {
 	position: absolute;
-	width: 80%;
-/*  	height: 100%;  */
-/* 	padding: 15px; */
-/* 	margin-top: 10px; */
+	width: auto;
+  	height: 100%;  
+ 	padding: 15px; 
+ 	margin-top: 10px; 
 	background: #fff;
 }
 
-#abgne-block-20120327 .tab_container .tab_content li img {
-	display: block;
-	float: left;
-	margin-right: 15px;
-}
 
 #abgne-block-20120327 .tab_container .tab_content li h3 {
 	font-size: 22px;
@@ -156,20 +165,20 @@
        if(mc>obheight) $(obname).height(obheight+'px');
 });
 </script>
-	<center>
-		<div id="abgne-block-20120327">
-			<ul class="tabs" style="margin:1em 0 0 0">
-				<li style="background-color: #FFDEFF"><span>登入</span></li>
-				<li style="background-color: #FFDEFF"><span>忘記密碼</span></li>
-				<li style="background-color: #FFDEFF"><span>申請會員</span></li>
+	
+		<div id="abgne-block-20120327" style="margin:2em auto;text-align:center">
+			<ul class="tabs">
+				<li style="background-color: #FFDEFF;margin:1em 0 0 0" class="tabtab"><span>登入</span></li>
+				<li style="background-color: #FFDEFF;margin:1em 0 0 0" class="tabtab"><span>忘記密碼</span></li>
+				<li style="background-color: #FFDEFF;margin:1em 0 0 0" class="tabtab"><span>申請會員</span></li>
 			</ul>
-			<div class="tab_container" style="background-color: #DEFFFF">
-				<ul class="tab_content" style="overflow-y:auto;overflow-x:hidden">
-					<li style="background-color: #DEFFFF">
-						<h3>登入</h3>
+			<div class="tab_container" style="background-color: #DEFFFF;margin:3em 0 0 0">
+				<ul class="tab_content">
+					<li style="background-color: #DEFFFF;overflow-y:auto;overflow-x:hidden;margin:auto;text-align:center" class="tabContent">
+						<h3><br>登入<br></h3>
 
 						<form action="j_security_check" method="post" class="form-inline">
-							<div class="form-group">
+							<div class="form-group" style="align:center;margin:0">
 								<label for="exampleInputName2">輸入帳號</label>
 								<input type="text" class="form-control" 
 								name="j_username" placeholder="請輸入帳號">
@@ -188,15 +197,20 @@
 
 
 					</li>
-					<li style="background-color: #DEFFFF">
+					<li style="background-color: #DEFFFF;overflow-y:auto;overflow-x:hidden;margin:auto;" class="tabContent">
 						
-						<h3><br><br><br><br>忘記密碼<br><br></h3>
+						<h3><br>忘記密碼<br></h3>
 
 						<form action="<c:url value='/pages/_02_login/password.do'/>" method="post" class="form-inline">
+							<div id="out">
+
 							<div class="form-group">
-								<label for="exampleInputName2">輸入帳號</label> 
-								<input type="text" class="form-control" name="account" placeholder="請輸入帳號">
+								<label for="exampleInputName2">請輸入帳號</label> <input type="text"
+									name="account" class="form-control" value="${param.account}"
+									placeholder="請輸入帳號"> <font size="-1" color="#FF0000">${error.account}</font>
 							</div>
+							
+							
 							<br>
 							<span><font color="#00FF00"
 								style="font-weight: bold">${error.fp}</font></span>
@@ -204,11 +218,11 @@
 								<table>
 								<tr>
 								<td>
-							<p class="text-justify">	
-							本站將寄送新的密碼至您註冊時的e-mail地址，<br>
-							請使用新密碼重新登入。<br>
-							登入後，請即時修改您的密碼，<br>
-							以維護個人隱私權益。<br>
+							<p>	
+							系統將寄送新的密碼至您註冊時的<br>
+							e-mail地址，請以新密碼重新登入。<br>
+							登入後，請務必即時修改您的密碼，<br>
+							以維護個人隱私及權益。謝謝！<br>
 								<br><br>
 							</p>	
 								</td>
@@ -217,10 +231,10 @@
 							<button type="submit" class="btn btn-primary">送出</button>
 							<br><br><br>
 						</form>
-
+						</div>
 
 					</li>
-					<li style="background-color: #DEFFFF;">
+					<li style="background-color: #DEFFFF;overflow-y:auto;overflow-x:hidden;margin:auto;" class="tabContent">
 
 						<h3>註冊會員</h3>
 
@@ -254,7 +268,7 @@
 								<label for="exampleInputName2">姓名　　　　</label> <input type="text"
 									class="form-control"
 									placeholder="請輸入姓名" name="name" value="${param.name}">
-								<font size="-1" color="#FF0000">${error.checkpassw}</font>
+								<font size="-1" color="#FF0000">${error.name}</font>
 							</div>
 							
 							<div class="form-group">
@@ -315,7 +329,7 @@
 			</div>
 
 		</div>
-	</center>
+	
 
 </body>
 </html>

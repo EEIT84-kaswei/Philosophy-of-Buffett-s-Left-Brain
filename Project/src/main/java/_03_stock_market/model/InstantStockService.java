@@ -64,9 +64,13 @@ public class InstantStockService {
 			cal.add(Calendar.DAY_OF_WEEK, -2);
 		}else if(dayOfWeek==7){
 			cal.add(Calendar.DAY_OF_WEEK, -1);
-		}else{
+		}else{			
 			if(hourOfDay>=0 && hourOfDay <9){
-				cal.add(Calendar.DAY_OF_WEEK, -1);
+				if(dayOfWeek==2){
+					cal.add(Calendar.DAY_OF_WEEK, -3);
+				}else{
+					cal.add(Calendar.DAY_OF_WEEK, -1);
+				}				
 			}
 		}
 		Date targetTime=cal.getTime();

@@ -5,49 +5,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- 匯入bootstrap -->
- 	<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">	 
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- 匯入jQuery JS-->
+<script src="<%=request.getContextPath() %>/js/jquery-1.12.3.js"></script>
+
+<!-- 匯入jQuery UI CSS -->
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery-ui.css"> --%>
+
+<!-- 匯入bootstrap JS -->
+<script src="<%=request.getContextPath() %>/js/bootstrap.js"></script>
+
+<!-- 匯入bootstrap CSS-->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.css">	 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-theme.css">	 
+
+<!-- 匯入jQuery DataTable JS -->
+<%-- <script src="<%=request.getContextPath() %>/js/jquery.dataTables.js"></script> --%>
+<%-- <script src="<%=request.getContextPath() %>/js/dataTables.foundation.js"></script> --%>
+<%-- <script src="<%=request.getContextPath() %>/js/dataTables.jqueryui.js"></script> --%>
+<%-- <script src="<%=request.getContextPath() %>/js/dataTables.bootstrap.js"></script> --%>
+<%-- <script src="<%=request.getContextPath() %>/js/dataTables.material.js"></script> --%>
+<%-- <script src="<%=request.getContextPath() %>/js/dataTables.semanticul.js"></script> --%>
+<%--   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.js"></script> --%>
+<%--   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/jquery-ui.min.js"></script> --%>
+  
+<!-- 匯入dataTable CSS -->
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.dataTables.css"> --%>
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTables.foundation.css"> --%>
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTables.jqueryui.css"> --%>
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTables.bootstrap.css"> --%>
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTables.material.css"> --%>
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTables.semanticui.css"> --%>
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTables.uikit.css"> --%>
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.dataTables_themeroller.css"> --%>
 
 
-<!-- 匯入jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  
-  
-<!-- 匯入bootstrap javascript -->
-  <script src="<%=request.getContextPath() %>/js/bootstrap.js"></script>
-   <link href="<%=request.getContextPath() %>/css/jquery-ui.css" rel="stylesheet">
-  <link href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" rel="stylesheet">
-<!--   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.js"></script> -->
-  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>  
-  
+
 <style type="text/css">
 
 body{
 /* background-color:#FFE8E8; */
 }
 
-#google_translate_element {
+#google_translate_element, #titleMark {
 	font-size: 20px;
 	color: purple;
 	display:inline;
- 	float:right; 
 }
-#titleMark{
-	font-size: 20px;
-	color: purple;
-	display:inline;
-	float:left; 
+
+#fl_right {
+	float: right;
 }
- #fl_right { 
- 	float: right; 
-} 
 
- #fl_right.li { 
- 	text-align: right; 
- } 
-
+#fl_right.li {
+	text-align: right;
+}
 </style>
 
 
@@ -70,11 +83,11 @@ $('document').ready(function(){
 <div class="container">
 	<ul style="display:inline">
 		<li id="titleMark">
-			<a href="<c:url value='/index.jsp'/>">
-			<img src="<%=request.getContextPath() %>/img/EEIT84-titleIMG.png" style="max-width:700" class="img-responsive"/>
+			<a href="<c:url value='/Welcome.jsp' />">
+			<img src="<%=request.getContextPath() %>/img/EEIT84-titleIMG.png" style="width:35em" class="img-responsive"/>
         	</a>
         </li>
-		<li id="google_translate_element">
+		<li id="google_translate_element" style="float:right;">
 		</li>
 	</ul>
 </div>
