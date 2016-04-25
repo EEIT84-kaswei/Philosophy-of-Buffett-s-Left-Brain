@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-theme.css">	 
 
 <!-- 匯入jQuery DataTable JS -->
-<%-- <script src="<%=request.getContextPath() %>/js/jquery.dataTables.js"></script> --%>
+<script src="<%=request.getContextPath() %>/js/jquery.dataTables.js"></script>
 <%-- <script src="<%=request.getContextPath() %>/js/dataTables.foundation.js"></script> --%>
 <%-- <script src="<%=request.getContextPath() %>/js/dataTables.jqueryui.js"></script> --%>
 <%-- <script src="<%=request.getContextPath() %>/js/dataTables.bootstrap.js"></script> --%>
@@ -31,7 +31,7 @@
 <%--   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/jquery-ui.min.js"></script> --%>
   
 <!-- 匯入dataTable CSS -->
-<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.dataTables.css"> --%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/jquery.dataTables.css">
 <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTables.foundation.css"> --%>
 <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTables.jqueryui.css"> --%>
 <%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTables.bootstrap.css"> --%>
@@ -91,8 +91,20 @@ $('document').ready(function(){
 		</li>
 	</ul>
 </div>
-<script type="text/javascript"
-	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- <script type="text/javascript" -->
+<!-- 	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+	
+		<c:url var="engURL" value="">
+			<c:param name="locale" value="en_US" />
+		</c:url>
+		<a href="${engURL}">English</a>
+
+
+		<c:url var="chineseURL" value="">
+			<c:param name="locale" value="zh_TW" />
+
+		</c:url>
+		<a href="${chineseURL}">中文</a>
 	<!-- 標題 END -->
 </center>
 

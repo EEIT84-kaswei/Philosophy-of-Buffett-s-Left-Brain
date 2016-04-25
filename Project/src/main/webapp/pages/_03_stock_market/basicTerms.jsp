@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,9 +81,17 @@
 	margin: 5px 0 15px;
 }
 </style>
+ <c:set var="loc" value="${param.locale}"/>
+    <c:if test="${! empty (param.locale)}">
+       <c:set var="loc" value="${param.locale}"/>
+    </c:if>
+   
+ <fmt:setLocale value="${loc}"/>  
+
 
 </head>
 <body>
+ <fmt:bundle basename="message">  
 	<!-- <div class="container"> -->
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 	<jsp:include page="/title.jsp" />
@@ -91,7 +102,7 @@
 
 	<div style="margin:2em auto" class="container">
 
-
+			<h2 style="margin:center"><fmt:message key="importantIndex" /></h2>
 		<div id="abgne-block-20120327" style="margin:0 auto">
 			<ul class="tabs">
 				<li><span>KD</span></li>
@@ -219,6 +230,6 @@
 	});
 </script>
 
-
+</fmt:bundle>
 </body>
 </html>

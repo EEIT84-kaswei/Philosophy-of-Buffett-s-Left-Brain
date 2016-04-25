@@ -39,7 +39,7 @@ public class ForgetPasswordServlet extends HttpServlet {
 		Map<String, String> error = new HashMap<String, String>(); // 準備存放錯誤訊息的Map物件
 		request.setAttribute("error", error); // 顯示錯誤訊息
 		
-		String account = request.getParameter("account");
+		String account = request.getParameter("user");
 		
 		if (account == null || account.trim().length() == 0) {
 			error.put("fp", "請輸入您的帳號");
@@ -52,7 +52,7 @@ public class ForgetPasswordServlet extends HttpServlet {
 		
 		if (!error.isEmpty()) {
 			// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
-			request.getRequestDispatcher("forgetPassword.jsp").forward(request, response);
+			request.getRequestDispatcher("login_fgpw.jsp").forward(request, response);
 			return;
 		}
 		

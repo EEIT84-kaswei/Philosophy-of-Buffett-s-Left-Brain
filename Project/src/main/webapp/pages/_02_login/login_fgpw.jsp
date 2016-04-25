@@ -1,43 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登入</title>
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<style>
-#logtable {
-	
-	padding: 1em;
-	/*border: 0.2px;*/
-	/*border-color: green;*/
-	/*border-radius: 8px;*/
-	color: purple;
+<title>巴菲特的左腦哲學</title>
 
+<link href='//fonts.googleapis.com/css?family=Asap:400' rel='stylesheet' type='text/css'><script type="text/javascript">var _jf = _jf || [];_jf.push(['p','41723']);_jf.push(['_setFont','wt011','css','.wt011']);_jf.push(['_setFont','wt011','alias','wt011']);_jf.push(['_setFont','wt011','english','Asap']);_jf.push(['_setFont','wt011','weight',400]);(function(f,q,c,h,e,i,r,d){var k=f._jf;if(k.constructor===Object){return}var l,t=q.getElementsByTagName("html")[0],a=function(u){for(var v in k){if(k[v][0]==u){if(false===k[v][1].call(k)){break}}}},j=/\S+/g,o=/[\t\r\n\f]/g,b=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,g="".trim,s=g&&!g.call("\uFEFF\xA0")?function(u){return u==null?"":g.call(u)}:function(u){return u==null?"":(u+"").replace(b,"")},m=function(y){var w,z,v,u,x=typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):" ";if(z){u=0;while((v=w[u++])){if(z.indexOf(" "+v+" ")<0){z+=v+" "}}t[c]=s(z)}}},p=function(y){var w,z,v,u,x=arguments.length===0||typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):"";if(z){u=0;while((v=w[u++])){while(z.indexOf(" "+v+" ")>=0){z=z.replace(" "+v+" "," ")}}t[c]=y?s(z):""}}},n;k.push(["_eventActived",function(){p(h);m(e)}]);k.push(["_eventInactived",function(){p(h);m(i)}]);k.addScript=n=function(u,A,w,C,E,B){E=E||function(){};B=B||function(){};var x=q.createElement("script"),z=q.getElementsByTagName("script")[0],v,y=false,D=function(){x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;a("_eventInactived");B()};if(C){v=setTimeout(function(){D()},C)}x.type=A||"text/javascript";x.async=w;x.onload=x.onreadystatechange=function(G,F){if(!y&&(!x.readyState||/loaded|complete/.test(x.readyState))){y=true;if(C){clearTimeout(v)}x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;if(!F){setTimeout(function(){E()},200)}}};x.onerror=function(H,G,F){if(C){clearTimeout(v)}D();return true};x.src=u;z.parentNode.insertBefore(x,z)};a("_eventPreload");m(h);n(r,"text/javascript",false,3000)})(this,this.document,"className","jf-loading","jf-active","jf-inactive","//ds.justfont.com/js/stable/v/4.9.8/id/181412913145");</script>
+
+<style type="text/css">
+
+input {
+	width: 12em;
 }
 
-#abgne-block-20120327 {
-	width: 640px;
-	margin:3em 2em;
-	background-color: #666666;
-	border-radius:20px;
-	-moz-border-radius:20px;
-	-webkit-border-radius:20px;
+#myblock {
+/* 	width: 640px; */
+	max-width: 640px;
+	margin: 0em;
+	font-size: large;
+	font-family: wt011;
 }
 
-#abgne-block-20120327 ul, #abgne-block-20120327 li {
+#myblock ul, #myblock li {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-#abgne-block-20120327 .tabs li {
+#myblock .tabs li {
 	float: left;
+	color: white;
 	margin: 0 0 -1px 5px;
 	border: 1px solid #ddd;
 	background: #fafafa;
@@ -46,71 +39,71 @@
 	border-radius: 5px 5px 0 0;
 }
 
-#abgne-block-20120327 .tabs li.active {
+#myblock .tabs li.active {
 	background: #fff;
 	padding-bottom: 1px;
 	border-bottom: none;
 }
 
-#abgne-block-20120327 .tabs li.hover {
-/* 	background: #f5f5f5; */
+#myblock .tabs li.hover {
+	background: #f5f5f5;
 }
 
-#abgne-block-20120327 .tabs span {
+#myblock .tabs span {
 	display: block;
 	float: left;
 	overflow: hidden;
-	padding: 7px 15px 5px 15px;
+	padding: 2px 15px 5px 15px;
 }
 
-#abgne-block-20120327 .tab_container {
+#myblock .tab_container {
 	clear: both;
 	border: 1px solid #DDD;
-/* 	background: #fff; */
+	background: #fff;
 	overflow: hidden;
 	border-radius: 5px;
 }
 
-#abgne-block-20120327 .tab_container ul {
+#myblock .tab_container ul {
 	position: relative;
-	height: 19em;
+	height: 26em;
 	overflow: hidden;
 }
 
-#abgne-block-20120327 .tab_container .tab_content li {
+#myblock .tab_container .tab_content li {
 	position: absolute;
-	width: 610px;
+	width: 640px;
 	height: 100%;
-	padding: 15px;
-	margin-top: 10px;
-/* 	background: #fff; */
+	/* 	padding: 15px; */
+	/* 	margin-top: 10px; */
+	background: #fff;
 }
 
-#abgne-block-20120327 .tab_container .tab_content li img {
-	display: block;
-	float: left;
-	margin-right: 15px;
-}
-
-#abgne-block-20120327 .tab_container .tab_content li h3 {
-	font-size: 22px;
+#myblock .tab_container .tab_content li h3 {
+	color: white;
+	font-size: 30px;
 	line-height: 22px;
-	margin: 5px 0 15px;
+	margin: 50px 5px 40px;
+}
+
+.table4_2 tr{
+	height:3em;
 }
 </style>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		// 預設顯示第一個頁籤
 		// 並先把 .tabs, .tabs li 及 .tab_content, .tab_content li 等元素取出
 		// 同時也要取得 .tab_content 的寬
-		var _default = 1, $block = $('#abgne-block-20120327'), $tabs = $block
-				.find('.tabs'), $tabsLi = $tabs.find('li'), $tab_content = $block
-				.find('.tab_content'), $tab_contentLi = $tab_content.find('li'), _width = $tab_content
-				.width();
+		var _default = 1, $block = $('#myblock'), $tabs = $block.find('.tabs'), $tabsLi = $tabs
+				.find('li'), $tab_content = $block.find('.tab_content'), $tab_contentLi = $tab_content
+				.find('li'), _width = $tab_content.width();
 
 		// 當滑鼠移到 .tabs li 上時要套用 .hover 樣式
 		// 移出時要移除 .hover 樣式
-		$tabsLi.hover(function() {
+		$tabsLi
+				.hover(function() {
 					var $this = $(this);
 
 					// 若被滑鼠移上去的 li 是目前顯示的頁籤就不做任何動作
@@ -153,70 +146,150 @@
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 	<jsp:include page="/title.jsp" />
 
-
 	<!-- 網頁主要導覽列 -->
 
 	<jsp:include page="/nav.jsp" />
-
 	<center>
-		<div id="abgne-block-20120327">
-			
-				<div class="tab_container">
-					<ul class="tab_content">
-						<li>
-
-							<h2><font style="color:#ffffb3;font-weight:bold;">登入</font></h2>
-							<div align="center">
-								<form action="j_security_check" method="post">
-								<table id="logtable" border='0'>
-									<tr style="height:50px">
-										<td><font style="color:#FFFFFF">帳號&nbsp;&nbsp;</font></td>
-										<td><input type="text" size="20" name="j_username"
-											placeholder="請輸入帳號"></td>
-									</tr>
-									<tr style="height:50px">
-										<td><font style="color:#FFFFFF">密碼&nbsp;&nbsp;</font></td>
-										<td><input type="password" size="20" name="j_password">
+	<div style="margin:2em auto" class="container">
+		<div id="myblock">
+			<ul class="tabs">
+				<li><span style="background-color: #000000">登入</span></li>
+				<li><span style="background-color: #007799">忘記密碼</span></li>
+				<li><span style="background-color: #008888">註冊會員</span></li>
+			</ul>
+			<div class="tab_container">
+				<ul class="tab_content">
+					<li>
+						<div style="max-width: 640px; height: 26em; overflow: auto; background-color: #888888">
+						<h3>登入</h3>
+						<form action="j_security_check" method="post">
+							<div style="align: center; margin: 0">
+								<label for="exampleInputName2">輸入帳號  </label> 
+								<input type="text" name="j_username" placeholder="請輸入帳號">
+							</div>
+							<br>
+							<div class="form-group">
+								<label for="exampleInputEmail2">輸入密碼  </label>
+								<input type="password" placeholder="請輸入密碼" name="j_password">
+							</div>
+							<br>
+							<span>
+								<font color="#ff0000" style="font-weight: bold">${changePassword}</font>
+							</span>
+							<br>
+							<button type="submit" class="btn btn-primary">送出</button>
+							<h4 style="color: #888888">1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</h4>
+						</form>
+						</div>
+					</li>
+					<li>
+						<div style="max-width: 640px; max-height: 26em; overflow: auto; background-color: #009FCC">
+						<h3>忘記密碼</h3>
+						<form action="<c:url value='/pages/_02_login/password.do'/>" method="post">
+							<div>
+								<div>
+									<label for="exampleInputName2">請輸入帳號</label>
+									<input type="text" placeholder="請輸入帳號"
+										name="user" value="${param.user}">
+								</div>
+								<br>
+								<span>
+									<font color="#003399" style="font-weight: bold">${error.fp}</font>
+								</span>
+								<br><br>
+								<table>
+									<tr>
+										<td>
+											<p style="color: white; font-size:x-large;">
+												系統將寄送新的密碼至您註冊時的<br>
+												e-mail地址，請以新密碼重新登入。<br>
+												登入後，請務必即時修改您的密碼，<br>
+												以維護個人隱私及權益。謝謝！<br>
+												<br>
+												<br>
+											</p>
 										</td>
 									</tr>
-									<tr>
-								</table>
-								<span><font color="#ff0000" style="font-weight: bold">${changePassword}</font></span>
-								<br>
+								</table>								
+								<button type="submit" class="btn btn-primary">送出</button>
+								<h4 style="color: #009FCC">1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</h4>	
 								
-								<input type="submit" value="送出" style="margin:0.5em;font-size:100%" 
-									class="btn btn-primary" >
-								</form>
 							</div>
-						</li>
-						<li>
-							<h2><font style="color:#ffffb3;font-weight:bold">忘記密碼</font></h2>
-							<form action='<c:url value="/pages/_02_login/password.do"/>'
-								method='POST'>
-								<font style="color:#FFFFFF">請輸入您的帳號： </font>
-								<input type="text" name="account" size="30" required style="margin:15px 0 15px 0"> 
-								<br>
-								<font color="#ff0000" style="font-weight: bold;margin:10px 0 20px 0">${error.account}</font>
-								<br>
-								<font style="color:#ffe6e6;font-weight: bold;">本站將寄送新的密碼至您註冊時的e-mail地址，</font><br>
-								<font style="color:#ffe6e6;font-weight: bold;">請使用新密碼重新登入。</font><br>
-								<font style="color:#ffe6e6;font-weight: bold;">登入後，請即時修改您的密碼，以維護個人隱私權益。</font><br> <br>
-								<input type="submit" value="送出" style="font-size:100%" 
-									class="btn btn-primary" >
+						</form>
+						</div>
+					<li>
+						<div style="max-width: 640px; max-height: 26em; overflow: auto; background-color: #00AAAA">
+							<h3>註冊會員</h3>
+							
+							<form id='myform' action='<c:url value="/pages/_01_register/account.do"/>' ENCTYPE='multipart/form-data' method='POST'>
+								<table class="table4_2" style="padding: 1em; height: 3em">
+									<tr>
+										<th>帳號</th>
+										<td><input type="text" name="account" value="${param.account}"></td>
+										<td><font size="3" color="#ffffff" >&nbsp;${error.account}</font></td>
+									</tr>
+									<tr>
+										<th>密碼</th>
+										<td><input type="password" name="passw" value="${param.passw}"></td>
+										<td><font size="3" color="#ffffff">&nbsp;${error.passw}</font></td>
+									</tr>
+									<tr>
+										<th>密碼確認</th>
+										<td><input type="password" name="checkpassw" value="${param.checkpassw}"></td>
+										<td><font size="3" color="#ffffff">&nbsp;${error.checkpassw}</font></td>
+									</tr>
+									<tr>
+										<th>姓名</th>
+										<td><input type="text" name="name"
+											value="${param.name}" placeholder="請填寫中文姓名"></td>
+										<td><font size="3" color="#ffffff">&nbsp;${error.name}</font></td>
+									</tr>
+									<tr>
+										<th>身分證字號</th>
+										<td><input type="text" name="idc"
+											value="${param.idc}" placeholder="請輸入身分證字號"></td>
+										<td><font size="3" color="#ffffff">&nbsp;${error.idc}</font></td>
+									</tr>
+									<tr>
+										<th>電子郵件信箱　</th>
+										<td><input type="text" name="email" value="${param.email}"></td>
+										<td><font size="3" color="#ffffff">&nbsp;${error.email}</font></td>
+									</tr>
+									<tr>
+										<th>電話區碼</th>
+										<td><input type="text" name="area_phone" value="${param.area_phone}"></td>
+									</tr>
+									<tr>
+										<th>電話號碼</th>
+										<td><input type="text" name="phone" value="${param.phone}"></td>
+									</tr>
+									<tr>
+										<th>通訊地址</th>
+										<td><input type="text" name="address" value="${param.address}"></td>
+									</tr>
+									<tr>
+										<th>認證碼</th>
+										<td><input type="text" name="auth"></td>
+										<td><font size="3" color="#ffffff">&nbsp;${error.auth}</font></td>
+									</tr>
+								</table>
+								<h4 style="color: #00AAAA">1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</h4>
+		
+								<div align="center" style="margin: 2em">									
+									<input type="submit" name="prodaction" value="寄送認證信"  class="btn btn-primary" style="width: 8em"/> 
+									<input type="submit" name="prodaction" value="送出"  class="btn btn-primary" style="width: 8em"/>
+									<input type="button" value="返回" onclick="location.href='../../Welcome.jsp'" class="btn btn-primary" style="width: 8em"/> 
+									<input type="reset" value="清除表單"  class="btn btn-primary" style="width: 8em">
+								</div>		
 							</form>
-						</li>
-
-					</ul>
-				</div>
-				<ul class="tabs">
-					<li><span>登入</span></li>
-					<li><span>忘記密碼</span></li>
-
+						</div>
+					</li>
 				</ul>
-			
+			</div>
+		</div>
 		</div>
 	</center>
-
+</body>
 
 </body>
 </html>

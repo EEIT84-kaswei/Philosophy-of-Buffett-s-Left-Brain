@@ -1,139 +1,85 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="refresh" content="5;url=${pageContext.request.contextPath}/Welcome.jsp">
-<title>index.html</title>
-
-
-<!-- 匯入bootstrap -->
-  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">	 
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> 
-
-
-<!-- 匯入jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  
-  
-<!-- 匯入bootstrap javascript -->
-  <script src="<%=request.getContextPath() %>/js/bootstrap.js"></script>
-   <link href="<%=request.getContextPath() %>/css/jquery-ui.css" rel="stylesheet">
-  <link href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" rel="stylesheet">
-<!--   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.0.min.js"></script> -->
-  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.2/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>  
-  
-
-<style type="text/css">
-/*
-#div img { 
-max-width:200px; 
-myimg:expression(onload=function(){ 
-this.style.width=(this.offsetWidth > 200)?"200px":"auto"});
-} 
-*/
-	body {
-    margin:0;
-    padding:0;
-/*     background: #E0E0FF;  */
-/*     -moz-background-size: cover; */
-/*     background-size: cover; */
-}/*
-	.main{
-	margin:0;
-    padding:0;
-    background: #E0E0FF ;
-    -moz-background-size: cover;
-    background-size: cover;
-	}
-	*/
-/* center center fixed no-repeat */
-/* 	.main{ */
-/* 	float:center; */
-/* 	text-align:center; */
-/*  	background-color:#E0E0FF; */
-/* 	} */
-	
-	.footer{
- 	background-color:#77FFEE; 
-	}
-	
-	table{
-	margin:auto;
-	}
-	
-	tt{
-	font-size:20;
-	}
-	
-	td{
-	text-align:left;
-	}
-
-#full_screen {
-    height: 100%;
+<%-- <meta http-equiv="refresh" content="5;url=${pageContext.request.contextPath}/Welcome.jsp"> --%>
+<title>巴菲特的左腦哲學</title>
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Asap:400' rel='stylesheet' type='text/css'><script type="text/javascript">var _jf = _jf || [];_jf.push(['p','41723']);_jf.push(['_setFont','wt011','css','.wt011']);_jf.push(['_setFont','wt011','alias','wt011']);_jf.push(['_setFont','wt011','english','Asap']);_jf.push(['_setFont','wt011','weight',400]);(function(f,q,c,h,e,i,r,d){var k=f._jf;if(k.constructor===Object){return}var l,t=q.getElementsByTagName("html")[0],a=function(u){for(var v in k){if(k[v][0]==u){if(false===k[v][1].call(k)){break}}}},j=/\S+/g,o=/[\t\r\n\f]/g,b=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,g="".trim,s=g&&!g.call("\uFEFF\xA0")?function(u){return u==null?"":g.call(u)}:function(u){return u==null?"":(u+"").replace(b,"")},m=function(y){var w,z,v,u,x=typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):" ";if(z){u=0;while((v=w[u++])){if(z.indexOf(" "+v+" ")<0){z+=v+" "}}t[c]=s(z)}}},p=function(y){var w,z,v,u,x=arguments.length===0||typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):"";if(z){u=0;while((v=w[u++])){while(z.indexOf(" "+v+" ")>=0){z=z.replace(" "+v+" "," ")}}t[c]=y?s(z):""}}},n;k.push(["_eventActived",function(){p(h);m(e)}]);k.push(["_eventInactived",function(){p(h);m(i)}]);k.addScript=n=function(u,A,w,C,E,B){E=E||function(){};B=B||function(){};var x=q.createElement("script"),z=q.getElementsByTagName("script")[0],v,y=false,D=function(){x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;a("_eventInactived");B()};if(C){v=setTimeout(function(){D()},C)}x.type=A||"text/javascript";x.async=w;x.onload=x.onreadystatechange=function(G,F){if(!y&&(!x.readyState||/loaded|complete/.test(x.readyState))){y=true;if(C){clearTimeout(v)}x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;if(!F){setTimeout(function(){E()},200)}}};x.onerror=function(H,G,F){if(C){clearTimeout(v)}D();return true};x.src=u;z.parentNode.insertBefore(x,z)};a("_eventPreload");m(h);n(r,"text/javascript",false,3000)})(this,this.document,"className","jf-loading","jf-active","jf-inactive","//ds.justfont.com/js/stable/v/4.9.8/id/181412913145");</script>
+<style>
+html {
+	height: 100%;
 }
-#container {
-    width: 100%;
-} 
 
-
-
+body {
+/* 	font-family: 'Montserrat', sans-serif; */
+	font-family: wt011;
+	font-size:x-large;
+	background-image: url("img/back.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+#full_screen {
+    width: 70.5%;
+    height: auto;
+}
 </style>
+
+<script type="text/javascript" src="../js/jquery-2.2.1.min.js"></script>
+
 <script type="text/javascript">
-$('document').ready(function(){
-    $('#container').height($(window).height());    
-}); 
+	<!-- 	圖片自適應畫面大小：1.設定圖片最大尺寸。2. 設定JS如下面兩行。 -->
+	$('document').ready(function(){
+		$('#container').height($(window).height()); 
+	});
 </script>
+
 </head>
-<body onload="resizeImage()">
-
-<div class="container" id="container" align="center">
-<!-- <center><img src="img/logo.png" onload="resizeImage()" margin="0" border="0"></center> -->
-	<div class="main" style="background-image: url('<%=request.getContextPath() %>/img/BG2.jpg')">
-		<a href="<%=request.getContextPath() %>/Welcome.jsp">
-    <img src="<%=request.getContextPath() %>/img/logo.png" id="full_screen"  title="Philosophy of Buffett's Left Brain" class="img-responsive"/></a>
+<body>
+	<div class="container" id="container" align="center">
+		<div class="main">
+			<a href="<%=request.getContextPath()%>/Welcome.jsp"> 
+				<img src="<%=request.getContextPath()%>/img/logo.png" id="full_screen"
+				title="Philosophy of Buffett's Left Brain" class="img-responsive" />
+			</a>
+		</div>
+		<h2>${logoutMessage}</h2>
+		<div class="footer">
+			<table>
+				<tr>
+					<td>廖千慧&nbsp;</td>
+					<td>Liao, Chien-huei</td>
+				</tr>
+				<tr>
+					<td>張秀維&nbsp;</td>
+					<td>Chang, Hsiu-wei</td>
+				</tr>
+				<tr>
+					<td>張碩文&nbsp;</td>
+					<td>Chang, Shuo-wen</td>
+				</tr>
+				<tr>
+					<td>陳姵吟&nbsp;</td>
+					<td>Chen, Pei-yin</td>
+				</tr>
+				<tr>
+					<td>陳昱華&nbsp;</td>
+					<td>Chen, Yu-hua</td>
+				</tr>
+				<tr>
+					<td>黃胤凱&nbsp;</td>
+					<td>Huang, In-kai</td>
+				</tr>
+				<tr>
+					<td>趙育伸&nbsp;</td>
+					<td>Chao, Yu-shen</td>
+				</tr>
+			</table>
+		</div>
 	</div>
-<!-- 	圖片自適應畫面大小：1.設定圖片最大尺寸。2. 設定JS如下面兩行。 -->
-<!-- 	$('document').ready(function(){ -->
-<!--    $('#container').height($(window).height());});  -->
-	<h2>${logoutMessage}</h2>
-	<div class="footer">
-	<br>
-		<table>
-		<tr>
-			<td><tt>廖千慧&nbsp;</tt></td>
-			<td><tt>Liao, Chien-huei</tt></td>
-		</tr>
-		<tr>
-			<td><tt>張秀維&nbsp;</tt></td>
-			<td><tt>Chang, Hsiu-wei</tt></td>
-		</tr>
-		<tr>
-			<td><tt>張碩文&nbsp;</tt></td>
-			<td><tt>Chang, Shuo-wen</tt></td>
-		</tr>
-		<tr>
-			<td><tt>陳姵吟&nbsp;</tt></td>
-			<td><tt>Chen, Pei-yin</tt></td>
-		</tr>
-		<tr>
-			<td><tt>陳昱華&nbsp;</tt></td>
-			<td><tt>Chen, Yu-hua</tt></td>
-		</tr>
-		<tr>
-			<td><tt>黃胤凱&nbsp;</tt></td>
-			<td><tt>Huang, In-kai</tt></td>
-		</tr>
-		<tr>
-			<td><tt>趙育伸&nbsp;</tt></td>
-			<td><tt>Chao, Yu-shen</tt></td>
-		</tr>
-		</table>
-	<br>
-	</div>
-</div>
 </body>
-
 </html>
