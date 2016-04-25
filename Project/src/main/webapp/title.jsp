@@ -95,12 +95,22 @@ $('document').ready(function(){
 <!-- 	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
 	
 		<c:url var="engURL" value="">
+			<c:forEach var="args" items="${param}">
+				<c:if test='${args.key ne "locale"}'>
+					<c:param name="${args.key}" value="${args.value}"/>
+				</c:if>
+			</c:forEach>
 			<c:param name="locale" value="en_US" />
 		</c:url>
 		<a href="${engURL}">English</a>
 
 
 		<c:url var="chineseURL" value="">
+			<c:forEach var="args" items="${param}">
+				<c:if test='${args.key ne "locale"}'>
+					<c:param name="${args.key}" value="${args.value}"/>
+				</c:if>
+			</c:forEach>
 			<c:param name="locale" value="zh_TW" />
 		</c:url>
 		<a href="${chineseURL}">中文</a>
