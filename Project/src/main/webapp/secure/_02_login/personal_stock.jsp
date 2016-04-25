@@ -133,8 +133,34 @@ td.favorL:hovor {
 								<td>${data.purchase_Price}</td>
 								<td>${data.selling_Price}</td>
 								<td>${data.final_price}</td>
-								<td>${data.change_Amount}</td>
-								<td>${data.change_extent}</td>
+								<c:choose>
+									<c:when test="${data.change_Amount eq null}">
+										<td>-</td>
+									</c:when>
+									<c:when test="${data.change_Amount > 0}">
+										<td style="color:red;">${data.change_Amount}</td>
+									</c:when>
+									<c:when test="${data.change_Amount < 0}">
+										<td style="color:green;">${data.change_Amount}</td>
+									</c:when>
+									<c:otherwise>
+										<td>${data.change_Amount}</td>
+									</c:otherwise>
+								</c:choose>								
+								<c:choose>
+									<c:when test="${data.change_extent eq null}">
+										<td>-</td>
+									</c:when>
+									<c:when test="${data.change_extent > 0}">
+										<td style="color:red;">${data.change_extent}</td>
+									</c:when>
+									<c:when test="${data.change_extent < 0}">
+										<td style="color:green;">${data.change_extent}</td>
+									</c:when>
+									<c:otherwise>
+										<td>${data.change_extent}</td>
+									</c:otherwise>
+								</c:choose>
 								<td>${data.acc_Trade_Volume}</td>
 								<td><input type="submit" name="action" value="delete"></td>
 								</form>
