@@ -89,6 +89,10 @@ input {
 .table4_2 tr{
 	height:3em;
 }
+.table4_2 th{
+	text-align:right;
+	padding-right:8px;
+}
 </style>
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
@@ -241,17 +245,17 @@ input {
 									<tr>
 										<th>姓名</th>
 										<td><input type="text" name="name"
-											value="${param.name}" placeholder="請填寫中文姓名"></td>
+											value="${param.name}"></td>
 										<td><font size="3" color="#ffffff">&nbsp;${error.name}</font></td>
 									</tr>
 									<tr>
 										<th>身分證字號</th>
 										<td><input type="text" name="idc"
-											value="${param.idc}" placeholder="請輸入身分證字號"></td>
+											value="${param.idc}"></td>
 										<td><font size="3" color="#ffffff">&nbsp;${error.idc}</font></td>
 									</tr>
 									<tr>
-										<th>電子郵件信箱　</th>
+										<th>電子郵件信箱</th>
 										<td><input type="text" name="email" value="${param.email}"></td>
 										<td><font size="3" color="#ffffff">&nbsp;${error.email}</font></td>
 									</tr>

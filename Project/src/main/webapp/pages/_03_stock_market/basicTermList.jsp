@@ -23,14 +23,32 @@ dl{
 dd{
 	color:black;
 	font-size:100%;
+	margin:0 2em 0 0;
+}
+.list-inline a{
+	color:#006699;
+}
+.dl-horizontal a{
+	color:#006666;
 }
 
 
 </style>
- <c:set var="loc" value="${param.locale}"/>
-    <c:if test="${! empty (param.locale)}">
-       <c:set var="loc" value="${param.locale}"/>
-    </c:if>
+<c:choose>
+	<c:when test="${! empty (param.locale)}">
+		<c:set var="loc" value="${param.locale}" scope="session"/>
+	</c:when>
+	<c:when test="${! empty (sessionScope.loc)}">
+		<c:set var="loc" value="${sessionScope.loc}" scope="session"/>
+	</c:when>
+	<c:otherwise>
+		<c:set var="loc" value="${pageContext.request.locale}" scope="session"/>
+	</c:otherwise>
+</c:choose>
+<%--  <c:set var="loc" value="${param.locale}"/> --%>
+<%--     <c:if test="${! empty (param.locale)}"> --%>
+<%--        <c:set var="loc" value="${param.locale}"/> --%>
+<%--     </c:if> --%>
    
  <fmt:setLocale value="${loc}"/>  
 </head>
@@ -46,8 +64,8 @@ dd{
 </div>
 
 
-<div style="max-width:80em;margin:2em 10px">
-<h2 style="text-align:center"><fmt:message key="importantTerms"/></h2>
+<div style="max-width:80em;margin:2em auto;background-color: #cccccc">
+<h2 style="text-align:center;padding:2em 2em 0em 2em"><fmt:message key="importantTerms"/></h2>
 
 <div style="max-width:60%;margin:3em auto">
 <ul class="list-inline">

@@ -16,9 +16,9 @@
 /* 	 用getContextPath()找到根目錄  */
 
 body { 
-	background-image:url("<%=request.getContextPath() %>/img/dye_st_0117.gif"); 
+	background-image:url("<%=request.getContextPath() %>/img/carley1.jpg"); 
 	background-attachment: fixed;
-	
+	background-size:cover;
  }
  
  #thisone{
@@ -35,10 +35,21 @@ body {
  }
 </style>
 
- <c:set var="loc" value="${param.locale}"/>
-    <c:if test="${! empty (param.locale)}">
-       <c:set var="loc" value="${param.locale}"/>
-    </c:if>
+<%--  <c:set var="loc" value="${param.locale}"/> --%>
+<c:choose>
+	<c:when test="${! empty (param.locale)}">
+		<c:set var="loc" value="${param.locale}" scope="session"/>
+	</c:when>
+	<c:when test="${! empty (sessionScope.loc)}">
+		<c:set var="loc" value="${sessionScope.loc}" scope="session"/>
+	</c:when>
+	<c:otherwise>
+		<c:set var="loc" value="${pageContext.request.locale}" scope="session"/>
+	</c:otherwise>
+</c:choose>
+<%--     <c:if test="${! empty (param.locale)}"> --%>
+<%--        <c:set var="loc" value="${param.locale}"/> --%>
+<%--     </c:if> --%>
    
  <fmt:setLocale value="${loc}"/>  
 
@@ -87,6 +98,7 @@ body {
               			 <li><a href="<c:url value='/secure/_01_register/questionnaire/question.jsp' />"><fmt:message key="riskAssessment" /></a></li>
                			 <li><a href="<c:url value='/secure/custFavorite.view'/>"><fmt:message key="optionalStock" /></a></li>
                			 <li><a href="<c:url value='/secure/_02_login.controller/QuestionServlet'/>"><fmt:message key="recommendedStocks"/></a></li>
+               			 <li><a href="<c:url value='/secure/StockAnalysis'/>"><fmt:message key="stockAnalysis" /></a></li>
 						 <li><a href="<c:url value='/secure/_02_login/member.do' />"><fmt:message key="memberInformationManagement" /></a></li>
                		</ul>
         		</li>

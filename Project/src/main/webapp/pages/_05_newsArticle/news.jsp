@@ -42,7 +42,7 @@ body {
 }
 
 #newstable tr:nth-child(even) {
-	background: #CCEEFF
+	background: #d9d9d9
 }
 
 #myTitle {
@@ -66,7 +66,7 @@ body {
 	%>
 
 <div class="table-responsive">
-	<div style="margin: 2em auto; padding: 2em 0; max-width:38em;">
+	<div style="margin: 2em auto; padding: 2em 0; max-width:48em;">
 		<!-- 		<div align=center> -->
 		<!-- 			<div class="row"> -->
 		<%-- 				<form class="form-search" action="<c:url value="/news.do"/>" method="get"> --%>
@@ -89,12 +89,12 @@ body {
 		<form>
 			<c:if test="${not empty select}">
 				<table id="newstable" class="table table-hover table-bordered"
-					style="border: 2px #FFAC55 solid; margin: 2em 0;width:100%"
+					style="border: 2px #000066 solid; margin: 2em 0;width:100%"
 					rules="all" cellpadding='5' align="center">
 					<thead>
 						<tr>
-							<th style="text-align: center">新聞標題</th>
-							<th style="text-align: center">發佈日期</th>
+							<th style="text-align: center;background-color: #4d4d4d"><font style="color:#fff">新聞標題</font></th>
+							<th style="text-align: center;background-color: #4d4d4d"><font style="color:#fff">發佈日期</font></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -104,12 +104,12 @@ body {
 								<c:param name="newUrl" value="${row.nno}" />
 							</c:url>
 
-							<tr style="height: 150%">
+							<tr style="height: 100%">
 								<td><a href="${path}">
-										<font id="myTitle">${row.ntitle}</font>
+										<font id="myTitle" style="color:#0066cc">${row.ntitle}</font>
 									</a>
 								</td>
-								<td style="text-align: center"><fmt:formatDate
+								<td style="text-align: center;width:180px"><fmt:formatDate
 										value="${row.ntime}" pattern="yyyy/MM/dd HH:mm" />
 								</td>
 							</tr>
@@ -123,7 +123,7 @@ body {
 			<form action="<c:url value="/pages/_05_newsArticle/insertNews.jsp"/>"
 				method="post">
 				<center>
-					<input type="submit" value="新增">
+					<input type="submit" value="新增" class="btn">
 				</center>
 			</form>
 		</c:if>

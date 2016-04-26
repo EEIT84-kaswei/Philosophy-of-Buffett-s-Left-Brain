@@ -9,8 +9,10 @@
 <!-- </head> -->
 <style>
 #weightedIndexChart{
-		width: 400px;
-		height: 400px;
+ 		width: auto;
+  		height : auto;
+		max-width: 25em;
+		max-height: 25em;
 	}
 </style>
 
@@ -156,7 +158,7 @@ $(document).ready(function () {
 
 <body>
 
-<div id="weightedIndexChart"></div>
+<div id="weightedIndexChart" style="margin:0 auto"></div>
 
 </body>
 </html>

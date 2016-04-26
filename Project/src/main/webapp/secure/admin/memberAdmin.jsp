@@ -24,6 +24,10 @@ body {
 /* 	font: 62.5% "Trebuchet MS", sans-serif; */
 /* 	margin: 2em; */
 }
+#thisTable1 th{
+	background-color:#000080;
+ 	color:#ccffff;
+}
 </style>
 </head>
 <body>
@@ -40,8 +44,8 @@ body {
 	<br>
 	<br>
 	<br>
-	<h2 align="center">管理員平台</h2>
-	<h4 align="center">會員權限管理</h4>
+	<h2 align="center" style="color:#ffe6ff">管理員平台</h2>
+	<h4 align="center" style="color:#ffe6ff">會員權限管理</h4>
 	<br>
 
 	
