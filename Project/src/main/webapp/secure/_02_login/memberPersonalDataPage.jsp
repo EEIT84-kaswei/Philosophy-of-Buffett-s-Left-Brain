@@ -61,7 +61,7 @@
 	<jsp:include page="/nav.jsp" />
 
 
-	<h2 style="text-align: center">會員資料管理</h2>
+	<h2 style="text-align: center;color:#ccffff">會員資料管理</h2>
 	<div id="mid" align="center">
 		<form action='<c:url value="/secure/_02_login/member.do"/>' method='POST'>
 			<table class="table4_2" style="padding: 1em; height: 3em">
@@ -102,21 +102,24 @@
 				<tr>
 					<th>電話區碼</th>
 					<td><input type="text" name="area_phone" value="${user.area_phone}" size="35"></td>
+					<td></td>
 				</tr>
 				<tr>
 					<th>電話號碼</th>
 					<td><input type="text" name="phone" value="${user.phone}" size="35"></td>
+					<td></td>
 				</tr>
 				<tr>
 					<th>通訊地址</th>
 					<td><input type="text" name="address" value="${user.address}" size="35"></td>
+					<td></td>
 				</tr>
 			</table>
 
 			<div align="center" style="margin: 2em">
-				<input type="submit" name="prodaction" value="送出修改" /> 
-				<input type="button" value="返回" onclick="location.href='../../Welcome.jsp'" /> 
-				<input type="reset" value="清除表單">
+				<input type="submit" name="prodaction" value="送出修改" class="btn btn-primary"/> 
+				<input type="button" value="返回" onclick="location.href='../../Welcome.jsp'" class="btn btn-primary" /> 
+				<input type="reset" value="清除表單" class="btn btn-primary">
 			</div>
 
 		</form>

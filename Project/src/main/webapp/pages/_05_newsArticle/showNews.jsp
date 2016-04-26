@@ -45,9 +45,9 @@
 			
 			<c:if test='<%=request.isUserInRole("admin")%>'>
 				<div align=center>
-					<input type="submit" name="prodaction" value="修改" />
+					<input type="submit" name="prodaction" value="修改" class="btn"/>
 					&nbsp;&nbsp;&nbsp; 
-					<input type="button" name="delete" value="刪除" onclick="confirmDelete()" />
+					<input type="button" name="delete" value="刪除" class="btn" onclick="confirmDelete()" />
 				</div>
 			</c:if>
 	</form>

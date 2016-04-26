@@ -12,7 +12,10 @@
 <!-- **************************************** CSS開始   ***************************************************** -->
 <link rel="stylesheet" type="text/css"
 	href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
+<link href='//fonts.googleapis.com/css?family=Asap:400' rel='stylesheet' type='text/css'><script type="text/javascript">var _jf = _jf || [];_jf.push(['p','41723']);_jf.push(['_setFont','wt011','css','.wt011']);_jf.push(['_setFont','wt011','alias','wt011']);_jf.push(['_setFont','wt011','english','Asap']);_jf.push(['_setFont','wt011','weight',400]);(function(f,q,c,h,e,i,r,d){var k=f._jf;if(k.constructor===Object){return}var l,t=q.getElementsByTagName("html")[0],a=function(u){for(var v in k){if(k[v][0]==u){if(false===k[v][1].call(k)){break}}}},j=/\S+/g,o=/[\t\r\n\f]/g,b=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,g="".trim,s=g&&!g.call("\uFEFF\xA0")?function(u){return u==null?"":g.call(u)}:function(u){return u==null?"":(u+"").replace(b,"")},m=function(y){var w,z,v,u,x=typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):" ";if(z){u=0;while((v=w[u++])){if(z.indexOf(" "+v+" ")<0){z+=v+" "}}t[c]=s(z)}}},p=function(y){var w,z,v,u,x=arguments.length===0||typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):"";if(z){u=0;while((v=w[u++])){while(z.indexOf(" "+v+" ")>=0){z=z.replace(" "+v+" "," ")}}t[c]=y?s(z):""}}},n;k.push(["_eventActived",function(){p(h);m(e)}]);k.push(["_eventInactived",function(){p(h);m(i)}]);k.addScript=n=function(u,A,w,C,E,B){E=E||function(){};B=B||function(){};var x=q.createElement("script"),z=q.getElementsByTagName("script")[0],v,y=false,D=function(){x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;a("_eventInactived");B()};if(C){v=setTimeout(function(){D()},C)}x.type=A||"text/javascript";x.async=w;x.onload=x.onreadystatechange=function(G,F){if(!y&&(!x.readyState||/loaded|complete/.test(x.readyState))){y=true;if(C){clearTimeout(v)}x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;if(!F){setTimeout(function(){E()},200)}}};x.onerror=function(H,G,F){if(C){clearTimeout(v)}D();return true};x.src=u;z.parentNode.insertBefore(x,z)};a("_eventPreload");m(h);n(r,"text/javascript",false,3000)})(this,this.document,"className","jf-loading","jf-active","jf-inactive","//ds.justfont.com/js/stable/v/4.9.8/id/181412913145");</script>	
+
 <style type="text/css">
+
 
 /*分類股  按鈕設定*/
 #menu {
@@ -48,7 +51,9 @@
 	border-collapse: collapse; /*把內外框的距離清掉*/
 	margin: 0 auto;
 }
-
+#stockTypeTable a {
+	color:#538cc6;
+}
 #stockTypeTable th {
 	border: 1px solid #BEBEBE;
 	text-align: center;
@@ -101,13 +106,13 @@ td.favorL:hovor {
 					<thead>
 						<tr>
 							<td colspan="9"
-								style="background: #642100; height: 28px; border: none;"><b
-								style="color: white">自選股</b></td>
+								style="background: #003366; height: 28px; border: none;">
+								<font style="color: white;font-family: wt011;font-size:20px">自選股</font></td>
 						</tr>
 						<tr>
 							<td colspan="9" style="height: 20px; border: none"></td>
 						</tr>
-						<tr style="height: 30px; background: #FFDCB9">
+						<tr style="height: 30px; background: #79a6d2">
 							<th>股票代碼</th>
 							<th>&nbsp;&nbsp;股票名稱&nbsp;&nbsp;</th>
 							<th>買進價格</th>
@@ -123,7 +128,7 @@ td.favorL:hovor {
 					<tbody id="tbody">
 						<!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ;不管加入取消都送一個ajax回去-->
 						<c:forEach var="data" items="${sltAccountCF}">
-							<tr>
+							<tr style="background-color: #d9e6f2">
 							
 								<form action="<c:url value="/secure/custFavorite.view">">
 									<c:param name="stock_Code" value="${data.stock_Code}" /></c:url>" method="post">

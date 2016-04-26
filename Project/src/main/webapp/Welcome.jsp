@@ -15,6 +15,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
 	<!-- <div class="container"> -->
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 	<jsp:include page="/title.jsp" />
@@ -70,6 +71,7 @@
 		</div>
 	</div>
 	</center>
+
 
 </body>
 </html>
