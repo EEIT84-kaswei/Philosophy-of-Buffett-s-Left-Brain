@@ -55,7 +55,7 @@ dd{
 </head>
 
 <body>
- <fmt:bundle basename="message">  
+ <fmt:bundle basename="properties.message">  
 <!-- <div class="container"> -->
 <!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 <jsp:include page="/title.jsp" />

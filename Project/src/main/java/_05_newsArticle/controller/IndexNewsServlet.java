@@ -47,7 +47,7 @@ public class IndexNewsServlet extends HttpServlet {
 		
 			List<NewsBean> bean = service.selectAll();
 			HttpSession session = request.getSession();
-			session.setAttribute("select", bean);				
+			session.setAttribute("selectNewsOnly", bean);				
 			String path = request.getContextPath();
 			response.sendRedirect(path+"/Welcome.jsp");
 			return;
