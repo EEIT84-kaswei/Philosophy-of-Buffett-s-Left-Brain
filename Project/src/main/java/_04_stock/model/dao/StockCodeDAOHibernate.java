@@ -36,20 +36,20 @@ public class StockCodeDAOHibernate implements StockCodeDAO {
 		//===================================================================================
 		StockCodeBean bean = null;
 		List<StockCodeBean> beanList = null;
-		try {
-			Transaction tx = session.beginTransaction();
-//			bean = dao.select(4108);
-//			beanList = dao.selectByTypeCode("s1");
-			beanList = dao.selectBycs_Code("c1");
-			for(StockCodeBean xBean : beanList){
-				System.out.println(xBean);
-			}
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		System.out.println(bean);//查詢========================================================
+//		try {
+//			Transaction tx = session.beginTransaction();
+////			bean = dao.select(4108);
+////			beanList = dao.selectByTypeCode("s1");
+//			beanList = dao.selectBycs_Code("c1");
+//			for(StockCodeBean xBean : beanList){
+//				System.out.println(xBean);
+//			}
+//			tx.commit();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		System.out.println(bean);//查詢========================================================
 		
 //		StockCodeBean bean = null;
 //		StockCodeBean bean1= null;
@@ -70,16 +70,18 @@ public class StockCodeDAOHibernate implements StockCodeDAO {
 //		
 //		System.out.println(bean1);//新增========================================================
 		
-//		List<StockCodeBean> beans = null;
-//		try {
-//			session.beginTransaction();
-//			beans = dao.selectAll();
-//			session.getTransaction().commit();
-//		} catch (Exception e) {
-//			
-//			e.printStackTrace();
-//		}
-//		System.out.println(beans);//查詢全部=====================================================
+		List<StockCodeBean> beans = null;
+		try {
+			session.beginTransaction();
+			beans = dao.selectAll();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		for(StockCodeBean X:beans){
+		System.out.println(X);//查詢全部=====================================================
+		}
 //		boolean bean = false;
 //		try {
 //			session.beginTransaction();

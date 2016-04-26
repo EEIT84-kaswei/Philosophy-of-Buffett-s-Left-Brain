@@ -169,7 +169,7 @@ body {
 <body>
 	<div class="container" id="container" align="center">
 		<div class="main">
-			<a href="<%=request.getContextPath()%>/Welcome.jsp"> <img
+			<a href="<c:url value="/pages/_05_newsArticle/Index.do"/>">	 <img
 				src="<%=request.getContextPath()%>/img/logo.png" id="full_screen"
 				title="Philosophy of Buffett's Left Brain" class="img-responsive" />
 			</a>
