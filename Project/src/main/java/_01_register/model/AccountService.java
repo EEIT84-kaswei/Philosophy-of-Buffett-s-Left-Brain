@@ -96,7 +96,7 @@ public class AccountService {
 			message.setFrom(new InternetAddress("eeit84kaswei@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 			message.setSubject("[巴菲特的左腦哲學]會員註冊認證碼");
-			message.setText("請回到原註冊網頁輸入這組驗證碼:" + auth + "\n感謝您的支持，祝您使用愉快，賺大錢！\n專業理財顧問　黃　印楷　啾咪");
+			message.setText("請回到原註冊網頁輸入這組驗證碼:" + auth + "\n感謝您的支持，祝您使用愉快，賺大錢！\n專業理財顧問　啾咪");
 			Transport transport = session.getTransport("smtp");
 			transport.connect(host, port, username, password);
 			Transport.send(message);
