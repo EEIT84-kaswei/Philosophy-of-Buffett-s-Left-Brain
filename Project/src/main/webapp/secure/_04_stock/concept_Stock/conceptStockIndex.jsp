@@ -9,6 +9,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href='//fonts.googleapis.com/css?family=Asap:400' rel='stylesheet' type='text/css'><script type="text/javascript">var _jf = _jf || [];_jf.push(['p','41723']);_jf.push(['_setFont','wt011','css','.wt011']);_jf.push(['_setFont','wt011','alias','wt011']);_jf.push(['_setFont','wt011','english','Asap']);_jf.push(['_setFont','wt011','weight',400]);(function(f,q,c,h,e,i,r,d){var k=f._jf;if(k.constructor===Object){return}var l,t=q.getElementsByTagName("html")[0],a=function(u){for(var v in k){if(k[v][0]==u){if(false===k[v][1].call(k)){break}}}},j=/\S+/g,o=/[\t\r\n\f]/g,b=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,g="".trim,s=g&&!g.call("\uFEFF\xA0")?function(u){return u==null?"":g.call(u)}:function(u){return u==null?"":(u+"").replace(b,"")},m=function(y){var w,z,v,u,x=typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):" ";if(z){u=0;while((v=w[u++])){if(z.indexOf(" "+v+" ")<0){z+=v+" "}}t[c]=s(z)}}},p=function(y){var w,z,v,u,x=arguments.length===0||typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):"";if(z){u=0;while((v=w[u++])){while(z.indexOf(" "+v+" ")>=0){z=z.replace(" "+v+" "," ")}}t[c]=y?s(z):""}}},n;k.push(["_eventActived",function(){p(h);m(e)}]);k.push(["_eventInactived",function(){p(h);m(i)}]);k.addScript=n=function(u,A,w,C,E,B){E=E||function(){};B=B||function(){};var x=q.createElement("script"),z=q.getElementsByTagName("script")[0],v,y=false,D=function(){x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;a("_eventInactived");B()};if(C){v=setTimeout(function(){D()},C)}x.type=A||"text/javascript";x.async=w;x.onload=x.onreadystatechange=function(G,F){if(!y&&(!x.readyState||/loaded|complete/.test(x.readyState))){y=true;if(C){clearTimeout(v)}x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;if(!F){setTimeout(function(){E()},200)}}};x.onerror=function(H,G,F){if(C){clearTimeout(v)}D();return true};x.src=u;z.parentNode.insertBefore(x,z)};a("_eventPreload");m(h);n(r,"text/javascript",false,3000)})(this,this.document,"className","jf-loading","jf-active","jf-inactive","//ds.justfont.com/js/stable/v/4.9.8/id/181412913145");</script>	
+
 <!-- **************************************** CSS開始   ***************************************************** -->
 <link rel="stylesheet" type="text/css"
 	href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" />
@@ -18,7 +20,11 @@
 #menu {
 	overflow: auto !important;
 	overflow /**/: hidden;
+	background-color:rgba(0, 0, 0, 0.5);
+	border-radius:10px;
+	margin:1em
 }
+
 
 #menu td {
 	float: left;
@@ -31,52 +37,63 @@
 	display: block;
 	width: 100%;
 	line-height: 2.5em;
-	color: #7E3D76;
+	color: #ffcc66;
 	text-decoration: none;
-	text-align: center
+	text-align: center;
+	
 }
 
 #menu td a:hover {
-	background-color: #DDD;
-	color: #666
+/* 	background-color: #DDD; */
+	color: #ffffcc
 }
 
 /*分類股表格設定*/
 #stockTypeTable {
 	width: 100%;
-	border: 0px solid #E0E0E0; /*測完要改顏色*/
+	border: 0px solid #BEBEBE; /*測完要改顏色*/
 	border-collapse: collapse; /*把內外框的距離清掉*/
 	margin: 0 auto;
 }
 
 #stockTypeTable th {
-	border: 1px solid black;
+	border: 1px solid #BEBEBE;
 	text-align: center;
-	height: 25px;
+	height: 35px;
 }
 
 #stockTypeTable td {
-	border: 1px solid black;
+	border: 1px solid #BEBEBE;
 	text-align: center;
-	height: 25px;
+	height: 35px;
 }
 
-#stockTypeTable tbody tr:HOVER {
+#stockTypeTable a {
+	color:#538cc6;
+}
+
+#stockTypeTable tbody tr{
+  	background-color: #d9e6f2;  
+}
+
+#stockTypeTable tbody tr:hover {
 	background-color: #FFE6D9;
 	color: #666
 }
-
-td.favorL:hovor {
-	background-color: #DDD;
-	color: #666;
+#tbodyUnder{
+	background-color:#d9e6f2;
 }
+/* td.favorL:hovor { */
+/* 	background-color: #DDD; */
+/* 	color: #666; */
+/* } */
 </style>
 <!-- **************************************** 網頁抬頭  開始***************************************************** -->
 <title>${conceptStockName}</title>
 <!-- **************************************** 網頁抬頭  結束 ***************************************************** -->
 </head>
 
-<body style="margin: 0em 3em">
+<body>
 	<!-- ************************************** 最外框DIV開始  ***************************************************** -->
 
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
@@ -88,25 +105,24 @@ td.favorL:hovor {
 
 
 	<!-- ************************************** 內文DIV開始  ***************************************************** -->
-	<div align="center" style="width: 90%; margin: 0 auto;">
+	<div align="center" style="width: 90%; margin: 0 auto;" class="table-responsive">
 
 		<!-- ******************************** 各種分類按鈕   ************************************************ -->
-		<div style="float: left; width: 100%; margin: 0 auto;">
-			<table id="menu">
-				<tr style="border-bottom: 2px solid black;">
-					<td><a href="<c:url value='/secure/conceptStock.view'/>"><b>概念股</b></a></td>
-					<td><a
-						href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>"><b>上市股</b></a></td>
-					<td><a
-						href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>"><b>上櫃股</b></a></td>
-					<td><a
-						href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>"><b>興櫃股</b></a></td>
-					<td><a
-						href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="chengFenv"/></c:url>"><b>成分股</b></a></td>
-				</tr>
-			</table>
-		</div>
-
+				<div style="width: 100%; margin: 0 auto;border-radius:10px;">
+					<table id="menu">
+						<tr>
+							<td><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></td>
+							<td><a
+								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></td>
+							<td><a
+								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></td>
+							<td><a
+								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></td>
+							<td><a
+								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="chengFenv"/></c:url>">成分股</a></td>
+						</tr>
+					</table>
+				</div>
 
 		<div style="float: left;">
 			<form action="<c:url value='/secure/conceptStock.view'/>"
@@ -145,13 +161,13 @@ td.favorL:hovor {
 			<thead>
 				<tr>
 					<td colspan="9"
-						style="background: #642100; height: 28px; border: none;"><b
-						style="color: white">${conceptStockName}</b></td>
+						style="background: #003366; height: 28px; border: none;"><b
+						style="color: white;font-family: wt011;font-size:20px">${conceptStockName}</b></td>
 				</tr>
 				<tr>
 					<td colspan="9" style="height: 20px; border: none"></td>
 				</tr>
-				<tr style="height: 30px; background: #FFDCB9">
+				<tr style="height: 30px; background: #79a6d2">
 					<th>加入自選股</th>
 					<th>股票代碼</th>
 					<th>&nbsp;&nbsp;股票名稱&nbsp;&nbsp;</th>
@@ -164,7 +180,7 @@ td.favorL:hovor {
 				</tr>
 			</thead>
 
-			<tbody id="tbody">
+			<tbody id="tbodyUnder">
 				<!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ;不管加入取消都送一個ajax回去-->
 				<c:forEach var="data" items="${conceptStock}">
 					<tr>

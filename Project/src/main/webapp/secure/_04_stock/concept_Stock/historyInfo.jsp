@@ -59,12 +59,12 @@
 
 		<h2>股票歷史資訊：${bean.stock_Name}</h2>
 		
-		<div id="leftone"> 
+		<div id="leftone" class="table-responsive"> 
 			
 			
 			<h4>即時數據</h4>
 			<div id="instantChart" style="height: 400px;"></div>
-			<table style="background-color:	#d3a4ff;border: 2px black solid;border-radius:10px;border-style:none; padding: 5px;" rules="all"
+			<table style="background-color:	rgba(0, 0, 0, 0.6);border: 2px black solid;border-radius:10px;border-style:none; padding: 5px;color:#ffcc00;margin:2em auto" rules="all"
 						cellpadding='5' align=center>
 				<thead>
 					<tr>
@@ -102,7 +102,8 @@
 			
 			</table>
 		</div>
+		<center>
 		<div id="weightedIndexChart"></div>
-
+		</center>
 </body>
 </html>

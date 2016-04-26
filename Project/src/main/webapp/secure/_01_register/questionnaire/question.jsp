@@ -8,47 +8,10 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href='//fonts.googleapis.com/css?family=Asap:400' rel='stylesheet' type='text/css'><script type="text/javascript">var _jf = _jf || [];_jf.push(['p','41723']);_jf.push(['_setFont','wt011','css','.wt011']);_jf.push(['_setFont','wt011','alias','wt011']);_jf.push(['_setFont','wt011','english','Asap']);_jf.push(['_setFont','wt011','weight',400]);(function(f,q,c,h,e,i,r,d){var k=f._jf;if(k.constructor===Object){return}var l,t=q.getElementsByTagName("html")[0],a=function(u){for(var v in k){if(k[v][0]==u){if(false===k[v][1].call(k)){break}}}},j=/\S+/g,o=/[\t\r\n\f]/g,b=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,g="".trim,s=g&&!g.call("\uFEFF\xA0")?function(u){return u==null?"":g.call(u)}:function(u){return u==null?"":(u+"").replace(b,"")},m=function(y){var w,z,v,u,x=typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):" ";if(z){u=0;while((v=w[u++])){if(z.indexOf(" "+v+" ")<0){z+=v+" "}}t[c]=s(z)}}},p=function(y){var w,z,v,u,x=arguments.length===0||typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):"";if(z){u=0;while((v=w[u++])){while(z.indexOf(" "+v+" ")>=0){z=z.replace(" "+v+" "," ")}}t[c]=y?s(z):""}}},n;k.push(["_eventActived",function(){p(h);m(e)}]);k.push(["_eventInactived",function(){p(h);m(i)}]);k.addScript=n=function(u,A,w,C,E,B){E=E||function(){};B=B||function(){};var x=q.createElement("script"),z=q.getElementsByTagName("script")[0],v,y=false,D=function(){x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;a("_eventInactived");B()};if(C){v=setTimeout(function(){D()},C)}x.type=A||"text/javascript";x.async=w;x.onload=x.onreadystatechange=function(G,F){if(!y&&(!x.readyState||/loaded|complete/.test(x.readyState))){y=true;if(C){clearTimeout(v)}x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;if(!F){setTimeout(function(){E()},200)}}};x.onerror=function(H,G,F){if(C){clearTimeout(v)}D();return true};x.src=u;z.parentNode.insertBefore(x,z)};a("_eventPreload");m(h);n(r,"text/javascript",false,3000)})(this,this.document,"className","jf-loading","jf-active","jf-inactive","//ds.justfont.com/js/stable/v/4.9.8/id/181412913145");</script>
 <title>風險屬性問卷</title>
-<style type="text/css">
-#midTable {
-	width: 100%;
-	margin: 0 auto
-}
-
-#middleTable {
-	border: 1px gray solid;
-	border-collapse: collapse;
-	width: 70%;
-}
-
-#middleTable tr td:nth {
-	border-right: 1px solid gray;
-	padding: 1em;
-}
-
-#middleTable tr td:nth-child(1) {
-	border-right: 1px solid gray;
-	padding: 1em;
-}
-
-#middleTable tr:nth-child(odd) {
-	background: #EFEFEF
-}
-#middleTable tr:nth-child(even) {
-	background: #ccccff
-}
-#middleTable tr:hover {
-	background-color: #77FFCC;
-}
-
-#middleTable tr {
-	border: 1px solid gray;
-}
-</style>
-
-
 </head>
-<body>
+<body style="background-color: #fff">
 
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 	<jsp:include page="/title.jsp" />
@@ -59,121 +22,141 @@
 	<div>
 		<jsp:include page="/nav.jsp" />
 	</div>
-	<H2 align="center" style="color:pink">風險屬性問卷</H2>
-	<div align=center id="midTable">
-		<form
-			action="<c:url value='/secure/_02_login.controller/QuestionServlet?insert=new' />"
+	<div style="background-color:rgba(0, 0, 102,0.7);width:280px;margin:2px auto">
+	<H2 align="center" style="color: pink;font-family: wt011;">風險屬性問卷</H2>
+	</div>
+	<div style="margin:0 auto;max-width:50em;align:center">
+		<form action="<c:url value='/secure/_02_login.controller/QuestionServlet?insert=new' />"
 			method="POST">
-			<table id="middleTable">
-				<tr>
-					<td>1.客戶年齡層？<br></td>
-					<td><input type="radio" name="question1" value="1"
-						<c:if test="${param.question1 eq '1'}">checked</c:if>>70歲以上/未滿20歲<br></td>
-					<td><input type="radio" name="question1" value="2"
-						<c:if test="${param.question1 eq '2'}">checked</c:if>>60至69歲<br></td>
-					<td><input type="radio" name="question1" value="3"
-						<c:if test="${param.question1 eq '3'}">checked</c:if>>50至59歲<br></td>
-					<td><input type="radio" name="question1" value="4"
-						<c:if test="${param.question1 eq '4'}">checked</c:if>>40至49歲<br></td>
-					<td><input type="radio" name="question1" value="5"
-						<c:if test="${param.question1 eq '5'}">checked</c:if>>20至39歲<br></td>
-					<td style="color: red"><span class="error">${error.question1}</span></td>
-				</tr>
-				<tr>
-					<td>2.投資經驗（包含投資股票、基金、外幣、黃金、期貨……等產品）？<br></td>
-					<td><input type="radio" name="question2" value="1"
-						<c:if test="${param.question2 eq '1'}">checked</c:if>>無投資經驗或新手<br></td>
-					<td><input type="radio" name="question2" value="2"
-						<c:if test="${param.question2 eq '2'}">checked</c:if>>1年以下<br></td>
-					<td><input type="radio" name="question2" value="3"
-						<c:if test="${param.question2 eq '3'}">checked</c:if>>1~3年<br></td>
-					<td><input type="radio" name="question2" value="4"
-						<c:if test="${param.question2 eq '4'}">checked</c:if>>3~5年<br></td>
-					<td><input type="radio" name="question2" value="5"
-						<c:if test="${param.question2 eq '5'}">checked</c:if>>5年以上<br></td>
-					<td style="color: red"><span class="error">${error.question2}</span></td>
-				</tr>
-				<tr>
-					<td>3.個人/家庭月收入中有多少比例可用於投資或儲蓄？<br></td>
-					<td><input type="radio" name="question3" value="1"
-						<c:if test="${param.question3 eq '1'}">checked</c:if>>5%
-						以下<br></td>
-					<td><input type="radio" name="question3" value="2"
-						<c:if test="${param.question3 eq '2'}">checked</c:if>>5%~10%<br></td>
-					<td><input type="radio" name="question3" value="3"
-						<c:if test="${param.question3 eq '3'}">checked</c:if>>10%~20%<br></td>
-					<td><input type="radio" name="question3" value="4"
-						<c:if test="${param.question3 eq '4'}">checked</c:if>>20%~30%<br></td>
-					<td><input type="radio" name="question3" value="5"
-						<c:if test="${param.question3 eq '5'}">checked</c:if>>30%
-						以上<br></td>
-					<td style="color: red"><span class="error">${error.question3}</span></td>
-				</tr>
-				<tr>
-					<td>4. 請問您曾經投資過那些金融商品(可複選)？<br>
-					<td><input type="checkbox" name="question4" value="1"
-						<c:forEach var="aVar" items="${paramValues.question4}">
-						<c:if test="${aVar eq '1'}">checked="checked"</c:if>							
-					</c:forEach>>台外幣存款、貨幣型基金、儲蓄型保險或不曾投資過<br></td>
-					<td><input type="checkbox" name="question4" value="2"
-						<c:forEach var="aVar" items="${paramValues.question4}">
-						<c:if test="${aVar eq '2'}">checked="checked"</c:if>							
-					</c:forEach>>債券、債券型基金<br></td>
-					<td><input type="checkbox" name="question4" value="3"
-						<c:forEach var="aVar" items="${paramValues.question4}">
-						<c:if test="${aVar eq '3'}">checked="checked"</c:if>							
-					</c:forEach>>股票、股票型基金、ETF
-						<br></td>
-					<td><input type="checkbox" name="question4" value="4"
-						<c:forEach var="aVar" items="${paramValues.question4}">
-						<c:if test="${aVar eq '4'}">checked="checked"</c:if>							
-					</c:forEach>>結構型商品、投資型保單
-						<br></td>
-					<td><input type="checkbox" name="question4" value="5"
-						<c:forEach var="aVar" items="${paramValues.question4}">
-						<c:if test="${aVar eq '5'}">checked="checked"</c:if>							
-					</c:forEach>>期貨、選擇權或其他衍生性金融商品
-						<br></td>
-					<td style="color: red"><span class="error">${error.question4}</span></td>
-				</tr>
-				<tr>
-					<td>5.可承受投資風險之程度資產的市值可能會上升或下降，就您所期望平均年投資報酬率是多少？（以投資100萬元為例）<br></td>
-					<td><input type="radio" name="question5" value="1"
-						<c:if test="${param.question5 eq '1'}">checked</c:if>>1%~2%（每年希望獲利1~2萬元）<br></td>
-					<td><input type="radio" name="question5" value="2"
-						<c:if test="${param.question5 eq '2'}">checked</c:if>>3%~5%（每年希望獲利3~5萬元）<br></td>
-					<td><input type="radio" name="question5" value="3"
-						<c:if test="${param.question5 eq '3'}">checked</c:if>>6%~8%（每年希望獲利6~8萬元）<br></td>
-					<td><input type="radio" name="question5" value="4"
-						<c:if test="${param.question5 eq '4'}">checked</c:if>>9%~12%（每年希望獲利9~12萬元）<br></td>
-					<td><input type="radio" name="question5" value="5"
-						<c:if test="${param.question5 eq '5'}">checked</c:if>>12%以上（每年希望獲利12萬元以上）<br></td>
-
-
-					<td style="color: red"><span class="error">${error.question5}</td>
-
-				</tr>
-				<tr>
-					<td>6.可承受投資風險之程度資產的市值可能會上升或下降，就您所能承受每年最大投資損失是多少？（以投資100萬元為例）<br>
-						%~2%（每年可接受損失1~2萬元）
-					<td><input type="radio" name="question6" value="1"
-						<c:if test="${param.question6 eq '1'}">checked</c:if>>1%~2%（每年可接受損失1~2萬元）<br></td>
-					<td><input type="radio" name="question6" value="2"
-						<c:if test="${param.question6 eq '2'}">checked</c:if>>3%~5%（每年可接受損失3~5萬元）<br></td>
-					<td><input type="radio" name="question6" value="3"
-						<c:if test="${param.question6 eq '3'}">checked</c:if>>6%~8%（每年可接受損失6~8萬元）<br></td>
-					<td><input type="radio" name="question6" value="4"
-						<c:if test="${param.question6 eq '4'}">checked</c:if>>9%~12%（每年可接受損失9~12萬元）<br></td>
-					<td><input type="radio" name="question6" value="5"
-						<c:if test="${param.question6 eq '5'}">checked</c:if>>12%以上（每年可接受損失12萬元以上）<br></td>
-					<td style="color: red"><span class="error">${error.question6}</span></td>
-				</tr>
-				<tr>
+			<form role="form">
+					<div class="form-group" style="background-color:#94b8b8;padding:20px;margin-bottom:0">
+						<p>1.客戶年齡層？</p>
+						<label>
+							<select class="form-control" name="question1">
+								<option value="1"><c:if test="${param.question1 eq '1'}">checked</c:if>70歲以上/未滿20歲</option>
+								<option value="2"><c:if test="${param.question1 eq '2'}">checked</c:if>60至69歲</option>
+								<option value="3"><c:if test="${param.question1 eq '3'}">checked</c:if>50至59歲</option>
+								<option value="4"><c:if test="${param.question1 eq '4'}">checked</c:if>40至49歲</option>
+								<option value="5"><c:if test="${param.question1 eq '5'}">checked</c:if>20至39歲</option>
+							</select>
+						</label>
+						<label style="color: red">
+							<span class="error">${error.question1}</span>
+						</label>
+					</div>
 					
-				</tr>
-				
-			</table>
-				<td><input type="submit" value="送出"></td>
+					<div class="form-group" style="background-color:#d1e0e0;padding:20px;margin-bottom:0">
+					<p>2.投資經驗（包含投資股票、基金、外幣、黃金、期貨……等產品）？</p>
+					<label>
+						<select class="form-control" name="question2">
+  						<option value="1"><c:if test="${param.question2 eq '1'}">checked</c:if>無投資經驗或新手</option>
+						<option value="2"><c:if test="${param.question2 eq '2'}">checked</c:if>1年以下</option>
+						<option value="3"><c:if test="${param.question2 eq '3'}">checked</c:if>1~3年</option>
+						<option value="4"><c:if test="${param.question2 eq '4'}">checked</c:if>3~5年</option>
+						<option value="5"><c:if test="${param.question2 eq '5'}">checked</c:if>5年以上</option>
+						</select>
+					</label>
+					<label style="color: red">
+						<span class="error">${error.question2}</span>
+					</label>
+					</div>
+					
+					<div class="form-group" style="background-color:#94b8b8;padding:20px;margin-bottom:0">
+					<p>3.個人/家庭月收入中有多少比例可用於投資或儲蓄？</p>
+					<label>
+						<select class="form-control" name="question3">
+							<option value="1"><c:if test="${param.question3 eq '1'}">checked</c:if>5%以下</option>
+							<option value="2"><c:if test="${param.question3 eq '2'}">checked</c:if>5%~10%</option>
+							<option value="3"><c:if test="${param.question3 eq '3'}">checked</c:if>10%~20%</option>
+							<option value="4"><c:if test="${param.question3 eq '4'}">checked</c:if>20%~30%</option>
+							<option value="5"><c:if test="${param.question3 eq '5'}">checked</c:if>30%以上</option>
+						</select>
+					</label>
+					<label style="color: red">
+						<span class="error">${error.question3}</span>
+					</label>
+					</div>
+					
+					<div class="form-group" style="background-color:#d1e0e0;padding:20px;margin-bottom:0">
+					<p>4.可承受投資風險之程度資產的市值可能會上升或下降，就您所期望平均年投資報酬率是多少？（以投資100萬元為例）</p>
+					<label>
+						<select class="form-control" name="question5" >
+						  	<option value="1"><c:if test="${param.question5 eq '1'}">checked</c:if>1%~2%（每年希望獲利1~2萬元）</option>
+						  	<option value="2"><c:if test="${param.question5 eq '2'}">checked</c:if>3%~5%（每年希望獲利3~5萬元）</option>
+						  	<option value="3"><c:if test="${param.question5 eq '3'}">checked</c:if>6%~8%（每年希望獲利6~8萬元）</option>
+						  	<option value="4"><c:if test="${param.question5 eq '4'}">checked</c:if>9%~12%（每年希望獲利9~12萬元）</option>
+						  	<option value="5"><c:if test="${param.question5 eq '5'}">checked</c:if>12%以上（每年希望獲利12萬元以上）</option>
+						</select>
+					</label>
+					<label style="color: red">
+						<span class="error">${error.question5}</span>
+					</label>
+					</div>
+					
+					<div class="form-group" style="background-color:#94b8b8;padding:20px;margin-bottom:0">
+					<p>5.可承受投資風險之程度資產的市值可能會上升或下降，就您所能承受每年最大投資損失是多少？（以投資100萬元為例）</p>
+						<label>
+						<select class="form-control" name="question6" >
+						  	<option value="1"><c:if test="${param.question6 eq '1'}">checked</c:if>1%~2%（每年可接受損失1~2萬元）</option>
+						  	<option value="2"><c:if test="${param.question6 eq '2'}">checked</c:if>3%~5%（每年可接受損失3~5萬元）</option>
+						  	<option value="3"><c:if test="${param.question6 eq '3'}">checked</c:if>6%~8%（每年可接受損失6~8萬元）</option>
+						  	<option value="4"><c:if test="${param.question6 eq '4'}">checked</c:if>9%~12%（每年可接受損失9~12萬元）</option>
+					  		<option value="5"><c:if test="${param.question6 eq '5'}">checked</c:if>12%以上（每年可接受損失12萬元以上）</option>
+						</select>
+						</label>
+					<label style="color: red">
+						<span class="error">${error.question6}</span>
+					</label>
+					</div>
+					
+					<div class="form-group" style="background-color:#d1e0e0;padding:20px;margin-bottom:0">
+					<p>6. 請問您曾經投資過那些金融商品(可複選)？</p>
+					
+						<label class="checkbox-inline">
+					  	<input type="checkbox" name="question4" id="inlineCheckbox1" value="1"
+							<c:forEach var="aVar" items="${paramValues.question4}">
+							<c:if test="${aVar eq '1'}">checked="checked"</c:if>							
+							</c:forEach>>台外幣存款、貨幣型基金、儲蓄型保險或不曾投資過<br>
+						</label>
+						<br>
+						<label class="checkbox-inline">
+						  <input type="checkbox" name="question4" id="inlineCheckbox2" value="2"
+							<c:forEach var="aVar" items="${paramValues.question4}">
+							<c:if test="${aVar eq '2'}">checked="checked"</c:if>							
+							</c:forEach>>債券、債券型基金<br>
+						</label>
+						<br>
+						
+						<label class="checkbox-inline">
+						  <input type="checkbox"  name="question4" id="inlineCheckbox3" value="3"
+							<c:forEach var="aVar" items="${paramValues.question4}">
+							<c:if test="${aVar eq '3'}">checked="checked"</c:if>							
+							</c:forEach>>股票、股票型基金、ETF<br>
+						</label>
+						<br>
+						
+						<label class="checkbox-inline">
+						  <input type="checkbox" name="question4" id="inlineCheckbox3" value="4"
+							<c:forEach var="aVar" items="${paramValues.question4}">
+							<c:if test="${aVar eq '4'}">checked="checked"</c:if>							
+						</c:forEach>>結構型商品、投資型保單<br>
+						</label>
+						<br>
+						
+						<label class="checkbox-inline">
+							<input type="checkbox" name="question4" id="inlineCheckbox1" value="5"
+							<c:forEach var="aVar" items="${paramValues.question4}">
+							<c:if test="${aVar eq '5'}">checked="checked"</c:if>							
+							</c:forEach>>期貨、選擇權或其他衍生性金融商品<br>
+						</label>
+					</label>
+					<label style="color: red"><span class="error">${error.question4}</span></label>
+
+					</div>
+			<center>
+			<input type="submit" value="送出" class="btn btn-default" style="margin:20px auto">
+			</center>
+		</form>
 		</form>
 	</div>
 

@@ -18,12 +18,13 @@
 dl{
 	color:purple;
 	font-size:150%;
+	margin:0 0 0 2em;
 }
 
 dd{
 	color:black;
 	font-size:100%;
-	margin:0 2em 0 0;
+	margin:0 2em 0 2em;
 }
 .list-inline a{
 	color:#006699;

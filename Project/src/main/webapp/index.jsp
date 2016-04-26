@@ -170,11 +170,11 @@ body {
 	<div class="container" id="container" align="center">
 		<div class="main">
 			<a href="<%=request.getContextPath()%>/Welcome.jsp"> <img
-				src="<%=request.getContextPath()%>/img/logo.png" id="full_screen"
+				src="<%=request.getContextPath()%>/img/logo.png" id="full_screen" style="max-width:500px;min-width:250px"
 				title="Philosophy of Buffett's Left Brain" class="img-responsive" />
 			</a>
 		</div>
-		<h4>${logoutMessage}</h4>
+		<h4 style="margin:1em">${logoutMessage}</h4>
 		<div class="footer">
 			<table>
 				<tr>
