@@ -29,7 +29,7 @@
 			<div
 				style="margin: 2em auto; padding: 2em 0; max-width: 48em; height: 500px; overflow: hidden; float: left">
 				<form>
-					<c:if test="${not empty select}">
+					<c:if test="${not empty selectNewsOnly}">
 						<table class="table table-hover table-bordered"
 							style="background-color: #CCCCCC	; border: 2px #000066 solid; margin: 2em 0; width: 100%; height: 50px"
 							rules="all" cellpadding='5' align="center">
@@ -42,7 +42,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="row" items="${select}">
+								<c:forEach var="row" items="${selectNewsOnly}">
 									<c:url value="/pages/_05_newsArticle/news.do" var="path"
 										scope="page">
 										<c:param name="newUrl" value="${row.nno}" />

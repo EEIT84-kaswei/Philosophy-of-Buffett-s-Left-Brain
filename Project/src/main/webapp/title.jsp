@@ -115,6 +115,17 @@ $('document').ready(function(){
 		</c:url>
 		<a href="${chineseURL}"><font style="font-family: wt011;font-size:160%;color:black;">中文</font></a>
 		</div>
+		<div style="background-color: rgba(255, 255, 255, 0.5);width:200px;display: inline;padding:5px 20px 0 20px;margin:0 10px 0 0;height:50px">
+		<c:url var="chineseURL" value="">
+			<c:forEach var="args" items="${param}">
+				<c:if test='${args.key ne "locale"}'>
+					<c:param name="${args.key}" value="${args.value}"/>
+				</c:if>
+			</c:forEach>
+			<c:param name="locale" value="ru_RU" />
+		</c:url>
+		<a href="${chineseURL}"><font style="font-family: wt011;font-size:160%;color:black;">русский</font></a>
+		</div>
 	<!-- 標題 END -->
 </center>
 
