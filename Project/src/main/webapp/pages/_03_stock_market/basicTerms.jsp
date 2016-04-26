@@ -123,7 +123,9 @@
 			</ul>
 			<div class="tab_container">
 				<ul class="tab_content">
-					<li>
+				
+					<li style="color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-1.jpg'); " >
+					<div style="background-color:rgba(0 , 0, 0, 0.3)">
 						<h3>KD 隨機指標</h3>
 						<p>
 							說明:<br> KD市場常使用的一套技術分析工具。其適用範圍以中短期投資的技術分析為最佳。隨機
@@ -143,8 +145,11 @@
 							6. 當D值跌至15以下時，意味市場為嚴重之超賣，其為買入訊號；當D值超過85以上時，意味市場為嚴重之超買，其為賣出訊號。<br>
 							7. 價格創新高或新低，而KD未有此現象，此為背離現象，亦即為可能反轉的重要前兆。<br> <br> <br>
 						</p>
+						</div>
 					</li>
-					<li>
+					
+					<li style="color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-1.jpg'); ">
+					<div style="background-color:rgba(0 , 0, 0, 0.3)">
 						<h3>RSI 相對強弱指標</h3>
 						<p>
 							說明:<br> RSI
@@ -160,8 +165,10 @@
 							5. 當出現類似這樣的訊號：3日RSI>5日RSI>10日RSI>20日RSI....，顯示市場是處於多頭行情；反之則為空頭行情。<br>
 							6. 盤整期中，一底比一底高，為多頭勢強，後勢可能再漲一段，是買進時機，反之一底比一底低是賣出時機。<br> <br>
 						</p>
+						</div>
 					</li>
-					<li>
+					<li style="color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-1.jpg'); ">
+					<div style="background-color:rgba(0 , 0, 0, 0.3)">
 						<h3>MACD</h3>
 						<p>
 							說明:<br>
@@ -179,6 +186,7 @@
 						股價出現兩三個相對高點，但MACD並未伴隨出現新高點，其為賣出訊號；反之股價出現兩三個相對低點，但MACD並未伴隨出現新低點，其為買入訊號。<br>
 						<br>
 						</p>
+						</div>
 					</li>
 				</ul>
 			</div>
