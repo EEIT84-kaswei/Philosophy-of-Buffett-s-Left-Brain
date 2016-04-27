@@ -36,7 +36,7 @@
 	<div style="margin: 2em auto; padding: 2em;background-color: rgba(204, 204, 204, 0.99);max-width:60em">	
 		<form action="<c:url value="/pages/_05_newsArticle/news.do"/>" method="post">
 			<input type="hidden" name="updtno" value="${select.nno}">
-			<h2 style="text-align:center;color:#008080;font-family: wt011">${select.ntitle}</h2>
+			<h2 style="text-align:center;color:#008080;font-weight:bold;">${select.ntitle}</h2>
 			<fmt:formatDate var="time" value="${select.ntime}" type="both" dateStyle="long" pattern="yyyy年MM月dd日  HH:mm"/>
 			<p style="text-align:center;color:#999999">${time}</p>
 			<br>

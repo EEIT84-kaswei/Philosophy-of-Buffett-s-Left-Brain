@@ -10,8 +10,8 @@
 		
 
  		#weightedIndexChart{
-  		width: 300px;
-		height: 300px;
+  		width: 20em;
+		height: 20em;
 /* 		position: fixed; */
 /* 		right: 0.5%; */
 /* 		top: 0; */
@@ -19,15 +19,17 @@
 /* 		bottom: 0; */
 		display: inline-block;
 		padding:0;
+		margin:0 1em;
 		}
 		
 
  		 #leftone
  		 {
   		max-width: 60em;
-  		width:80%;
+  		width:100%;
   		float:left;
-  		margin:1em 3em;
+  		margin:1em;
+		padding:1em;
 		 }
 
 	
@@ -55,14 +57,14 @@
 		</script>
 		
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/historyInfo.js"></script>
-		
-
-		<h2>股票歷史資訊：${bean.stock_Name}</h2>
-		
-		<div id="leftone" class="table-responsive"> 
+		<div class="table-responsive">
+		<div style="background-color:rgba(0, 0, 0, 0.5);width:30em;margin:0 auto;">
+		<h2 style="color:rgba( 255, 230, 243, 1);font-family:'微軟正黑體';text-align:center">股票歷史資訊：${bean.stock_Name}</h2>
+		</div>
+		<div id="leftone"> 
 			
 			
-			<h4>即時數據</h4>
+			<h4 style="color:white">即時數據</h4>
 			<div id="instantChart" style="height: 400px;"></div>
 			<table style="background-color:	rgba(0, 0, 0, 0.6);border: 2px black solid;border-radius:10px;border-style:none; padding: 5px;color:#ffcc00;margin:2em auto" rules="all"
 						cellpadding='5' align=center>
@@ -90,7 +92,7 @@
 			<input id="month" type="button" value="月K" style="float:right;">
 			<input id="week" type="button" value="周K" style="float:right;">
 			<input id="day" type="button" value="日K" style="float:right;">
-			<h4>歷史數據(走勢圖)</h4>
+			<h4 style="color:white">歷史數據(走勢圖)</h4>
 			<div id="historyChart" style="width: 100%; height: 600px;"></div>
 			<br>
 			<table>
@@ -105,5 +107,6 @@
 		<center>
 		<div id="weightedIndexChart"></div>
 		</center>
+		</div>
 </body>
 </html>
