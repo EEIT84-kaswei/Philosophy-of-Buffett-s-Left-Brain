@@ -47,14 +47,13 @@
 						<script>
 							CKEDITOR.replace('acontext', {});
 						</script> <br>
-						<span class="error">${error.acontext}</span>
+						<span class="error" style="font-size: medium; color: red">${error.acontext}</span>
 					</td>
 				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" name="prodaction" value="Insert" >
-				</tr>
 			</table>
+				<center>
+					<input type="submit" name="prodaction" value="Insert"  style="margin:30px" class="btn btn-default">
+				</center>
 		</form>
 	</div>
 
