@@ -51,7 +51,7 @@ body {
 	
 	
 		<div style="max-width:40em;margin:0 auto">
-				
+				<div class="table-responsive">
 				<table class="table table-hover table-bordered" id="thisTable1" style="margin:0 auto">
 					<thead>
 						<tr>
@@ -101,7 +101,7 @@ body {
 					</tbody>
 					
 				</table>
-			
+			</div>
 		</div>
 	<script language="JavaScript">
 		$(document).ready(function() {

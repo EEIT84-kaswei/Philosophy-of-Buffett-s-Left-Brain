@@ -97,7 +97,7 @@ public class QuestionServlet extends HttpServlet {
 				System.out.println(Q4);
 
 			} catch (NumberFormatException e1) {
-				error.put("question4", "請回答第四題");
+				error.put("question4", "請回答第六題");
 				e1.printStackTrace();
 			}
 		}
@@ -144,7 +144,7 @@ public class QuestionServlet extends HttpServlet {
 				return;
 			}
 			if (q4 == null) {
-				error.put("question4", "請回答第四題");
+				error.put("question4", "請回答第六題");
 				RequestDispatcher rd = request
 						.getRequestDispatcher("/secure/_01_register/questionnaire/question.jsp");
 				rd.forward(request, response);

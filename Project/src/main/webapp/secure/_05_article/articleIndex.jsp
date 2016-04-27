@@ -91,14 +91,14 @@ body {
 				<c:if test='<%=request.isUserInRole("admin")%>'>
 					<center>
 						<a href="<c:url value='/secure/_05_article/newArticle.jsp'/>">
-							<input type="button" value="發表文章">
+							<input type="button" value="發表文章" class="btn btn-default">
 						</a>
 					</center>
 				</c:if>
 				<c:if test='<%=request.isUserInRole("writer")%>'>
 					<center>
 						<a href="<c:url value='/secure/_05_article/newArticle.jsp'/>">
-							<input type="button" value="發表文章">
+							<input type="button" value="發表文章" class="btn btn-default">
 						</a>
 					</center>
 				</c:if>

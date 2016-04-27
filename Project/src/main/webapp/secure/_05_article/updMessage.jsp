@@ -58,12 +58,15 @@
 								<input type="hidden" name="uano" value="${row.ano}">
 								<textarea rows="20" cols="40" name="mcontent">${row.mcontext}</textarea>
 								<script>
-									CKEDITOR.replace('mcontent', {
-										width : 880,
-									});
+									CKEDITOR.replace('mcontent', { });
 								</script>
 								<input type="submit" name="revise" value="確認"> 
 								<input type="submit" name="revise" value="取消">
+								<span>
+									<font color="red" style="font-weight: bold; font-size: medium;">
+										${error.content}
+									</font>
+								</span>
 							</form>
 						</c:if>
 					</tr>

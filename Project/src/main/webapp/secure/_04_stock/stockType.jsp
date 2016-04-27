@@ -70,14 +70,17 @@
 #stockTypeTable a {
 	color:#538cc6;
 }
-#stockTypeTable tbody tr:HOVER {
+
+#stockTypeTable tbody tr{
+  	background-color: #d9e6f2;  
+}
+
+#stockTypeTable tbody tr:hover {
 	background-color: #FFE6D9;
 	color: #666
 }
-
-td.favorL:hovor {
-	background-color: #DDD;
-	color: #666;
+#tbodyUnder{
+	background-color:#d9e6f2;
 }
 </style>
 
@@ -96,7 +99,7 @@ td.favorL:hovor {
 
 
 			<!-- ************************************** 內文DIV開始  ***************************************************** -->
-			<div align="center" style="width: 90%; margin: 0 auto;">
+			<div align="center" style="width: 90%; margin: 0 auto;" class="table-responsive">
 
 				<!-- ******************************** 各種分類按鈕   ************************************************ -->
 				<div style="width: 100%; margin: 0 auto;border-radius:10px;">
@@ -109,8 +112,6 @@ td.favorL:hovor {
 								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></td>
 							<td><a
 								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></td>
-							<td><a
-								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="chengFenv"/></c:url>">成分股</a></td>
 						</tr>
 					</table>
 				</div>
@@ -145,11 +146,11 @@ td.favorL:hovor {
 						</tr>
 					</thead>
 
-					<tbody id="tbody">
+					<tbody id="tbodyUnder">
 					
 						<!-- 點一下會從空心變成實心星星，送出加入最愛請求，但如果已加入，要秀出實心星星 ;不管加入取消都送一個ajax回去-->
 						<c:forEach var="data" items="${stockType}">
-							<tr style="background-color: #d9e6f2">
+							<tr>
 								<c:forEach var="cuCode" items="${cuCode}">
  								
 									<c:if test="${data.stock_Code==cuCode}">

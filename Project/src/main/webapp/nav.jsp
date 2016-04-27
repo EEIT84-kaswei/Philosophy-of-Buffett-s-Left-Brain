@@ -53,7 +53,7 @@ body {
    
  <fmt:setLocale value="${loc}"/>  
 
- <fmt:bundle basename="message">   
+ <fmt:bundle basename="properties.message">   
 <nav class="nav navbar-inverse navbar-static-top" id="thisone" align="center"> <!-- 如果要黑色底，請把nav後面的那一串文字改成navbar-inverse -->
         <div class="container-fluid" style="">
             <div class="navbar-header">

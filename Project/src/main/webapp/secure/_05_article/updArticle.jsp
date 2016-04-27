@@ -20,24 +20,24 @@
 
 	<!-- 網頁主要導覽列 -->
 	<div><jsp:include page="/nav.jsp" /></div>
-	<div style="height: 20em; margin: 2em auto; padding: 2em;">
+	<div style="height: 20em; margin: 2em auto; padding: 0em;">
 
 		<!-- 表格開始 -->
 
 		<form action="<c:url value="/pages/article.controller" />" method="post">
-			<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all" cellpadding='5' align=center>
+			<table style="border: 2px #FFAC55 solid; padding: 5px; background-color:rgba(255, 255, 255, 0.5)" rules="all" cellpadding='5' align="center">
 				
 				<tr>
 					<td>作家名稱 :</td>
 					<td>
-						<input type="text" name="aname" value="${updArticle.aname}" required>
+						<input type="text" name="aname" value="${updArticle.aname}" required size="45">
 				   <%-- <span class="error">${error.aname}</span> --%>
 					</td>
 				</tr>
 				<tr>
 					<td>文章標題:</td>
 					<td>
-						<input type="text" name="atitle" value="${updArticle.atitle}" required> 
+						<input type="text" name="atitle" value="${updArticle.atitle}" required size="45"> 
 				   <%-- <span class="error">${error.atitle}</span> --%>
 					</td>
 				</tr>
@@ -51,11 +51,12 @@
 						<span class="error">${error.acontext}</span>
 					</td>
 				</tr>
-				<tr>
-					<td><input type="hidden" name="uano" value="${updArticle.ano}"></td>
-					<td><input type="submit" name="prodaction" value="Insert"></td>
-				</tr>
 			</table>
+			
+			<center>
+			<input type="hidden" name="uano" value="${updArticle.ano}" style="margin:30px" class="btn btn-default">
+			<input type="submit" name="prodaction" value="Insert" style="margin:30px" class="btn btn-default">
+			</center>
 		</form>
 	</div>
 

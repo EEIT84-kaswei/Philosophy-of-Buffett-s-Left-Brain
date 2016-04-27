@@ -23,10 +23,10 @@
 	<!-- 網頁主要導覽列 -->
 	<div><jsp:include page="/nav.jsp" /></div>
 
-	<div style="height: 20em; margin: 2em auto; padding: 2em;">
+	<div style="height: 50em; margin: 2em auto; padding: 0em;" class="table-responsive">
 		<!-- 表格開始 -->
 		<form action="<c:url value="/pages/article.controller" />" method="post">
-			<table style="border: 2px #FFAC55 solid; padding: 5px;" rules="all" cellpadding='5' align=center>
+			<table style="border: 2px #FFAC55 solid; padding: 5px; background-color:rgba(255, 255, 255, 0.8)" rules="all" cellpadding='5' align="center">
 				<tr>
 					<td>作家名稱 :</td>
 					<td>

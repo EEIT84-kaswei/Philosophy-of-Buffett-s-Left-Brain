@@ -8,6 +8,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href='//fonts.googleapis.com/css?family=Asap:400' rel='stylesheet' type='text/css'><script type="text/javascript">var _jf = _jf || [];_jf.push(['p','41723']);_jf.push(['_setFont','wt011','css','.wt011']);_jf.push(['_setFont','wt011','alias','wt011']);_jf.push(['_setFont','wt011','english','Asap']);_jf.push(['_setFont','wt011','weight',400]);(function(f,q,c,h,e,i,r,d){var k=f._jf;if(k.constructor===Object){return}var l,t=q.getElementsByTagName("html")[0],a=function(u){for(var v in k){if(k[v][0]==u){if(false===k[v][1].call(k)){break}}}},j=/\S+/g,o=/[\t\r\n\f]/g,b=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,g="".trim,s=g&&!g.call("\uFEFF\xA0")?function(u){return u==null?"":g.call(u)}:function(u){return u==null?"":(u+"").replace(b,"")},m=function(y){var w,z,v,u,x=typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):" ";if(z){u=0;while((v=w[u++])){if(z.indexOf(" "+v+" ")<0){z+=v+" "}}t[c]=s(z)}}},p=function(y){var w,z,v,u,x=arguments.length===0||typeof y==="string"&&y;if(x){w=(y||"").match(j)||[];z=t[c]?(" "+t[c]+" ").replace(o," "):"";if(z){u=0;while((v=w[u++])){while(z.indexOf(" "+v+" ")>=0){z=z.replace(" "+v+" "," ")}}t[c]=y?s(z):""}}},n;k.push(["_eventActived",function(){p(h);m(e)}]);k.push(["_eventInactived",function(){p(h);m(i)}]);k.addScript=n=function(u,A,w,C,E,B){E=E||function(){};B=B||function(){};var x=q.createElement("script"),z=q.getElementsByTagName("script")[0],v,y=false,D=function(){x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;a("_eventInactived");B()};if(C){v=setTimeout(function(){D()},C)}x.type=A||"text/javascript";x.async=w;x.onload=x.onreadystatechange=function(G,F){if(!y&&(!x.readyState||/loaded|complete/.test(x.readyState))){y=true;if(C){clearTimeout(v)}x.src="";x.onerror=x.onload=x.onreadystatechange=null;x.parentNode.removeChild(x);x=null;if(!F){setTimeout(function(){E()},200)}}};x.onerror=function(H,G,F){if(C){clearTimeout(v)}D();return true};x.src=u;z.parentNode.insertBefore(x,z)};a("_eventPreload");m(h);n(r,"text/javascript",false,3000)})(this,this.document,"className","jf-loading","jf-active","jf-inactive","//ds.justfont.com/js/stable/v/4.9.8/id/181412913145");</script>	
+
 <title>專欄文章</title>
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
 <style type="text/css">
@@ -29,7 +31,7 @@
 			<jsp:include page="/nav.jsp" />
 		</div>
 
-		<div style="margin: 2em auto 0 auto; padding: 2em 0 0 0;background-color: rgba(204, 204, 204, 0.99);max-width:80%">
+		<div style="margin: 2em auto 0 auto; padding: 2em 0 0 0;background-color: rgba(204, 204, 204, 0.99);max-width:60em">
 
 			<!-- 表格開始 -->
 			
@@ -38,19 +40,19 @@
 					    <c:param name="sano" value="${singleArticle.ano}" />
 					</c:url>" method="post">
 				
-				<h2 style="text-align:center;color:#008080">${singleArticle.atitle}</h2>
+				<h2 style="text-align:center;color:#008080;font-family: wt011">${singleArticle.atitle}</h2>
 				<p style="text-align:center">${singleArticle.aname}</p>
 				<fmt:formatDate var="time" value="${singleArticle.atime}" type="both" dateStyle="long" /> 
 				<p style="text-align:center;color:#999999">${time}</p>
 				<br>
-				<div style="max-width:50em;margin:0 auto">
+				<div style="max-width:58em;margin:0 auto;padding:0 10px">
 					<p>${singleArticle.acontext}</p>
 				</div>
 				<div align=center>
 
 					<c:if test='<%=request.isUserInRole("admin")%>'>
-						<input type="submit" name="prodaction" value="修改" class="btn">
-						<input type="submit" name="prodaction" value="刪除" class="btn" onclick="if(confirm('您確定刪除此篇文章嗎?')) return true;else return false">								
+						<input type="submit" name="prodaction" value="修改" class="btn btn-default">
+						<input type="submit" name="prodaction" value="刪除" class="btn btn-default" onclick="if(confirm('您確定刪除此篇文章嗎?')) return true;else return false">								
 					</c:if>
 					
 				<%--
@@ -60,8 +62,8 @@
 					<c:set var="user" value="<%=request.getRemoteUser()%>" />		
 					<c:if test='<%=request.isUserInRole("writer")%>'>
 						<c:if test='${singleArticle.account == user }'>
-							<input type="submit" name="prodaction" value="修改" class="btn">
-							<input type="submit" name="prodaction" value="刪除" class="btn" onclick="if(confirm('您確定刪除此篇文章嗎?')) return true;else return false">								
+							<input type="submit" name="prodaction" value="修改" class="btn btn-default">
+							<input type="submit" name="prodaction" value="刪除" class="btn btn-default" onclick="if(confirm('您確定刪除此篇文章嗎?')) return true;else return false">								
 						</c:if>
 					</c:if>				
 					
@@ -97,9 +99,9 @@
 									<form action="<c:url value="/pages/article.controller"/>" method="get">
 										<input type="hidden" name="mno" value="${row.mno}">
 										<input type="hidden" name="updm" value="${singleArticle.ano}">
-										<input type="submit" name="revise" value="編輯" class="btn">
+										<input type="submit" name="revise" value="編輯" class="btn btn-default">
 										&nbsp;
-										<input type="submit" name="revise" value="刪除" class="btn"
+										<input type="submit" name="revise" value="刪除" class="btn btn-default"
 											onclick="if(confirm('您確定刪除此留言嗎?')) return true;else return false">
 									</form>									
 								</c:if>
@@ -120,9 +122,14 @@
 					});
 				</script>
 				<br /> 
+				<span>
+					<font color="red" style="font-weight: bold; font-size: medium;">
+						${error.content}
+					</font>
+				</span>
 				<center>
 				<div style="margin:5px 0 30px 0">
-				<input type="submit" name="revise" value="留言" class="btn">
+				<input type="submit" name="revise" value="留言" class="btn btn-default">
 				</div>
 				</center>
 			</form>
