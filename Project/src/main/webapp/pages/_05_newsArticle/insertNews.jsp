@@ -11,7 +11,7 @@
 <title>Update News</title>
 <script type="text/javascript" src="../js/jquery-2.2.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+
 
 </head>
 <body>
