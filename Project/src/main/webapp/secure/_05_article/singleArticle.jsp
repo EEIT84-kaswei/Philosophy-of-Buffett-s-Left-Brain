@@ -128,6 +128,7 @@
 					});
 				</script>
 				<br /> 
+				<span><font style="font-size: medium; color: red">${error.content}</font></span>
 				<center>
 				<div style="margin:5px 0 30px 0">
 				<input type="submit" name="revise" value="留言" class="btn btn-default">

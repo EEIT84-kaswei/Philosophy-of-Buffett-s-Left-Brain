@@ -91,7 +91,7 @@ body {
 										</c:if>
 									</select></td>
 								<td><input type="submit" name="revise" value="update"></td>
-								<td><input type="submit" name="revise" value="delete"></td>
+								<td><input type="submit" name="revise" value="delete" onclick="if(confirm('您是否確定刪除會員：${row.account}')) return true;else return false"></td>
 							</form>
 							</tr>
 						</c:forEach>
