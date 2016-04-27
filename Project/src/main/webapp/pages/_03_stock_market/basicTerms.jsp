@@ -66,7 +66,7 @@
 	height: 100%;
 	padding: 15px;
 	margin-top: 10px;
-	background: #fff;
+	background: red;
 }
 
 #abgne-block-20120327 .tab_container .tab_content li img {
@@ -124,8 +124,7 @@
 			<div class="tab_container">
 				<ul class="tab_content">
 				
-					<li style="font-size: 16px;color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-1.jpg'); " >
-					<div style="background-color:rgba(0 , 0, 0, 0.3)">
+					<li >
 						<h3>KD 隨機指標</h3>
 						<p>
 							說明:<br> KD市場常使用的一套技術分析工具。其適用範圍以中短期投資的技術分析為最佳。隨機
@@ -145,10 +144,9 @@
 							6. 當D值跌至15以下時，意味市場為嚴重之超賣，其為買入訊號；當D值超過85以上時，意味市場為嚴重之超買，其為賣出訊號。<br>
 							7. 價格創新高或新低，而KD未有此現象，此為背離現象，亦即為可能反轉的重要前兆。<br> <br> <br>
 						</p>
-						</div>
 					</li>
 					
-					<li style="font-size: 16px;color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-2.jpg'); ">
+					<li style="font-size: 16px;color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-5.jpg'); ">
 					<div style="background-color:rgba(0 , 0, 0, 0.3)">
 						<h3>RSI 相對強弱指標</h3>
 						<p>
