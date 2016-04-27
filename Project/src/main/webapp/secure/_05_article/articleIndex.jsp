@@ -90,16 +90,20 @@ body {
 				</table>
 				<c:if test='<%=request.isUserInRole("admin")%>'>
 					<center>
+						<div style="padding:20px">
 						<a href="<c:url value='/secure/_05_article/newArticle.jsp'/>">
-							<input type="button" value="發表文章">
+							<input type="button" value="發表文章" class="btn btn-default">
 						</a>
+						</div>
 					</center>
 				</c:if>
 				<c:if test='<%=request.isUserInRole("writer")%>'>
 					<center>
+					<div style="padding:20px">
 						<a href="<c:url value='/secure/_05_article/newArticle.jsp'/>">
-							<input type="button" value="發表文章">
+							<input type="button" value="發表文章" class="btn btn-default">
 						</a>
+					</div>
 					</center>
 				</c:if>
 			</form>
