@@ -131,8 +131,8 @@
 							指標的理論認為：當股市處於牛市時，收盤價往往接近當日最高價； 反之在熊市時，收盤價比較接近當日最低價，該指數的目的即在反映
 							出近期收盤價在該段日子中價格區間的相對位置。<br> <br>計算公式:<br>
 							它是由%K(快速平均值)、%D(慢速平均值)兩條線所組成，假設從n天週期計算出隨機指標時，首先須找出最近n天當中曾經出現過的最高價、最低價與第n天的收盤價，然後利用這三個數字來計算第n天的未成熟隨機值(RSV)。<br>
-							第n天收盤價-最近n天內最低價<br> RSV ＝────────────────×100<br>
-							最近n天內最高價-最近n天內最低價<br> 計算出RSV之後，再來計算K值與D值。<br> 當日K值(%K)=
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第n天收盤價-最近n天內最低價<br> RSV ＝────────────────────────×100<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最近n天內最高價-最近n天內最低價<br> 計算出RSV之後，再來計算K值與D值。<br> 當日K值(%K)=
 							2/3 前一日 K值 + 1/3 RSV<br> 當日D值(%D)= 2/3 前一日 D值＋ 1/3 當日K值<br>
 							若無前一日的K值與D值，可以分別用50來代入計算，經過長期的平滑的結果，起算基期雖然不同，但會趨於一致，差異很小。<br>
 							<br> 使用方法:<br> 1.
@@ -154,10 +154,11 @@
 						<p>
 							說明:<br> RSI
 							目前已為市場普遍使用，是主要技術指標之一，其主要特點是計算某一段時間內買賣雙方力量，作為超買、超賣的參考與Ｋ線圖及其他技術指標（三至五種）一起使用，以免過早賣及買進，造成少賺多賠的損失。<br>
-							計算公式:<br> 過去n日內上漲點數總和<br> UP＝────────────────<br>
-							n<br> 過去n日內下跌點數收總和<br> DN＝─────────────────<br> n<br>
-							UP<br> RS ＝ ──────<br> DN<br> 100<br>
-							n日RSI＝100 － ────<br> 1+RS<br> <br> 使用方法:<br>
+							計算公式:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;過去n日內上漲點數總和<br> UP＝────────────────<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;過去n日內下跌點數收總和<br> DN＝─────────────────<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UP<br> RS ＝ ──────<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DN<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100<br>
+							n日RSI＝100 － ────<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1+RS<br> <br> 使用方法:<br>
 							1. 以6日RSI值為例，80以上為超買，90以上或M頭為賣點；20以下為超賣，10以下或W底為買點。<br> 2.
 							在股價創新高點，同時RSI也創新高點時，表示後市仍強，若未創新高點為賣出訊號。<br> 3.
 							在股價創新低點，RSI也創新低點，則後市仍弱，若RSI未創新低點，則為買進訊號。<br> 4.
