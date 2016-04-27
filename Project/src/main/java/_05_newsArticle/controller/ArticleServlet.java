@@ -228,7 +228,7 @@ public class ArticleServlet extends HttpServlet {
 			String mcontext = request.getParameter("mcontent");
 			if(mcontext.trim().length() == 0){
 				
-				error.put("content", "請輸入您的留言");
+				error.put("msg", "請輸入您的留言");
 				request.getRequestDispatcher("/secure/_05_article/updMessage.jsp").forward(request, response);
 				return;
 				

@@ -100,7 +100,7 @@ $('document').ready(function(){
 			</c:forEach>
 			<c:param name="locale" value="en_US" />
 		</c:url>
-		<a href="${engURL}"><font style="font-family: wt011;font-size:150%;color:black">English</font></a>
+		<a href="${engURL}"><font style="font-size:150%;color:black">English</font></a>
 		</div>
 		<div style="background-color: rgba(255, 255, 255, 0.5);width:200px;display: inline;padding:5px 20px 0 20px;margin:0 10px 0 0;height:50px">
 		<c:url var="chineseURL" value="">
@@ -111,10 +111,10 @@ $('document').ready(function(){
 			</c:forEach>
 			<c:param name="locale" value="zh_TW" />
 		</c:url>
-		<a href="${chineseURL}"><font style="font-family: wt011;font-size:160%;color:black;">中文</font></a>
+		<a href="${chineseURL}"><font style="font-size:160%;color:black;">中文</font></a>
 		</div>
 		<div style="background-color: rgba(255, 255, 255, 0.5);width:200px;display: inline;padding:5px 20px 0 20px;margin:0 10px 0 0;height:50px">
-		<c:url var="chineseURL" value="">
+		<c:url var="russianURL" value="">
 			<c:forEach var="args" items="${param}">
 				<c:if test='${args.key ne "locale"}'>
 					<c:param name="${args.key}" value="${args.value}"/>
@@ -122,7 +122,18 @@ $('document').ready(function(){
 			</c:forEach>
 			<c:param name="locale" value="ru_RU" />
 		</c:url>
-		<a href="${chineseURL}"><font style="font-family: wt011;font-size:160%;color:black;">русский</font></a>
+		<a href="${russianURL}"><font style="font-size:160%;color:black;">русский</font></a>
+		</div>
+				<div style="background-color: rgba(255, 255, 255, 0.5);width:200px;display: inline;padding:5px 20px 0 20px;margin:0 10px 0 0;height:50px">
+		<c:url var="japaneseURL" value="">
+			<c:forEach var="args" items="${param}">
+				<c:if test='${args.key ne "locale"}'>
+					<c:param name="${args.key}" value="${args.value}"/>
+				</c:if>
+			</c:forEach>
+			<c:param name="locale" value="ja_JP" />
+		</c:url>
+		<a href="${japaneseURL}"><font style="font-size:160%;color:black;">日本語</font></a>
 		</div>
 	<!-- 標題 END -->
 </center>

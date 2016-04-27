@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -10,6 +11,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>風險屬性問卷</title>
+<c:choose>
+	<c:when test="${! empty (param.locale)}">
+		<c:set var="loc" value="${param.locale}" scope="session"/>
+	</c:when>
+	<c:when test="${! empty (sessionScope.loc)}">
+		<c:set var="loc" value="${sessionScope.loc}" scope="session"/>
+	</c:when>
+	<c:otherwise>
+		<c:set var="loc" value="${pageContext.request.locale}" scope="session"/>
+	</c:otherwise>
+</c:choose>
 </head>
 <body style="background-color: #fff">
 
@@ -22,22 +34,27 @@
 	<div>
 		<jsp:include page="/nav.jsp" />
 	</div>
+	
+	<fmt:bundle basename="properties.question">   
+	
+	
+	
 	<div style="background-color:rgba(0, 0, 102,0.7);width:280px;margin:2px auto">
-	<H2 align="center" style="color: pink;">風險屬性問卷</H2>
+	<H2 align="center" style="color: pink;"><fmt:message key="questionnaire" /></H2>
 	</div>
 	<div style="margin:0 auto;max-width:50em;align:center">
 		<form action="<c:url value='/secure/_02_login.controller/QuestionServlet?insert=new' />"
-			method="POST">
-			<form role="form">
+			method="POST" role="form">
+			
 					<div class="form-group" style="background-color:#94b8b8;padding:20px;margin-bottom:0">
-						<p>1.客戶年齡層？</p>
+						<p><fmt:message key="HowOldAreYou" /></p><!-- 1.客戶年齡層？ -->
 						<label>
 							<select class="form-control" name="question1">
-								<option value="1"><c:if test="${param.question1 eq '1'}"></c:if>70歲以上/未滿20歲</option>
-								<option value="2"><c:if test="${param.question1 eq '2'}"></c:if>60至69歲</option>
-								<option value="3"><c:if test="${param.question1 eq '3'}"></c:if>50至59歲</option>
-								<option value="4"><c:if test="${param.question1 eq '4'}"></c:if>40至49歲</option>
-								<option value="5"><c:if test="${param.question1 eq '5'}"></c:if>20至39歲</option>
+								<option value="1"><c:if test="${param.question1 eq '1'}"></c:if><fmt:message key="Under20andOver70" /></option><!-- 20 70 -->
+								<option value="2"><c:if test="${param.question1 eq '2'}"></c:if><fmt:message key="From60To69" /></option><!-- 60~~69 -->
+								<option value="3"><c:if test="${param.question1 eq '3'}"></c:if><fmt:message key="From50To59" /></option><!-- 50~~59 -->
+								<option value="4"><c:if test="${param.question1 eq '4'}"></c:if><fmt:message key="From40To49" /></option><!-- 40~~49 -->
+								<option value="5"><c:if test="${param.question1 eq '5'}"></c:if><fmt:message key="From20To39" /></option><!-- 20~~39 -->
 							</select>
 						</label>
 						<label style="color: red">
@@ -46,14 +63,14 @@
 					</div>
 					
 					<div class="form-group" style="background-color:#d1e0e0;padding:20px;margin-bottom:0">
-					<p>2.投資經驗（包含投資股票、基金、外幣、黃金、期貨……等產品）？</p>
+					<p><fmt:message key="YourExperienceOfInvestment" /></p><!-- 2.投資經驗（包含投資股票、基金、外幣、黃金、期貨……等產品）？ -->
 					<label>
 						<select class="form-control" name="question2">
-  						<option value="1"><c:if test="${param.question2 eq '1'}"></c:if>無投資經驗或新手</option>
-						<option value="2"><c:if test="${param.question2 eq '2'}"></c:if>1年以下</option>
-						<option value="3"><c:if test="${param.question2 eq '3'}"></c:if>1~3年</option>
-						<option value="4"><c:if test="${param.question2 eq '4'}"></c:if>3~5年</option>
-						<option value="5"><c:if test="${param.question2 eq '5'}"></c:if>5年以上</option>
+  						<option value="1"><c:if test="${param.question2 eq '1'}"></c:if><fmt:message key="NoExperience" /></option>
+						<option value="2"><c:if test="${param.question2 eq '2'}"></c:if><fmt:message key="UnderOneYear" /></option>
+						<option value="3"><c:if test="${param.question2 eq '3'}"></c:if><fmt:message key="From1To3Years" /></option>
+						<option value="4"><c:if test="${param.question2 eq '4'}"></c:if><fmt:message key="From3To5Years" /></option>
+						<option value="5"><c:if test="${param.question2 eq '5'}"></c:if><fmt:message key="Over5Years" /></option>
 						</select>
 					</label>
 					<label style="color: red">
@@ -62,14 +79,14 @@
 					</div>
 					
 					<div class="form-group" style="background-color:#94b8b8;padding:20px;margin-bottom:0">
-					<p>3.個人/家庭月收入中有多少比例可用於投資或儲蓄？</p>
+					<p><fmt:message key="HowManyMoneyCanUseOnInvestment" /></p>
 					<label>
 						<select class="form-control" name="question3">
-							<option value="1"><c:if test="${param.question3 eq '1'}"></c:if>5%以下</option>
-							<option value="2"><c:if test="${param.question3 eq '2'}"></c:if>5%~10%</option>
-							<option value="3"><c:if test="${param.question3 eq '3'}"></c:if>10%~20%</option>
-							<option value="4"><c:if test="${param.question3 eq '4'}"></c:if>20%~30%</option>
-							<option value="5"><c:if test="${param.question3 eq '5'}"></c:if>30%以上</option>
+							<option value="1"><c:if test="${param.question3 eq '1'}"></c:if><fmt:message key="Under5Percent" /></option><!-- 5%以下 -->
+							<option value="2"><c:if test="${param.question3 eq '2'}"></c:if><fmt:message key="From5to10Percent" /></option><!-- 5%~10% -->
+							<option value="3"><c:if test="${param.question3 eq '3'}"></c:if><fmt:message key="From10to20Percent" /></option>
+							<option value="4"><c:if test="${param.question3 eq '4'}"></c:if><fmt:message key="From20to30Percent" /></option>
+							<option value="5"><c:if test="${param.question3 eq '5'}"></c:if><fmt:message key="Over30Percent" /></option>
 						</select>
 					</label>
 					<label style="color: red">
@@ -161,6 +178,7 @@
 	</div>
 
 
+</fmt:bundle>
 
 </body>
 </html>
