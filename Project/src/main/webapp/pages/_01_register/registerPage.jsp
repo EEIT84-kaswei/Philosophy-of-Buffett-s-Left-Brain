@@ -29,7 +29,6 @@
  			var account = $('input[name="account"]').val();
 		 	sendRequest("GET", url, account, "textText");
 		});
-
 	});
 </script>
 <script src="js/bootstrap.min.js"></script>
@@ -91,8 +90,8 @@
 					<tr>
 						<th>帳號</th>
 						<td><input type="text" name="account" size="35"
-							value="${param.account}" placeholder="請輸入帳號"></td>
-						<td><font size="-1" color="#FF0000">${error.account}</font></td>
+							value="${param.account}" ></td>
+						<td><font id="myfont" size="-1" color="#FF0000">${error.account}</font></td>
 					</tr>
 					<tr>
 						<th>密碼</th>
@@ -107,13 +106,13 @@
 					<tr>
 						<th>姓名</th>
 						<td><input type="text" name="name" size="35"
-							value="${param.name}" placeholder="請填寫中文姓名"></td>
+							value="${param.name}" ></td>
 						<td><font size="-1" color="#FF0000">${error.name}</font></td>
 					</tr>
 					<tr>
 						<th>身分證字號</th>
 						<td><input type="text" name="idc" size="35"
-							value="${param.idc}" placeholder="請輸入身分證字號"></td>
+							value="${param.idc}" ></td>
 						<td><font size="-1" color="#FF0000">${error.idc}</font></td>
 					</tr>
 					<tr>
@@ -124,14 +123,17 @@
 					<tr>
 						<th>電話區碼</th>
 						<td><input type="text" name="area_phone" value="${param.area_phone}" size="35"></td>
+						<td><font size="-1" color="#FF0000"></font></td>
 					</tr>
 					<tr>
 						<th>電話號碼</th>
 						<td><input type="text" name="phone" value="${param.phone}" size="35"></td>
+						<td><font size="-1" color="#FF0000"></font></td>
 					</tr>
 					<tr>
 						<th>通訊地址</th>
 						<td><input type="text" name="address" value="${param.address}" size="35"></td>
+						<td><font size="-1" color="#FF0000"></font></td>
 					</tr>
 					<tr>
 						<th>認證碼</th>

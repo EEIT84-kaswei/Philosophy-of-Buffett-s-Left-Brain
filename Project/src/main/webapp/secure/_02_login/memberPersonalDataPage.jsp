@@ -117,9 +117,9 @@
 			</table>
 
 			<div align="center" style="margin: 2em">
-				<input type="submit" name="prodaction" value="送出修改" class="btn btn-primary"/> 
-				<input type="button" value="返回" onclick="location.href='../../Welcome.jsp'" class="btn btn-primary" /> 
-				<input type="reset" value="清除表單" class="btn btn-primary">
+				<input type="submit" name="prodaction" value="送出修改" class="btn btn-default"/> 
+				<input type="button" value="返回" onclick="location.href='../../Welcome.jsp'" class="btn btn-default" /> 
+				<input type="reset" value="清除表單" class="btn btn-default">
 			</div>
 
 		</form>

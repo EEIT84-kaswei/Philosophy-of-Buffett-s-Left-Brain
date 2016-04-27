@@ -11,5 +11,5 @@ function sendRequest(method, url, account, action) {
 	$.ajax(settings);
 }
 function processText(data) {
-	$("font:eq(1)").text(data);
+	$("#myfont").text(data);
 }

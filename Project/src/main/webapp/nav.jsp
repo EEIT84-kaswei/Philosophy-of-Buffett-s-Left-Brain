@@ -120,6 +120,15 @@ body {
                     
                     <li>
                     	<c:if test="${pageContext.request.remoteUser == null}">
+	                    	<a href="<c:url value='/pages/_01_register/registerPage.jsp' />">
+	                    		<span class="glyphicon glyphicon-plus"></span> 
+	                    		<fmt:message key="registration"/>
+	                    	</a>
+                    	</c:if>
+                    </li>
+                    
+                    <li>
+                    	<c:if test="${pageContext.request.remoteUser == null}">
 	                    	<a href="<c:url value='/secure/_02_login/loginSuccess.jsp'/>">
 	                    		<span class="glyphicon glyphicon-log-in"></span> 
 	                    		<fmt:message key="login"/>
