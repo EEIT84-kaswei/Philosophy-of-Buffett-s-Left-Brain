@@ -11,10 +11,6 @@
 <title>Update News</title>
 <script type="text/javascript" src="../js/jquery-2.2.1.min.js"></script>
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<style type="text/css">
-
-</style>
 </head>
 <body>
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
@@ -24,11 +20,11 @@
 	<div><jsp:include page="/nav.jsp" /></div>
 
 <!-- 	<div class="container"> -->
-	<div style="height: 20em; margin: 2em auto; padding: 2em;">
+	<div style="height: 50em; margin: 2em auto; padding: 0em;" class="table-responsive">
 	<form action="<c:url value="/pages/_05_newsArticle/news.do"/>" method="post">
 		<% response.setCharacterEncoding("UTF-8"); %>
 				<input type="hidden" name="updateNo" value="${select.nno}">
-				<table style="border: 2px #FFAC55 solid; padding: 5px; background-color:rgba(255, 255, 255, 0.5)" rules="all" cellpadding='5' align="center">
+				<table style="border: 2px #FFAC55 solid; padding: 5px; background-color:rgba(255, 255, 255, 0.8)" rules="all" cellpadding='5' align="center">
 				
 				<tr>
 					<td>新聞標題:</td>
@@ -49,7 +45,9 @@
 				</tr>
 
 			</table>
-					<center><input type="submit" name="prodaction" value="送出" style="margin:30px" class="btn btn-default"></center>
+					<center>
+					<input type="submit" name="prodaction" value="送出" style="margin:30px" class="btn btn-default">
+					</center>
 
 		</form>
 		

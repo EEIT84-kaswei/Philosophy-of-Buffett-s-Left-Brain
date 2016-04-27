@@ -112,8 +112,6 @@
 								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></td>
 							<td><a
 								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></td>
-							<td><a
-								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="chengFenv"/></c:url>">成分股</a></td>
 						</tr>
 					</table>
 				</div>

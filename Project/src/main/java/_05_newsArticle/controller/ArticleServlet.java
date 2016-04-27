@@ -192,20 +192,22 @@ public class ArticleServlet extends HttpServlet {
 			return;
 		} else if("留言".equals(revise)){
 			String account = request.getParameter("account");
-			System.out.println("account = " + account);
 			String sano = request.getParameter("sano");
 			Integer ano = Integer.parseInt(sano);
-			System.out.println("ano = " + ano);
 			java.util.Date mtime = new Date();
-			System.out.println("mtime = " + mtime);
 			String mcontext = request.getParameter("content");
-			System.out.println("mcontext = " + mcontext);
+			if(mcontext.trim().length() == 0){
+				
+				error.put("content", "請輸入您的留言");
+				request.getRequestDispatcher("/secure/_05_article/singleArticle.jsp").forward(request, response);
+				return;
+				
+			}
 			MessageBean bean = new MessageBean();
 			bean.setAccount(account);
 			bean.setAno(ano);
 			bean.setMtime(mtime);
 			bean.setMcontext(mcontext);
-			System.out.println("bean = " + bean);
 			ArticleBean aresult = articleService.selectByAno(ano);
 			MessageBean result = messageService.insert(bean);
 			List<MessageBean> mresult = messageService.selectByAno(ano);
@@ -224,7 +226,13 @@ public class ArticleServlet extends HttpServlet {
 			Integer ano = Integer.parseInt(uano);
 			java.util.Date mtime = new Date();
 			String mcontext = request.getParameter("mcontent");
-			
+			if(mcontext.trim().length() == 0){
+				
+				error.put("content", "請輸入您的留言");
+				request.getRequestDispatcher("/secure/_05_article/updMessage.jsp").forward(request, response);
+				return;
+				
+			}
 			MessageBean bean = new MessageBean();
 			bean.setMno(mno);
 			bean.setAccount(account);
