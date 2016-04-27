@@ -47,9 +47,9 @@ input {
 #abgne-block-20120327 .tab_container {
 	clear: both;
 	border: 1px solid #DDD;
-	background: #fff;
+	background: #fffddd;
 	overflow: hidden;
-	border-radius: 5px;
+	border-radius: 2px;
 }
 #abgne-block-20120327 .tab_container ul {
 	position: relative;
@@ -60,8 +60,8 @@ input {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	padding: 15px;
-	margin-top: 10px;
+	padding: 10px;
+	margin-top: 0px;
 	background: #fff;
 }
 #abgne-block-20120327 .tab_container .tab_content li img {
@@ -138,51 +138,52 @@ $(function(){
 		<div>
 			<div id="abgne-block-20120327">
 		<ul class="tabs">
-			<li><span>登入</span></li>
-			<li><span>忘記密碼</span></li>
+			<li style="background-color:rgb(133, 133, 173);font-family:'微軟正黑體'"><span>登入</span></li>
+			<li style="background-color:rgb(0, 153, 153);font-family:'微軟正黑體'"><span>忘記密碼</span></li>
 		</ul>
 		<div class="tab_container">
 			<ul class="tab_content">
-				<li>
-					<font style="text-align:center"><h3>登入</h3></font>
+				<li style="background-color:rgb(133, 133, 173)">
+					<font style="text-align:center;font-family:'微軟正黑體';color:#ffffff"><h1>登入</h1></font>
 						<form action="j_security_check" method="post" class="form-horizontal" role="form">
-							<div style="text-align: center; margin: 0 auto" class="control-label">
-								<label>輸入帳號  </label> 
-								<div class="col-sm-20">
-									<input type="text" name="j_username" placeholder="請輸入帳號" class="form-control" size="10">
+							<div style="text-align: center; margin: 10px auto" class="control-label">
+								<label style="font-family:'微軟正黑體';color:#ffffff; font-size: medium;">輸入帳號  </label><br> 
+								<div class="col-sm-15">
+									<input type="text" name="j_username" placeholder="請輸入帳號" class="form-control" style="margin:5px;">
 								</div>
 							</div>
 							<br>
-							<div style="text-align: center; margin: 0 auto" class="control-label">
-								<label>輸入密碼  </label>
-								<div class="col-sm-20">
-									<input type="password" placeholder="請輸入密碼" name="j_password" class="form-control">
+							<div style="text-align: center; margin: 10px auto" class="control-label">
+								<label style="font-family:'微軟正黑體';color:#ffffff; font-size: medium;">輸入密碼  </label><br>
+								<div class="col-sm-15" style="0 auto">
+									<input type="password" placeholder="請輸入密碼" name="j_password" class="form-control" style="margin:5px;">
 								</div>
 							</div>
-							<br>
 							<span>
-								<font color="#ff0000" style="font-weight: bold">${changePassword}</font>
+								<font color="#ff9999" style="font-weight: bold">${changePassword}</font>
 							</span>
 							<br>
-							<button type="submit" class="btn btn-primary">送出</button>
+							<button type="submit" class="btn btn-primary" style="margin:2px 10px;">送出</button>
 						</form>
 				</li>
-				<li>
-					<font style="text-align:center"><h3>忘記密碼</h3></font>
+				<li style="background-color:rgb(0, 153, 153)">
+					<font style="text-align:center;font-family:'微軟正黑體';color:#ffffff"><h1>忘記密碼</h1></font>
 						<form action="<c:url value='/pages/_02_login/password.do'/>" method="post" class="form-horizontal" role="form">
-								<div style="margin:10px">
-									系統將寄送新的密碼至您註冊時的e-mail地址，請以新密碼重新登入。登入後，請務必即時修改您的密碼，以維護個人隱私及權益。謝謝！
-								</div>	
+
 								<div style="text-align: center; margin: 0 auto" class="control-label">
-									<label>請輸入帳號</label>
+									<label style="font-family:'微軟正黑體';color:#ffffff; font-size: medium;">請輸入帳號</label>
+									<br>
 										<span>
-											<font color="#003399" style="font-weight: bold">${error.fp}</font>
+											<font color="#cceeff" style="font-weight: bold">${error.fp}</font>
 										</span>
-	
-									<div class="col-sm-20">
-										<input type="text" placeholder="請輸入帳號" name="user" value="${param.user}" class="form-control">
-									</div>	
 								</div>
+								<div class="col-sm-15">
+									<input type="text" placeholder="請輸入帳號" name="user" value="${param.user}" class="form-control" style="margin:5px;">
+								</div>		
+								<div style="margin:10px; color: #ffffff; font-size: medium;">
+									系統將寄送新的密碼至您註冊時的e-mail地址，</br>請以新密碼重新登入。</br>登入後，請務必即時修改您的密碼，</br>以維護個人隱私及權益。謝謝！
+								</div>	
+						
 								<br>
 								<button type="submit" class="btn btn-primary">送出</button>
 

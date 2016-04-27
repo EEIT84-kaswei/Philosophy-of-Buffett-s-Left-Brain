@@ -9,7 +9,7 @@
 <title>會員資料管理</title>
 <style type="text/css">
 .mid {
-	width: 70%;
+	width: 80%;
 	align: center;
 	margin: 0 auto;
 	padding: 10px;
@@ -24,7 +24,8 @@
 
 .table4_2 th {
 	background-color: rgba(0, 153, 204, 0.7);
-	color: #000000
+	color: #000000;
+/* 	width:30px; */
 }
 
 .table4_2, .table4_2 th, .table4_2 td {
@@ -70,7 +71,7 @@
 	<div id="mid" align="center" class="table-responsive">
 		<form action='<c:url value="/secure/_02_login/member.do"/>' method='POST'>
 		<input type="hidden" name="id" value="${user.id}">
-			<table class="table4_2" style="padding: 1em; height: 3em;max-width:40em;border-radius:10px;">
+			<table class="table" style="padding: 1em; height: 3em;max-width:40em;border-radius:10px;">
 				<tr>
 					<th>帳號</th>
 					<td>${user.account}</td>

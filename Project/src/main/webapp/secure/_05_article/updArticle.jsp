@@ -28,27 +28,27 @@
 			<table style="border: 2px #FFAC55 solid; padding: 5px; background-color:rgba(255, 255, 255, 0.5)" rules="all" cellpadding='5' align="center">
 				
 				<tr>
-					<td>作家名稱 :</td>
+					<td>作家名稱 ：</td>
 					<td>
 						<input type="text" name="aname" value="${updArticle.aname}" required size="45">
 				   <%-- <span class="error">${error.aname}</span> --%>
 					</td>
 				</tr>
 				<tr>
-					<td>文章標題:</td>
+					<td>文章標題：</td>
 					<td>
-						<input type="text" name="atitle" value="${updArticle.atitle}" required size="45"> 
+						${updArticle.atitle}
 				   <%-- <span class="error">${error.atitle}</span> --%>
 					</td>
 				</tr>
 				<tr>
-					<td>文章內文 :</td>
+					<td>文章內文 ：</td>
 					<td><textarea name="acontext" cols="60" rows="30">${updArticle.acontext}</textarea>
 						<script>
 							CKEDITOR.replace('acontext', {});
 						</script> 
 						<br>
-						<span class="error">${error.acontext}</span>
+						<span class="error" style="font-size: medium; color: red">${error.acontext}</span>
 					</td>
 				</tr>
 			</table>

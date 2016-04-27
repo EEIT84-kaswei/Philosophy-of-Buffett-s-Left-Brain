@@ -78,12 +78,21 @@ public class ArticleDAOHibernate implements ArticleDAO{
 	@Override
 	public boolean update(Integer ano, String account, String aname, String atitle, String acontext){
 		if(atitle!=null){
-			ArticleBean result = (ArticleBean) getSession().get(ArticleBean.class, atitle);
-			result.setAccount(account);
-			result.setAname(aname);
-			result.setAtime(new Date());
-			result.setAtitle(atitle);
-			result.setAcontext(acontext);
+			Query query=getSession().createQuery("update ArticleBean set account=:account, aname=:aname, atime=:atime, atitle=:atitle, acontext=:acontext where atitle=:atitle");
+			query.setParameter("account", account);
+			query.setParameter("aname", aname);
+			query.setParameter("atime", new Date());
+			query.setParameter("atitle", atitle);
+			query.setParameter("acontext", acontext);
+			query.setParameter("atitle", atitle);
+			int result=query.executeUpdate();
+			System.out.println(result);
+//			ArticleBean result = (ArticleBean) getSession().get(ArticleBean.class, atitle);
+//			result.setAccount(account);
+//			result.setAname(aname);
+//			result.setAtime(new Date());
+//			result.setAtitle(atitle);
+//			result.setAcontext(acontext);
 			return true;
 		}
 		return false;

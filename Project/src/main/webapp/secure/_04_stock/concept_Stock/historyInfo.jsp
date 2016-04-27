@@ -28,7 +28,7 @@
   		max-width: 60em;
   		width:100%;
   		float:left;
-  		margin:1em;
+  		margin:1em 0 0 0;
 		padding:1em;
 		 }
 
@@ -63,8 +63,9 @@
 		</div>
 		<div id="leftone"> 
 			
-			
-			<h4 style="color:white">即時數據</h4>
+			<div style="background-color:rgba(0,0,0,0.7);width:120px;margin:0 auto;text-align:center">
+			<h3 style="color:#cce6ff">即時數據</h3>
+			</div>
 			<div id="instantChart" style="height: 400px;"></div>
 			<table style="background-color:	rgba(0, 0, 0, 0.6);border: 2px black solid;border-radius:10px;border-style:none; padding: 5px;color:#ffcc00;margin:2em auto" rules="all"
 						cellpadding='5' align=center>
@@ -92,7 +93,9 @@
 			<input id="month" type="button" value="月K" style="float:right;">
 			<input id="week" type="button" value="周K" style="float:right;">
 			<input id="day" type="button" value="日K" style="float:right;">
-			<h4 style="color:white">歷史數據(走勢圖)</h4>
+			<div style="background-color:rgba(0,0,0,0.7);width:120px;margin:0 auto;text-align:center">
+			<h3 style="color:#cce6ff">歷史數據(走勢圖)</h3>
+			</div>
 			<div id="historyChart" style="width: 100%; height: 600px;"></div>
 			<br>
 			<table>

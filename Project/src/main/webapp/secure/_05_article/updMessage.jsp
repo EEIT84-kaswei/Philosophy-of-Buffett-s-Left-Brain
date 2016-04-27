@@ -31,7 +31,7 @@
 					    <c:param name="sano" value="${singleArticle.ano}" />
 					</c:url>" method="post">
 				
-				<h2 style="text-align:center;color:#008080;font-family: wt011">${singleArticle.atitle}</h2>
+				<h2 style="text-align:center;color:#008080">${singleArticle.atitle}</h2>
 				<p style="text-align:center">${singleArticle.aname}</p>
 				<fmt:formatDate var="time" value="${singleArticle.atime}" type="both" dateStyle="long" /> 
 				<p style="text-align:center;color:#999999">${time}</p>
@@ -64,11 +64,12 @@
 				<!-- ------------------------------- 楚河漢界 ------------------------------- -->
 				
 				<div>
-				<div style="margin:2em;border-top:3px dotted #000000;"></div>
-				<h3 style="text-align:center;color:#006600;font-family: wt011;">讀者回應</h3>
+				<div style="margin:2em;border:2px dotted #000000;"></div>
+				<h3 style="text-align:center;color:#006600;">讀者回應</h3>
 
 				<div style="max-width:50em;margin:1em auto">
 				
+
 				<table style="border-collapse: initial; border: 2px solid #006600;" id="msgTable">
 				<c:if test="${not empty msg}">
 				<c:forEach var="row" items="${msg}">				
@@ -88,8 +89,8 @@
 							
 						</c:if>
 						<c:if test="${row.mno == updno}">							
-							<tr>	
-								<td>							
+							<tr style="border-right:2px solid #006600">	
+								<td style="margin:2em">							
 									<form action="<c:url value="/pages/article.controller"/>" method="post">
 										<input type="hidden" name="umno" value="${row.mno}"> 
 										<input type="hidden" name="account" value="${row.account}"> 								
@@ -98,8 +99,9 @@
 										<script>
 											CKEDITOR.replace('mcontent', {});
 										</script>
-										<input type="submit" name="revise" value="確認"> 
-										<input type="submit" name="revise" value="取消">
+										<input type="submit" name="revise" value="確認" class="btn btn-default" style="margin:2em"> 
+										<input type="submit" name="revise" value="取消" class="btn btn-default" style="margin:2em">
+										<font style="font-size: medium; color: red">${error.msg}</font>
 									</form>
 								<td>
 							</tr>
