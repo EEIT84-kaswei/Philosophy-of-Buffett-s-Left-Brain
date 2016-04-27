@@ -20,7 +20,7 @@
 
 	<!-- 網頁主要導覽列 -->
 	<div><jsp:include page="/nav.jsp" /></div>
-	<div style="height: 20em; margin: 2em auto; padding: 2em;">
+	<div style="height: 20em; margin: 2em auto; padding: 0em;">
 
 		<!-- 表格開始 -->
 

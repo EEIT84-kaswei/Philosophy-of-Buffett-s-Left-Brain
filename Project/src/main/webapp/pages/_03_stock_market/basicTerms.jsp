@@ -56,7 +56,7 @@
 
 #abgne-block-20120327 .tab_container ul {
 	position: relative;
-	height: 900px;
+	height: 780px;
 	overflow: hidden;
 }
 
@@ -124,7 +124,7 @@
 			<div class="tab_container">
 				<ul class="tab_content">
 				
-					<li style="font-size: 16px;color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-1.jpg'); " >
+					<li style="overflow:auto; font-size: 16px;color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-1.jpg'); ">
 					<div style="background-color:rgba(0 , 0, 0, 0.3)">
 						<h3>KD 隨機指標</h3>
 						<p>
@@ -148,7 +148,8 @@
 						</div>
 					</li>
 					
-					<li style="font-size: 16px;color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-2.jpg'); ">
+					
+					<li style="overflow:auto; font-size: 16px;color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-2.jpg'); ">
 					<div style="background-color:rgba(0 , 0, 0, 0.3)">
 						<h3>RSI 相對強弱指標</h3>
 						<p>
@@ -168,7 +169,7 @@
 						</p>
 						</div>
 					</li>
-					<li style="font-size: 16px;color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-3.jpg'); ">
+					<li style="overflow:auto; font-size: 16px;color:#FAE5E5;background-image:url('${pageContext.request.contextPath}/img/02bgi-3.jpg'); ">
 					<div style="background-color:rgba(0 , 0, 0, 0.3)">
 						<h3>MACD</h3>
 						<p>

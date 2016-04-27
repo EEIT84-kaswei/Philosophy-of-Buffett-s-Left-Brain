@@ -17,7 +17,7 @@
 <jsp:include page="/nav.jsp" />
 
 <center>
-<h1>登入成功！</h1>
+<h1 style="color:yellow">登入成功！</h1>
 </center>
 
 </body>

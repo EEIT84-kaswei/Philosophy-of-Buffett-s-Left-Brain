@@ -80,8 +80,7 @@
 				
 				<table style="border: 2px solid #006600;" id="msgTable">
 				<c:if test="${not empty msg}">
-				<c:forEach var="row" items="${msg}">
-					
+				<c:forEach var="row" items="${msg}">				
 					
 						<tr style="border-top: 2px solid #006600;">
 							<td style="margin:20px 0 0 10px;padding:20px 0 0 10px;">回應者：${row.account}</td>
@@ -93,9 +92,24 @@
 						<tr>
 							<td style="margin:20px 0 0 10px;padding:0 0 0 10px;">回應內容：<br>${row.mcontext}</td>
 						</tr>
-						<tr style="border-botton: 2px solid #006600;">
-							<td style="margin:20px 0 20px 10px;padding:20px 0 20px 10px;">
-								<c:if test='${row.account == user }'>					
+						<c:if test='<%=request.isUserInRole("admin")%>'>				
+							<tr style="border-botton: 2px solid #006600;">
+								<td style="margin:20px 0 20px 10px;padding:20px 0 20px 10px;">
+										<form action="<c:url value="/pages/article.controller"/>" method="get">
+											<input type="hidden" name="mno" value="${row.mno}">
+											<input type="hidden" name="updm" value="${singleArticle.ano}">
+											<input type="submit" name="revise" value="編輯" class="btn btn-default">
+											&nbsp;
+											<input type="submit" name="revise" value="刪除" class="btn btn-default"
+												onclick="if(confirm('您確定刪除此留言嗎?')) return true;else return false">
+										</form>									
+								</td>
+							</tr>
+						</c:if>
+						<c:if test='${row.account == user }'>
+							<c:if test='<%=!request.isUserInRole("admin")%>'>											
+								<tr style="border-botton: 2px solid #006600;">
+									<td style="margin:20px 0 20px 10px;padding:20px 0 20px 10px;">
 									<form action="<c:url value="/pages/article.controller"/>" method="get">
 										<input type="hidden" name="mno" value="${row.mno}">
 										<input type="hidden" name="updm" value="${singleArticle.ano}">
@@ -103,10 +117,11 @@
 										&nbsp;
 										<input type="submit" name="revise" value="刪除" class="btn btn-default"
 											onclick="if(confirm('您確定刪除此留言嗎?')) return true;else return false">
-									</form>									
-								</c:if>
-							</td>
-						</tr>
+									</form>																		
+									</td>
+								</tr>
+							</c:if>
+						</c:if>
 				</c:forEach>
 				
 			</c:if>

@@ -68,7 +68,7 @@ public class AccountServlet extends HttpServlet {
 				if (p.getContentType() == null) {
 					if (fldName.equals("account")) {
 						account = value;
-//						System.out.println("account = " + account);
+						System.out.println("account = " + account);
 					} else if (fldName.equals("passw")) {
 						passw = value;
 //						System.out.println("passw = " + passw);
@@ -95,10 +95,10 @@ public class AccountServlet extends HttpServlet {
 //						System.out.println("address = " + address);
 					} else if (fldName.equals("auth")) {
 						auth = value;
-						System.out.println("auth = " + auth);
+//						System.out.println("auth = " + auth);
 					} else if (fldName.equals("prodaction")) {
 						prodaction = value;
-						System.out.println("prodaction = " + prodaction);
+//						System.out.println("prodaction = " + prodaction);
 					}
 				}
 			}
@@ -134,6 +134,9 @@ public class AccountServlet extends HttpServlet {
 					error.put("email", "電子郵件格式不符");
 				}
 			}
+			if (service.accountExists(account)) {
+				error.put("account", "此帳號已存在，請更換帳號");
+			}
 		} else {
 			error.put("errTitle", "此表單不是上傳檔案的表單");
 		}
@@ -144,9 +147,9 @@ public class AccountServlet extends HttpServlet {
 			return;
 		}
 
-		if (service.accountExists(account)) {
-			error.put("account", "此帳號已存在，請更換帳號");
-		} else {
+//		if (service.accountExists(account)) {
+//			error.put("account", "此帳號已存在，請更換帳號");
+//		} else {
 			if("寄送認證信".equals(prodaction)){
 				StringBuffer number = service.createNum();
 				HttpSession session = request.getSession();
@@ -189,7 +192,7 @@ public class AccountServlet extends HttpServlet {
 					}
 				}
 			}			
-		}
+//		}
 		// 如果有錯誤
 		if (!error.isEmpty()) {
 			// 導向原來輸入資料的畫面，這次會顯示錯誤訊息
