@@ -12,6 +12,8 @@
 	width: 70%;
 	align: center;
 	margin: 0 auto;
+	padding: 10px;
+	border-radius: 10px;
 }
 
 .table4_2 table {
@@ -21,20 +23,23 @@
 }
 
 .table4_2 th {
-	background-color: #C8D7FF;
+	background-color: rgba(0, 153, 204, 0.7);
 	color: #000000
 }
 
 .table4_2, .table4_2 th, .table4_2 td {
-	font-size: 0.95em;
+	font-size: 1em;
 	text-align: center;
-	padding: 4px;
+	padding: 10px;
+	margin:10px;
 	border-collapse: collapse;
 }
 
 .table4_2 th, .table4_2 td {
 	border: 1px solid #dfe8fe;
-	border-width: 1px 0 1px 0
+	border-width: 1px 0 1px 0;
+	font-weight: bold;
+	font-size: 120%;
 }
 
 .table4_2 tr {
@@ -42,11 +47,11 @@
 }
 
 .table4_2 tr:nth-child(odd) {
-	background-color: #ecf1fe;
+	background-color: rgba(255,255,255,0.7);
 }
 
 .table4_2 tr:nth-child(even) {
-	background-color: #fdfdfd;
+	background-color: rgba(255,255,255,0.7);
 }
 </style>
 
@@ -61,13 +66,11 @@
 	<jsp:include page="/nav.jsp" />
 
 
-	<h2 style="text-align: center;color:#ccffff">會員資料管理</h2>
-	<div id="mid" align="center">
+	<h2 style="text-align: center;color:#ccffff;font-weight:bold">會員資料管理</h2>
+	<div id="mid" align="center" class="table-responsive">
 		<form action='<c:url value="/secure/_02_login/member.do"/>' method='POST'>
-			<table class="table4_2" style="padding: 1em; height: 3em">
-
-
-			<input type="hidden" name="id" value="${user.id}">
+		<input type="hidden" name="id" value="${user.id}">
+			<table class="table4_2" style="padding: 1em; height: 3em;max-width:40em;border-radius:10px;">
 				<tr>
 					<th>帳號</th>
 					<td>${user.account}</td>
@@ -118,7 +121,7 @@
 
 			<div align="center" style="margin: 2em">
 				<input type="submit" name="prodaction" value="送出修改" class="btn btn-default"/> 
-				<input type="button" value="返回" onclick="location.href='../../Welcome.jsp'" class="btn btn-default" /> 
+				<input type="button" value="返回" onclick="location.href='<c:url value='/Welcome.jsp' />" class="btn btn-default" /> 
 				<input type="reset" value="清除表單" class="btn btn-default">
 			</div>
 
