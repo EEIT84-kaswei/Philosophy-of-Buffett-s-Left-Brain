@@ -38,6 +38,10 @@
     </user-data-constraint>
   </security-constraint>
 
+<error-page>
+    <error-code>403</error-code>
+    <location>/Suspended.jsp</location>
+  </error-page>
   <error-page>
     <error-code>404</error-code>
     <location>/Exception.jsp</location>
