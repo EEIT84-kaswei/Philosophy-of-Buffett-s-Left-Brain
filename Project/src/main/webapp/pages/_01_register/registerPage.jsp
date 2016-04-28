@@ -7,10 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>申請加入會員</title>
-<link rel="stylesheet" href="../../css/carley.css">
-<script type="text/javascript" src="../../js/jquery-2.2.1.min.js"></script>
-<script type="text/javascript" src="../../js/strength.js"></script>
-<script type="text/javascript" src="../../js/account.js"></script>
+<link rel="stylesheet" href="<c:url value='/css/carley.css' />">
+<script type="text/javascript" src="<c:url value='/js/jquery-2.2.1.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/strength.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/account.js' />"></script>
 
 <script>
 	$(document).ready(function($) {
@@ -82,7 +82,7 @@
 		</div>
 
 
-		<div align="center" style="margin: 3em">
+		<div align="center" style="margin: 3em;" class="table-responsive">
 			<form id='myform'
 				action='<c:url value="/pages/_01_register/account.do"/>'
 				ENCTYPE='multipart/form-data' method='POST'>
@@ -90,64 +90,65 @@
 					<tr>
 						<th>帳號</th>
 						<td><input type="text" name="account" size="35"
-							value="${param.account}" ></td>
-						<td><font id="myfont" size="-1" color="#FF0000">${error.account}</font></td>
+							value="${param.account}" ><br>
+							<font id="myfont" size="-1" color="#FF0000">${error.account}</font><br>
+						</td>
 					</tr>
 					<tr>
 						<th>密碼</th>
-						<td><input id="myPassword" type="password" name="passw" value="${param.passw}" size="35"></td>
-						<td><font size="-1" color="#FF0000">${error.passw}</font></td>
+						<td><input id="myPassword" type="password" name="passw" value="${param.passw}" size="35"><br>
+							<font size="-1" color="#FF0000">${error.passw}</font>
+						</td>
 					</tr>
 					<tr>
 						<th>密碼確認</th>
-						<td><input type="password" name="checkpassw" value="${param.checkpassw}" size="35"></td>
-						<td><font size="-1" color="#FF0000">${error.checkpassw}</font></td>
+						<td><input type="password" name="checkpassw" value="${param.checkpassw}" size="35"><br>
+							<font size="-1" color="#FF0000">${error.checkpassw}</font>
+						</td>
 					</tr>
 					<tr>
 						<th>姓名</th>
-						<td><input type="text" name="name" size="35"
-							value="${param.name}" ></td>
-						<td><font size="-1" color="#FF0000">${error.name}</font></td>
+						<td><input type="text" name="name" size="35" value="${param.name}" ><br>
+							<font size="-1" color="#FF0000">${error.name}</font>
+						</td>
 					</tr>
 					<tr>
 						<th>身分證字號</th>
-						<td><input type="text" name="idc" size="35"
-							value="${param.idc}" ></td>
-						<td><font size="-1" color="#FF0000">${error.idc}</font></td>
+						<td><input type="text" name="idc" size="35" value="${param.idc}" ><br>
+							<font size="-1" color="#FF0000">${error.idc}</font>
+						</td>
 					</tr>
 					<tr>
 						<th>電子郵件信箱</th>
-						<td><input type="text" name="email" value="${param.email}" size="35"></td>
-						<td><font size="-1" color="#FF0000">${error.email}</font></td>
+						<td><input type="text" name="email" value="${param.email}" size="35"><br>
+							<font size="-1" color="#FF0000">${error.email}</font>
+						</td>
 					</tr>
 					<tr>
 						<th>電話區碼</th>
 						<td><input type="text" name="area_phone" value="${param.area_phone}" size="35"></td>
-						<td><font size="-1" color="#FF0000"></font></td>
 					</tr>
 					<tr>
 						<th>電話號碼</th>
 						<td><input type="text" name="phone" value="${param.phone}" size="35"></td>
-						<td><font size="-1" color="#FF0000"></font></td>
 					</tr>
 					<tr>
 						<th>通訊地址</th>
 						<td><input type="text" name="address" value="${param.address}" size="35"></td>
-						<td><font size="-1" color="#FF0000"></font></td>
 					</tr>
 					<tr>
 						<th>認證碼</th>
-						<td><input type="text" name="auth" size="35"></td>
-						<td><font size="-1" color="#FF0000">${error.auth}</font></td>
+						<td><input type="text" name="auth" size="35"><font size="-1" color="#FF0000">${error.auth}</font>
+						</td>
 					</tr>
 				</table>
 
 
 				<div align="center" style="margin: 2em">
-					<input type="submit" name="prodaction" value="寄送認證信" /> 
-					<input type="submit" name="prodaction" value="送出" />
-					<input type="button" value="返回" onclick="location.href='../../Welcome.jsp'" /> 
-					<input type="reset" value="清除表單">
+					<input type="submit" name="prodaction" value="寄送認證信" class="btn btn-default"/> 
+					<input type="submit" name="prodaction" value="送出"  class="btn btn-default" />
+					<input type="button" value="返回" onclick="location.href='../../Welcome.jsp'"  class="btn btn-default"/> 
+					<input type="reset" value="清除表單" class="btn btn-default">
 				</div>
 
 			</form>

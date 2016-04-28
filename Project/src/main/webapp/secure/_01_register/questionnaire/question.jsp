@@ -34,7 +34,7 @@
 	<div>
 		<jsp:include page="/nav.jsp" />
 	</div>
-	
+	 <fmt:setLocale value="${loc}"/> 
 	<fmt:bundle basename="properties.question">   
 	
 	

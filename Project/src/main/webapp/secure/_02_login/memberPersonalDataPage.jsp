@@ -75,47 +75,47 @@
 				<tr>
 					<th>帳號</th>
 					<td>${user.account}</td>
-					<td></td>
 				</tr>
 				<tr>
 					<th>更改密碼</th>
-					<td><input type="password" name="newpassw" value="${param.newpassw}" size="30"></td>
-					<td><font size="-1" color="#FF0000">${error.checkpassw}</font></td>
+					<td><input type="password" name="newpassw" value="${param.newpassw}" size="30"><br>
+						<font size="-1" style="text-align:left;color:#008080">${error.checkpassw}</font>
+					</td>
 				</tr>
 				<tr>
 					<th>新密碼確認</th>
-					<td><input type="password" name="checkpassw" value="${param.checkpassw}" size="30"></td>
-					<td><font size="-1" color="#FF0000">${error.checkpassw}</font></td>
+					<td><input type="password" name="checkpassw" value="${param.checkpassw}" size="30"><br>
+						<font size="-1" style="text-align:left;color:#008080">${error.checkpassw}</font>
+					</td>
 				</tr>
 				<tr>
 					<th>姓名</th>
-					<td><input type="text" name="name" size="30" value="${user.name}" placeholder="請填寫中文姓名"></td>
-					<td><font size="-1" color="#FF0000">${error.name}</font></td>
+					<td><input type="text" name="name" size="30" value="${user.name}" placeholder="請填寫中文姓名"><br>
+						<font size="-1" style="text-align:left;color:#008080">${error.name}</font>
+					</td>
 				</tr>
 				<tr>
 					<th>身分證字號</th>	
-					<td><input type="hidden" name="idc" value="${user.idc}">${user.idc}</td>
-					<td><font size="-1" color="#FF0000">${error.idc}</font></td>
+					<td><input type="hidden" name="idc" value="${user.idc}">${user.idc}<br>
+					<font size="-1" style="text-align:left;color:#008080">${error.idc}</font>
 				</tr>
 				<tr>
 					<th>電子郵件信箱</th>
-					<td><input type="text" name="email" value="${user.email}" size="30"></td>
-					<td><font size="-1" color="#FF0000">${error.email}</font></td>
+					<td><input type="text" name="email" value="${user.email}" size="30"><br>
+						<font size="-1" style="text-align:left;color:#008080">${error.email}</font>
+					</td>
 				</tr>
 				<tr>
 					<th>電話區碼</th>
 					<td><input type="text" name="area_phone" value="${user.area_phone}" size="30"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<th>電話號碼</th>
 					<td><input type="text" name="phone" value="${user.phone}" size="30"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<th>通訊地址</th>
 					<td><input type="text" name="address" value="${user.address}" size="30"></td>
-					<td></td>
 				</tr>
 			</table>
 
