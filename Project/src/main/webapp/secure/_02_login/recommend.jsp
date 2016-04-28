@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,6 +26,17 @@ ol li a{
 	color:blue;
 }
 </style>
+<c:choose>
+	<c:when test="${! empty (param.locale)}">
+		<c:set var="loc" value="${param.locale}" scope="session"/>
+	</c:when>
+	<c:when test="${! empty (sessionScope.loc)}">
+		<c:set var="loc" value="${sessionScope.loc}" scope="session"/>
+	</c:when>
+	<c:otherwise>
+		<c:set var="loc" value="${pageContext.request.locale}" scope="session"/>
+	</c:otherwise>
+</c:choose>
 </head>
 <body>
 
@@ -36,7 +49,9 @@ ol li a{
 <div>
 <jsp:include page="/nav.jsp" />
 </div>
+ <fmt:setLocale value="${loc}"/>  
 
+ <fmt:bundle basename="properties.question">   
 <div align="center" id="mainDIV" style="background-color:rgba(255, 255, 255, 0.8);max-width:520px;margin:60px auto;padding:20px">
 
 <h3 align="center">推薦股票</h3>
@@ -64,6 +79,6 @@ ol li a{
 </div>
 
 
-
+</fmt:bundle>
 </body>
 </html>
