@@ -69,8 +69,10 @@ body {
 	<br>
 	<br>
 	<br>
-	<h2 align="center" style="color:#ffe6ff">管理員平台</h2>
-	<h4 align="center" style="color:#ffe6ff">個股資料管理</h4>
+	<div style="background-color: rgba(0,0,0,0.7);max-width:40em;margin:0 auto;width:150px;margin:0 auto">
+	<h2 align="center" style="color:#ffe6ff;font-family:'微軟正黑體';">管理員平台</h2>
+	<h4 align="center" style="color:#ffe6ff;font-family:'微軟正黑體';">個股資料管理</h4>
+	</div>
 	<br>
 
 	<center>

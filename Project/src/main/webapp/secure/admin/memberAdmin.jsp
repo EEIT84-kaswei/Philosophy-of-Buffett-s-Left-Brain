@@ -43,14 +43,14 @@ body {
 <div style="margin:0 auto 2em auto">
 	<br>
 	<br>
-	<br>
-	<h2 align="center" style="color:#ffe6ff">管理員平台</h2>
-	<h4 align="center" style="color:#ffe6ff">會員權限管理</h4>
-	<br>
+	<div style="background-color: rgba(0,0,0,0.7);max-width:40em;margin:0 auto;width:150px;margin:0 auto">
+	<h2 align="center" style="color:#ffe6ff;font-family:'微軟正黑體';">管理員平台</h2>
+	<h4 align="center" style="color:#ffe6ff;font-family:'微軟正黑體';">會員權限管理</h4>
+	</div>
 
 	
 	
-		<div style="max-width:40em;margin:0 auto">
+		<div style="margin:auto;max-width:50em">
 				<div class="table-responsive">
 				<table class="table table-hover table-bordered" id="thisTable1" style="margin:0 auto">
 					<thead>

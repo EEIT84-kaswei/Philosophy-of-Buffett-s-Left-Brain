@@ -95,10 +95,10 @@
 					</div>
 					
 					<div class="form-group" style="background-color:#d1e0e0;padding:20px;margin-bottom:0">
-					<p>4.可承受投資風險之程度資產的市值可能會上升或下降，就您所期望平均年投資報酬率是多少？（以投資100萬元為例）</p>
+					<p><fmt:message key="extentForInvestigating" /></p>
 					<label>
 						<select class="form-control" name="question5" >
-						  	<option value="1"><c:if test="${param.question5 eq '1'}"></c:if>1%~2%（每年希望獲利1~2萬元）</option>
+						  	<option value="1"><c:if test="${param.question5 eq '1'}"></c:if><fmt:message key="hopeFor1to2" /></option>
 						  	<option value="2"><c:if test="${param.question5 eq '2'}"></c:if>3%~5%（每年希望獲利3~5萬元）</option>
 						  	<option value="3"><c:if test="${param.question5 eq '3'}"></c:if>6%~8%（每年希望獲利6~8萬元）</option>
 						  	<option value="4"><c:if test="${param.question5 eq '4'}"></c:if>9%~12%（每年希望獲利9~12萬元）</option>
