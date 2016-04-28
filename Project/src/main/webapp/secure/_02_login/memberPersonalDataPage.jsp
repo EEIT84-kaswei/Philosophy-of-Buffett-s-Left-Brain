@@ -9,26 +9,26 @@
 <title>會員資料管理</title>
 <style type="text/css">
 .mid {
-	width: 80%;
+	width: 70%;
 	align: center;
 	margin: 0 auto;
 	padding: 10px;
 	border-radius: 10px;
 }
 
-.table4_2 table {
+#table4_2 table {
 	width: 100%;
 	margin: 15px 0;
 	border: 0;
 }
 
-.table4_2 th {
+#table4_2 th {
 	background-color: rgba(0, 153, 204, 0.7);
 	color: #000000;
-/* 	width:30px; */
+	width:30px;
 }
 
-.table4_2, .table4_2 th, .table4_2 td {
+#table4_2, #table4_2 th, #table4_2 td {
 	font-size: 1em;
 	text-align: center;
 	padding: 10px;
@@ -36,22 +36,22 @@
 	border-collapse: collapse;
 }
 
-.table4_2 th, .table4_2 td {
+#table4_2 th, #table4_2 td {
 	border: 1px solid #dfe8fe;
 	border-width: 1px 0 1px 0;
 	font-weight: bold;
 	font-size: 120%;
 }
 
-.table4_2 tr {
+#table4_2 tr {
 	border: 1px solid #dfe8fe;
 }
 
-.table4_2 tr:nth-child(odd) {
+#table4_2 tr:nth-child(odd) {
 	background-color: rgba(255,255,255,0.7);
 }
 
-.table4_2 tr:nth-child(even) {
+#table4_2 tr:nth-child(even) {
 	background-color: rgba(255,255,255,0.7);
 }
 </style>
@@ -71,7 +71,7 @@
 	<div id="mid" align="center" class="table-responsive">
 		<form action='<c:url value="/secure/_02_login/member.do"/>' method='POST'>
 		<input type="hidden" name="id" value="${user.id}">
-			<table class="table" style="padding: 1em; height: 3em;max-width:40em;border-radius:10px;">
+			<table id="table4_2" class="table" style="padding: 1em; height: 3em;max-width:40em;border-radius:10px;">
 				<tr>
 					<th>帳號</th>
 					<td>${user.account}</td>
