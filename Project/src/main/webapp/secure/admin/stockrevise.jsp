@@ -77,13 +77,18 @@ body {
 		<div style="margin:auto;max-width:50em">
 		<div class="table-responsive" style="width:100%">
 			<table id="table2" style="width:100%">
+				
 				<thead>
-					<form action="<c:url value="/secure/StockCodeServlet" />" method="post">
+					
 						<tr>
-							<td><input type="text" size="5" name="deleteMsg" placeholder="股票編號"></td>
-							<td><input type="submit" value="Delete" name="stockManage" class="btn btn-primary"></td>
+						
+							<td><form action="<c:url value="/secure/StockCodeServlet" />" method="post">
+							<input type="text" size="5" name="deleteMsg" placeholder="股票編號">
+							<input type="submit" value="Delete" name="stockManage" class="btn btn-primary">
+							</form></td>
+							
 						</tr>
-					</form>
+					
 					<tr>
 						<th>股票編號</th>
 						<th>股票名稱</th>
@@ -94,6 +99,7 @@ body {
 
 					</tr>
 				</thead>
+				
 				<tbody>
 					<tr>
 						<td><input type="text" size="5" name="stock_Code"

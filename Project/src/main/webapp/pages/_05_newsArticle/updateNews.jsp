@@ -29,8 +29,9 @@
 				<tr>
 					<td>新聞標題:</td>
 					<td>
-						<input type="text" id="title" name="title" required autofocus value="${select.ntitle}" size="45"></input>
-				   <%-- <span class="error">${error.atitle}</span> --%>
+					<%-- <input type="text" id="title" name="title" required autofocus value="${select.ntitle}" size="45"></input> --%>
+					${select.ntitle}
+				   	<%-- <span class="error">${error.atitle}</span> --%>
 					</td>
 				</tr>
 				<tr>

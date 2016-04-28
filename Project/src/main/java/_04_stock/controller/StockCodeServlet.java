@@ -38,6 +38,7 @@ public class StockCodeServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		// 接收HTML Form資料
+		System.out.println("接收HTML Form資料");
 		String stockManage = request.getParameter("stockManage");//專為Insert欄位資料用
 		String stock_Code = request.getParameter("stock_Code");
 		String stock_Name = request.getParameter("stock_Name");
