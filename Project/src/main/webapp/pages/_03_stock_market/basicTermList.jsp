@@ -68,8 +68,7 @@ dd {
 	<fmt:bundle basename="properties.term">
 		<div
 			style="max-width: 80em; margin: 2em auto; background-color: #cccccc">
-			<h2 style="text-align: center; padding: 2em 2em 0em 2em">Important
-				Terms</h2>
+			<h2 style="text-align: center; padding: 2em 2em 0em 2em"><fmt:message key="ImportantTerms" /></h2>
 
 			<div style="max-width: 60%; margin: 3em auto">
 				<ul class="list-inline">
