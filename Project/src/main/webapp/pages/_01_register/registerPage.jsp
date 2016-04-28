@@ -144,10 +144,10 @@
 
 
 				<div align="center" style="margin: 2em">
-					<input type="submit" name="prodaction" value="寄送認證信" /> 
-					<input type="submit" name="prodaction" value="送出" />
-					<input type="button" value="返回" onclick="location.href='../../Welcome.jsp'" /> 
-					<input type="reset" value="清除表單">
+					<input type="submit" name="prodaction" value="寄送認證信" class="btn btn-default"/> 
+					<input type="submit" name="prodaction" value="送出"  class="btn btn-default" />
+					<input type="button" value="返回" onclick="location.href='../../Welcome.jsp'"  class="btn btn-default"/> 
+					<input type="reset" value="清除表單" class="btn btn-default">
 				</div>
 
 			</form>
