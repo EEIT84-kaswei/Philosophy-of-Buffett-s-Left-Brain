@@ -114,11 +114,11 @@
 					<p><fmt:message key="extentForInvestgatingLoss" /></p>
 						<label>
 						<select class="form-control" name="question6" >
-						  	<option value="1"><c:if test="${param.question6 eq '1'}"></c:if><fmt:message key="loseFor1to2" />1%~2%（每年可接受損失1~2萬元）</option>
-						  	<option value="2"><c:if test="${param.question6 eq '2'}"></c:if><fmt:message key="loseFor3to5" />3%~5%（每年可接受損失3~5萬元）</option>
-						  	<option value="3"><c:if test="${param.question6 eq '3'}"></c:if><fmt:message key="loseFor6to8" />6%~8%（每年可接受損失6~8萬元）</option>
-						  	<option value="4"><c:if test="${param.question6 eq '4'}"></c:if><fmt:message key="loseFor9to12" />9%~12%（每年可接受損失9~12萬元）</option>
-					  		<option value="5"><c:if test="${param.question6 eq '5'}"></c:if><fmt:message key="loseForOver12" />12%以上（每年可接受損失12萬元以上）</option>
+						  	<option value="1"><c:if test="${param.question6 eq '1'}"></c:if><fmt:message key="loseFor1to2" /></option>
+						  	<option value="2"><c:if test="${param.question6 eq '2'}"></c:if><fmt:message key="loseFor3to5" /></option>
+						  	<option value="3"><c:if test="${param.question6 eq '3'}"></c:if><fmt:message key="loseFor6to8" /></option>
+						  	<option value="4"><c:if test="${param.question6 eq '4'}"></c:if><fmt:message key="loseFor9to12" /></option>
+					  		<option value="5"><c:if test="${param.question6 eq '5'}"></c:if><fmt:message key="loseForOver12" /></option>
 						</select>
 						</label>
 					<label style="color: red">
