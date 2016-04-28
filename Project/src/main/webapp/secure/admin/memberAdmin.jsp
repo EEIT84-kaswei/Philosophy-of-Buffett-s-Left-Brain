@@ -59,7 +59,7 @@ body {
 							<th>會員帳號</th>
 							<th>會員權限</th>
 							<th>修改權限</th>
-							<th>刪除</th>
+							<th>停權</th>
 						</tr>
 					</thead>
 					
@@ -78,20 +78,29 @@ body {
 											<option>admin</option>
 											<option>customer</option>
 											<option>writer</option>
+											<option>suspended</option>
 										</c:if>
 										<c:if test="${row.account_Role == 'writer'}">
 											<option>writer</option>
 											<option>customer</option>
 											<option>admin</option>
+											<option>suspended</option>
 										</c:if>
 										<c:if test="${row.account_Role == 'customer'}">
 											<option>customer</option>
 											<option>writer</option>
 											<option>admin</option>
+											<option>suspended</option>
+										</c:if>
+										<c:if test="${row.account_Role == 'suspended'}">
+											<option>suspended</option>
+											<option>customer</option>
+											<option>writer</option>
+											<option>admin</option>											
 										</c:if>
 									</select></td>
 								<td><input type="submit" name="revise" value="update"></td>
-								<td><input type="submit" name="revise" value="delete" onclick="if(confirm('您是否確定刪除會員：${row.account}')) return true;else return false"></td>
+								<td><input type="submit" name="revise" value="suspend" onclick="if(confirm('您是否確定刪除會員：${row.account}')) return true;else return false"></td>
 							</form>
 							</tr>
 						</c:forEach>

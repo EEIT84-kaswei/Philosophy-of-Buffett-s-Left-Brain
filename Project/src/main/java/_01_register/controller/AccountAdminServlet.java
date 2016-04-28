@@ -41,7 +41,7 @@ public class AccountAdminServlet extends HttpServlet {
 		
 		// 呼叫Model
 		AccountRoleBean bean = new AccountRoleBean();
-		bean.setaccount_Role(role);
+		bean.setaccount_Role(role);	
 		bean.setaccount(accountName);
 		System.out.println(bean);
 		
@@ -73,10 +73,11 @@ public class AccountAdminServlet extends HttpServlet {
 			}
 
 	         
-		else if ("delete".equals(revise)){
-			System.out.println("刪除--------");
-			boolean result = accountRoleService.delete(bean);
-			System.out.println("delete");
+		else if ("suspend".equals(revise)){
+			System.out.println("停權--------");
+			AccountRoleBean result = accountRoleService.suspend(bean);
+			System.out.println(result);
+			System.out.println("suspend");
 //			if(!result) {
 //				request.setAttribute("delete", 0);
 //			} else {
