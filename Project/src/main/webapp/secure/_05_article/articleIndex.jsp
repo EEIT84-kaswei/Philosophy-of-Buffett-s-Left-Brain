@@ -60,7 +60,7 @@ body {
 		</div>
 
 <div class="table-responsive">
-	<div style="margin: 2em auto; padding: 2em 0; max-width:48em;">
+	<div style="margin: 2em auto; padding: 2em 0; max-width:50em;">
 
 			<!-- 表格開始 -->
 
