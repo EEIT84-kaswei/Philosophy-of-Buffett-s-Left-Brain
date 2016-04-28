@@ -40,7 +40,7 @@
 	
 	
 	<div style="background-color:rgba(0, 0, 102,0.7);width:280px;margin:2px auto">
-	<H2 align="center" style="color: pink;"><fmt:message key="questionnaire" /></H2>
+	<H2 align="center" style="color: pink;"><fmt:message key="question" /></H2>
 	</div>
 	<div style="margin:0 auto;max-width:50em;align:center">
 		<form action="<c:url value='/secure/_02_login.controller/QuestionServlet?insert=new' />"
