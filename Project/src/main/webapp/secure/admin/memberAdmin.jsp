@@ -43,14 +43,14 @@ body {
 <div style="margin:0 auto 2em auto">
 	<br>
 	<br>
-	<br>
-	<h2 align="center" style="color:#ffe6ff">管理員平台</h2>
-	<h4 align="center" style="color:#ffe6ff">會員權限管理</h4>
-	<br>
+	<div style="background-color: rgba(0,0,0,0.7);max-width:40em;margin:0 auto;width:150px;margin:0 auto">
+	<h2 align="center" style="color:#ffe6ff;font-family:'微軟正黑體';">管理員平台</h2>
+	<h4 align="center" style="color:#ffe6ff;font-family:'微軟正黑體';">會員權限管理</h4>
+	</div>
 
 	
 	
-		<div style="max-width:40em;margin:0 auto">
+		<div style="margin:auto;max-width:50em">
 				<div class="table-responsive">
 				<table class="table table-hover table-bordered" id="thisTable1" style="margin:0 auto">
 					<thead>
@@ -59,7 +59,7 @@ body {
 							<th>會員帳號</th>
 							<th>會員權限</th>
 							<th>修改權限</th>
-							<th>刪除</th>
+							<th>停權</th>
 						</tr>
 					</thead>
 					
@@ -78,20 +78,29 @@ body {
 											<option>admin</option>
 											<option>customer</option>
 											<option>writer</option>
+											<option>suspended</option>
 										</c:if>
 										<c:if test="${row.account_Role == 'writer'}">
 											<option>writer</option>
 											<option>customer</option>
 											<option>admin</option>
+											<option>suspended</option>
 										</c:if>
 										<c:if test="${row.account_Role == 'customer'}">
 											<option>customer</option>
 											<option>writer</option>
 											<option>admin</option>
+											<option>suspended</option>
+										</c:if>
+										<c:if test="${row.account_Role == 'suspended'}">
+											<option>suspended</option>
+											<option>customer</option>
+											<option>writer</option>
+											<option>admin</option>											
 										</c:if>
 									</select></td>
 								<td><input type="submit" name="revise" value="update"></td>
-								<td><input type="submit" name="revise" value="delete" onclick="if(confirm('您是否確定刪除會員：${row.account}')) return true;else return false"></td>
+								<td><input type="submit" name="revise" value="suspend" onclick="if(confirm('是否確定停權會員： ${row.account}')) return true;else return false"></td>
 							</form>
 							</tr>
 						</c:forEach>

@@ -69,21 +69,24 @@
 
 				<div style="max-width:50em;margin:1em auto">
 				
-				<table style="border: 2px solid #006600; padding: 5px;" align="center">
+
+				<table style="border-collapse: initial; border: 2px solid #006600;" id="msgTable">
 				<c:if test="${not empty msg}">
 				<c:forEach var="row" items="${msg}">				
 					
 						<tr style="border-top: 2px solid #006600;">
-							<td style="margin:20px 0 0 10px;padding:20px 10px 0 10px;">回應者：${row.account}</td>
+							<td style="margin:20px 0 0 10px;padding:20px 0 0 0px;"><div style="padding-left:13px;">回應者：${row.account}</div></td>
 						</tr>
 						<tr>
-							<td style="margin:20px 0 0 10px;padding:0 10px 0 10px;">回應時間：<fmt:formatDate value="${row.mtime}"
-									pattern="yyyy-MM-dd HH:mm:ss" /></td>
+							<td style="margin:20px 0 0 10px;padding:0px;"><div style="padding-left:13px;">回應時間：<fmt:formatDate value="${row.mtime}"
+									pattern="yyyy-MM-dd HH:mm:ss" /></div></td>
 						</tr>
 						<c:if test="${row.mno != updno}">
 							<tr>
-								<td style="margin:20px 0 0 10px;padding:0 10px 0 10px;">回應內容：<br>${row.mcontext}</td>
+								<td style="margin:20px 0 0 10px;padding:0px;"><div style="padding-left:13px;">回應內容：</div><div style="padding-left:13px; padding-bottom:10px;">${row.mcontext}</div><hr style="background-color:#006600; height:2px; border:0; margin:0;"></td>
+								
 							</tr>
+							
 						</c:if>
 						<c:if test="${row.mno == updno}">							
 							<tr style="border-right:2px solid #006600">	

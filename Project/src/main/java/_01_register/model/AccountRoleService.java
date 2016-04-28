@@ -45,5 +45,12 @@ public class AccountRoleService {
 		}
 		return result;
 	}
+	public AccountRoleBean suspend(AccountRoleBean bean){
+		AccountRoleBean result = null;
+		if(bean!=null) {
+			result = accountRoleDAO.update(bean.getaccount(), "suspended");
+		}
+		return result;
+	}
 
 }

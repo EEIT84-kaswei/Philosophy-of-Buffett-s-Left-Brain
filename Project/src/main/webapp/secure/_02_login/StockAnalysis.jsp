@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,14 +52,26 @@
 	font-size:120%
 	}
 </style>
-
+<c:choose>
+	<c:when test="${! empty (param.locale)}">
+		<c:set var="loc" value="${param.locale}" scope="session"/>
+	</c:when>
+	<c:when test="${! empty (sessionScope.loc)}">
+		<c:set var="loc" value="${sessionScope.loc}" scope="session"/>
+	</c:when>
+	<c:otherwise>
+		<c:set var="loc" value="${pageContext.request.locale}" scope="session"/>
+	</c:otherwise>
+</c:choose>
 <!-- **************************************** 網頁抬頭   ******************************************************* -->
 <title>籌碼分析</title>
 <!-- **************************************** 網頁抬頭  結束 ***************************************************** -->
 </head>
 <!-- **************************************** body開始  ******************************************************* -->
 <body>
+ <fmt:setLocale value="${loc}"/>  
 
+ <fmt:bundle basename="properties.term">   
 	<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
 	<jsp:include page="/title.jsp" />
 
@@ -74,7 +88,8 @@
 				<tr style="border: 1px solid black;">
 					<td colspan="9"
 						style="background-color: rgba(102, 102, 153, 0.8); height: 28px; margin:30px">
-						<center><font style="color: white;font-family: wt011;font-size:150%">籌碼分析</font></center>
+						<center><font style="color: white;font-family: wt011;font-size:150%">
+						<fmt:message key="StockAnalysis" /></font></center>
 					</td>
 				</tr>
 				<tr>
@@ -152,6 +167,7 @@
 	<!-- ************************************** 內文DIV結束  ***************************************************** -->
 
 
+</fmt:bundle>
 </body>
 <!-- ************************************** body結束  ********************************************************* -->
 

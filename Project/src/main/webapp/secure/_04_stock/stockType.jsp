@@ -125,7 +125,7 @@
 						<tr>
 							<td colspan="9"
 								style="background: #003366; height: 28px; border: none;">
-								<font style="color: white;font-size:20px">${stockTypeName}</font></td>
+								<font style="color: white;font-size:20px;font-weight:bold">${stockTypeName}</font></td>
 						</tr>
 						<tr>
 							<td colspan="9" style="height: 20px; border: none"></td>

@@ -91,7 +91,9 @@ $('document').ready(function(){
 </div>
 <!-- <script type="text/javascript" -->
 <!-- 	src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
-		<div style="background-color: rgba(255, 255, 255, 0.5);width:200px;display: inline;padding:5px 20px 0 20px;margin:0 10px 0 0;height:50px">
+
+	<div >
+		<div style="background-color: rgba(255, 255, 255, 0.6);width:120px;display: inline;padding:5px 5px 0 5px;margin:0 8px 0 0;height:50px">
 		<c:url var="engURL" value="">
 			<c:forEach var="args" items="${param}">
 				<c:if test='${args.key ne "locale"}'>
@@ -100,9 +102,9 @@ $('document').ready(function(){
 			</c:forEach>
 			<c:param name="locale" value="en_US" />
 		</c:url>
-		<a href="${engURL}"><font style="font-size:150%;color:black">English</font></a>
+		<a href="${engURL}"><font style="font-size:110%;color:black">English</font></a>
 		</div>
-		<div style="background-color: rgba(255, 255, 255, 0.5);width:200px;display: inline;padding:5px 20px 0 20px;margin:0 10px 0 0;height:50px">
+		<div style="background-color: rgba(255, 255, 255, 0.6);width:90px;display: inline;padding:5px 5px 0 5px;margin:0 8px 0 0;height:50px">
 		<c:url var="chineseURL" value="">
 			<c:forEach var="args" items="${param}">
 				<c:if test='${args.key ne "locale"}'>
@@ -111,9 +113,9 @@ $('document').ready(function(){
 			</c:forEach>
 			<c:param name="locale" value="zh_TW" />
 		</c:url>
-		<a href="${chineseURL}"><font style="font-size:160%;color:black;">中文</font></a>
+		<a href="${chineseURL}"><font style="font-size:120%;color:black;">中文</font></a>
 		</div>
-		<div style="background-color: rgba(255, 255, 255, 0.5);width:200px;display: inline;padding:5px 20px 0 20px;margin:0 10px 0 0;height:50px">
+		<div style="background-color: rgba(255, 255, 255, 0.6);width:130px;display: inline;padding:5px 5px 0 5px;margin:0 8px 0 0;height:50px">
 		<c:url var="russianURL" value="">
 			<c:forEach var="args" items="${param}">
 				<c:if test='${args.key ne "locale"}'>
@@ -122,9 +124,9 @@ $('document').ready(function(){
 			</c:forEach>
 			<c:param name="locale" value="ru_RU" />
 		</c:url>
-		<a href="${russianURL}"><font style="font-size:160%;color:black;">русский</font></a>
+		<a href="${russianURL}"><font style="font-size:110%;color:black;">русский</font></a>
 		</div>
-				<div style="background-color: rgba(255, 255, 255, 0.5);width:200px;display: inline;padding:5px 20px 0 20px;margin:0 10px 0 0;height:50px">
+				<div style="background-color: rgba(255, 255, 255, 0.6);width:140px;display: inline;padding:5px 5px 0 5px;margin:0 0px 0 0;height:50px">
 		<c:url var="japaneseURL" value="">
 			<c:forEach var="args" items="${param}">
 				<c:if test='${args.key ne "locale"}'>
@@ -133,8 +135,10 @@ $('document').ready(function(){
 			</c:forEach>
 			<c:param name="locale" value="ja_JP" />
 		</c:url>
-		<a href="${japaneseURL}"><font style="font-size:160%;color:black;">日本語</font></a>
+		<a href="${japaneseURL}"><font style="font-size:120%;color:black;">日本語</font></a>
 		</div>
+		
+	</div>	
 	<!-- 標題 END -->
 </center>
 

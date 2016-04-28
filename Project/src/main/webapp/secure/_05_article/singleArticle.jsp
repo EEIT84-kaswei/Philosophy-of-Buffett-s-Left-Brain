@@ -31,7 +31,7 @@
 					    <c:param name="sano" value="${singleArticle.ano}" />
 					</c:url>" method="post">
 				
-				<h2 style="text-align:center;color:#008080;font-family: wt011">${singleArticle.atitle}</h2>
+				<h2 style="text-align:center;color:#008080;font-weight:bold">${singleArticle.atitle}</h2>
 				<p style="text-align:center">${singleArticle.aname}</p>
 				<fmt:formatDate var="time" value="${singleArticle.atime}" type="both" dateStyle="long" /> 
 				<p style="text-align:center;color:#999999">${time}</p>
