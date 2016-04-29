@@ -86,6 +86,17 @@
 /* 	color: #666; */
 /* } */
 </style>
+<c:choose>
+	<c:when test="${! empty (param.locale)}">
+		<c:set var="loc" value="${param.locale}" scope="session"/>
+	</c:when>
+	<c:when test="${! empty (sessionScope.loc)}">
+		<c:set var="loc" value="${sessionScope.loc}" scope="session"/>
+	</c:when>
+	<c:otherwise>
+		<c:set var="loc" value="${pageContext.request.locale}" scope="session"/>
+	</c:otherwise>
+</c:choose>
 <!-- **************************************** 網頁抬頭  開始***************************************************** -->
 <title>${conceptStockName}</title>
 <!-- **************************************** 網頁抬頭  結束 ***************************************************** -->
@@ -100,7 +111,9 @@
 	<!-- 網頁主要導覽列 -->
 	<div><jsp:include page="/nav.jsp" /></div>
 
+ <fmt:setLocale value="${loc}"/>  
 
+ <fmt:bundle basename="properties.term">   
 
 	<!-- ************************************** 內文DIV開始  ***************************************************** -->
 	<div align="center" style="width: 90%; margin: 0 auto;" class="table-responsive">
@@ -165,15 +178,15 @@
 					<td colspan="9" style="height: 20px; border: none"></td>
 				</tr>
 				<tr style="height: 30px; background: #79a6d2">
-					<th>加入自選股</th>
-					<th>股票代碼</th>
-					<th>&nbsp;&nbsp;股票名稱&nbsp;&nbsp;</th>
-					<th>買進價格</th>
-					<th>賣出價格</th>
-					<th>成交價格</th>
-					<th>漲跌金額</th>
-					<th>漲跌幅度</th>
-					<th>累積成交量</th>
+							<th><fmt:message key="optionalStock"/></th>
+							<th><fmt:message key="Code"/></th>
+							<th><fmt:message key="Name"/></th>							
+							<th><fmt:message key="purchasePrice"/></th>
+							<th><fmt:message key="sellPrice"/></th>
+							<th><fmt:message key="commitPrice"/></th>
+							<th><fmt:message key="changePrice"/></th>
+							<th><fmt:message key="changeExtent"/></th>
+							<th><fmt:message key="amount"/></th>
 				</tr>
 			</thead>
 
@@ -204,7 +217,7 @@
 
 	<!-- ************************************** 內文DIV結束  ***************************************************** -->
 
-
+</fmt:bundle>
 	<!-- ************************************** 最外框DIV結束  ***************************************************** -->
 </body>
 
