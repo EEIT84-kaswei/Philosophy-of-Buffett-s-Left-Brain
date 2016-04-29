@@ -34,7 +34,7 @@
 	<div>
 		<jsp:include page="/nav.jsp" />
 	</div>
-	 <fmt:setLocale value="${loc}"/> 
+	<fmt:setLocale value="${loc}"/> 
 	<fmt:bundle basename="properties.question">   
 	
 	
@@ -127,20 +127,20 @@
 					</div>
 					
 					<div class="form-group" style="background-color:#d1e0e0;padding:20px;margin-bottom:0">
-					<p>6. 請問您曾經投資過那些金融商品(可複選)？(必答)</p>
+					<p><fmt:message key="whatProductToInvest" /></p>
 					
 						<label class="checkbox-inline">
 					  	<input type="checkbox" name="question4" id="inlineCheckbox1" value="1"
 							<c:forEach var="aVar" items="${paramValues.question4}">
 							<c:if test="${aVar eq '1'}">checked="checked"</c:if>							
-							</c:forEach>>台外幣存款、貨幣型基金、儲蓄型保險或不曾投資過<br>
+							</c:forEach>><fmt:message key="select01" /><br>
 						</label>
 						<br>
 						<label class="checkbox-inline">
 						  <input type="checkbox" name="question4" id="inlineCheckbox2" value="2"
 							<c:forEach var="aVar" items="${paramValues.question4}">
 							<c:if test="${aVar eq '2'}">checked="checked"</c:if>							
-							</c:forEach>>債券、債券型基金<br>
+							</c:forEach>><fmt:message key="select02" /><br>
 						</label>
 						<br>
 						
@@ -148,7 +148,7 @@
 						  <input type="checkbox"  name="question4" id="inlineCheckbox3" value="3"
 							<c:forEach var="aVar" items="${paramValues.question4}">
 							<c:if test="${aVar eq '3'}">checked="checked"</c:if>							
-							</c:forEach>>股票、股票型基金、ETF<br>
+							</c:forEach>><fmt:message key="select03" /><br>
 						</label>
 						<br>
 						
@@ -156,7 +156,7 @@
 						  <input type="checkbox" name="question4" id="inlineCheckbox3" value="4"
 							<c:forEach var="aVar" items="${paramValues.question4}">
 							<c:if test="${aVar eq '4'}">checked="checked"</c:if>							
-						</c:forEach>>結構型商品、投資型保單<br>
+						</c:forEach>><fmt:message key="select04" /><br>
 						</label>
 						<br>
 						
@@ -164,7 +164,7 @@
 							<input type="checkbox" name="question4" id="inlineCheckbox1" value="5"
 							<c:forEach var="aVar" items="${paramValues.question4}">
 							<c:if test="${aVar eq '5'}">checked="checked"</c:if>							
-							</c:forEach>>期貨、選擇權或其他衍生性金融商品<br>
+							</c:forEach>><fmt:message key="select05" /><br>
 						</label>
 					</label>
 					<label style="color: red"><span class="error">${error.question4}</span></label>
@@ -173,7 +173,6 @@
 			<center>
 			<input type="submit" value="送出" class="btn btn-default" style="margin:20px auto">
 			</center>
-		</form>
 		</form>
 	</div>
 

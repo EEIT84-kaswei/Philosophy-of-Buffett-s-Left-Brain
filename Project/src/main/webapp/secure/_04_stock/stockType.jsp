@@ -96,19 +96,16 @@
 
 
 			<!-- ************************************** 內文DIV開始  ***************************************************** -->
-			<div align="center" style="width: 90%; margin: 0 auto;" class="table-responsive">
+			<div align="center" style="width: 90%; margin: 0 auto;" class="table-responsive" >
 
 				<!-- ******************************** 各種分類按鈕   ************************************************ -->
 				<div style="width: 100%; margin: 0 auto;border-radius:10px;">
 					<table id="menu">
 						<tr>
 							<td><a href="<c:url value='/secure/conceptStock.view'/>">概念股</a></td>
-							<td><a
-								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></td>
-							<td><a
-								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></td>
-							<td><a
-								href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></td>
+							<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s1"/></c:url>">上市股</a></td>
+							<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s2"/></c:url>">上櫃股</a></td>
+							<td><a href="<c:url value='/secure/stockType.view'><c:param name="stockType" value="s3"/></c:url>">興櫃股</a></td>
 						</tr>
 					</table>
 				</div>
@@ -173,7 +170,8 @@
 									
 								<td><a
 									href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url>">${data.stock_Code}</a></td>
-								<td>${data.stock_Name}</td>
+								<td><a style="color:blue"
+								href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url> ">${data.stock_Name}</a></td>
 								<td><c:out value="${data.purchase_Price}" default="-" /></td>
 								<td><c:out value="${data.selling_Price}" default="-" /></td>
 								<td><c:out value="${data.final_price}" default="-" /></td>
