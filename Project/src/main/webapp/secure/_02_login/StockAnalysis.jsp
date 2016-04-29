@@ -47,7 +47,7 @@
 
 #stockTypeTable th, tr, td {
 	border: 1px groove #000000;
-	font-size: 120%
+	font-size: 100%
 }
 </style>
 <c:choose>
@@ -78,8 +78,7 @@
 
 
 		<!-- ************************************** 內文DIV開始  ***************************************************** -->
-		<div class="table-responsive"
-			style="max-width: 80em; margin: 30px auto;">
+		<div class="table-responsive" style="max-width: 80em; margin: 30px auto;">
 
 			<!-- **************************************表格開始*********************************************** -->
 			<table id="stockTypeTable" class="table"
@@ -120,10 +119,11 @@
 
 					<c:forEach var="data" items="${beanS}">
 						<tr style="border: 1.5px solid black;">
-							<td><a
-								href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url>">${data.stock_Code}</a></td>
+							<td><a style="color:blue"
+								href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url> ">${data.stock_Code}</a></td>
 
-							<td>${data.stock_Name}</td>
+							<td><a style="color:blue"
+								href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url> ">${data.stock_Name}</a></td>
 							<c:choose>
 								<c:when test="${data.index1 eq '符合'}">
 									<td style="color: red;">${data.index1}</td>
@@ -179,6 +179,18 @@
 	</fmt:bundle>
 </body>
 <!-- ************************************** body結束  ********************************************************* -->
+
+<script type="text/javascript"
+	src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+		$("#stockTypeTable").DataTable({
+			"pageLength" : 10,
+			"lengthMenu" : [ 5, 10, 15, 20 ]
+		});
+	});
+</script>
+
 
 <!-- ************************************** JavaScript ***************************************************** -->
 </html>
