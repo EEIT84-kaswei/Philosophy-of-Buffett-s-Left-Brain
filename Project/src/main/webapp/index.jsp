@@ -5,12 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%-- <meta http-equiv="refresh" content="5;url=${pageContext.request.contextPath}/Welcome.jsp"> --%>
 <title>巴菲特的左腦哲學</title>
-<link href='https://fonts.googleapis.com/css?family=Montserrat'
-	rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Asap:400' rel='stylesheet'
-	type='text/css'>
 
 <style>
 html {
@@ -19,7 +14,6 @@ html {
 
 body {
 	/* 	font-family: 'Montserrat', sans-serif; */
-	font-family: wt011;
 	font-size: x-large;
 	background-image: url("${pageContext.request.contextPath}/img/back.jpg");
 	background-repeat: no-repeat;
@@ -35,7 +29,7 @@ body {
 }
 </style>
 
-<script type="text/javascript" src="../js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-2.2.1.min.js"></script>
 
 <script type="text/javascript">
 <!-- 	圖片自適應畫面大小：1.設定圖片最大尺寸。2. 設定JS如下面兩行。 -->
