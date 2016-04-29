@@ -99,17 +99,13 @@
 					</tr>
 					<tr style="height: 40px; background: #ccccff">
 
-						<th>股票代碼</th>
-						<th>股票名稱</th>
-						<th>券商重押>30%</th>
-						<th>TOP券商買超>500張<br>超額買超>4倍
-						</th>
-						<th>短線籌碼集中<br>一日集中>20%
-						</th>
-						<th>外資連買>3天<br>買超>1000張
-						</th>
-						<th>投信連買>3天<br>買超>1000張
-						</th>
+						<th><fmt:message key="Code" /></th>
+						<th><fmt:message key="Name" /></th>
+						<th><fmt:message key="over30percent" /></th>
+						<th><fmt:message key="overbought" /></th>
+						<th><fmt:message key="shortConcentration" /></th>
+						<th><fmt:message key="foreignBuying" /></th>
+						<th><fmt:message key="InvestmentTrust" /></th>
 
 					</tr>
 				</thead>
@@ -126,42 +122,42 @@
 								href="<c:url value='/secure/SpecialFunctionServlet'><c:param name='stock_Code' value='${data.stock_Code}'/></c:url> ">${data.stock_Name}</a></td>
 							<c:choose>
 								<c:when test="${data.index1 eq '符合'}">
-									<td style="color: red;">${data.index1}</td>
+									<td style="color: red;"><fmt:message key="match" /></td>
 								</c:when>
 								<c:otherwise>
-									<td>${data.index1}</td>
+									<td><fmt:message key="unsuitable" /></td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when test="${data.index2 eq '符合'}">
-									<td style="color: red;">${data.index2}</td>
+									<td style="color: red;"><fmt:message key="match" /></td>
 								</c:when>
 								<c:otherwise>
-									<td>${data.index2}</td>
+									<td><fmt:message key="unsuitable" /></td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when test="${data.index3 eq '符合'}">
-									<td style="color: red;">${data.index3}</td>
+									<td style="color: red;"><fmt:message key="match" /></td>
 								</c:when>
 								<c:otherwise>
-									<td>${data.index3}</td>
+									<td><fmt:message key="unsuitable" /></td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when test="${data.index4 eq '符合'}">
-									<td style="color: red;">${data.index4}</td>
+									<td style="color: red;"><fmt:message key="match" /></td>
 								</c:when>
 								<c:otherwise>
-									<td>${data.index4}</td>
+									<td><fmt:message key="unsuitable" /></td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
 								<c:when test="${data.index5 eq '符合'}">
-									<td style="color: red;">${data.index5}</td>
+									<td style="color: red;"><fmt:message key="match" /></td>
 								</c:when>
 								<c:otherwise>
-									<td>${data.index5}</td>
+									<td><fmt:message key="unsuitable" /></td>
 								</c:otherwise>
 							</c:choose>
 						</tr>

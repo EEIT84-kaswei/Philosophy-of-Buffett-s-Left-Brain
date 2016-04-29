@@ -58,11 +58,11 @@ ol li a{
 
 	<div style="font-size:130%">
 	
-	根據您填寫的風險問卷，您的得分為：(${oldScores})
+	<fmt:message key=""/>根據您填寫的風險問卷，您的得分為：(${oldScores})
 	<br>
-	您屬於積極型。
+	<fmt:message key=""/>您屬於積極型。
 	<br>
-	據此，本網站推薦您選擇下列幾種股票，供您參考。
+	<fmt:message key=""/>據此，本網站推薦您選擇下列幾種股票，供您參考。
 	<br>	
 	<ol>
 		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c1&send=送出"></c:url>'>生技醫療類股</a></li>
