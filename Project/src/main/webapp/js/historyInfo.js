@@ -280,6 +280,7 @@
 		        },{
 		    		type:'column',
 		    		name:'成交量',
+		    		color:'#008000',
 		    		data:instantVolumeData,
 		            yAxis: 1		            
 		    	}]
