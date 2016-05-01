@@ -48,18 +48,19 @@ ol li a{
 </div>
  <fmt:setLocale value="${loc}"/>  
 
- <fmt:bundle basename="properties.message">   
+ <fmt:bundle basename="properties.recommend">   
 <div id="mainDIV" style="background-color:rgba(255, 255, 255, 0.8);max-width:520px;margin:60px auto;;padding:20px">
 
-<h3 align="center"><fmt:message key=""/>推薦股票</h3>
+<h3 align="center"><fmt:message key="recommendedStocksTitle"/></h3>
 
 	<div style="font-size:130%">
 	
-	<fmt:message key=""/>根據您填寫的風險問卷，您的得分為：(${oldScores})
+	<fmt:message key="yourScore"/>(${oldScores})
+	<c:if test="${loc eq 'ja_JP'}"><fmt:message key="yourScoreEnd"/></c:if>
 	<br>
-	<fmt:message key=""/>您屬於保守型。
+	<fmt:message key="conservativeType"/>
 	<br>
-	<fmt:message key=""/>據此，本網站推薦您選擇下列幾種股票，供您參考。
+	<fmt:message key="listStockDescription"/>
 	<br>
 	<ol>
 		<li><a href='<c:url value="/secure/conceptStock.view?concept_Stock=c2&send=送出"></c:url>'>定存股</a></li>
