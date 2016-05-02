@@ -64,7 +64,7 @@ public class TaiexDAOHibernate implements TaiexDAO {
 	
 	@Override
 	public List<TaiexBean> select(){
-		Query query = getSession().createQuery("from TaiexBean");
+		Query query = getSession().createQuery("from TaiexBean order by tDateTime asc");
 		return (List<TaiexBean>) query.list();
 	}
 
