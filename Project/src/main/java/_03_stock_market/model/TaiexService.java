@@ -40,25 +40,8 @@ public class TaiexService {
 	}
 	
 	public String getTaiexData(){
-		Calendar cal=Calendar.getInstance();
-		int dayOfWeek=cal.get(Calendar.DAY_OF_WEEK);
-		int hourOfDay=cal.get(Calendar.HOUR_OF_DAY);
-		if(dayOfWeek==1){
-			cal.add(Calendar.DAY_OF_WEEK, -2);
-		}else if(dayOfWeek==7){
-			cal.add(Calendar.DAY_OF_WEEK, -1);
-		}else{
-			if(hourOfDay>=0 && hourOfDay <9){
-				if(dayOfWeek==2){
-					cal.add(Calendar.DAY_OF_WEEK, -3);
-				}else{
-					cal.add(Calendar.DAY_OF_WEEK, -1);
-				}				
-			}
-		}
-		Date targetTime=cal.getTime();
 		JsonArrayBuilder allDataArrayBuilder=Json.createArrayBuilder();
-		List<TaiexBean> list=taiexDAO.selectByDate(targetTime);
+		List<TaiexBean> list=taiexDAO.select();
 		Iterator<TaiexBean> it=list.iterator();
 		while(it.hasNext()){
 			TaiexBean bean=it.next();

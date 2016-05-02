@@ -14,7 +14,7 @@ public interface InstantStockDAO {
 
 	InstantStockBean select(Integer stock_Code,java.sql.Timestamp iDatetime);
 	
-	List<InstantStockBean> selectAllByStockCode(Integer stock_Code,Timestamp iDatetime);
+	List<InstantStockBean> selectAllByStockCode(Integer stock_Code);
 
 	List<InstantStockBean> select();
 	

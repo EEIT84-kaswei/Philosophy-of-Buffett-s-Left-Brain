@@ -118,10 +118,9 @@ public class InstantStockDAOHibernate implements InstantStockDAO  {
 		return (InstantStockBean)this.getSession().get(InstantStockBean.class, bean);	
 	}
 	@Override
-	public List<InstantStockBean> selectAllByStockCode(Integer stock_Code,Timestamp iDatetime){
-		Query query = getSession().createQuery("from InstantStockBean where stock_Code = ? and iDatetime > ? order by iDatetime asc");
+	public List<InstantStockBean> selectAllByStockCode(Integer stock_Code){
+		Query query = getSession().createQuery("from InstantStockBean where stock_Code = ? order by iDatetime asc");
 		query.setParameter(0, stock_Code);
-		query.setParameter(1, iDatetime);
 		List<InstantStockBean> result =  query.list();
 		return result;
 	}
