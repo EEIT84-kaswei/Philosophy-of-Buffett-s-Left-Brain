@@ -77,7 +77,28 @@ input {
 }
 
 </style>
+<script src="<%=request.getContextPath()%>/js/jquery-2.2.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){	
+		$("#customer").click(function(){
+			$( "input[name='j_username']" ).val( "micky" );
+			$( "input[name='j_password']" ).val( "123" );			
+		});
+		$("#writer").click(function(){
+			$( "input[name='j_username']" ).val( "kitty" );
+			$( "input[name='j_password']" ).val( "123" );			
+		});
+		$("#admin").click(function(){
+			$( "input[name='j_username']" ).val( "sa" );
+			$( "input[name='j_password']" ).val( "sa" );			
+		});
+
+	});
+
+
+</script>
 <script type="text/javascript">
 $(function(){
 	// 預設顯示第一個頁籤
@@ -164,6 +185,10 @@ $(function(){
 							</span>
 							<br>
 							<button type="submit" class="btn btn-primary" style="margin:2px 10px;">送出</button>
+							<button type="button" class="btn btn-primary" style="margin:2px 10px;" id="customer">一般會員</button>
+							<button type="button" class="btn btn-primary" style="margin:2px 10px;" id="writer">作家</button>
+							<button type="button" class="btn btn-primary" style="margin:2px 10px;" id="admin">管理員</button>
+							
 						</form>
 				</li>
 				<li style="background-color:rgb(0, 153, 153)">

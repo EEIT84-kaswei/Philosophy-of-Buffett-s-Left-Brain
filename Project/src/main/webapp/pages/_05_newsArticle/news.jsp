@@ -61,7 +61,7 @@ body {
 	%>
 
 <div class="table-responsive">
-	<div style="margin: 2em auto; padding: 2em 0; max-width:50em;">
+	<div style="margin: 2em auto; padding: 2em 0; max-width:50em;background-color:gray;">
 		<!-- 		<div align=center> -->
 		<!-- 			<div class="row"> -->
 		<%-- 				<form class="form-search" action="<c:url value="/news.do"/>" method="get"> --%>
