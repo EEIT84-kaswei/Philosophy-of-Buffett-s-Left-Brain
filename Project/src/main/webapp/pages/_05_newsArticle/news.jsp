@@ -9,6 +9,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>股市新聞</title>
 
+
+<style type="text/css">
+#newstable tr:nth-child(odd) {
+	background:rgb(179, 204, 204) ;
+	}
+#newstable tr:nth-child(even) {
+	background: #d9d9d9
+	}	
+#newstable tr:hover {
+	background-color: rgb(255, 230, 204);
+}	
+article, aside, figure, figcaption, footer, header, hgroup, menu, nav,
+	section {
+ 	display: block; 
+}
+
+body {
+	font: 62.5% "Trebuchet MS", sans-serif;
+	margin: 50px;
+}
+
+
+#myTitle {
+	width: 23em;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	overflow: hidden;
+}
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('input[name="date"]').attr("readonly", "readonly").datepicker({
@@ -20,34 +50,6 @@
 		});
 	});
 </script>
-<style type="text/css">
-article, aside, figure, figcaption, footer, header, hgroup, menu, nav,
-	section {
-	display: block;
-}
-
-body {
-	font: 62.5% "Trebuchet MS", sans-serif;
-	margin: 50px;
-}
-
-#newstable tr:hover {
-	color: #BD63FF;
-	background-color: #77FFCC;
-}
-
-#newstable tr:nth-child(even) {
-	background: #d9d9d9
-}
-
-#myTitle {
-	width: 23em;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	-o-text-overflow: ellipsis;
-	overflow: hidden;
-}
-</style>
 </head>
 <body>
 
@@ -61,7 +63,7 @@ body {
 	%>
 
 <div class="table-responsive">
-	<div style="margin: 2em auto; padding: 2em 0; max-width:50em;background-color:gray;">
+	<div style="margin: 2em auto; padding: 2em 0; max-width:50em;">
 		<!-- 		<div align=center> -->
 		<!-- 			<div class="row"> -->
 		<%-- 				<form class="form-search" action="<c:url value="/news.do"/>" method="get"> --%>
@@ -88,8 +90,8 @@ body {
 					rules="all" cellpadding='5' align="center">
 					<thead>
 						<tr>
-							<th style="text-align: center;background-color: #4d4d4d"><font style="color:#fff">新聞標題</font></th>
-							<th style="text-align: center;background-color: #4d4d4d"><font style="color:#fff">發佈日期</font></th>
+							<th style="text-align: center;background-color: rgb(82, 122, 122)"><font style="color:#fff">新聞標題</font></th>
+							<th style="text-align: center;background-color: rgb(82, 122, 122)"><font style="color:#fff">發佈日期</font></th>
 						</tr>
 					</thead>
 					<tbody>
