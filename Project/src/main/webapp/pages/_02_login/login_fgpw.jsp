@@ -91,8 +91,8 @@ $(document).ready(function(){
 			$( "input[name='j_password']" ).val( "123" );			
 		});
 		$("#admin").click(function(){
-			$( "input[name='j_username']" ).val( "sa" );
-			$( "input[name='j_password']" ).val( "sa" );			
+			$( "input[name='j_username']" ).val( "peterpig" );
+			$( "input[name='j_password']" ).val( "peterpig" );			
 		});
 
 	});
