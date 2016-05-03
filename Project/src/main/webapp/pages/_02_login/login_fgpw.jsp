@@ -83,8 +83,8 @@ input {
 
 $(document).ready(function(){	
 		$("#customer").click(function(){
-			$( "input[name='j_username']" ).val( "micky" );
-			$( "input[name='j_password']" ).val( "123" );			
+			$( "input[name='j_username']" ).val( "sandy" );
+			$( "input[name='j_password']" ).val( "sandy" );			
 		});
 		$("#writer").click(function(){
 			$( "input[name='j_username']" ).val( "kitty" );
