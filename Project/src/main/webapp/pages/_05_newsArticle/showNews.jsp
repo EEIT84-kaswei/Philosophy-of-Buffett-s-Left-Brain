@@ -35,13 +35,13 @@
 
 	<div style="margin: 2em auto; padding: 2em;background-color: rgba(204, 204, 204, 0.99);max-width:60em">	
 		<form action="<c:url value="/pages/_05_newsArticle/news.do"/>" method="post">
-			<input type="hidden" name="updtno" value="${select.nno}">
-			<h2 style="text-align:center;color:#008080;font-weight:bold;">${select.ntitle}</h2>
-			<fmt:formatDate var="time" value="${select.ntime}" type="both" dateStyle="long" pattern="yyyy年MM月dd日  HH:mm"/>
+			<input type="hidden" name="updtno" value="${oneNews.nno}">
+			<h2 style="text-align:center;color:#008080;font-weight:bold;">${oneNews.ntitle}</h2>
+			<fmt:formatDate var="time" value="${oneNews.ntime}" type="both" dateStyle="long" pattern="yyyy年MM月dd日  HH:mm"/>
 			<p style="text-align:center;color:#999999">${time}</p>
 			<br>
 			<div style="max-width:58em;margin:0 auto;padding:0 10px">
-				<p>${select.ncontext}</p>
+				<p>${oneNews.ncontext}</p>
 			</div>
 			
 			<c:if test='<%=request.isUserInRole("admin")%>'>

@@ -54,7 +54,7 @@ public class NewsServlet extends HttpServlet {
 			Integer num = Integer.parseInt(newUrl);
 			NewsBean bean = service.selectByNno(num);
 			HttpSession session = request.getSession();
-			session.setAttribute("select", bean);				
+			session.setAttribute("oneNews", bean);				
 			String path = request.getContextPath();
 			response.sendRedirect(path+"/pages/_05_newsArticle/showNews.jsp");
 			return;
@@ -73,7 +73,7 @@ public class NewsServlet extends HttpServlet {
 		if(prodaction == null && newUrl == null && nno == null) {
 			List<NewsBean> bean = service.selectAll();
 			HttpSession session = request.getSession();
-			session.setAttribute("select", bean);				
+			session.setAttribute("allNews", bean);				
 			String path = request.getContextPath();
 			response.sendRedirect(path+"/pages/_05_newsArticle/news.jsp");
 			return;

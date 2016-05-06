@@ -82,7 +82,7 @@ body {
 		<!-- 			</div> -->
 
 		<form>
-			<c:if test="${not empty select}">
+			<c:if test="${not empty allNews}">
 				<table id="newstable" class="table table-hover table-bordered"
 					style="border: 2px #000066 solid; margin: 2em 0;width:100%"
 					rules="all" cellpadding='5' align="center">
@@ -93,7 +93,7 @@ body {
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="row" items="${select}">
+						<c:forEach var="row" items="${allNews}">
 							<c:url value="/pages/_05_newsArticle/news.do" var="path"
 								scope="page">
 								<c:param name="newUrl" value="${row.nno}" />
