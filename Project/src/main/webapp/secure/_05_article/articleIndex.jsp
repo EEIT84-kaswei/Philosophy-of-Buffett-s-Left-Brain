@@ -10,15 +10,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>專欄文章</title>
 <style type="text/css">
-#maintable tr:hover {
-	color: #BD63FF;
-	background-color: #77FFCC;
-}
 
 #maintable tr:nth-child(even) {
 	background: #d9d9d9
 	}
+#maintable tr:nth-child(odd) {
+	background:rgb(179, 204, 204) ;
+	}
 	
+#maintable tr:hover {
+	background-color: rgb(255, 230, 204);
+}	
 #Atitle{
 	width: 20em;
 	white-space: nowrap;
@@ -70,9 +72,9 @@ body {
 					rules="all" cellpadding='5' align="center">
 					<thead>
 						<tr>							
-							<th style="width: 50%; text-align: center;background-color: #4d4d4d"><font style="color:#fff">文章標題</font></th>
-							<th style="width: 25%; text-align: center;background-color: #4d4d4d"><font style="color:#fff">作者</font></th>
-							<th style="width: 25%; text-align: center;background-color: #4d4d4d"><font style="color:#fff">發表日期</font></th>
+							<th style="width: 50%; text-align: center;background-color: rgb(82, 122, 122)"><font style="color:#fff">文章標題</font></th>
+							<th style="width: 25%; text-align: center;background-color: rgb(82, 122, 122)"><font style="color:#fff">作者</font></th>
+							<th style="width: 25%; text-align: center;background-color: rgb(82, 122, 122)"><font style="color:#fff">發表日期</font></th>
 						</tr>
 					</thead>
 					<tbody>

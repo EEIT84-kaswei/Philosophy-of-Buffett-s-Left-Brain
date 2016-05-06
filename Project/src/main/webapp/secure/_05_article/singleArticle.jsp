@@ -11,6 +11,14 @@
 
 <title>專欄文章</title>
 <script src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){	
+		$("#write").click(function(){
+			CKEDITOR.instances["content"].setData("<p>今年風險這麼高，投資商品市場的貴金屬比A股有吸引力多了，債信違約這種事太危險，不如不碰。</p>")
+		});
+	});
+</script>
 </head>
 <body>	
 		<!-- 網頁最上方標題「巴菲特的左腦哲學」 -->
@@ -121,7 +129,7 @@
 			<form action="<c:url value="/pages/article.controller"/>" method="post">
 				<input type="hidden" name="account" value="<%=request.getRemoteUser()%>"> 
 				<input type="hidden" name="sano" value="${singleArticle.ano}">
-				<textarea rows="20" cols="40" name="content" required></textarea>
+				<textarea  rows="20" cols="40" name="content" required></textarea>
 				<script>
 					CKEDITOR.replace('content', {
 // 						width:880,
@@ -132,6 +140,7 @@
 				<center>
 				<div style="margin:5px 0 30px 0">
 				<input type="submit" name="revise" value="留言" class="btn btn-default">
+				<input type="button" id="write" value="一鍵輸入留言" class="btn btn-default">
 				</div>
 				</center>
 			</form>
