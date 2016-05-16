@@ -15,7 +15,7 @@
 <script type="text/javascript">
 	function confirmDelete() {
 		if (confirm("確定刪除此項新聞資料(編號:${oneNews.nno})?")) {
-			document.forms[0].action = "<c:url value='/pages/_05_newsArticle/news.do?nno=${select.nno}' />";
+			document.forms[0].action = "<c:url value='/pages/_05_newsArticle/news.do?nno=${oneNews.nno}' />";
 			document.forms[0].method = "POST";
 			document.forms[0].submit();
 		} else {
